@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-09-24T18:33:37.466818Z`
+Generated: `2026-09-25T04:02:21.015619Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -31,6 +31,7 @@ Sorted worst-conflict-first.
 | `MECH-079` | `dormant_low_activity` | 0.8 | `candidate` | 0 |
 | `ARC-024` | `chronic_under_threshold` | 0.783 | `provisional` | 15 |
 | `MECH-321` | `chronic_under_threshold` | 0.778 | `candidate` | 10 |
+| `ARC-083` | `dormant_low_activity` | 0.75 | `candidate` | 0 |
 | `MECH-073` | `chronic_under_threshold` | 0.75 | `provisional` | 2 |
 | `SD-015` | `chronic_under_threshold` | 0.737 | `candidate` | 24 |
 | `MECH-116` | `chronic_under_threshold` | 0.727 | `candidate` | 7 |
@@ -38,7 +39,6 @@ Sorted worst-conflict-first.
 | `ARC-059` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `ARC-073` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `ARC-079` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
-| `ARC-083` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `ARC-111` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `INV-040` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `INV-047` | `chronic_under_threshold` | 0.667 | `candidate` | 10 |

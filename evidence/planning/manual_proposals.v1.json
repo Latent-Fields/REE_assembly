@@ -2963,7 +2963,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "dispatch_mode": "multi_arm_ablation",
       "backlog_id": null,
       "machine_affinity": "any",
@@ -2981,7 +2981,11 @@
         "- C5 (MECH-094 gate): a replay/simulation-tagged event allocates zero expansion. Enforced in",
         "code at `field.py:665` and asserted at the `agent.py` call site; must be re-asserted in any run"
       ],
-      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on SD-024 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue."
+      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on SD-024 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
+      "blocked_by": [
+        "benefit-field-kernel-resolution"
+      ],
+      "blocked_note": "SD-024's density falsifier was degenerate on the live manifold: the benefit-terrain RBF inherited the shared kernel_bandwidth 1.0 against a MAX pairwise z_world distance of 0.07 (180 states, 7 grid cells; measured 2026-09-24 orch0924-sd024, red-team BLOCKING F-1 on THIS proposal), so compute_benefit_density read ~11.5 at EVERY visited state with 23 active centers. A spatially constant density cannot vary with DA-driven cluster allocation whatever the mechanism does. THE BLOCKER IS ALREADY SATISFIED, in the same session that recorded this block: ResidueConfig.benefit_field_bandwidth landed on ree-v3 origin/main as b0f7457b (2026-09-25, default None -> kernel_bandwidth, bit-identical OFF, 22 contract cells). This refusal is recorded anyway because the blocked_by link is what makes the dependency auditable -- audit_blocked_proposal_unblockers.py reads substrate status implemented_pending_validation as SATISFIED and should surface this immediately as a RELEASE candidate for re-queue. WHAT REMAINS IS NOT SUBSTRATE: the OPERATING bandwidth is deliberately unchosen (user decision 2026-09-24 rec-20260924-3a88e1e9 was build-not-calibrate), so EXP-1391 must pre-register it from its own P0 measurement of the live manifold. Do not copy harm_field_bandwidth's 0.15 (tuned on a different 0.125 manifold; it exceeds this whole 0.07 one), and do not copy the 0.02 fixture in the contract file (a resolvability demonstration, not a recommendation). ALSO UNDISCHARGED, from orchestrate-20260924-breakthrough: proximity_approach_magnitude_tiebreak is required for any benefit channel to receive data; SD-070 P0 must run or the z_world encoder never trains; do not assume E3 picks by predicted consequence; R5b+R2 is not a validated regime (REE_assembly fc987f3b057). AND h2 IS LIVE: ~11.5-everywhere is equally consistent with encoder collapse, which this knob cannot distinguish from an unresolvable bandwidth -- report manifold extent and within-cell spread per run."
     },
     {
       "proposal_id": "EXP-1392",
@@ -2997,7 +3001,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "dispatch_mode": "multi_arm_ablation",
       "backlog_id": null,
       "machine_affinity": "any",
@@ -3015,7 +3019,11 @@
         "representational-density drive rather than a disguised value gradient, and it is SD-025's single",
         "most distinctive property."
       ],
-      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on SD-025 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue."
+      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on SD-025 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
+      "blocked_by": [
+        "benefit-field-kernel-resolution"
+      ],
+      "blocked_note": "SAME SATURATION SHAPE as EXP-1391, and this proposal is in scope on its own acceptance checks rather than by analogy: its co-primary mechanistic DV is the 'cross-candidate bonus range (max-min), never the mean', and its L1a check reads a CEM score-margin min(sparse) - min(dense) favouring the denser region. That bonus is the SD-025 curiosity term following compute_representational_density, i.e. the same benefit-terrain density read across CEM candidates. On the live manifold that density was spatially constant -- benefit RBF at the shared kernel_bandwidth 1.0 against a 0.07 max-pairwise z_world (measured 2026-09-24 orch0924-sd024): ~11.5 at EVERY visited state with 23 centers, and the FamiliarityTracker held ONE anchor (familiarity_bandwidth 0.20 also exceeds the whole manifold). A constant density makes the cross-candidate RANGE ~0 by construction and the sparse-vs-dense comparison degenerate, so L1a and L1c cannot discriminate whatever the mechanism does. NOTE the previously recorded L1a figures (39.26, range 26.95-45.61 over 8 seeds) do NOT contradict this: they predate the acceptance checks' own requirement of benefit_terrain_live_producer=True with no driver-side accumulate_benefit, which is exactly the live-manifold condition where the saturation bites. THE BLOCKER IS ALREADY SATISFIED, same session: ResidueConfig.benefit_field_bandwidth landed on ree-v3 origin/main as b0f7457b (2026-09-25, default None -> kernel_bandwidth, bit-identical OFF). Recorded anyway so the dependency is auditable -- audit_blocked_proposal_unblockers.py should surface this as a RELEASE candidate. WHAT REMAINS IS NOT SUBSTRATE: the operating bandwidth is deliberately unchosen (user decision rec-20260924-3a88e1e9, build-not-calibrate) and is pre-registered by EXP-1391's P0; EXP-1392 should consume that value rather than pick its own, since a different bandwidth in the producer and the consumer would make the two results incomparable. THE FAMILIARITY SIDE NEEDED NO BUILD: familiarity_bandwidth was already a dedicated knob, so its 0.20 is a calibration input to pre-register, not a missing lever -- but note it does DOUBLE duty as both query's proximity kernel and update's association threshold (thresh_sq = bw*bw), which is why one anchor absorbed 180 visits. AND h2 IS LIVE: encoder collapse explains ~11.5-everywhere equally well and this knob cannot distinguish it; report manifold extent and within-cell spread per run."
     },
     {
       "proposal_id": "EXP-1393",
@@ -3321,7 +3329,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "dispatch_mode": "multi_arm_ablation",
       "backlog_id": null,
       "machine_affinity": "any",
@@ -3339,7 +3347,12 @@
         "(ii) RESERVE -- after a MATCHED degradation insult applied identically to both histories (a fixed",
         "ablation of ContextMemory slots, or fixed noise injected into the E3 attribution path; identical"
       ],
-      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-181 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue."
+      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-181 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
+      "blocked_by": [
+        "SD-MECH181-MATCHED-INSULT-HARNESS",
+        "contextmemory-write-path-addressing-degeneracy"
+      ],
+      "blocked_note": "REFUSED 2026-09-25 at /queue-experiment Steps 2.5c/2.5d (ree-v3 5e18e979). TWO blocks. (1) Leg (ii) RESERVE -- MECH-181's only content over MECH-180 -- needs a matched-insult harness (ContextMemory slot ablation OR E3 attribution-noise injection, per the claim's own OR) with a paired per-seed retention delta. ABSENT: grep -rn 'ablat|attribution_noise|slot_ablation' ree_core/*.py returns only unrelated comments, and NO substrate_queue.json entry owns it -- SD-MECH181-MATCHED-INSULT-HARNESS is named here as an UNOWNED gap needing registration. complicated (buildable), not probe-gated. (2) Leg (i) MAINTENANCE cannot be queued as specified: its CONFIRMING criterion (sws_n_writes + rem_n_rollouts monotone in MEASURED MEL) is a monotone non-decreasing function of measured MEL BY CONSTRUCTION -- mel_consumer.py:253-283 -> phase_manager.py:572-582 -> agent.py:13190-13197/:13315-13323/:13400/:13504 -- so its FALSIFYING clause (i) is unreachable (Step 2.5d INERT / Step 4.5 BLOCKING). Owed to /governance as GFLAG-0495. Separately, contextmemory-write-path-addressing-degeneracy (open, corrupting, e1_deep.py::ContextMemory.write) is reproduced live in this lineage: V3-EXQ-861i under the default argmin path records per_cycle_n_touched_slots [1,1,1,1,1,1] and mean_sws_new_slot_diversity 0.0, so sws_n_writes counts a representationally inert write. Gate (1), the only empirical leg, is already recorded monotone 3/3 seeds by V3-EXQ-1069 (GOV-REUSE-1). NOTE the chip's AMBER pre-flight caveat is FALSE as written: e2.world_forward IS trained in P0 across 798a/861i/1071 (861i:629-650 + :830, conv_rel_drop 0.959) and neither named remedy (SD-031 E2WorldForward, SD-070 ZWorldP0Trainer) is on the MEL PE path. Full record: REE_assembly/evidence/planning/mech181_leg_i_dv_arithmetic_refusal_20260925.md (origin/master b006b7642b)."
     },
     {
       "proposal_id": "EXP-0594",

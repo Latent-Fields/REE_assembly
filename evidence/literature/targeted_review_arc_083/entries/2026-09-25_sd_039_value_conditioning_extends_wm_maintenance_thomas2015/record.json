@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-25_sd_039_value_conditioning_extends_wm_maintenance_thomas2015",
+  "timestamp_utc": "2026-09-25T03:59:40Z",
+  "claim_ids_tested": [
+    "ARC-083",
+    "SD-039"
+  ],
+  "source": {
+    "title": "Value Conditioning Modulates Visual Working Memory Processes",
+    "authors": [
+      "Thomas PMJ",
+      "FitzGibbon L",
+      "Raymond JE"
+    ],
+    "year": 2015,
+    "venue": "Journal of Experimental Psychology: Human Perception and Performance",
+    "volume": "42",
+    "issue": "1",
+    "pages": "6-10",
+    "doi": "10.1037/xhp0000144",
+    "pmid": null,
+    "pmc": "PMC4685930"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "This is the closest available evidence to ARC-083 GFLAG-0309 disposition (b)'s third open question -- whether attachment/motivational salience extends persistence GENERALLY (a weighting applied to any token) rather than being person-specific. It is not a neural occlusion study and not developmental, but it directly shows that an arbitrary, task-irrelevant, LEARNED value association (a monetary gain/loss tag on a stimulus feature) changes how well that item's identity is MAINTAINED in visual working memory over a retention interval, with eye-movement analysis ruling out differential encoding as the mechanism -- i.e. the effect is on maintenance, not attention capture at study. That is architecturally the same shape SD-039 proposes: a wanting/arousal payload attached to a token that changes how well the token's representation survives once attention moves elsewhere. Confidence held at 0.5 because the domain gap is real: healthy adults, an explicit reward-learning paradigm, and a change-detection WM task, none of which is occlusion-based persistence or infant person-permanence, and the value here is externally trained rather than intrinsically motivational (hunger/attachment/threat).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Memory discrimination (d-prime) for a stimulus feature was reliably higher when that feature had been associated with monetary gain (mean d' = 3.23) than when associated with loss (mean d' = 2.03), with neutral intermediate -- a valence-dependent gradient in working-memory maintenance quality driven purely by a learned value tag, not by the item's perceptual salience.",
+    "Eye-movement analysis during the encoding phase showed no differential gaze allocation to gain- versus loss- versus neutral-tagged items, which the authors use to argue the effect operates on POST-ENCODING maintenance rather than on where attention was directed while the array was still visible -- i.e. value protects a representation already in memory rather than just getting it in more strongly.",
+    "The effect did not spill over to the other, untagged items held in the same working-memory array on a given trial -- the boost/cost was specific to the valued token itself, not a general arousal effect on the whole memory set."
+  ],
+  "tags": [
+    "sd-039",
+    "arc-083",
+    "motivational_salience",
+    "working_memory_maintenance",
+    "value_conditioning",
+    "object_persistence",
+    "token_specific_weighting"
+  ],
+  "mapping": {
+    "source_claim_statement": "16 adult participants first learned color-to-monetary-outcome associations (gain, loss, neutral) in an unrelated task, then performed a 256-trial visual working-memory change-detection task on 4-face arrays in which the previously learned colors reappeared as task-irrelevant features. Memory discrimination for a face's identity was better when its color carried a gain association and worse when it carried a loss association, relative to neutral, with no evidence the effect arose from differential encoding (eye-tracking-controlled).",
+    "ree_translation": "SD-039 attaches a wanting/arousal payload to an anchor at write or invalidation time and preserves it across mark_inactive so the anchor remains motivationally distinguishable from a generic stale trace. This entry is the clearest available evidence that a token-specific value tag can lengthen or strengthen a representation's survival in a limited-capacity memory store specifically through the MAINTENANCE phase, which is the same functional role SD-039's payload plays for an anchor once it goes inactive. If this generalizes, it argues FOR the token-general reading of GFLAG-0309 disposition (b)'s working hypothesis (person-permanence = token persistence x motivational weighting, where the weighting mechanism is not person-specific) rather than a strict category distinction requiring a dedicated person-detector -- a motivational tag on ANY token, not only on conspecifics, appears sufficient to change its persistence.",
+    "mapping_caveat": "This is adult, human, laboratory-learned monetary value -- not infant, not intrinsic/attachment-driven wanting, and not occlusion-based object persistence (it is a working-memory change-detection task with a fixed, short retention interval, not a search-after-hidden-event paradigm). The value association here is explicitly trained and symbolic (color predicts points); SD-039's wanting_strength and arousal_tag are read from ResidueField valence and amygdala-analog arousal, an intrinsic-motivation pathway with no demonstrated equivalence to this study's learned-value pathway. Generalizing from 'a learned value tag improves WM discrimination for a face's identity' to 'a wanting/arousal payload lengthens occlusion survival of an anchor' is an architectural analogy, not a direct test, and should be read as motivating rather than confirming the mechanism.",
+    "source_context": "Healthy adults (N=16, mean age 22), monetary value-conditioning paradigm followed by a visual working-memory change-detection task; eye-tracking controlled for encoding-stage attention allocation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.75,
+    "notes": "Source quality is solid for a small psychophysics study -- controlled design, eye-tracking ruling out the obvious encoding confound, published in a strong venue. Mapping fidelity is the limiting factor: the finding is about maintenance of an item's identity discrimination in a short-interval WM array, not about occlusion-spanning object persistence or anchor-style invalidation-survival, so the correspondence to SD-039's specific mechanism is architectural rather than empirical. Transfer risk is high given the species (human adult only, no infant or animal data), the value pathway (explicit learned reward vs intrinsic wanting/arousal), and the memory system (visual WM vs hippocampal anchor set) all differ from what SD-039 actually implements."
+  }
+}

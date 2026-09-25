@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-25_arc_083_task_demand_confound_confirmed_dunnbremner2020",
+  "timestamp_utc": "2026-09-25T03:59:40Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Investigating the social environment of the A-not-B search task",
+    "authors": [
+      "Dunn K",
+      "Bremner JG"
+    ],
+    "year": 2020,
+    "venue": "Developmental Science",
+    "volume": "23",
+    "issue": "3",
+    "pages": "e12921",
+    "doi": "10.1111/desc.12921",
+    "pmid": "31705560",
+    "pmc": "PMC7187186"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "This is post-1978 evidence bearing on Jackson, Campos and Fischer's (1978) task-demand objection to the person/object decalage literature (the objection GFLAG-0309 disposition (b) flagged as unanswered). It does not test person-versus-object permanence directly -- it re-examines the canonical A-not-B object-search task itself and finds infant search performance shifts substantially with experimenter gaze direction alone, holding the hidden object constant. That is a direct, modern, well-controlled demonstration that a standard 'object permanence' search task is heavily contaminated by social/communicative cues rather than purely reflecting representational persistence -- which sharpens rather than answers Jackson et al.'s objection: if the object-search arm of a decalage comparison is already social-cue-contaminated, a comparison against a person-search arm (where an experimenter's own attention is inherently a cue) is even less able to isolate a pure category effect. Confidence held at 0.55 because the mapping is one level removed -- this paper never runs a mother-versus-toy comparison, so it cannot say whether decalage-specific results would survive gaze-controlled replication, only that the underlying task family is gaze-sensitive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In the congruent-gaze condition (experimenter looked toward the correct B location), 9-month-olds made significantly fewer classic A-not-B search errors on B trials than in the standard neutral-gaze condition, with the identical physical hiding event across conditions -- the only manipulated variable was where the experimenter looked.",
+    "Infants who reached to the wrong location subsequently produced more social (checking) looks toward the experimenter than infants who reached correctly, consistent with infants treating the experimenter's attention as informative about the outcome rather than searching purely from their own object representation.",
+    "The authors explicitly conclude the results 'cast doubt on the potential for this task to provide information related to the development of object permanence in infancy' as opposed to reflecting social-communicative processing -- i.e. the canonical object-permanence measurement instrument is itself confounded by exactly the class of task-demand factors Jackson et al. (1978) raised, replicated with eye-tracking-era rigor 42 years later."
+  ],
+  "tags": [
+    "arc-083",
+    "dev-need-021",
+    "object_permanence",
+    "decalage",
+    "task_demands",
+    "a_not_b",
+    "social_referencing",
+    "measurement_validity"
+  ],
+  "mapping": {
+    "source_claim_statement": "48 nine-month-old infants were tested on the standard A-not-B search task (object hidden at A for 5 trials, then hidden at B after a 5-second delay) under three experimenter gaze conditions at the B trials: neutral midline gaze (standard), gaze congruent with the true B location, and gaze incongruent with it. Search errors on B trials fell significantly in the congruent-gaze condition relative to standard, and post-reach social looking was more frequent after incorrect than correct reaches.",
+    "ree_translation": "ARC-083's notes record that the person/object decalage literature (Slaughter and Boh 2001 in particular) rests on a task-demand objection from Jackson, Campos and Fischer (1978) that 'nothing on file answers'. This entry does not answer it in the sense of resolving whether person-permanence genuinely outpaces object-permanence -- it answers the narrower, prior question of whether the standard instrument used to measure the object side of that comparison is itself clean of task-demand confounds, and finds it is not: even a same-species, non-social hidden object's 'found or not found' outcome is shifted by incidental social cues from the person doing the hiding. This raises rather than lowers the evidentiary bar the decalage literature must clear before ARC-083 can treat person-before-object ordering (SD-039 as a person-permanence primitive) as more than a measurement artifact of comparing a socially-cued search task (mother) against a less-socially-cued one (toy).",
+    "mapping_caveat": "The paper never runs a person-versus-object comparison and never cites or engages Jackson, Campos and Fischer (1978) directly (confirmed absent from its reference discussion) -- the link to ARC-083's specific objection is this session's inference from the shared task family (curtained/occluded search with delay), not the source's own framing. It also tests object-only search (no mother-versus-toy arm), so it cannot itself produce a decalage estimate under gaze control.",
+    "source_context": "Human infants, 9 months (N=48, 24 female), standard A-not-B occluded-object search paradigm with experimenter gaze direction manipulated as the between/within-condition social variable."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is solid -- well-powered for infant work (N=48), a clean within-task manipulation, published in a strong venue (Developmental Science). Mapping fidelity is capped at moderate because this is object-only: it demonstrates the task-demand mechanism is real and active in exactly this task family, but does not itself measure a person/object gap. Transfer risk is moderate: A-not-B and the mother/toy delayed-response task differ in structure (repeated-location switch vs incremented delay), so the specific confound magnitude does not transfer directly, only the general finding that hidden-entity search in infancy is gaze/social-cue-sensitive."
+  }
+}

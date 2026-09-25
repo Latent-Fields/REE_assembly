@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-24T21:48:22.526092Z`
+Generated: `2026-09-25T04:02:21.015619Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -57,7 +57,7 @@ Generated: `2026-09-24T21:48:22.526092Z`
 | `targeted_review_arc_075` | [`2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022`](targeted_review_arc_075/entries/2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022/record.json) | 4 | [`summary`](targeted_review_arc_075/entries/2026-09-14_arc_075_greedy_multimodal_learning_speed_balance_wu2022/summary.md) |
 | `targeted_review_arc_076` | [`2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000`](targeted_review_arc_076/entries/2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000/record.json) | 3 | [`summary`](targeted_review_arc_076/entries/2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000/summary.md) |
 | `targeted_review_arc_082` | [`2026-09-15_arc_082_tool_premotor_parietal_representation_chao2000`](targeted_review_arc_082/entries/2026-09-15_arc_082_tool_premotor_parietal_representation_chao2000/record.json) | 3 | [`summary`](targeted_review_arc_082/entries/2026-09-15_arc_082_tool_premotor_parietal_representation_chao2000/summary.md) |
-| `targeted_review_arc_083` | [`2026-09-17_arc_083_social_evaluation_replication_null_lucca2025`](targeted_review_arc_083/entries/2026-09-17_arc_083_social_evaluation_replication_null_lucca2025/record.json) | 8 | [`summary`](targeted_review_arc_083/entries/2026-09-17_arc_083_social_evaluation_replication_null_lucca2025/summary.md) |
+| `targeted_review_arc_083` | [`2026-09-25_sd_039_value_conditioning_extends_wm_maintenance_thomas2015`](targeted_review_arc_083/entries/2026-09-25_sd_039_value_conditioning_extends_wm_maintenance_thomas2015/record.json) | 10 | [`summary`](targeted_review_arc_083/entries/2026-09-25_sd_039_value_conditioning_extends_wm_maintenance_thomas2015/summary.md) |
 | `targeted_review_arc_084` | [`2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b`](targeted_review_arc_084/entries/2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b/record.json) | 4 | [`summary`](targeted_review_arc_084/entries/2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b/summary.md) |
 | `targeted_review_arc_089` | [`2026-09-18_arc_089_physical_reservoir_computing_nakajima2020`](targeted_review_arc_089/entries/2026-09-18_arc_089_physical_reservoir_computing_nakajima2020/record.json) | 3 | [`summary`](targeted_review_arc_089/entries/2026-09-18_arc_089_physical_reservoir_computing_nakajima2020/summary.md) |
 | `targeted_review_arc_092_imagination_learning_constraint` | [`2026-08-28_arc_092_rem_creativity_priming_cai2009`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/record.json) | 2 | [`summary`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/summary.md) |

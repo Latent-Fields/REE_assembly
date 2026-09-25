@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-24T18:33:37.466818Z",
+  "generated_at_utc": "2026-09-25T04:02:21.015619Z",
   "items": [
     {
       "acceptance_checks": [
@@ -5951,6 +5951,50 @@
       "seed_policy": "distinct_seeds",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_066",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1422",
+      "blocked_by": "MECH-081 E2->E1 attentional-sampling channel has zero code representation in ree-v3: zero hits for attentional_sampling / e2_to_e1 / MECH-081 anywhere in ree_core (re-verified 2026-09-23)",
+      "claim_id": "MECH-082",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gating_reason": "MECH-082 asserts distortion PROPAGATES through E2 to bias E1 attentional sampling. The propagation channel it names is its own dependency MECH-081, which does not exist in code, so the manipulation has no route to the DV.",
+      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-082 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0822",
+      "proposal_type": "experimental",
+      "release_condition": "The MECH-081 E2->E1 attentional-sampling channel is implemented in ree_core so that an E2-side hippocampal map distortion can be shown to reach E1 sampling; at that point MECH-082's without-explicit-E1-retraining falsifier becomes runnable and this proposal returns to status proposed.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_082",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -16059,96 +16103,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_081",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1422",
-      "blocked_by": "MECH-081 E2->E1 attentional-sampling channel has zero code representation in ree-v3: zero hits for attentional_sampling / e2_to_e1 / MECH-081 anywhere in ree_core (re-verified 2026-09-23)",
-      "claim_id": "MECH-082",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gating_reason": "MECH-082 asserts distortion PROPAGATES through E2 to bias E1 attentional sampling. The propagation channel it names is its own dependency MECH-081, which does not exist in code, so the manipulation has no route to the DV.",
-      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-082 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0822",
-      "proposal_type": "experimental",
-      "release_condition": "The MECH-081 E2->E1 attentional-sampling channel is implemented in ree_core so that an E2-side hippocampal map distortion can be shown to reach E1 sampling; at that point MECH-082's without-explicit-E1-retraining falsifier becomes runnable and this proposal returns to status proposed.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_082",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1422",
-      "claim_id": "MECH-082",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-082.",
-      "priority": "medium",
-      "proposal_id": "LIT-0823",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_082",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -34049,7 +34003,6 @@
         }
       ],
       "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z",
-      "governance_flag": "GFLAG-0497",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-023 via targeted experiment runs.",
       "priority": "medium",
@@ -40270,7 +40223,6 @@
       "claim_id": "MECH-181",
       "design": "- title: \"MECH-181/MECH-180 ecological cognitive-reserve chain: graded world-rule-shift novelty ->\n  above-reference waking MEL -> graded offline-phase work -> differential retention at matched insult\"\n- related_claims: MECH-181 (primary), MECH-180, INV-050, INV-049, SD-017, MECH-204\n- acceptance_checks: all five preconditions above emitted as explicit P0 gates (producer\n  supra-reference with the decay check; the matched-PE noise negative control; consumer un-pinned;\n  saturation fraction reported; consumer-OFF attribution arm); `claim_ids` naming MECH-181 and MECH-180\n  with per-claim direction; monotonicity scored against MEASURED MEL not the novelty label;\n  `>= 5` seeds; leave-one-out reported in-line.\n- Sequencing note: leg (i) is runnable TODAY with zero new build (both substrates validated, all\n  knobs present). Leg (ii) needs a small insult harness (slot ablation / E3 noise injection), which is\n  `complicated (buildable)`, not probe-gated. Do not mint this as a fresh lineage if the\n  \"still-gated, separately-queued MECH-180 ecological end-to-end run\" is scheduled -- MECH-181's leg (i)\n  IS that run plus a per-claim tag, and leg (ii) is one extra phase on the same driver.",
       "dispatch_mode": "multi_arm_ablation",
-      "governance_flag": "GFLAG-0495",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-181 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
       "objective": "Test MECH-181 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: \"MECH-181/MECH-180 ecological cognitive-reserve chain: graded world-rule-shift novelty ->\n  above-reference waking MEL -> graded offline-phase work -> differential retention at matched insult\"\n- related_claims: MECH-181 (primary), MECH-180, INV-050, INV-049, SD-017, MECH-204\n- acceptance_checks: all five preconditions above emitted as explicit P0 gates (producer\n  supra-reference with the decay check; the matched-PE noise negative control; consumer un-pinned;\n  saturation fraction reported; consumer-OFF attribution arm); `claim_ids` naming MECH-181 and MECH-180\n  with per-claim direction; monotonicity scored against MEASURED MEL not the novelty label;\n  `>= 5` seeds; leave-one-out r",
