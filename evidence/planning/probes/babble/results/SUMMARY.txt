@@ -1,0 +1,106 @@
+seeds present: [106, 107, 108, 109, 110]
+s108 L2R from TRAILING block (restored after 08:49Z cap change); L2_pre recompute consistent=True (0.4967 vs 0.4967)
+s109 L2R from TRAILING block (restored after 08:49Z cap change); L2_pre recompute consistent=True (0.4633 vs 0.4633)
+s110 L2R from TRAILING block (restored after 08:49Z cap change); L2_pre recompute consistent=True (0.4833 vs 0.4833)
+
+== strata ==
+s106 benign         POL {"early_terminations": 6, "early_per_1000": 2.5, "harm_events_per_100": 9.5, "benefit_events_per_100": 0.38, "reward_per_100": -0.48}
+s107 hazard-trapped POL {"early_terminations": 88, "early_per_1000": 36.67, "harm_events_per_100": 45.0, "benefit_events_per_100": 0.71, "reward_per_100": -4.35}
+s108 hazard-trapped POL {"early_terminations": 13, "early_per_1000": 5.42, "harm_events_per_100": 15.62, "benefit_events_per_100": 0.79, "reward_per_100": -0.68}
+s109 hazard-trapped POL {"early_terminations": 22, "early_per_1000": 9.17, "harm_events_per_100": 22.83, "benefit_events_per_100": 0.83, "reward_per_100": -1.09}
+s110 hazard-trapped POL {"early_terminations": 42, "early_per_1000": 17.5, "harm_events_per_100": 27.38, "benefit_events_per_100": 0.58, "reward_per_100": -2.11}
+
+== doses (entropy nats / mean run length / class counts) ==
+s106 L0 H=0.702 run=2.91 {'0': 159, '1': 157, '2': 1937, '3': 147} | L1 H=0.993 run=2.92 {'0': 1279, '1': 740, '2': 1, '3': 380} | L2 H=1.382 run=3.01 {'0': 667, '1': 525, '2': 645, '3': 563} | POL H=0.313 run=11.76 {'1': 2224, '3': 86, '4': 90}
+     L1 generator h_pos_mean=1.231 h_pos_max=2.670
+s107 L0 H=0.751 run=2.65 {'0': 162, '1': 175, '2': 1890, '3': 173} | L1 H=0.357 run=13.79 {'0': 29, '1': 151, '2': 2195, '3': 25} | L2 H=1.385 run=3.08 {'0': 577, '1': 582, '2': 650, '3': 591} | POL H=0.895 run=3.47 {'1': 1495, '2': 60, '3': 115, '4': 730}
+     L1 generator h_pos_mean=0.695 h_pos_max=1.460
+s108 L0 H=0.743 run=2.70 {'0': 174, '1': 167, '2': 161, '3': 1898} | L1 H=0.233 run=19.35 {'0': 10, '1': 2264, '3': 126} | L2 H=1.386 run=2.99 {'0': 618, '1': 615, '2': 567, '3': 600} | POL H=0.721 run=6.22 {'0': 17, '1': 1913, '2': 108, '3': 281, '4': 81}
+     L1 generator h_pos_mean=0.496 h_pos_max=1.316
+s109 L0 H=0.729 run=2.79 {'0': 148, '1': 168, '2': 1911, '3': 173} | L1 H=0.212 run=19.83 {'0': 63, '2': 2293, '3': 44} | L2 H=1.386 run=3.05 {'0': 607, '1': 586, '2': 590, '3': 617} | POL H=0.933 run=4.69 {'0': 3, '1': 823, '2': 119, '3': 1394, '4': 61}
+     L1 generator h_pos_mean=0.447 h_pos_max=1.367
+s110 L0 H=0.721 run=2.78 {'0': 158, '1': 141, '2': 1918, '3': 183} | L1 H=-0.000 run=200.00 {'0': 2400} | L2 H=1.385 run=3.01 {'0': 625, '1': 618, '2': 541, '3': 616} | POL H=0.856 run=4.51 {'0': 1676, '2': 313, '3': 23, '4': 388}
+     L1 generator h_pos_mean=0.000 h_pos_max=0.000
+
+== open-loop heads: disc4_h1 (z) [pca] ; fit loss_last200/identity ; grad ==
+s106 INIT 0.280[-]  B0 0.307[0.443]  B1 0.417[0.623]  B1S 0.247[0.313]  L0_pre 0.393[0.660]  L2_pre 0.470[0.840]
+     B0 fit 7.93e-07/5.19e-06 delta 1.766 grad True  k=0 h3=0.283 h5=0.267
+     B1 fit 3.11e-06/1.95e-05 delta 1.983 grad True  k=3 h3=0.323 h5=0.307
+     L2_pre fit 4.72e-06/2.70e-05 delta 1.924 grad True  k=9 h3=0.397 h5=0.333
+s107 INIT 0.280[-]  B0 0.303[0.613]  B1 0.297[0.563]  B1S 0.210[0.300]  L0_pre 0.367[0.770]  L2_pre 0.427[0.833]
+     B0 fit 1.91e-06/2.26e-05 delta 1.885 grad True  k=1 h3=0.290 h5=0.260
+     B1 fit 7.81e-07/3.74e-06 delta 1.854 grad True  k=6 h3=0.287 h5=0.263
+     L2_pre fit 4.31e-06/2.23e-05 delta 1.601 grad True  k=8 h3=0.343 h5=0.320
+s108 INIT 0.260[-]  B0 0.390[0.660]  B1 0.253[0.440]  B1S 0.260[0.350]  L0_pre 0.317[0.683]  L2_pre 0.497[0.883]
+     B0 fit 1.34e-06/9.40e-06 delta 1.709 grad True  k=3 h3=0.297 h5=0.277
+     B1 fit 5.99e-07/5.02e-06 delta 1.507 grad True  k=0 h3=0.253 h5=0.267
+     L2_pre fit 4.78e-06/3.31e-05 delta 1.767 grad True  k=8 h3=0.440 h5=0.363
+s109 INIT 0.290[-]  B0 0.313[0.583]  B1 0.277[0.440]  B1S 0.190[0.340]  L0_pre 0.303[0.680]  L2_pre 0.463[0.853]
+     B0 fit 1.90e-06/9.33e-06 delta 1.798 grad True  k=2 h3=0.297 h5=0.267
+     B1 fit 7.94e-07/4.44e-06 delta 1.732 grad True  k=0 h3=0.263 h5=0.233
+     L2_pre fit 5.09e-06/2.35e-05 delta 1.669 grad True  k=7 h3=0.440 h5=0.410
+s110 INIT 0.243[-]  B0 0.383[0.560]  B1 0.267[0.370]  B1S 0.267[0.370]  L0_pre 0.357[0.607]  L2_pre 0.483[0.873]
+     B0 fit 1.52e-06/1.77e-05 delta 1.770 grad True  k=1 h3=0.340 h5=0.283
+     B1 fit 5.43e-07/4.13e-06 delta 1.532 grad True  k=0 h3=0.240 h5=0.260
+     L2_pre fit 3.88e-06/2.95e-05 delta 1.658 grad True  k=10 h3=0.467 h5=0.397
+
+== S (sufficiency) M_S = max(0.05, SD(B0)=0.0434) = 0.0500 ==
+s106 benign         B1-B0=+0.110 B1-B1S=+0.170 -> pass
+s107 hazard-trapped B1-B0=-0.007 B1-B1S=+0.087 -> fail
+s108 hazard-trapped B1-B0=-0.137 B1-B1S=-0.007 -> fail
+s109 hazard-trapped B1-B0=-0.037 B1-B1S=+0.087 -> fail
+s110 hazard-trapped B1-B0=-0.117 B1-B1S=+0.000 -> fail
+S = FAIL (1/5)
+  secondary PCA-32: s106 B1-B0=+0.180 B1-B1S=+0.310  s107 B1-B0=-0.050 B1-B1S=+0.263  s108 B1-B0=-0.220 B1-B1S=+0.090  s109 B1-B0=-0.143 B1-B1S=+0.100  s110 B1-B0=-0.190 B1-B1S=+0.000  (M=0.081)
+
+== R / R3 ==
+R = CANNOT_DETERMINE (S did not pass; no babbling gain to retain)
+R3 = CANNOT_DETERMINE (precondition not met; B3 also dropped for budget)
+  descriptive retention of the NATIVE L1 head (not a verdict): s106 B1=0.417 L1post=0.340 B0=0.307  s107 B1=0.297 L1post=0.253 B0=0.303  s108 B1=0.253 L1post=0.347 B0=0.390  s109 B1=0.277 L1post=0.357 B0=0.313  s110 B1=0.267 L1post=0.427 B0=0.383
+
+== DR (dose-response after the post phase) M_DR = max(0.05, SD(L1_post)=0.0617) = 0.0617 ==
+s106 benign         L0=0.310 L1=0.340 L2=0.317  L2-L0=+0.007  mono=False -> fail
+s107 hazard-trapped L0=0.337 L1=0.253 L2=0.273  L2-L0=-0.063  mono=False -> fail
+s108 hazard-trapped L0=0.467 L1=0.347 L2=0.507  L2-L0=+0.040  mono=False -> fail
+s109 hazard-trapped L0=0.330 L1=0.357 L2=0.340  L2-L0=+0.010  mono=False -> fail
+s110 hazard-trapped L0=0.430 L1=0.427 L2=0.440  L2-L0=+0.010  mono=False -> fail
+DR = FAIL (0/5)
+  secondary, entropy-ordered (descriptive): 
+   s106 entropy order ['L0', 'L1', 'L2'] -> disc ['0.310', '0.340', '0.317'] monotone=False ; L2-L0 gap +0.007
+   s107 entropy order ['L1', 'L0', 'L2'] -> disc ['0.253', '0.337', '0.273'] monotone=False ; L2-L0 gap -0.063
+   s108 entropy order ['L1', 'L0', 'L2'] -> disc ['0.347', '0.467', '0.507'] monotone=True ; L2-L0 gap +0.040
+   s109 entropy order ['L1', 'L0', 'L2'] -> disc ['0.357', '0.330', '0.340'] monotone=False ; L2-L0 gap +0.010
+   s110 entropy order ['L1', 'L0', 'L2'] -> disc ['0.427', '0.430', '0.440'] monotone=True ; L2-L0 gap +0.010
+  pre-post (open loop) doses: s106 L0=0.393 L1=0.417 L2=0.470  s107 L0=0.367 L1=0.297 L2=0.427  s108 L0=0.317 L1=0.253 L2=0.497  s109 L0=0.303 L1=0.277 L2=0.463  s110 L0=0.357 L1=0.267 L2=0.483
+
+== secondary: L2 retention (one-off vs retained replay for a DIVERSE source) ==
+s106 L2_pre=0.470 B0=0.307 gain=+0.163 | L2_post=0.317 ret=0.061 | L2R=0.520 retR=1.306 | NB=0.277 | k: L2pre=9 L2post=0 L2R=10
+s107 L2_pre=0.427 B0=0.303 gain=+0.123 | L2_post=0.273 ret=-0.243 | L2R=0.473 retR=1.378 | NB=n/a | k: L2pre=8 L2post=0 L2R=10
+s108 L2_pre=0.497 B0=0.390 gain=+0.107 | L2_post=0.507 ret=1.094 | L2R=0.553 retR=1.531 | NB=n/a | k: L2pre=8 L2post=10 L2R=10
+s109 L2_pre=0.463 B0=0.313 gain=+0.150 | L2_post=0.340 ret=0.178 | L2R=0.537 retR=1.489 | NB=n/a | k: L2pre=7 L2post=1 L2R=10
+s110 L2_pre=0.483 B0=0.383 gain=+0.100 | L2_post=0.440 ret=0.567 | L2R=0.530 retR=1.467 | NB=n/a | k: L2pre=10 L2post=1 L2R=10
+L2 one-off retention >= 0.5 in 2/5 seeds; L2R (retained replay) >= 0.5 in 5/5 seeds with L2R
+
+== BEH (last 50%% of post phase; prediction reward L2>L1>L0, harm L2<=L0) ==
+s106 benign         L0 r=-0.34 harm=9.7 ben=0.50 H=0.26 early=2 | L1 r=-0.33 harm=4.5 ben=0.00 H=0.23 early=0 | L2 r=-1.00 harm=7.5 ben=0.00 H=0.18 early=3 | L2R r=-0.32 harm=5.8 ben=0.00 H=0.17 early=1 | NB r=-1.26 harm=14.2 ben=0.17 H=0.56 early=5  || rewardL2>L1>L0=False harmL2<=L0=True
+s107 hazard-trapped L0 r=-2.34 harm=25.7 ben=0.33 H=0.60 early=11 | L1 r=-0.94 harm=11.3 ben=0.17 H=0.28 early=4 | L2 r=-1.31 harm=15.0 ben=0.17 H=0.35 early=6 | L2R r=-1.28 harm=12.8 ben=0.00 H=0.42 early=6  || rewardL2>L1>L0=False harmL2<=L0=True
+s108 hazard-trapped L0 r=-1.86 harm=30.5 ben=0.67 H=1.13 early=9 | L1 r=-0.74 harm=17.7 ben=0.67 H=0.93 early=4 | L2 r=-0.99 harm=28.5 ben=1.33 H=1.33 early=6 | L2R r=-1.72 harm=39.3 ben=0.83 H=1.34 early=9  || rewardL2>L1>L0=False harmL2<=L0=True
+s109 hazard-trapped L0 r=-0.35 harm=5.2 ben=0.17 H=0.58 early=1 | L1 r=-1.07 harm=20.7 ben=0.17 H=0.80 early=4 | L2 r=-0.65 harm=14.3 ben=0.50 H=0.77 early=3 | L2R r=-0.39 harm=11.0 ben=0.67 H=0.74 early=2  || rewardL2>L1>L0=False harmL2<=L0=False
+s110 hazard-trapped L0 r=-0.73 harm=20.5 ben=1.33 H=0.87 early=5 | L1 r=-1.41 harm=18.3 ben=0.33 H=0.60 early=7 | L2 r=-2.53 harm=32.2 ben=0.50 H=0.88 early=12 | L2R r=-2.44 harm=32.2 ben=0.83 H=0.89 early=14  || rewardL2>L1>L0=False harmL2<=L0=False
+BEH direction: reward ordering matches in 0/5 seeds; harm L2<=L0 in 3/5 (sign-test p one-sided for reward, chance 1/6 per seed)
+
+== D2 reach (pick change vs native head at 20 probe states) ==
+s106 n=20 valid_maxabs=0.0 {"B1": 1.0, "B1S": 1.0, "L0_pre": 1.0, "L2_pre": 1.0, "L1_post": 1.0, "L2_post": 1.0, "L0_post": 1.0}
+s107 n=20 valid_maxabs=0.0 {"B1": 0.85, "B1S": 0.85, "L0_pre": 0.85, "L2_pre": 0.9, "L1_post": 1.0, "L2_post": 0.9, "L0_post": 0.9}
+s108 n=20 valid_maxabs=0.0 {"B1": 1.0, "B1S": 1.0, "L0_pre": 0.95, "L2_pre": 0.95, "L1_post": 0.75, "L2_post": 0.9, "L0_post": 0.7}
+s109 n=20 valid_maxabs=0.0 {"B1": 0.95, "B1S": 0.95, "L0_pre": 0.85, "L2_pre": 0.95, "L1_post": 0.9, "L2_post": 0.9, "L0_post": 1.0}
+s110 n=20 valid_maxabs=0.0 {"B1": 0.8, "B1S": 0.8, "L0_pre": 0.75, "L2_pre": 0.7, "L1_post": 0.8, "L2_post": 0.8, "L0_post": 0.75}
+
+== depth-1 diagnostic: Spearman(J_pred, J_true) FULL / DEPTH1; pick-in-true-best FULL / DEPTH1 (chance) ==
+s106 NB 0.48/0.36 0.20/0.10(0.21) | L0_post 0.26/0.51 0.20/0.15(0.21) | L1_post 0.29/0.39 0.20/0.35(0.21) | L2_post -0.47/0.42 0.10/0.25(0.21) | B1 0.02/0.24 0.15/0.55(0.21) | L2_pre 0.16/0.28 0.10/0.50(0.21)
+s107 L0_post 0.19/-0.21 0.15/0.15(0.20) | L1_post 0.12/0.01 0.30/0.15(0.20) | L2_post 0.11/0.03 0.20/0.20(0.20) | B1 0.10/0.15 0.30/0.30(0.20) | L2_pre 0.03/0.11 0.20/0.40(0.20)
+s108 L0_post 0.27/-0.12 0.05/0.10(0.20) | L1_post 0.17/0.09 0.50/0.35(0.20) | L2_post 0.18/0.33 0.45/0.45(0.20) | B1 0.23/-0.06 0.25/0.15(0.20) | L2_pre -0.16/-0.27 0.25/0.05(0.20)
+s109 L0_post -0.28/0.54 0.35/0.75(0.20) | L1_post -0.22/0.49 0.00/0.25(0.20) | L2_post -0.10/0.45 0.20/0.25(0.20) | B1 0.05/-0.31 0.35/0.20(0.20) | L2_pre -0.10/0.10 0.35/0.15(0.20)
+s110 L0_post -0.03/0.50 0.15/0.15(0.20) | L1_post -0.31/0.09 0.00/0.15(0.20) | L2_post -0.37/0.59 0.00/0.35(0.20) | B1 -0.25/0.04 0.00/0.25(0.20) | L2_pre 0.55/0.59 0.40/0.40(0.20)
+
+wall per seed: {106: 1925.1, 107: 2104.6, 108: 1575.4, 109: 974.4, 110: 1090.3}

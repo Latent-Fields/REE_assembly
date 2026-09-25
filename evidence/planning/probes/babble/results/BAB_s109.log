@@ -1,0 +1,26 @@
+/Users/dgolden/REE_Working/.scratch/breakthrough-20260924/babble/probes_src/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[s109 t= 370s] POL hazard-trapped {"early_terminations": 22, "early_per_1000": 9.166666666666666, "harm_events_per_100": 22.833333333333332, "benefit_events_per_100": 0.8333333333333334, "reward_per_100": -1.0902681562677026}
+[s109 t= 528s] L1 generated {"h_pos_mean": 0.4471763195750331, "h_pos_max": 1.3673173477675158, "early_terminations": 5, "phase_after": 0}
+[s109 t= 536s] DOSES {"L0": [0.729, 2.79, {"0": 148, "1": 168, "2": 1911, "3": 173}], "L1": [0.212, 19.83, {"0": 63, "2": 2293, "3": 44}], "L2": [1.386, 3.05, {"0": 607, "1": 586, "2": 590, "3": 617}], "POL": [0.933, 4.69, {"0": 3, "1": 823, "2": 119, "3": 1394, "4": 61}]}
+[s109 t= 547s] ENCODED n_trans {'L0': 2400, 'L1': 2400, 'L2': 2400, 'POL': 2400, 'TE': 3000, 'FIT': 3000, 'SHUF': 2400}
+[s109 t= 553s] HEAD B0|z disc4_h1=0.313 h3=0.297 h5=0.267 disc5=0.270 k=2 fit 1.90e-06/9.33e-06 grad=True
+[s109 t= 556s] HEAD B0|pca disc4_h1=0.583 h3=0.387 h5=0.343 disc5=0.540 k=10 fit 2.59e-04/6.50e-04 grad=True
+[s109 t= 559s] HEAD B1|z disc4_h1=0.277 h3=0.263 h5=0.233 disc5=0.277 k=0 fit 7.94e-07/4.44e-06 grad=True
+[s109 t= 562s] HEAD B1|pca disc4_h1=0.440 h3=0.313 h5=0.293 disc5=0.423 k=1 fit 8.14e-05/2.82e-04 grad=True
+[s109 t= 565s] HEAD B1S|z disc4_h1=0.190 h3=0.220 h5=0.230 disc5=0.190 k=0 fit 8.49e-07/4.44e-06 grad=True
+[s109 t= 568s] HEAD B1S|pca disc4_h1=0.340 h3=0.253 h5=0.237 disc5=0.333 k=0 fit 1.72e-04/2.82e-04 grad=True
+[s109 t= 571s] HEAD L0_pre|z disc4_h1=0.303 h3=0.307 h5=0.253 disc5=0.303 k=4 fit 2.57e-06/1.28e-05 grad=True
+[s109 t= 575s] HEAD L0_pre|pca disc4_h1=0.680 h3=0.430 h5=0.320 disc5=0.663 k=10 fit 3.46e-04/1.29e-03 grad=True
+[s109 t= 578s] HEAD L2_pre|z disc4_h1=0.463 h3=0.440 h5=0.410 disc5=0.463 k=7 fit 5.09e-06/2.35e-05 grad=True
+[s109 t= 582s] HEAD L2_pre|pca disc4_h1=0.853 h3=0.537 h5=0.457 disc5=0.853 k=10 fit 7.79e-04/2.24e-03 grad=True
+[s109 t= 583s] HEAD INIT disc4_h1=0.290 k=0
+[s109 t= 676s] POST L0_post disc4_h1=0.330 k=4 | beh r/100=-0.348 harm=5.17 ben=0.17 H=0.58 early=1 | upd=9000 grad=True
+[s109 t= 788s] POST L1_post disc4_h1=0.357 k=6 | beh r/100=-1.067 harm=20.67 ben=0.17 H=0.80 early=4 | upd=9000 grad=True
+[s109 t= 911s] POST L2_post disc4_h1=0.340 k=1 | beh r/100=-0.650 harm=14.33 ben=0.50 H=0.77 early=3 | upd=9000 grad=True
+[s109 t= 911s] POST B3 SKIPPED (pre-registered drop order)
+[s109 t= 911s] POST L2R SKIPPED (pre-registered drop order)
+[s109 t= 911s] POST NB SKIPPED (pre-registered drop order)
+[s109 t= 974s] D2 {"B1": 0.95, "B1S": 0.95, "L0_pre": 0.85, "L2_pre": 0.95, "L1_post": 0.9, "L2_post": 0.9, "L0_post": 1.0}
+[s109 t= 974s] DEPTH1 {"L0_post": [-0.2799999999999999, 0.5449999999999999], "L1_post": [-0.22000000000000006, 0.49499999999999983], "L2_post": [-0.09500000000000001, 0.4549999999999999], "B1": [0.05, -0.30999999999999994], "L2_pre": [-0.09999999999999998, 0.10499999999999995]}
+[s109 t= 974s] wrote results/BAB_s109.json

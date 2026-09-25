@@ -1,0 +1,26 @@
+/Users/dgolden/REE_Working/.scratch/breakthrough-20260924/babble/probes_src/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[s99 t=  57s] POL hazard-trapped {"early_terminations": 14, "early_per_1000": 35.0, "harm_events_per_100": 49.25, "benefit_events_per_100": 0.5, "reward_per_100": -3.8343204891681673}
+[s99 t=  72s] L1 generated {"h_pos_mean": 0.0, "h_pos_max": 0.0, "early_terminations": 0, "phase_after": 0}
+[s99 t=  74s] DOSES {"L0": [0.649, 3.05, {"0": 22, "1": 24, "2": 23, "3": 331}], "L1": [-0.0, 200.0, {"1": 400}], "L2": [1.385, 3.23, {"0": 100, "1": 106, "2": 100, "3": 94}], "POL": [0.735, 2.94, {"0": 289, "1": 87, "4": 24}]}
+[s99 t=  76s] ENCODED n_trans {'L0': 400, 'L1': 400, 'L2': 400, 'POL': 400, 'TE': 400, 'FIT': 3000, 'SHUF': 400}
+[s99 t=  79s] HEAD B0|z disc4_h1=0.398 h3=0.310 h5=0.296 disc5=0.354 k=0 fit 2.72e-06/3.22e-05 grad=True
+[s99 t=  82s] HEAD B0|pca disc4_h1=0.515 h3=0.380 h5=0.354 disc5=0.387 k=1 fit 2.61e-04/1.77e-03 grad=True
+[s99 t=  84s] HEAD B1|z disc4_h1=0.285 h3=0.285 h5=0.285 disc5=0.285 k=0 fit 3.18e-07/4.06e-06 grad=True
+[s99 t=  86s] HEAD B1|pca disc4_h1=0.270 h3=0.277 h5=0.270 disc5=0.259 k=0 fit 3.23e-05/1.33e-04 grad=True
+[s99 t=  89s] HEAD B1S|z disc4_h1=0.285 h3=0.285 h5=0.285 disc5=0.285 k=0 fit 3.18e-07/4.06e-06 grad=True
+[s99 t=  91s] HEAD B1S|pca disc4_h1=0.270 h3=0.277 h5=0.270 disc5=0.259 k=0 fit 3.23e-05/1.33e-04 grad=True
+[s99 t=  94s] HEAD L0_pre|z disc4_h1=0.248 h3=0.252 h5=0.292 disc5=0.248 k=0 fit 1.94e-06/1.52e-05 grad=True
+[s99 t=  96s] HEAD L0_pre|pca disc4_h1=0.445 h3=0.314 h5=0.255 disc5=0.394 k=0 fit 1.49e-04/1.35e-03 grad=True
+[s99 t=  98s] HEAD L2_pre|z disc4_h1=0.394 h3=0.358 h5=0.350 disc5=0.394 k=5 fit 4.37e-06/2.60e-05 grad=True
+[s99 t= 102s] HEAD L2_pre|pca disc4_h1=0.752 h3=0.544 h5=0.405 disc5=0.748 k=10 fit 5.69e-04/2.46e-03 grad=True
+[s99 t= 104s] HEAD INIT disc4_h1=0.285 k=0
+[s99 t= 161s] POST L0_post disc4_h1=0.423 k=0 | beh r/100=-4.255 harm=49.00 ben=0.50 H=0.75 early=7 | upd=9000 grad=True
+[s99 t= 220s] POST L1_post disc4_h1=0.387 k=0 | beh r/100=-4.906 harm=58.00 ben=0.00 H=0.85 early=8 | upd=9000 grad=True
+[s99 t= 280s] POST L2_post disc4_h1=0.464 k=0 | beh r/100=-2.322 harm=34.50 ben=2.00 H=0.78 early=5 | upd=9000 grad=True
+[s99 t= 332s] POST B3 disc4_h1=0.416 k=0 | beh r/100=-3.500 harm=52.00 ben=0.50 H=0.74 early=6 | upd=9000 grad=True
+[s99 t= 408s] POST L2R disc4_h1=0.434 k=10 | beh r/100=-4.552 harm=54.50 ben=1.00 H=0.90 early=8 | upd=9000 grad=True
+[s99 t= 466s] POST NB disc4_h1=0.438 k=0 | beh r/100=-3.948 harm=46.00 ben=1.00 H=0.64 early=6 | upd=9000 grad=True
+[s99 t= 480s] D2 {"B1": 1.0, "B1S": 1.0, "L0_pre": 1.0, "L2_pre": 1.0, "L1_post": 1.0, "L2_post": 1.0, "L0_post": 1.0}
+[s99 t= 480s] DEPTH1 {"NB": [-0.12857142857142853, -0.2857142857142857], "L0_post": [0.0857142857142857, 0.09999999999999999], "L1_post": [0.05714285714285715, 0.12857142857142861], "L2_post": [-0.22857142857142856, 0.1857142857142857], "B1": [0.04285714285714286, 0.09999999999999999], "L2_pre": [-0.05714285714285715, -0.17142857142857143]}
+[s99 t= 480s] wrote results/SMOKE_s99.json

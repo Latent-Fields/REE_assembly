@@ -1,0 +1,58 @@
+{
+ "seed": 108,
+ "L2_pre_recomputed": {
+  "n_starts": 300,
+  "disc4_h1": 0.49666666666666665,
+  "disc4_h3": 0.44,
+  "disc4_h5": 0.36333333333333334,
+  "disc5_h1": 0.49666666666666665,
+  "k": 8,
+  "err_over_pers_h1": 0.7815249839275002,
+  "err_over_pers_h5": 0.8691230798470493
+ },
+ "L2_pre_main_disc4_h1": 0.49666666666666665,
+ "consistent_with_main": true,
+ "L2R": {
+  "eval": {
+   "n_starts": 300,
+   "disc4_h1": 0.5533333333333333,
+   "disc4_h3": 0.47,
+   "disc4_h5": 0.38666666666666666,
+   "disc5_h1": 0.53,
+   "k": 10,
+   "err_over_pers_h1": 0.7377074258993129,
+   "err_over_pers_h5": 0.7569587152866112
+  },
+  "beh_last50": {
+   "steps": 600,
+   "reward_per_100": -1.7185473220050336,
+   "harm_events_per_100": 39.333333333333336,
+   "benefit_events_per_100": 0.8333333333333334,
+   "action_entropy": 1.3367046790298356,
+   "majority_share": 0.3283333333333333,
+   "action_counts": {
+    "0": 22,
+    "1": 184,
+    "2": 173,
+    "3": 197,
+    "4": 24
+   },
+   "early_terminations": 9
+  },
+  "run": {
+   "early_terminations_all": 21,
+   "action_counts_all": {
+    "0": 40,
+    "1": 350,
+    "2": 392,
+    "3": 358,
+    "4": 60
+   },
+   "updates_done": 9000,
+   "grad_nonnull_first": true,
+   "loss_last200": 2.7274883814243366e-06
+  }
+ },
+ "t_total_s": 130.8,
+ "note": "trailing block, restored after cap change; identical pre-registered config"
+}

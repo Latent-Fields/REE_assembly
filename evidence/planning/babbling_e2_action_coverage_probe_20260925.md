@@ -1,6 +1,6 @@
 # Is Phase-0 babbling a sufficient and durable source of action coverage for E2's world head? (pre-registered probe)
 
-- **STATUS: PRE-REGISTRATION ONLY (2026-09-25T07:45Z). No registered seed has been run.** Results will be appended below this section, and the pre-registered numbers here will not be edited.
+- **STATUS: FINAL (2026-09-25T10:15Z). RESULTS are appended at the end.** The pre-registration (committed 07:45Z as a9f323c92b1) and its amendment 1 (b47b019063, 08:00Z) are unchanged; only this status line was updated. Verdicts: **S FAIL 1/5; R CANNOT_DETERMINE; R3 CANNOT_DETERMINE; DR FAIL 0/5.** Secondary: retained-replay L2R keeps its gain on 5/5 seeds; one-off L2 on 2/5.
 - Session `bt0925-babble` (Worker Q, `orchestrate-20260924-breakthrough`), chip_ref `chip-20260925-babbling-e2-coverage-probe`. Campaign question (synthesis section 7b, `5dc586f53e`; GFLAG-0504): should the coupled campaign use a one-off developmental babbling epoch, a retained babbling replay, or a standing babbling floor?
 - Brief: `Q_babble.md`, plus the user's AMENDMENT of 07:34Z (dose axis, post-babbling phase, DR criterion, BEH outcome). Both are folded in here before any run.
 - Code: ree-v3 `origin/main` @ `6de633cea5`, in a private detached worktree. Probe: `.scratch/breakthrough-20260924/babble/babble_probe.py` (committed with the results). It reuses the addendum-1/2 harness functions (`rollout_fidelity_probe.build_B`, `balanced_replay_probe.{get_head,set_head,encode_next,collect_probe_states,score}`) from `evidence/planning/probes/rollout/`.
@@ -105,3 +105,139 @@ Let disc(X) = the h = 1 executed-closest rate over 4 classes on the test set (z_
      - **L2R is kept**: it is the only arm that tests retained replay of a diverse babble source.
      - NB is kept. If the running time exceeds ~22 min per seed, NB is dropped for the remaining seeds, and the record will say which.
   3. Nothing else changes: criteria, margins, seeds, metric and the interpretation rule are all as above.
+
+## Run-time decisions (resources only; logged in `results/decisions.log`)
+
+- **NB** was dropped for seeds 107-110 at 08:15Z under the pre-registered amendment-1 rule. Seed 106 had reached 892 s before its post arms. **NB therefore exists on seed 106 only.**
+- **L2R** was dropped for seeds 108-110 at 08:48Z under the pre-registered drop order (NB, L2R, B3, D2). The cause was resources alone:
+  - the laptop load average was ~12;
+  - seed 107's on-policy collection took 900 s.
+
+  **At 08:49Z the orchestrator raised the cap to ~12:30Z, and L2R was restored for 108-110** as a trailing block run after every gate arm had finished (10:09-10:14Z). The reason was resources alone, not results.
+  - The configuration was identical: `babble_l2r_trailing.py`, which calls `babble_probe.py`'s functions unchanged.
+  - Each trailing run regenerates D_L2 and the test set, then retrains L2_pre. The recomputed L2_pre disc4_h1 matched the main run exactly on all three seeds (0.4967 / 0.4633 / 0.4833), so L2R there starts from the same head.
+- **B3** was dropped from the start (amendment 1). No other arm, seed, criterion or margin changed.
+- **Wall time** per seed: 1925 / 2105 / 1575 / 974 / 1090 s.
+- Every head passed the harness gate: `.grad` non-None at update 1, parameter delta 1.5-2.0, fit loss_last200 ~4-12x below identity MSE, and 9,000 post updates done in every post arm. Probe-state validation max |diff| was 0.0 on every seed.
+
+## RESULTS (2026-09-25T10:15Z; full tables in `probes/babble/results/SUMMARY.txt`, raw JSON `BAB_s*.json`, `BAB_L2R_s*.json`)
+
+### Strata, fixed from the native on-policy arm before any other arm was read
+
+| seed | stratum | D_POL early terminations / 1,000 | harm events / 100 |
+|---|---|---|---|
+| 106 | **benign** | 2.5 | 9.5 |
+| 107 | hazard-trapped | 36.7 | 45.0 |
+| 108 | hazard-trapped | 5.4 | 15.6 |
+| 109 | hazard-trapped | 9.2 | 22.8 |
+| 110 | hazard-trapped | 17.5 | 27.4 |
+
+Four of the five fresh seeds are hazard-trapped in this env under the build_B native policy.
+
+### What the real Phase-0 generator produces (the load-bearing D1 fact)
+
+| seed | L1 = native Phase 0: entropy (nats) / mean run / classes | D_POL entropy | L0 entropy | L2 entropy / run | Phase-0 h_pos mean |
+|---|---|---|---|---|---|
+| 106 | **0.99** / 2.9 / 0:1279 1:740 3:380 | 0.31 | 0.70 | 1.38 / 3.0 | 1.23 |
+| 107 | 0.36 / 13.8 / 91% class 2 | 0.90 | 0.75 | 1.39 / 3.1 | 0.70 |
+| 108 | 0.23 / 19.4 / 94% class 1 | 0.72 | 0.74 | 1.39 / 3.0 | 0.50 |
+| 109 | 0.21 / 19.8 / 96% class 2 | 0.93 | 0.73 | 1.39 / 3.1 | 0.45 |
+| 110 | **0.00** / 200 / 100% class 0 | 0.86 | 0.72 | 1.39 / 3.0 | 0.00 |
+
+- **The code's Phase-0 "babbling" is not babbling.** It is the native 591c policy. On 4 of 5 seeds it is near-monostrategy (0.00-0.36 nats), which is **less action-diverse than the agent's own on-policy behaviour** (D_POL 0.72-0.93) and less diverse than the low-dose control L0 (0.72-0.75).
+- Only seed 106 babbles (0.99 nats), and it is also the one benign seed. The two cannot be separated with n = 1.
+- The smoke seed 99 (100% class 1) and the timing pilot agree with this.
+
+### Primary metric (disc4_h1: executed-closest at h = 1 over classes 0..3; chance 0.25; z_world native read path)
+
+| seed | INIT | **B0** (D_POL) | **B1** (native Phase 0) | B1S | L0_pre | **L2_pre** | L0_post | L1_post (= B2) | L2_post | **L2R** | NB |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 106 b | 0.280 | 0.307 | **0.417** | 0.247 | 0.393 | 0.470 | 0.310 | 0.340 | 0.317 | **0.520** | 0.277 |
+| 107 t | 0.280 | 0.303 | 0.297 | 0.210 | 0.367 | 0.427 | 0.337 | 0.253 | 0.273 | **0.473** | -- |
+| 108 t | 0.260 | 0.390 | 0.253 | 0.260 | 0.317 | 0.497 | 0.467 | 0.347 | 0.507 | **0.553** | -- |
+| 109 t | 0.290 | 0.313 | 0.277 | 0.190 | 0.303 | 0.463 | 0.330 | 0.357 | 0.340 | **0.537** | -- |
+| 110 t | 0.243 | 0.383 | 0.267 | 0.267 | 0.357 | 0.483 | 0.430 | 0.427 | 0.440 | **0.530** | -- |
+
+Fidelity k (H = 10) runs in parallel:
+- L2_pre: 7-10.
+- L2R: **10 on all 5 seeds**.
+- L2_post: 0 / 0 / 10 / 1 / 1.
+- B1: 0-6.
+
+Secondary PCA-32 ceiling: L2_pre 0.83-0.88 vs B1 0.37-0.62 vs B0 0.44-0.66.
+
+### Pre-registered verdicts
+
+| id | verdict | per-seed numbers (M_S = 0.050, M_DR = 0.062) |
+|---|---|---|
+| **S** | **FAIL (1/5)** | B1-B0 / B1-B1S: s106 **+0.110 / +0.170 pass** (benign; the one diverse generator); s107 -0.007 / +0.087; s108 -0.137 / -0.007; s109 -0.037 / +0.087; s110 -0.117 / 0.000. The hazard-trapped stratum is 0/4. PCA-32 gives the same pattern. |
+| **R** | **CANNOT_DETERMINE** | S failed, so there is no babbling gain to retain. Descriptively, on s106 the native head fell 0.417 -> 0.340 (retention 0.30). |
+| **R3** | **CANNOT_DETERMINE** | Its precondition (S PASS, R FAIL) is not met, and B3 was dropped for budget. |
+| **DR** | **FAIL (0/5)** | L0 / L1 / L2 after the post phase: s106 0.310 / 0.340 / 0.317; s107 0.337 / 0.253 / 0.273; s108 0.467 / 0.347 / 0.507; s109 0.330 / 0.357 / 0.340; s110 0.430 / 0.427 / 0.440. The ordering is never strictly monotone, and the L2-L0 gap is -0.063 to +0.040 (never > M_DR). |
+
+### Secondary (descriptive; pre-registered; not gates)
+
+- **A structured diverse babbler IS a sufficient source before the post phase.** L2_pre beats B0 by +0.100 to +0.163 on 5/5 seeds and beats both L0_pre and L1_pre on 5/5. This is ADDENDUM 1's "coverage fixes the head" reproduced through the real Phase-0 env and read path.
+- **The pre-post open-loop dose order is L2 > {L0, L1} on 5/5.**
+- The entropy-ordered DR after the post phase is monotone on 2/5 only, with tiny gaps.
+- **Durability, which is the campaign question:**
+  - One-off L2 retains >= 50% of its gain over B0 on **2/5** seeds (ratios 0.06, -0.24, 1.09, 0.18, 0.57).
+  - **L2R, with a 25% babbling-replay mix retained during on-policy training, retains on 5/5** (ratios 1.31, 1.38, 1.53, 1.49, 1.47). It ends ABOVE its pre-post level with k = 10 on every seed, and it is stratum-independent (the benign seed and all 4 trapped).
+  - 3 of the 5 L2R seeds come from the trailing block described above.
+- **D2 reach: non-discriminating.** Every head changes E3's native pick at 70-100% of the 20 probe states, including B1S (action information destroyed) at the same rate as B1 (s106 1.0/1.0; s107 0.85/0.85; s108 1.0/1.0; s109 0.95/0.95; s110 0.8/0.8).
+  - E3's pick is hypersensitive to ANY change of world head, which fits the pass's finding that the pick is set by the deep, action-uninformative rollout steps.
+  - So D2 here shows reach, not informative reach. **Informative D2 is not established.**
+- **Depth-1 diagnostic** (Spearman of E3 J_pred vs J_true):
+  - Post heads, FULL: -0.47 to +0.29. DEPTH1: -0.21 to +0.59.
+  - DEPTH1 beats FULL for L2_post on 4/5 seeds (e.g. s110 -0.37 -> 0.59; s109 -0.10 -> 0.45; s106 -0.47 -> 0.42).
+  - This is consistent with the horizon-aggregation block: 20 states, noisy.
+- **BEH** (last 600 post steps; the prediction was reward L2 > L1 > L0 and harm L2 <= L0):
+  - The reward ordering matches on **0/5** seeds.
+  - Harm L2 <= L0 on 3/5 (106, 107, 108; not 109, 110).
+  - L2R's BEH is not consistently better than L2's: reward -0.32 / -1.28 / -1.72 / -0.39 / -2.44 against L2's -1.00 / -1.31 / -0.99 / -0.65 / -2.53. That is better on 4/5 seeds and worse on s108, and the differences are within the seed-to-seed spread.
+  - Per the pre-stated rule: DR failed, so **the developmental claim is not supported at this scale**. BEH adds nothing either way, because the precondition (a DR-level E2 difference surviving into the post phase) was never met.
+
+### What this decides for the coupled campaign
+
+1. **The existing Phase 0 cannot be the source.** As coded, it is the agent's own policy with no training. On 4/5 seeds it is less action-diverse than on-policy behaviour, so it adds no coverage (S FAIL; B1 < B0 on 4/5).
+   - "Babbling" must be a REDESIGNED generator that is class-balanced and temporally persistent (L2-type), not the 591c native policy.
+   - ARC-074's intent is right, but its implementation in `infant_curriculum` / 591 does not realise it. The `infant_warmup.py:14` docstring ("random-policy stepping") is wrong about the code, and should be corrected by whoever owns it (report only; no edit made).
+2. **Of the three designs, the data support RETAINED BABBLING REPLAY** (developmental memory mixed into the world head's continuing training).
+   - **A one-off epoch is not durable:** L2's gain survives 9,000 on-policy updates on 2/5 seeds.
+   - A 25% retained replay keeps and extends it on 5/5.
+   - **A standing behavioural babbling floor was not tested.** L2R is replay in the training batches, not babbling in behaviour, so whether a behavioural floor would do better or worse is unmeasured.
+3. **Babbling does not by itself move behaviour at this scale.** BEH is null, and D2 shows every head change moving E3's pick, not a directed change.
+   - This matches the pass's standing blocks downstream: E3's deep-step aggregation, and ungrounded valuation.
+   - The DR failure means the dose effect on E2 did not even survive the on-policy phase without replay, so the developmental chain breaks at durability first.
+
+### Domains and limits
+
+- **D1:** discrimination, fidelity and dose statistics.
+- **D2 reach:** measured but non-discriminating. B1S moves E3 as much as B1.
+- **D3-lite:** BEH, 600 steps, null.
+- **Scale limits (stated in the pre-registration):**
+  - N = 2,400 babbling transitions, against Phase 0's real 20,000+.
+  - P = 1,200 closed-loop steps, with 9,000 updates (3x the pre-training exposure in updates).
+  - A random-init encoder; world_dim 32 (deployed).
+  - One env family (the Phase-0 env) for babbling, on-policy and post phases alike. The addendum-1 8x8 env was not used.
+- The primary is the 4-class metric (the generator emits 0..3 only). The 5-class version is in the JSON.
+- The stratification is 1 benign vs 4 trapped. So "S passes only on the benign seed" confounds stratum with the one seed whose native generator happened to be diverse.
+- **Not measured:** whether babbled data carries any value signal; anything about valuation; a behavioural babbling floor; the retention horizon beyond 9,000 updates; replay fractions other than 25%.
+
+### Single next action
+
+For the coupled campaign's design (orchestrator / user decision; not built here):
+- Specify Phase-0 babbling as a **class-balanced, persistent-run motor generator** (the L2 form, not the native policy).
+- Feed it to the WakingTrainer's E2-world member as a **retained replay stream (~25% of world-head batches)**.
+- Gate that member on the addendum-1 discrimination metric, with the L2R numbers above as the acceptance bar (disc4_h1 >= ~0.47, k = 10 after 9,000 on-policy updates).
+- Separately, if a behavioural floor is still wanted, the cheapest discriminating follow-on is a pre-registered L2R-vs-standing-floor comparison.
+
+### Reproduction
+
+The scripts are in `evidence/planning/probes/babble/`: `babble_probe.py`, `babble_l2r_trailing.py`, `summarize_babble.py`, `bab_pilot_timing.py`, `run_all.sh`, `run_trailing.sh`. Results and logs are in `probes/babble/results/`.
+
+The scripts expect two siblings:
+- `probes_src/`: a copy of `probes/rollout/{rollout_fidelity_probe,balanced_replay_probe,encoding_vs_objective_probe}.py`;
+- `ree-v3-wt`: a detached worktree of ree-v3 @ `6de633cea5`.
+
+Run one seed with `python3 babble_probe.py --seed S --n-eps 12 --skip B3[,NB,L2R] --out results/BAB_sS.json`. The run used Mac CPU, `torch.set_num_threads(2)`, one process at a time.
