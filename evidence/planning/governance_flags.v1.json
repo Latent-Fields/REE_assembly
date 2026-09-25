@@ -7088,6 +7088,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0497",
+      "claim_ids": [
+        "ARC-023"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "ARC-023's CONFIRMING leg (i) does not measure what it is registered to measure: 'clock-driven E3 updates track the arousal-set expected count sum_t 1/_current_e3_steps(t) within +/-15%' is a deterministic transform of MECH-091 reset VOLUME and CLUSTERING, not of whether the clock honours its arousal-set period. Mechanism: MultiRateClock.advance() zeroes _e3_phase_step on a reset-driven tick, so every step inside a reset-terminated cycle contributes 1/K to the expectation while being structurally incapable of producing a clock-driven tick. MEASURED with the real MultiRateClock at a FIXED period of 10 -- tracking perfect by construction, MECH-093 not involved at all -- the ratio is 0.878 at reset share 0.02, 0.702 at 0.057, 0.520 at 0.102 and 0.149 at 0.253 with independent resets; clustering shifts it up (0.860 at 0.051 for bursts of 3, 0.911 for bursts of 6). Consequence: C1 passes only at reset share roughly <= 0.02-0.08, so CONFIRMING (which needs C1) is gated on the MECH-091 harm trigger being nearly SILENT -- in an ecological-load environment deliberately configured with num_hazards > 0 to LOAD that trigger. Together with GFLAG-0494 (FALSIFYING leg unreachable) and the 2-of-4 live REQUIRED RECORDING trigger classes (completion release threshold 0.75 exceeds compute_completion_signal's achievable max of 0.5, substrate_queue residue-completion-signal-threshold-unreachable; NCL latch never arms), the tightened falsifier leaves essentially ONE reachable verdict cell (PARTIAL), so V3-EXQ-1098 was authored, red-teamed, landed complete and validator-clean at ree-v3 d7220bc8 but deliberately NOT QUEUED pending falsifier repair. Suggested repair direction for governance, not applied: define leg (i) over clock-terminated cycles only (the driver already records expected_in_clock_terminated_cycles and clock_tracking_ratio_clock_terminated_only as non-gating contrasts), or drop leg (i) and score CONFIRMING on (ii)+(iii). Found by the /queue-experiment Step 4.5 red-team pass (model fable) and independently reproduced.",
+      "raised_by_session": "metaworker-science-20260925-orchc-arc023-recording",
+      "raised_at": "2026-09-25T02:51:18Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
