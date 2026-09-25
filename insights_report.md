@@ -1,48 +1,83 @@
-# Project Insights — 2026-09-08
+# Project Insights — 2026-09-25
 
-Generated: 2026-09-08T07:17:33Z
-Recommendations fixed at: 2026-09-08T07:17:33Z (REE_assembly `ca527de428`; last-hour commit check run immediately before writing)
+Generated: 2026-09-25T06:07:20Z
+Front re-authored at: 2026-09-25T06:07:20Z (REE_assembly origin/master `8bdeda873a`), from the breakthrough integration pass synthesis.
 
-> **Provenance.** This is a fresh `/dual-insights` fleet measurement (window 2026-08-09 → 2026-09-07,
-> 30 days). It replaces the 2026-09-02 revision, whose front sections were written by the cross-plan
-> root-cause synthesis session and whose appendix carried the 2026-08-25 measurements unrefreshed. The
-> synthesis record itself is unchanged and still the plan of record for the front:
-> [`evidence/planning/cross_plan_root_cause_synthesis_20260902.md`](evidence/planning/cross_plan_root_cause_synthesis_20260902.md).
-> Every number below was re-measured this run; nothing is carried forward verbatim.
+> **Provenance.** The front sections (everything above **Experiment Health**) and **Recommendations** were
+> re-authored on 2026-09-25 by session `bt0925-insights` (orchestrator `orchestrate-20260924-breakthrough`,
+> chip `chip-20260925-insights-front-refresh`) from
+> [`evidence/planning/breakthrough_pass_synthesis_20260925.md`](evidence/planning/breakthrough_pass_synthesis_20260925.md)
+> (`08c6ed0c53`) and the records it cites. The sections from **Experiment Health** through
+> **Human-Intervention Patterns** are the 2026-09-08 `/dual-insights` fleet measurement (window
+> 2026-08-09 → 2026-09-07). They were **not re-measured** in this revision, so read their numbers as dated
+> 2026-09-08. A fresh `/dual-insights` run owns that refresh.
+> Every front finding below comes from small Mac probes at world_dim=32 (the deployed value) unless stated.
+> Domains are given per finding, exactly as the synthesis gives them. Nothing here promotes or demotes a
+> claim. Registry consequences were routed to `/governance` as flags (GFLAG-0479, 0481, 0484-0491).
 
 ---
 
-## Where the front moved since 2026-09-02
+## Where the front moved since 2026-09-08
 
-### The live front is the encoder side of the observation -> z_world interface: H-F "content discarded at encode" is the one alive hypothesis on `zworld_actor_adequacy_locus`
+### The live front is the native learning loop itself: at REEConfig defaults ree_core does no waking gradient learning, so the closed loop is not closed inside ree_core
 
-- **Ready & not-yet-implemented** (buildable now): none — the only 2 ready-and-unbuilt substrate entries are registration-only DVs, and the three builds the 2026-09-02 report named (SD-018 amend, SD-e1 ITEM 3, E3 rung 3) have all landed. The buildable-now item is an *experiment*: the over-capacity decoder sweep named by the V3-EXQ-1008 autopsy (queued 18:13Z as V3-EXQ-1010 by the Wave-5 fresh-fill session; running).
+- **Ready & not-yet-implemented** (buildable now): none un-owned. The root build, a ree_core-owned native waking trainer, is designed (`0c0f5b76ec`), but its architecture and sequencing are held for the user and `/governance` (Q4a-d). The one piece being built under the orchestrator's delegation is the grad-reach guard, as a pure instrument. It is in flight (see below).
 
-The 2026-09-02 report named three items on the v3 critical path. All three have moved:
+**What the census measured** (`gradient_reach_census_20260925.md`, `940c690c9dd`; domain **D1, reach**, explicitly not D2):
 
-| item (2026-09-02) | state on 2026-09-08 |
+- At defaults, 40 train-mode ticks build **0 optimizers**, and 716,769 of 717,825 parameters never change.
+- Every trained parameter is trained by an optimizer that a *driver* builds.
+- No driver recipe trains everything the agent reads when it acts. Every recipe leaves at least 6 randomly initialised modules on the act path.
+
+Every broken edge the pass found is a local symptom of that one structural fact.
+
+The 2026-09-08 front, re-measured:
+
+| 2026-09-08 front item | state on 2026-09-25 |
 |---|---|
-| SD-018 directional resource-field amend — "un-owned" | **Landed** (ree-v3 `028a625e09`, REE_assembly `baf4941661`); substrate entry `amend_implemented_pending_validation`, `ready: true`. Validation run V3-EXQ-978 FAILed 2026-09-03 and was autopsied the same day; chips `sd018-directional-field-amend`, `sd018-fieldhead-validation-run`, `sd018-p0a-field-weight-seam` all `done`. |
-| SD-e1 var-bar portfolio (`sd_e1_var_bar_readout_crush`) — "unqueued" | **Ran** as V3-EXQ-1006 (2026-09-06, diagnostic PASS). Registry: 2 confirmed (`H-fidelity-anchor`, `H-goal-orthogonal-dispersion`), 1 alive (`H-readout-saturation`). The recorded observation bottleneck is discharged; the registry's own `live_gate` now reads *"a governance DECISION on which denominator settles Leg B, not a measurement."* |
-| E3 channel-scale normalisation (rung 3, MECH-439) — "to be decided with GFLAG-0051" | **Decided 2026-09-04 (V3-required) and BUILT** — ree-v3 `c47b885` (2026-09-07), chip `e3-channel-commensurability` `done`. |
-
-`f_dominance_conversion_ceiling` now **declares** all three as `depends_on_unresolved` with `node_class: complicated (buildable)` — the 2026-09-02 Recommendation 2 ("declare the gate") is applied.
+| V3-EXQ-1010, the H-F over-capacity decoder sweep, "queued and running" | **Ran 2026-09-09.** It confirmed H-F ("content discarded at encode") at **D1**: the observation->z_world code is externally decodable from banked frozen latents. The 09-08 "queued and running" line is stale. Two follow-on runs are recorded in the GOV-JURIS-1 evidence-domain stamp: V3-EXQ-1041 (2026-09-15) found D0 instrument validity contested, and V3-EXQ-1023a (2026-09-17) closed the training-budget branch on a transfer-rate argument. |
+| z_world D2, "no intervention on the encoded content has been shown to change E1/E2 prediction or E3 selection" | **z_world D2 REACHED** at E1 and at E3 selection, in both configs (`zself_causal_reach_trace_20260924.md`, `884a6b1ca3`, Section 4). The record states its own scope limit: this shows the encoded z_world is *used*. It does not show *which content* is used, so it does not answer H-F at D2. |
+| `zworld_actor_adequacy_locus` as the live question | Its framing was already flagged as possibly mis-posed (GFLAG-0312, governance 2026-09-17). The pass puts the wall one level below it: whether the modules the agent reads when it acts are trained at all. |
 
 ## The live campaign — what the front rests on, and what is in flight
 
-Snapshot 07:17Z: nothing queued (empty since 2026-09-07T23:39Z). Corrected at close: the lead run was queued at 18:13Z and is running. Lead first.
+The front now rests on **probe records, not on a queued experiment**. The one EXQ row is the pass's entry point and is not a live run. Nothing on the experiment queue belongs to this front (ree-v3 queue checked about 2026-09-25T06:06Z: it holds three claimed items, none of them on this front).
 
-| run | role | what it established |
+| run / record | role | what it established (domain) |
 |---|---|---|
-| **V3-EXQ-1010** (queued 2026-09-08T18:13Z, RUNNING on DLAPTOP at 2026-09-08T19:58:53Z) | **1 (lead)** | Over-capacity decoder sweep on the banked 1002/1008 latents -- adjudicates H-F, the last alive hypothesis on `zworld_actor_adequacy_locus` |
-| V3-EXQ-1008 (2026-09-07, autopsy confirmed 2026-09-08) | 2 | H-E (channel input capacity) ELIMINATED, H-C (geometry mismatch) SPLIT — the encoding discards decision-relevant content; names the over-capacity decoder sweep on the banked latents as the H-F discriminator |
-| V3-EXQ-1002 (2026-09-05) | 3 | H-B (consumer learning) ELIMINATED, H-D (warm-up is not the locus) CONFIRMED on the same frozen-latent dataset |
-| V3-EXQ-1006 (2026-09-06, cluster autopsy 09-07) | 4 | SD-e1 var-bar portfolio: fidelity-anchor and goal-orthogonal-dispersion CONFIRMED; both Leg-B denominators recorded; remaining gate is a decision |
-| V3-EXQ-978 (2026-09-03) | 5 | SD-018 directional-field head validation FAILed the behavioural precondition (above-random foraging still unmet); autopsied same day |
+| **V3-EXQ-1078** (2026-09-23; autopsy confirmed 2026-09-24) | **1 (lead)** | The entry point, not a live run. Its confirmed autopsy found "no loss reaches self_encoder". The z_self trace and the census re-measured that finding and generalised it. Its `Adam(agent.parameters())` recipe is the census canary (recipe A). |
+| `gradient_reach_census_20260925.md` (`940c690c9dd`) | 2 (headline) | No waking gradient learning at defaults. Every recipe leaves at least 6 random act-path modules: `harm_eval_head` is untrained in 4 of 5 recipes (it is read on every E3 tick); the all-ON recipe trains neither E1 nor E2-self; the beta/theta/delta depth stack is random in 4 of 5; `terrain_prior` is untrained in 5 of 5. **D1 (reach).** |
+| `zself_causal_reach_trace_20260924.md` (`884a6b1ca3`) | 3 | **z_self:** nothing trains the DR-13 GRU. Even when it is trained, no valuation consumer reads z_self: 0 of 68 E3 ticks and 0 of 12 episodes changed action. **D3 (negative)** for z_self->selection; **D2 at E1**. **z_world:** **D2 reached** at E1 and E3 selection (which content is used is not established). |
+| Proposals: `monostrategy_type_a_vs_b_discrimination_20260924.md` (`948d58cd3e`), `action_decoder_training_trace_20260924.md` (`622716398d4`), `action_decoder_training_causal_probe_20260925.md` (`a369f411ff8`) | 4 | Proposals are state-invariant. The hippocampal `action_object_decoder` is never trained anywhere. Training it alone **FAILED** the pre-registered criteria (5 seeds). The proposal edge is a **codec with three coupled defects**: an untrained decoder, an unbounded decode fed to E2 as the action, and a first CEM iteration that samples about 12x off-range. **D0 (trace) + D2 (probe, FAIL).** The repertoire collapse is Type A (absence at generation). No ree-v3 ecology meets the Type-B prerequisites, so dynamic coordination has not earned a build. **D1/D2.** |
+| `e2_rollout_divergence_and_proposal_state_dependence_20260924.md` + addenda 1-3 (`f300ebf64d`, `2d848ca2d3`, `ca212aff26`, `1b09b81b4d`) | 5 | The E2 world head has no waking objective. Even when trained, it is action-blind, because the agent's own one-action behaviour starves it of action coverage. A fresh head on action-diverse data works: executed-action pick 0.74-0.82 on PCA-32. **D1/D2.** Over 98% of E3's across-candidate score variance comes from rollout steps beyond 5; a depth-1 read of E3's own scorer tracks true consequence, and the full horizon does not. **D2.** |
+| `e3_evaluation_edge_test_20260924.md` + addenda (`4ea0931b0f`, `7f852bcf4b`, `8ab5ce6fc1`, `5e3c956b41`) | 6 | Nothing calibrates E3's main channels against grounded outcome. With benefit shaping enabled, the benefit head trains and beats a shuffled control 3 of 3 times, but harm rises 3-5x. **D3 on env reward.** |
+| `residue_consumer_reach_world_dim32_20260924.md` (`82819a1058`); `relational_edge_consumer_reach_20260924.md` (`410e589ce1`) | 7 | The GFLAG-0441 residue fix is correct as geometry (D1), but the consumer response cannot be told apart from a shuffled control: **D2 (negative)**. MECH-468 dumps have zero production callers, so the typed-vs-collapsed discrimination cannot run: **D0**. |
 
-The live question has moved one layer further in: `zworld_actor_adequacy_locus` (registered 2026-09-04, claims MECH-457 / INV-088). V3-EXQ-1002 (2026-09-05) eliminated H-B (consumer learning) and confirmed H-D (warm-up is not the locus); V3-EXQ-1008 (autopsy confirmed 2026-09-08, ~1 h before this report) eliminated H-E (channel input capacity) and **split H-C (geometry mismatch), leaving H-F "content discarded at encode" as the one alive, unadjudicated hypothesis**. The autopsy names the next gate: an over-capacity decoder sweep on the already-banked 1002/1008 latents. It was not queued at 07:17Z; it was queued at 18:13Z as V3-EXQ-1010 and is running (correction at close).
+**Falsified in the pass (pre-registered where marked):**
+
+- **R5b + R2 as a harm repair.** It **FAILED** a pre-registered replication on 5 fresh seeds. Harm was better than native on 1 of 5 seeds, and R2 was necessary on 0 of 5. The earlier 2-of-3 came from hazard-trapped starts. Record: `r5b_r2_fresh_seed_replication_20260924.md` (`fc987f3b057`); GFLAG-0489 corrects GFLAG-0487.
+- **Decoder training alone as the proposal repair.** It **FAILED** pre-registered criteria P and C (`a369f411ff8`; GFLAG-0490).
+- **Class-balanced replay as the E2 coverage repair.** It fails, because missing classes cannot be reweighted into existence. Exploration coverage does work.
+- **The grounded-valuation battery as first designed.** Its absolute harm-floor detector for reward hacking missed the positive control. The pre-registered repair **FAILED** on fresh seed 45, and the stop rule was honoured (`28ebf56955`).
+- Three independent tests showed that **proposal diversity without a grounded evaluator is undirected**: it buys harm on benign starts.
+
+**Structural reading.** The failures are coupled:
+
+- Proposals need a working codec.
+- E2 needs action coverage from proposals.
+- E3 needs informative rollouts (shallow or fixed) and grounded channel worth.
+- All of it needs a native learner that ree_core does not have.
+
+Each single-factor repair either did nothing or exposed the next defect it had been masking. The parts are now partitioned and named. Validating them one at a time in the native regime is not possible, because each depends on the others.
+
+**In flight.** Both workers were launched 2026-09-25T05:54Z under the orchestrator's standing delegation. They are named here as in flight only; no outcome is claimed.
+
+- `campaign-20260925-bt0925-guard`: the grad-reach guard is landing on ree-v3 main as a **pure instrument**. It adds new files only, is imported by nothing, and ships no trainer and no default change. Q4a-d stay open.
+- `campaign-20260925-bt0925-nulldet`: a **pre-registered relative-to-null** reward-hacking detector probe for the grounded-valuation battery, on fresh seeds 61-65. Its pre-registration landed before any run (REE_assembly `789b61f6958`). Q1's options all need a valid detector first, and the choice between them stays open.
 
 ---
+
+> *The sections from here through Human-Intervention Patterns are the 2026-09-08 `/dual-insights` measurement. They were not refreshed in the 2026-09-25 front revision.*
 
 ## Experiment Health
 
@@ -155,16 +190,30 @@ Derived from 605 dated `WORKSPACE_STATE.md` blocks in window (peak days: 2026-08
 
 ## Recommendations
 
-Each item below passed the four gates (liveness executed, named target is the autopsy's/registry's own, not already applied, not brake-refused) at 2026-09-08T07:17:33Z. The last-hour commit check found the 1008 autopsy (`3f86587d6d`) and the 09-08 thought-intake registrations; nothing supersedes the items below.
+These restate the synthesis's Section 5. They are **decisions held for the user and `/governance`, not taken**. The `/insights` four-gate liveness procedure was not re-run for this revision.
 
-1. **V3-EXQ-1010 — the H-F over-capacity decoder sweep on `zworld_actor_adequacy_locus` — is queued and running; it is the one live gate on the conversion-ceiling root, and nothing needs queueing.** *[Correction 2026-09-08T19:58:53Z: the 19:50Z version of this line said "queue it"; it had already been queued at 18:13Z by `w5-freshfill-20260908` (ree-v3 `203ad0b`) and was at 27% on DLAPTOP when this session re-checked the queue at close. Registry `live_gate` corrected in the same commit.]* Named by confirmed `failure_autopsy_V3-EXQ-1008_2026-09-08`: same banked V3-EXQ-1002/1008 latents, seeds, held-out split and standardiser; only decoder capacity varied, from the consumer's exact 32->128 policy net up to a deliberately over-parameterised decoder. It adjudicates the last alive hypothesis (H-F, content discarded at encode). Owner: `chip-20260908-w5-s1-zworld-front` (claimed by `xenodochial-austin-8c5984`). The rung-3 validation is likewise owned (`chip-20260907-e3-commensurability-validation`, claimed by `w5-freshfill-20260908`; its first target V3-EXQ-1012 was blocked as tautological, `088fbec4c9`). Next action for this session: none.
-2. **Applied 2026-09-08T19:50:33Z (user-approved, session `dual-insights-20260908-followup`) — the two items this report originally recommended here:**
-   - *SD-e1 Leg-B denominator DECIDED: same-start.* Recorded in `decision_log.v1.jsonl#2026-09-08T19:50:33Z`; `H-readout-saturation` CONFIRMED, `sd_e1_var_bar_readout_crush` decided (3 of 3 legs). Consequence carried to `f_dominance_conversion_ceiling` item 2: the 0.002 var bar must be re-registered relative to same-start real-endpoint variance before any further SD-e1 var-bar run. `ready` stays false; all three dependency items re-worded to their current state (SD-018 landed, validation owed; rung 3 built, validation owed).
-   - *Hero re-pointed to `conversion_ceiling_root`* and its decision block rewritten to name the decoder sweep (item 1 above) and the rung-3 validation; GFLAG-0115 resolved. `CURRENT_FRONT.md` now derives the correct live question.
-3. **Work the flag backlog from the oldest end.** 114 open flags, oldest 31 days, 48 of them `stale_note` (the cheapest type to clear). The 2026-09-01 triage recorded 25 STILL-HOLDS + 7 PARTIAL; a second pass keyed on age rather than type would retire the 2026-08-08 cohort. This is `/governance` work — reported here as the throughput finding, not chipped.
+1. **The gate is a ree_core-owned native waking trainer with a grad-reach guard, the root that the other broken edges hang off, and its architecture and sequencing (Q4a-d) are held for the user and /governance**. Design record: `native_waking_trainer_design_20260925.md` (`0c0f5b76ec`). Worker L's recommendation, not taken:
+   - A hybrid WakingTrainer: the existing phased trainers become scheduled members, with per-tick online losses only for the REINFORCE heads.
+   - Land the guard, a trainer skeleton and a `harm_eval` loss on main first, default-OFF.
+   - Then run the coupled repair on an ree-v3 `integration/<slug>` branch, gated by the pre-registered closed-loop criterion.
 
-**Reported, not recommended (owned elsewhere):**
-- The **over-capacity decoder sweep** that adjudicates H-F on `zworld_actor_adequacy_locus` is named by the 1008 autopsy confirmed ~1 h before this report. It is the next experiment on the live front and the queue is empty, but it is `/governance`'s to chip after Step 2b ratification, and governance is active now.
-- **`f_dominance_conversion_ceiling` `ready` re-evaluation** once (1) lands — a governance disposition, not a build.
-- **No substrate-build recommendation this run:** the two ready-and-unbuilt entries are registration-only, every repeat-FAIL chain has a confirmed autopsy naming a non-build cause, and `next_implement_substrate` correctly reads "none".
-- **Open chips tripled (33 → 111)** but 102 of them are ≤7 days old and only 2 exceed 14 days — spawn volume, not accumulation. No triage recommended; `audit_orphan_chips.py` covers it on cadence.
+   The guard needs no architecture decision. It is landing now as an instrument that decides none of Q4a-d (in flight, above).
+2. **After (1), a coupled repair campaign on an ree-v3 integration branch** (CLAUDE.md's sanctioned exception). Its parts are validated together, not one at a time:
+   - a whole-codec repair, or action-space proposals;
+   - E2 world-head action coverage;
+   - grounded main-channel valuation, with the relative-to-null detector first (in flight).
+
+   The acceptance criterion is a pre-registered closed-loop criterion on env reward, with shuffled controls and hazard-trapped/benign stratification. Q1 (the valuation options) and Q2 (the repair order) are held.
+3. **Registry rows are owed via flags.** This is `/governance` work, reported here and not chipped:
+   - z_self valuation consumer: GFLAG-0481
+   - codec: GFLAG-0488 / 0490
+   - native trainer, `harm_eval_head` and depth stack: GFLAG-0491
+   - E2 world objective: GFLAG-0485
+   - commit-gate caveat: GFLAG-0486
+
+   Also owed: the GOV-JURIS-1 evidence-domain stamp (`evidence/planning/current_front_evidence_domain.json`, governance Step 7a) is still anchored on the 2026-09-09 decoder sweep. It still lists z_world D2 as untested, so `CURRENT_FRONT.md` now renders it **STALE** until it is re-stated.
+
+**Reported, not recommended:**
+
+- `insights_report.html` was not re-rendered in this revision. The markdown is the source `generate_current_front.py` reads.
+- The Experiment Health, Substrate, Governance State, Literature and Human-Intervention sections below the front are the 2026-09-08 measurement. Refreshing them is a `/dual-insights` run.
