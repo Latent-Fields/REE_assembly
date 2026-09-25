@@ -7261,6 +7261,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0509",
+      "claim_ids": [
+        "MECH-398",
+        "MECH-207",
+        "MECH-083"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "Re-phasing question: MECH-398 (ACh-analog plasticity-gain gate; implementation_phase v4, v3_pending, not implemented in ree_core) and MECH-207's ACh-gated destabilisation now have a native v3 host -- the ree_core WakingTrainer (user decisions Q4a/Q4b 2026-09-25, skeleton building) owns learning rates. User direction 2026-09-25 ~09:37Z (REE_assembly breakthrough_pass_synthesis_20260925.md section 7c): retained developmental (babbling) replay must be FROZEN against overwrite by later one-action experience yet UNFREEZABLE under an ACh-analog gate to update; interim babbling-probe data show retention needs the replay (L2R) while plain continuation forgets. Decide whether to re-phase MECH-398/MECH-207 to v3 as a coupled-campaign requirement.",
+      "raised_by_session": "orchestrate-20260924-breakthrough",
+      "raised_at": "2026-09-25T09:40:51Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
