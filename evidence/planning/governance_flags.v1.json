@@ -6752,9 +6752,9 @@
       "summary": "MECH-029 what_would_answer/evidence_quality_note currency claim ('V3-EXQ-876/671b on 2026-08-02 confirm the substrate CAN now clear the >=20/>=20 committed/uncommitted precondition') is stale, superseded by ARC-029's later measurement (arc029_p1_lever_calibration_finding_20260918.md, GFLAG-0346, 2026-09-18): once world-forward is trained, commit_variance collapses to ~1e-6..1.6e-5 (five orders below the 0.40 absolute threshold), and committed_step_fraction measured 1.0000 even at BreathOscillator sweep_amplitude 0.999 -- the absolute-threshold sweep this claim's what_would_answer prescribes is INERT. V3-EXQ-876's cited 165-216 'uncommitted steps'/seed are not genuine fresh E3 selections at all: 876 counted every env STEP under a held commitment flag that DEFAULTS to False until the first E3 tick of each episode fires (v3_exq_876...py held_committed pattern), not agent.e3.select() calls where SelectionResult.committed was actually False. Found 2026-09-24 while authoring V3-EXQ-1091 (queue-experiment Step 4.5 red-team, model fable): a corrected driver using the LIVE, non-latched SelectionResult.committed per genuine E3 selection produced 11 committed / 1 uncommitted of 12 fresh selections in a tiny smoke run, consistent with near-total commitment saturation, not the ~40x-uncommitted-rich picture 876's step-counting implied. The only existing remedy is the already-built opt-in e3.use_variance_tracking_commit_threshold lever, whose own config.py docstring states its quantile/window parameters are deliberately NOT defaulted because they 'decide what a later experiment MEASURES... the experiment's choice to pre-register, not this build's to smuggle in as a default' -- so re-testing MECH-029 needs a governance/science decision on those parameters (or an alternative operationalization), not a silent driver fix.",
       "raised_by_session": "metaworker-science-20260924-orchb-mech029-commit-sweep",
       "raised_at": "2026-09-24T12:57:24Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:13Z",
+      "resolution_note": "Appended a dated CORRECTED paragraph to MECH-029 what_would_answer (REE_assembly f69f48dcf4) noting V3-EXQ-876's cited uncommitted-step counts were not genuine fresh E3 selections (held commitment flag, not SelectionResult.committed). Per user decision at governance-20260925, the re-test parameter choice for e3.use_variance_tracking_commit_threshold's quantile/window is recorded as DEFERRED to a dedicated science session -- MECH-029 re-test stays unqueued."
     },
     {
       "flag_id": "GFLAG-0473",
@@ -6849,9 +6849,9 @@
       "summary": "GFLAG-0441 sampling fix (use_dim_scaled_integrate_sampling, being landed default-OFF) is a D1 instrument fix only: at world_dim=32 the native residue consumers (E3 scoring, hippocampal CEM elites) query E2-rollout states a median 12-18 kernel widths (bw 1.0) / 81-121 (bw 0.15) from harm centres, outside the ~1-width shell the fix trains on; at the native 10-step budget ON perturbs consumers exactly as a shuffled-target control does (7/7 cells) and weakens-or-reverses CEM residue avoidance in 7/7 cells. Sampling from consumer-queried points reaches the consumer but only reproduces a ~1.1x rescale of the RBF core (GFLAG-0442 arithmetic, measured at the consumer). Do not enable the flag in drivers or count it toward a MECH-018 consumer readout; mech018-contextualisation-objective's support must be consumer-queried states. Record: REE_assembly/evidence/planning/residue_consumer_reach_world_dim32_20260924.md (82819a1058).",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T17:50:40Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:10Z",
+      "resolution_note": "Applied consumer-reach caveat to MECH-018 what_would_answer (REE_assembly f69f48dcf4), recording that the GFLAG-0441/0442 sampling fix is a D1 instrument fix only and does not reach native consumers (E3 scoring, hippocampal CEM elites) per residue_consumer_reach_world_dim32_20260924.md; no status/confidence change."
     },
     {
       "flag_id": "GFLAG-0480",
@@ -6876,9 +6876,9 @@
       "summary": "Causal-reach trace (REE_assembly/evidence/planning/zself_causal_reach_trace_20260924.md, 884a6b1ca3): z_self has NO reach into action selection -- 0/68 E3 ticks and 0/12 whole episodes changed action under swap/zero/noise/permute of z_self (z_world canary in the same harness: 4-30% of ticks, closed-loop divergence by tick 0-6), because E3 scores world rollouts only, z_self rollouts are computed and discarded, E1's z_self response reaches selection only via hippocampal.terrain_prior (no loss trains it), and DR-10 is default-off with no z_self-derived producer. The sd_zself_training_path build (released with a body-forward-model objective) can therefore reach D2-at-E1 only; INV-069/MECH-113 retests will measure self-state quality, not behavioural consequence. Owed: /governance to register a separate substrate_queue row for a z_self-reading per-candidate valuation (self-viability) consumer, and to note on INV-069/MECH-113 that D3 is structurally unreachable until it exists.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T18:15:20Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:11Z",
+      "resolution_note": "Added zself_causal_reach_trace_20260924.md citation to MECH-113 evidence_quality_note (REE_assembly f69f48dcf4); INV-069 already carried the equivalent finding via its V3-EXQ-1078 autopsy amendment (65bb05ec9c2, predates this flag), left untouched. Chip to be spawned: /implement-substrate registration-only substrate_queue row for a z_self-reading per-candidate self-viability producer (unblocks_claims INV-069, MECH-113, MECH-114) -- not in flight in substrate_queue.json or TASK_CHIPS.json as of this pass."
     },
     {
       "flag_id": "GFLAG-0482",
@@ -6920,9 +6920,9 @@
       "summary": "Code trace (REE_assembly/evidence/planning/relational_edge_consumer_reach_20260924.md, 410e589ce1): MECH-468's four recorded edge types (A/C/D/E dumps, ree-v3 c4d6a92) have ZERO production callers -- D0/D1 instrumentation, not evidence; type-E causal credit is destroyed inside StalenessAccumulator.integrate()'s fold before any reader. The only native relational consumer is SD-097 PossibilityTopology via GhostGoalBank._admit_relational_successors -> CEM ghost seeding -> E3, carrying ONE edge type, default-off (use_possibility_topology, use_mech293_ghost_probes) and never enabled by any experiment. A typed-vs-collapsed (MECH-469/470) native-consumer discrimination is therefore NOT RUNNABLE; the cheaper prior question is whether the single-type consumer changes CEM seeding / E3 selection at all when enabled (D2).",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T18:30:59Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:12Z",
+      "resolution_note": "Noted NOT-RUNNABLE status on MECH-469 and MECH-470 implementation_note (REE_assembly f69f48dcf4), recording that the only native relational consumer (SD-097/PossibilityTopology) carries one edge type and is default-off/never-enabled. Chip to be spawned: /queue-experiment D2 probe (enable use_possibility_topology + use_mech293_ghost_probes, measure any divergence in GhostGoalBank ranking/CEM seeding/E3 selection; claim_ids MECH-470) -- not in flight (0 hits for use_possibility_topology/use_mech293_ghost_probes in experiment_queue.json)."
     },
     {
       "flag_id": "GFLAG-0485",
@@ -6934,9 +6934,9 @@
       "summary": "E2 world-forward re-measure at world_dim=32 (REE_assembly/evidence/planning/e2_rollout_divergence_and_proposal_state_dependence_20260924.md, f300ebf64d; small Mac dose series, D1/D2): (1) the E2 WORLD head has no native waking training objective -- compute_e2_loss trains only the z_self head; its only trainer is sleep-gated and default-off -- and >=half of the 60 most recent drivers score E3 rollouts from an UNTRAINED world head (norm grows x1.21/step, 0.49 -> 326 over 30 steps); (2) even trained (up to 10k steps) E2 predicts the executed action's consequence at chance (0.18-0.33 vs 0.20-0.25), under random actions only 2.3-3.1% of z_world step change is action-explained; (3) yet >98% of E3's across-candidate score variance comes from rollout steps >5 and truncation flips the pick in 78-100% of cells, SD-056 clamp does not change it. So E3 selection is driven by action-uninformative rollout content in the measured regimes; any claim whose evidence rests on E3 choosing by predicted action consequence should be read with this caveat until re-measured on a production-trained agent.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T18:58:54Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:12Z",
+      "resolution_note": "Applied the untrained-E2 caveat to SD-056 and SD-063 evidence_quality_note (REE_assembly f69f48dcf4), recording e2_rollout_divergence_and_proposal_state_dependence_20260924.md's finding that the E2 world head has no native waking training objective and is untrained in >=half of recent drivers. The separate build-half ask (E2 world-head native training objective) is superseded by GFLAG-0501 / coupled_loop_repair_campaign_plan.md nodes T1/W3/W6a and is not re-actioned here."
     },
     {
       "flag_id": "GFLAG-0486",
@@ -6947,9 +6947,9 @@
       "summary": "ARC-016 commit gate input is E2's ONE-STEP WORLD prediction error: E3.post_action_update sets prediction_error = actual_z_world - ref_trajectory.world_states[1] and feeds update_running_variance; committed = running_variance < commit_threshold (ree-v3 origin/main ree_core/predictors/e3_selector.py:4785-4790, sole caller). Per GFLAG-0485 / REE_assembly/evidence/planning/e2_rollout_divergence_and_proposal_state_dependence_20260924.md (f300ebf64d), the E2 world head has no native waking training objective and is untrained in >=half of recent drivers, and action-blind even when trained. So in those regimes commitment (and every rv-derived precision/confidence reading, incl. MECH-204 drift and ARC-016 dynamic precision) tracks an untrained/action-blind forward model's one-step error, not model precision. Evidence reading rv or commit rate as epistemic confidence should state the E2-world-head training state it ran under.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T19:08:31Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:12Z",
+      "resolution_note": "Applied a training-state caveat to ARC-016 evidence_quality_note (REE_assembly f69f48dcf4) naming the V3-EXQ-818 promoting run's unconfirmed E2-world-head training state, per the gradient-reach census and GFLAG-0485's untrained-E2 finding. Status left stable -- whether V3-EXQ-818 needs a training-state re-check is a governance judgement call, not applied inline; flagged in the caveat text itself for the next walk. MECH-204 (named in the flag's summary but not in its claim_ids) is out of scope here."
     },
     {
       "flag_id": "GFLAG-0487",
@@ -7208,9 +7208,9 @@
       "summary": "SD-105 digestion_note resolution step (2) 'the freeze/share API is built or explicitly waived' is now MET: built in ree-v3 c5d55ea (2026-09-25, IGW-20260923-219; freeze(), selection_entropy_floor_frozen_multiplier / _freeze_after_ticks, frozen-field reporting, contracts B11-B19), and substrate_queue sd105_frozen_shared_entropy_floor_multiplier is implemented_pending_validation (REE_assembly 2e802df77e). Step (1) was ratified 2026-09-23 (GFLAG-0331 item 6); step (3) (committed-fraction pinning) stays owed to V3-EXQ-963c, so the DEFERRED (f) note should be narrowed to step (3) rather than removed, and implementation_note should record the freeze/share API.",
       "raised_by_session": "igw-219-substrate-ready-sd105-frozen-sha",
       "raised_at": "2026-09-25T07:35:39Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:14Z",
+      "resolution_note": "Narrowed SD-105's digestion_note to record steps (1) and (2) DONE (frozen-multiplier design ratified 2026-09-23 GFLAG-0331 item 6; freeze/share API built ree-v3 c5d55ea, substrate_queue confirmed implemented_pending_validation REE_assembly 2e802df77e) and step (3), the committed-fraction pinning via last_precommit_probs, as the sole REMAINING item, owed to V3-EXQ-963c. Also appended a dated addendum to the existing implementation_note recording the freeze/share landing. REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0506",
@@ -7350,9 +7350,9 @@
       "summary": "The 2026-09-22 phase-leak walk (9573e0342e4, user decision) moved ARC-124/SD-096 to v3 derived from GOV-BRIDGE-1, but both notes still say DO NOT BUILD in V3; either the notes or the edge needs correcting. Also GOV-BRIDGE-1's notes call the location stub absent (it exists: bridge_organism_lineage.md, d791e404f4b).",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:19Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:14Z",
+      "resolution_note": "Phase-leak half: no correction applied -- confirmed ARC-124/SD-096's v3 label is a clean derived reclassification (0 CONFLICT/ROOT per check_claim_phase_consistency) and 'v3 + DO NOT BUILD' is this repo's established pattern (same as MECH-529, ARC-140, MECH-588), not a contradiction; nothing to edit. Location-stub half: corrected GOV-BRIDGE-1's notes (REE_assembly f69f48dcf4) -- the file (docs/architecture/bridge_organism_lineage.md) exists on disk, created in the registering commit d791e404f4b; the stale 'does not yet exist' sentence is replaced."
     },
     {
       "flag_id": "GFLAG-0515",
@@ -7376,9 +7376,9 @@
       "summary": "GOV-HOTHER-1 has fired 3 times, each routed before any rescue run (q43 -> rotation, discharged into sd106_objective_consumer_transfer; q61 and q66 -> partition expansion); its implementation was applied in REE_assembly 0026b722232 (2026-09-16) though its notes still say NOT applied.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:28Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:15Z",
+      "resolution_note": "Corrected GOV-HOTHER-1's notes (REE_assembly f69f48dcf4) from 'proposed and NOT applied' to record that all three implementation-surface items (failure-autopsy SKILL.md Step 9b Mode D/H-other check, hypothesis_space_registry.v1.json h_other_events[], check_hypothesis_space_integrity.py counting) were applied 2026-09-16 (0026b722232) and are confirmed live as of 2026-09-25 (3 h_other_events recorded: q43/q61/q66)."
     },
     {
       "flag_id": "GFLAG-0517",
@@ -7389,9 +7389,9 @@
       "summary": "Weak promotion candidate: GOV-JURIS-1 is in routine use (its CURRENT_FRONT line restated 3 times naming specific untested domains, implementation applied 0026b722232) but no case yet shows the line stopping an over-claim that was later confirmed. Notes still say proposed NOT applied (stale).",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:32Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:15Z",
+      "resolution_note": "Corrected GOV-JURIS-1's notes (REE_assembly f69f48dcf4) from 'proposed, NOT applied here' to record that the implementation surface (/governance SKILL.md Step 7a + generate_current_front.py) was applied 2026-09-16 (0026b722232) and has been exercised 3x as of 2026-09-25. Only the stale sentence was touched, per instruction to coordinate scope with W3's separate GOV-JURIS-1 extension; the promotion question (candidate -> provisional) is left undecided, held at candidate."
     },
     {
       "flag_id": "GFLAG-0518",
@@ -7444,9 +7444,9 @@
       "summary": "MECH-164 asserts other-harm carries the same motivational force as self-harm, conflicting with the provisional coupling window [0.05, 0.65] (DEV-NEED-022) and MECH-404's treatment of high gain as pathology. Also MECH-164 depends_on MECH-163 relies on the prosocial-planning leg split to MECH-479 on 2026-07-22; recommend repointing.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:51Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:20Z",
+      "resolution_note": "Repointed MECH-164's prosocial-planning dependency by adding MECH-479 to depends_on (split from MECH-163 2026-07-22; MECH-163 kept as the general dual-system dependency). Appended the approved dated annotation to MECH-164's notes distinguishing the STRUCTURAL 'same motivational force' claim from the regulated WEIGHT, which lives in MECH-404 (window/DEV-NEED-022 band) and MECH-410 (schedule). REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0522",
@@ -7485,9 +7485,9 @@
       "summary": "ARC-096's possible_overlap_with ARC-056 has been open and unresolved; thought-digestion 2026-09-25 judged them complementary (not duplicate) and recommends closing it as not-a-merge.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:06Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:18Z",
+      "resolution_note": "ARC-096/ARC-056 possible_overlap_with reviewed and closed as not-a-merge (REE_assembly f69f48dcf4): complementary (ARC-096 = typed causal-attribution ontology, ARC-056 = coherence-optimisation architecture that consumes such attributions), kept distinct via the existing ARC-096 depends_on edge, whose comment is updated accordingly; ARC-056's stale 'GOVERNANCE FLAG...not resolved here' sentence replaced with a closure note. ARC-097's separate, still-open possible_overlap_with: ARC-056 is explicitly left untouched (out of this flag's claim_ids)."
     },
     {
       "flag_id": "GFLAG-0525",
@@ -7499,9 +7499,9 @@
       "summary": "MECH-242 depends_on MECH-155, but MECH-155's own what_would_answer explicitly excludes hippocampal trajectory-construction content from its scope; the edge looks wrong. Also MECH-325 is a finer-grained specification of MECH-242 (recommend a MECH-325 -> MECH-242 edge).",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:10Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:19Z",
+      "resolution_note": "Removed the mismatched MECH-242 -> MECH-155 depends_on edge (MECH-155's own what_would_answer explicitly excludes hippocampal trajectory construction from its scope, which is exactly MECH-242's content) and added the missing MECH-325 -> MECH-242 depends_on edge (MECH-325's cue-indexed store is MECH-242's own-named finer-grained pattern-completion specialisation). REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0526",
@@ -7513,9 +7513,9 @@
       "summary": "MECH-390 carries a 3.5-month-old unresolved possible_overlap_with MECH-362; its notes already argue for keeping them distinct and thought-digestion 2026-09-25 agrees -- recommend closing as reviewed/no-merge.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:15Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:19Z",
+      "resolution_note": "MECH-390/MECH-362 possible_overlap_with reviewed and closed as not-a-merge (REE_assembly f69f48dcf4) -- pure bookkeeping, no content change: both claims' own notes already agreed on the general-principle/affect-specific-specialisation relationship, already wired via the existing depends_on edge."
     },
     {
       "flag_id": "GFLAG-0527",
@@ -7527,9 +7527,9 @@
       "summary": "MECH-542 depends_on 'MECH-467 # precommit machinery', but MECH-467 is about distractor-resistance dissociation -- likely an id/comment data-entry error. Also MECH-248 and MECH-430 own the identical hypothesis_tag-as-single-bit gap MECH-542/544 need (recommend depends_on additions).",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:19Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:20Z",
+      "resolution_note": "Removed the erroneous MECH-542 -> MECH-467 depends_on edge (comment 'precommit machinery' does not match MECH-467's actual distractor-resistance content, and no correct replacement target could be confirmed from the record -- user approved DROP with no replacement, since ARC-065 already covers precommit architecture in MECH-542's depends_on). Added MECH-542 -> MECH-248, MECH-430 and MECH-544 -> MECH-248, MECH-430 depends_on edges (both claims already own the hypothesis_tag-single-bit source-monitoring gap their own P2/P5 preconditions restate). REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0528",
@@ -7553,9 +7553,9 @@
       "summary": "A confirmed autopsy (failure_autopsy_gflag0452-D1-cluster_2026-09-24.md) names a systematic confirmer-template defect across V3-EXQ-757/761/762 that no governance flag yet routes; GOV-CONFIRM-1's notes also still describe P1/P2 as pending though both are done since 2026-07-14.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:29Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:16Z",
+      "resolution_note": "Corrected GOV-CONFIRM-1's notes (REE_assembly f69f48dcf4) from 'P1 shadow detector + P2 low-priority autospawn build after user review' to record both as status done since 2026-07-14 (applied REE_assembly 2e6fe97c4bd), and cross-referenced the still-open confirmer-authoring template defect. Chip spawned by orchestrator: review/fix the GOV-CONFIRM-1 confirmer-authoring template so a confirming experiment cannot verify only 'the switch works' (V3-EXQ-757/761/762; see failure_autopsy_gflag0452-D1-cluster_2026-09-24.md Sec. 6); per-claim consequences (MECH-302/288/287/092 provisional->candidate) already applied and not re-actioned."
     },
     {
       "flag_id": "GFLAG-0530",
@@ -7593,9 +7593,9 @@
       "summary": "INV-085 is in the same absolute-override class as ARC-104/ARC-103 but not named in the GFLAG-0388 resolution (possible scope gap); also INV-085 (substrate_conditional) vs INV-007 (derivational) is an epistemic_category inconsistency for structurally identical audit-type invariants.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:20Z",
+      "resolution_note": "Cross-referenced INV-085 into the GFLAG-0388 absolute-override family (ARC-103/ARC-104, 2026-09-23) via an appended notes paragraph -- no content change, INV-085's own wording already asserted the position; closes the documentation gap the flag named. epistemic_category difference from INV-007 (substrate_conditional vs derivational) reviewed and recorded as left as-is in the same note -- reflects a real precondition difference (specific MECH-373 adaptor vs generic language channel), not an inconsistency. REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0533",
@@ -7620,9 +7620,9 @@
       "summary": "GOV-FROZEN-1's note ('competence_floor at 2 portfolios, one more fires it') is stale: the registry now shows 5 distinct fanout_source portfolios (>= FANOUT_RECURRENCE_N=3), so its escalation clause has been armed and firing since 2026-07-26 with no visible re-pose.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:52Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:16Z",
+      "resolution_note": "Corrected GOV-FROZEN-1's notes (forward pointer) and what_would_answer CURRENCY FINDING paragraph (REE_assembly f69f48dcf4): the FANOUT_RECURRENCE_N=3 escalation on competence_floor DID fire and WAS acted on -- competence_floor was closed to further fan-out 2026-08-08 (competence_floor_recurrence_repose_2026-08-08.md, chip-20260808-competence-floor-refpose), four days after the third crossing, and is now ACKNOWLEDGED with 0 legs alive -- contrary to the stale '2 portfolios' note and the claim's own prior 'does not appear to have been acted on' finding."
     },
     {
       "flag_id": "GFLAG-0535",
@@ -7647,9 +7647,9 @@
       "summary": "Q-108's note 'AR-1 cue remapping is nearest' is wrong (repeated in the 2026-09-24 orchestrator prompt): AR-1 has no lever in code; the nearest perturbation class is AR-3 (built world_rule_shift action-map reshuffle with a built no-change control). Binding blockers: no waking learning at defaults (GFLAG-0491/0501) and sub-random foraging on the patch-flip test (V3-EXQ-745). Add MECH-523 to depends_on.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:59:02Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:13Z",
+      "resolution_note": "Corrected Q-108's stale notes AR-1/AR-3 text to match the already-updated what_would_answer (REE_assembly d95f7e37be4 had fixed what_would_answer but not notes), and added MECH-523 to depends_on as the mechanistic reason AR-1 has no lever. REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0537",
@@ -7688,9 +7688,9 @@
       "summary": "ARC-137 notes clause (c) still says ARC-020's MAY-update list does not name access-route quantities and that the residual 'is FLAGGED FOR /governance ... ARC-020 is untouched'; false since 2026-09-10 (GFLAG-0128 resolved, user option (a), 5dc661badc3: sleep.md and ARC-020's what_would_answer now enumerate retrieval-cue mappings, model-to-policy readouts, proposal distributions and eligibility/competitive-gain mappings). Replace clause (c)'s residual sentence with a dated pointer to the scope ruling.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:08:48Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:17Z",
+      "resolution_note": "Updated ARC-137's notes clause (c) (REE_assembly f69f48dcf4) to a dated pointer: the residual it flagged for /governance was RESOLVED by GFLAG-0128 (2026-09-10, REE_assembly c8116c399b, option a) -- ARC-020's what_would_answer and sleep.md's MAY-update list now enumerate the access-route quantities. ARC-020 is no longer untouched."
     },
     {
       "flag_id": "GFLAG-0540",
@@ -7728,9 +7728,9 @@
       "summary": "MECH-111's location docs/architecture/approach_avoidance_symmetry.md#mech-111 does not exist (checked 2026-09-25). Its own notes leave the alarm-surprise vs curiosity-surprise split open; MECH-590 (registered 2026-09-25, learned error-routing significance) now generalises that split. Re-home MECH-111 (candidate: docs/architecture/learned_error_routing.md or the curiosity/control-plane doc) and add a cross-reference to MECH-590.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:04Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:17Z",
+      "resolution_note": "MECH-111's location field (dangling: docs/architecture/approach_avoidance_symmetry.md does not exist on disk) re-homed to docs/architecture/learned_error_routing.md#mech-111 (MECH-590's own doc), with a cross-reference note added recording that MECH-590 generalises the alarm-surprise vs curiosity-surprise split this claim leaves open. REE_assembly f69f48dcf4."
     },
     {
       "flag_id": "GFLAG-0543",
@@ -7811,9 +7811,9 @@
       "summary": "MECH-365's notes still read 'V4/V5 ... DO NOT build in V3', contradicting its current v3 phase, the landed provenance-gate substrate and the V3-EXQ-1085 PASS (the 2026-09-24 split made MECH-365 the V3 half and MECH-365a the v4 unified-store child); docs/architecture/autobiographical_temporality_and_future_simulation.md's dependency list is also stale. Update the notes caveat to apply to MECH-365a only.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:18Z",
+      "resolution_note": "MECH-365's notes (REE_assembly f69f48dcf4) updated: the final sentence, which still read the pre-split V4/V5/DO-NOT-build framing, is replaced to record that this claim is the V3 half of the 2026-09-24 split (5a3ac2aa0bc) -- the committed_vs_imagined one-way gate, landed via the provenance-gate substrate and V3-EXQ-1085 -- and that the ARC-085 unified-store schema / v4-v5 caveat now apply to MECH-365a only. Secondary doc fix (docs/architecture/autobiographical_temporality_and_future_simulation.md MECH-365 section still groups it with the pre-split cluster) not applied here -- report-only, mechanical doc fix, not in this ops set."
     },
     {
       "flag_id": "GFLAG-0549",
@@ -7824,9 +7824,9 @@
       "summary": "The Meltzoff 2007 literature entry is tagged as WEAKENING MECH-571 (object term is route-specific), but the entry's own caveat text supports the claim; the mis-tag appears to drive a false conflict score (1.0) on MECH-571's gap-register entry AGR-0015. Re-check the entry's evidence_direction and rebuild the index.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:44Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:21Z",
+      "resolution_note": "Corrected evidence_direction_per_claim.MECH-571 from weakens to supports in the 2026-09-18 Meltzoff 2007 literature record (targeted_review_self_object_other_ontogeny entry) -- drafted in W1.other_edits.md, not applied by W1. The entry's own failure_signatures text directly confirms MECH-571's route-specific (object-absent-in-bodily-correspondence-route) reading; the prior tag appears to have been set for a universal-object-requirement reading MECH-571 does not hold. AGR-0015's conflict score (non_support_ratio 0.667 -> 0.333) needs the literature/evidence indexer re-run as a consequence -- named as owed, not run by W1 (read-only pass, no repo writes)."
     },
     {
       "flag_id": "GFLAG-0550",
@@ -7883,9 +7883,9 @@
       "summary": "ARC-140 (compensatory realizability) carries implementation_phase v3 only via GOV-CONTRACT-2's use of its method standard, while its own notes say DO NOT build in V3; it also depends_on MECH-529, which makes it look blocked on the unbuilt ARC-134 P0 operator it does not need (proposal: move MECH-529 to related_claims). Option: split like MECH-365 into a V3 method-standard half and a v4 organism half. Also stale: ARC-140 and MECH-541 notes say a lit-pull is owed; it ran 2026-09-08.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:10:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:48:18Z",
+      "resolution_note": "Lit-pull half: MECH-541's stale 'worth checking against the clinical literature in a later lit-pull' clause corrected to cite the 2026-09-08 pull (targeted_review_compensatory_realizability) that already covers its general compensation-pathology framing; ARC-140's 'lit-pull... is owed' sentence narrowed (not removed) to record the pull ran but the full text remains paywalled and the 'precision readiness' term is still unread. Edge/split half: MECH-529 moved from ARC-140's depends_on to related_claims per option (a), inline comment preserved; the MECH-365-style V3/v4 split of ARC-140 itself (via GOV-CONTRACT-2) is recorded as deferred to a dedicated governance pass, not decided here. REE_assembly f69f48dcf4."
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
