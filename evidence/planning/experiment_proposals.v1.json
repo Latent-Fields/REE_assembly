@@ -34021,6 +34021,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0155",
+      "blocked_by": [
+        "residue-completion-signal-threshold-unreachable",
+        "mech005-endogenous-arousal-dynamic-range"
+      ],
+      "blocked_note": "REFUSED at /queue-experiment Step 4.5 (red-team BLOCKING, model fable, independently reproduced). The recording gap this proposal was gated on IS now closed: the driver is authored, smoke-passing, validator-clean and landed at ree-v3 d7220bc8 with a 4-way phase_reset trigger classifier and every REQUIRED RECORDING field. It is deliberately NOT QUEUED because ARC-023's 2026-09-24 tightened falsifier carries three independently measured defects that together leave one reachable verdict cell. (1) CONFIRMING leg (i) is a deterministic transform of MECH-091 reset volume and clustering rather than of period tracking -- measured with the real MultiRateClock at a FIXED period of 10, the ratio is 0.878 / 0.702 / 0.520 / 0.149 at reset shares 0.02 / 0.057 / 0.102 / 0.253 -- so CONFIRMING is gated on the harm trigger being nearly silent in an env configured with num_hazards > 0 to load it (GFLAG-0497). (2) FALSIFYING is effectively unreachable: clock-driven share is clamped at <= 1/beta_rate_min_steps = 0.20 so onset-gated resets must supply >= 0.13, and they measure 0.0075-0.0125 per step (GFLAG-0494). (3) The 4-way REQUIRED RECORDING split has only 2 LIVE classes -- completion's 0.75 release threshold exceeds compute_completion_signal's achievable max of 0.5 (blocked_by residue-completion-signal-threshold-unreachable) and the NCL latch never arms. Leg (i)'s non-degeneracy additionally depends on whether the trained operating point pins _current_e3_steps (blocked_by mech005-endogenous-arousal-dynamic-range), which the driver now measures rather than assumes. Route: /governance repairs the falsifier, then this driver is queued as-is -- no re-authoring needed. Measurements: REE_assembly evidence/planning/arc023_recording_design_preflight_staged_20260925.md; dispositions: RED_TEAM_DISPOSITIONS in the driver.",
       "claim_id": "ARC-023",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -34044,11 +34049,15 @@
         }
       ],
       "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z",
+      "governance_flag": "GFLAG-0497",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-023 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0548",
       "proposal_type": "experimental",
+      "refusal_route": "governance",
+      "refused_by_session": "metaworker-science-20260925-orchc-arc023-recording",
+      "refused_utc": "2026-09-25T02:51:44Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -34061,7 +34070,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "gated",
+      "status": "blocked_on_gate",
       "suggested_experiment_type": "claim_probe_arc_023",
       "target_repo": "ree-v3",
       "why_now": [
