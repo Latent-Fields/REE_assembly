@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-25T15:46:37Z`
+Generated: `2026-09-25T16:50:29Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,14 +9,12 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **257** (ready 32, in_flight 0, blocked 167)
-- By generation: clinical 11, governance 5, meta 4, process 7, v3 90, v4 76, v5 39, v6 25
+- Items: **258** (ready 32, in_flight 0, blocked 168)
+- By generation: clinical 11, governance 5, meta 4, process 7, v3 91, v4 76, v5 39, v6 25
 - Pending review: **0**
-- Queue pending (unclaimed): **2**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-1067, V3-EXQ-1090, V3-EXQ-1099, V3-EXQ-1106, V3-EXQ-906c
-
-- Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-1067
+- Live EXQs: V3-EXQ-1090, V3-EXQ-1099, V3-EXQ-1107, V3-EXQ-906c
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3
 
@@ -1166,7 +1164,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-222 -- Queue depth low (2 pending)
+### IGW-20260925-222 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1175,7 +1173,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260925-222
-Title: Queue depth low (2 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -5715,7 +5713,32 @@ Instructions:
 
 </details>
 
-### IGW-20260925-248 -- Confirm evidence: MECH-353 (lit 0.82, exp ~0)
+### IGW-20260925-248 -- Confirm evidence: MECH-039 (lit 0.83, exp ~0)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
+- **Blocked by:** experiment_proposals.v1.json EXP-0787 status=blocked_substrate: blocked by mode-governance-engagement, SD-035
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session recorded EXP-0787 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260925-248
+Title: Confirm evidence: MECH-039 (lit 0.83, exp ~0)
+Lane: experiment | Skill: /queue-experiment
+Status: blocked
+Claims: MECH-039
+Blocked by: experiment_proposals.v1.json EXP-0787 status=blocked_substrate: blocked by mode-governance-engagement, SD-035
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session recorded EXP-0787 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260925-249 -- Confirm evidence: MECH-353 (lit 0.82, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** claims.yaml MECH-353 carries diagnostic_evidence_adjudicated: true -- its zero genuine_exp_count is ALREADY ADJUDICATED (the runs exist and are correctly scoring_excluded as diagnostic probes), so the confirmable-but-unconfirmed signal is a
@@ -5724,7 +5747,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-248
+REE inter-governance work item: IGW-20260925-249
 Title: Confirm evidence: MECH-353 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5740,7 +5763,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-249 -- Confirm evidence: MECH-489 (lit 0.82, exp ~0)
+### IGW-20260925-250 -- Confirm evidence: MECH-489 (lit 0.82, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0057 status=executed: SECOND ADJUDICATED DO-NOT-QUEUE 2026-09-06 (igw-241-confirm-evidence-mech-489-lit-0, IGW-20260906-241, same GOV-CONFIRM-1 confirmer lane). The re-fire the 2026-08-26 note flagged as a K
@@ -5749,7 +5772,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-249
+REE inter-governance work item: IGW-20260925-250
 Title: Confirm evidence: MECH-489 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5765,7 +5788,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-250 -- Confirm evidence: MECH-282 (lit 0.82, exp ~0)
+### IGW-20260925-251 -- Confirm evidence: MECH-282 (lit 0.82, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1326 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun.
@@ -5774,7 +5797,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-250
+REE inter-governance work item: IGW-20260925-251
 Title: Confirm evidence: MECH-282 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5790,7 +5813,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-251 -- Confirm evidence: ARC-023 (lit 0.80, exp ~0)
+### IGW-20260925-252 -- Confirm evidence: ARC-023 (lit 0.80, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0548 status=blocked_on_gate: blocked by residue-completion-signal-threshold-unreachable, mech005-endogenous-arousal-dynamic-range
@@ -5799,7 +5822,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-251
+REE inter-governance work item: IGW-20260925-252
 Title: Confirm evidence: ARC-023 (lit 0.80, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5815,7 +5838,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-252 -- Confirm evidence: SD-099 (lit 0.77, exp ~0)
+### IGW-20260925-253 -- Confirm evidence: SD-099 (lit 0.77, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0328 status=gated: GOV-REUSE-1 (/queue-experiment Step 2.4) routes this to 'do not queue': BOTH halves of SD-099's own what_would_answer are already accounted for, so a fresh targeted probe would be duplicat
@@ -5824,7 +5847,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-252
+REE inter-governance work item: IGW-20260925-253
 Title: Confirm evidence: SD-099 (lit 0.77, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5840,7 +5863,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-253 -- Confirm evidence: MECH-186 (lit 0.73, exp ~0)
+### IGW-20260925-254 -- Confirm evidence: MECH-186 (lit 0.73, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0098 status=gated: the exact test this proposes (floor clamp on VALENCE_WANTING, i.e. 'valence_wanting_floor') has already run twice: v3_exq_251_mech186_valence_wanting_floor (runs ...1775504875_v3 and ...17
@@ -5849,7 +5872,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-253
+REE inter-governance work item: IGW-20260925-254
 Title: Confirm evidence: MECH-186 (lit 0.73, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5865,7 +5888,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-254 -- Confirm evidence: MECH-426 (lit 0.73, exp ~0)
+### IGW-20260925-255 -- Confirm evidence: MECH-426 (lit 0.73, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1045 status=blocked_substrate: blocked by SD-018
@@ -5874,7 +5897,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-254
+REE inter-governance work item: IGW-20260925-255
 Title: Confirm evidence: MECH-426 (lit 0.73, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5890,7 +5913,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-255 -- Confirm evidence: MECH-340 (lit 0.68, exp ~0)
+### IGW-20260925-256 -- Confirm evidence: MECH-340 (lit 0.68, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1349 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
@@ -5899,7 +5922,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-255
+REE inter-governance work item: IGW-20260925-256
 Title: Confirm evidence: MECH-340 (lit 0.68, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5915,7 +5938,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-256 -- Confirm evidence: MECH-339 (lit 0.66, exp ~0)
+### IGW-20260925-257 -- Confirm evidence: MECH-339 (lit 0.66, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1348 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
@@ -5924,7 +5947,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-256
+REE inter-governance work item: IGW-20260925-257
 Title: Confirm evidence: MECH-339 (lit 0.66, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5940,7 +5963,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-257 -- Confirm evidence: SD-056 (lit 0.61, exp ~0)
+### IGW-20260925-258 -- Confirm evidence: SD-056 (lit 0.61, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0440 status=blocked_substrate: blocked by SD-056
@@ -5949,7 +5972,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-257
+REE inter-governance work item: IGW-20260925-258
 Title: Confirm evidence: SD-056 (lit 0.61, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
