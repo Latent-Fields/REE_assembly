@@ -39912,6 +39912,10 @@
       ],
       "added_utc": "2026-09-06",
       "backlog_id": null,
+      "blocked_by": [
+        "benefit-field-kernel-resolution"
+      ],
+      "blocked_note": "SAME SATURATION SHAPE as EXP-1391, and this proposal is in scope on its own acceptance checks rather than by analogy: its co-primary mechanistic DV is the 'cross-candidate bonus range (max-min), never the mean', and its L1a check reads a CEM score-margin min(sparse) - min(dense) favouring the denser region. That bonus is the SD-025 curiosity term following compute_representational_density, i.e. the same benefit-terrain density read across CEM candidates. On the live manifold that density was spatially constant -- benefit RBF at the shared kernel_bandwidth 1.0 against a 0.07 max-pairwise z_world (measured 2026-09-24 orch0924-sd024): ~11.5 at EVERY visited state with 23 centers, and the FamiliarityTracker held ONE anchor (familiarity_bandwidth 0.20 also exceeds the whole manifold). A constant density makes the cross-candidate RANGE ~0 by construction and the sparse-vs-dense comparison degenerate, so L1a and L1c cannot discriminate whatever the mechanism does. NOTE the previously recorded L1a figures (39.26, range 26.95-45.61 over 8 seeds) do NOT contradict this: they predate the acceptance checks' own requirement of benefit_terrain_live_producer=True with no driver-side accumulate_benefit, which is exactly the live-manifold condition where the saturation bites. THE BLOCKER IS ALREADY SATISFIED, same session: ResidueConfig.benefit_field_bandwidth landed on ree-v3 origin/main as b0f7457b (2026-09-25, default None -> kernel_bandwidth, bit-identical OFF). Recorded anyway so the dependency is auditable -- audit_blocked_proposal_unblockers.py should surface this as a RELEASE candidate. WHAT REMAINS IS NOT SUBSTRATE: the operating bandwidth is deliberately unchosen (user decision rec-20260924-3a88e1e9, build-not-calibrate) and is pre-registered by EXP-1391's P0; EXP-1392 should consume that value rather than pick its own, since a different bandwidth in the producer and the consumer would make the two results incomparable. THE FAMILIARITY SIDE NEEDED NO BUILD: familiarity_bandwidth was already a dedicated knob, so its 0.20 is a calibration input to pre-register, not a missing lever -- but note it does DOUBLE duty as both query's proximity kernel and update's association threshold (thresh_sq = bw*bw), which is why one anchor absorbed 180 visits. AND h2 IS LIVE: encoder collapse explains ~11.5-everywhere equally well and this knob cannot distinguish it; report manifold extent and within-cell spread per run.",
       "claim_id": "SD-025",
       "design": "- title: `SD-025 live-path consequentiality: does the curiosity bonus change committed action, or\n  only exist?`\n- related_claims: `SD-025` (primary), `SD-024` (producer, supplies the preconditions),\n  `ARC-057` (the interaction this deliberately does NOT test), `ARC-007` (weight-independence),\n  `MECH-094` (replay gate), `MECH-111` (the broken broadcast-novelty -> E3 path 767 was scoped\n  against), `MECH-458` (the polarity claim that bounds how a diversity null is read).\n- acceptance_checks: `benefit_terrain_live_producer=True`, driver makes no direct\n  `accumulate_benefit` call outside a declared positive control; `FamiliarityTracker` constructed\n  (assert `curiosity_weight > 0` reaches `module.py:140`); primary DV = committed-action divergence\n  rate between same-seed ON/OFF arms; co-reported mechanistic DV = cross-candidate bonus range\n  (max-min), never the mean; `curiosity_weight` and `da_allocation_scale` swept, not fixed at 795's\n  operating point; no binary saturating gate load-bearing; >= 8 seeds; cloud machine class;\n  `experiment_purpose: evidence` -- SD-025 currently has `genuine_exp_count 0`, so a further\n  `diagnostic` run leaves its experimental confidence at 0.0 whatever it finds.\n- Reuse note: V3-EXQ-795's ARM_OFF/ARM_ON are fingerprinted (`arm_fp/v1`,\n  `driver_script_in_substrate_hash: false`, `reuse_eligible: true`, substrate_hash `402e3f5a...`) but\n  the substrate has moved on since 2026-07-20, so treat 795 as a calibration anchor rather than a\n  reusable arm.",
       "dispatch_mode": "multi_arm_ablation",
@@ -39921,6 +39925,9 @@
       "priority": "medium",
       "proposal_id": "EXP-1392",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "metaworker-science-20260925-orchc-benefit-bw-build",
+      "refused_utc": "2026-09-25T01:34:14Z",
       "registered_utc": "2026-09-06",
       "related_claims": [
         "SD-025",
@@ -39931,7 +39938,7 @@
         "INV-051"
       ],
       "source": "manual",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "target_repo": "ree-v3"
     },
     {
