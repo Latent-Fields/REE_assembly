@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "metaworker-science-20260925-orchc-benefit-bw-build",
-  "last_updated_utc": "2026-09-25T02:24:03Z",
+  "last_updated_utc": "2026-09-25T02:56:14Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -13502,24 +13502,55 @@
     {
       "sd_id": "pag_freeze_gate_phase_scoped_recommit_readout",
       "title": "MECH-287 phase-scoped PAG re-commit readout: per-episode freeze commit/release deltas + per-episode broadcast/staleness snapshots, replacing the cumulative counters whose ratio is an episode-count artifact",
-      "node_class": "puzzle (known rules)",
-      "status": "implemented_pending_dv_decision",
-      "status_phase": "blocked_on_decision",
-      "ready": false,
+      "node_class": "complicated (buildable)",
+      "status": "implemented_pending_validation",
+      "status_phase": "validation_owed",
+      "ready": true,
       "design_doc": "REE_assembly/evidence/planning/mech287_readout_redteam_findings_20260925.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-287"
       ],
-      "blocked_by": "chip-20260925-mech287-dv-choice",
-      "blocked_note": "The instrument LANDED (ree-v3 7181ac2d6c) and its ordering repair + monotone count fields are sound, but the adversarial red-team returned BLOCKING on the headline DV and this session independently RE-MEASURED the finding. Any faithful 'freeze re-commit count per PAG release' ratio is bounded in [0,1] (a commit fires only from inactive, a release only from active, so recommits <= releases always) and is PINNED AT EXACTLY 1.0 with zero variance whenever every episode ends frozen -- which is V3-EXQ-475's phenotype and the comparator regime MECH-287's own non-degeneracy precondition requires. Measured 1.0000 at 1/2/5/10 re-commit cycles per episode; never >1.0 over 400 random shapes. Where episodes end released it moves with episode LENGTH (1 - 1/cycles). Separately the staleness 'peak' fields are end-of-episode reads that leak_factor=0.995 has decayed to 0.67% of the peak over a 1000-step episode. So MECH-287's registered DV is not measurable as written and which quantity replaces it is a governance/user call, not a build choice. DO NOT release EXP-0371 on this entry until that decision lands.",
+      "blocked_note": "DV DECISION MADE 2026-09-25 (orchestrate-20260924-1707 under the user's standing delegation rec-20260924-fb429c72, on chip-20260925-mech287-dv-choice): option A -- the DV is recommits_per_episode, unbounded and non-saturating. The registered 'per PAG release' wording is NOT instrumentable (a commit fires only from inactive and a release only from active, so recommits <= releases always; the ratio is bounded in [0,1] and pinned at exactly 1.0 in the ends-frozen regime MECH-287's non-degeneracy precondition requires). The instrument now implements that DV and all red-team findings F3-F10/F12 are fixed. EXP-0371 STAYS BLOCKED until /governance amends MECH-287's functional_restatement and what_would_answer to name recommits_per_episode -- owed via GFLAG-0477 plus the stale_note raised 2026-09-25. Releasing the proposal before that amendment would queue an experiment whose criteria still quote the uninstrumentable quantity.",
       "implementation_hint": "Owed after the DV decision, in ONE pass: (1) re-point or re-scope the headline DV per the decision (recommendation: recommits_per_episode, unbounded and non-saturating); (2) stamp the phase label at episode START -- at finalize time a RESET-AT-START driver misattributes one episode per boundary (measured 59/6 on a 60/5 shape, and the contaminating episode is an ends-frozen one); (3) either build a true within-episode staleness running max where integrate()/tick_leak() run, or rename staleness_peak_over_episodes to an honest end-of-episode name; (4) scope or rename the all-phase episode_* ride-along keys on diagnostics and surface dv_measurable with them; (5) mirror the gate's exact-aggregate pattern on the agent side -- it currently aggregates from a deque(maxlen=8192) and truncates silently; (6) rebuild the C4 blind-spot test at 475's real shape (its current naive-read divisor comes from the test's own max(n_releases,1) on a 0/0 case).",
-      "implementation_note": "PARTIAL: ree-v3 7181ac2d6c landed the per-episode readout, phase scoping, reset_diagnostics(), the agent-side capture-before-erase snapshots and 18 contract tests (tests/contracts/test_mech287_pag_episode_readout.py). Purely additive; the cumulative counters keep their exact prior semantics so V3-EXQ-475/483a/603i/603p/603t are unaffected. Blind spot measured: injecting the old cumulative read + the old capture ordering fails 9 of the new tests while all 11 pre-existing MECH-279 tests still pass. A follow-up commit annotates every refused field at the point of use. NOT usable as a MECH-287 DV until chip-20260925-mech287-dv-choice is answered.",
+      "implementation_note": "IMPLEMENTED 2026-09-25 across ree-v3 7181ac2d6c (initial build), c91bfaef77 (red-team refusal recorded in-code) and the DV-decision commit that follows. Final state: DV recommits_per_episode (dv_name/dv_value name it explicitly); recommits_per_release retained as a bounded secondary diagnostic; phase stamped at episode START so both RESET-AT-START and RESET-AT-END drivers are correct (F3); ride-along keys renamed episode_allphase_* and carrying dv_measurable (F4); episode_records/episode_diagnostics share include_current so denominators agree, and the tick field is named e3_ticks (F5); exact agent-side per-phase aggregates independent of the bounded deque, with records_truncated (F6); blind-spot test rebuilt at V3-EXQ-475's real shape with no invented divisor (F7); reset_diagnostics clears the freeze (F8); cap-forced releases reported separately (F9); in-progress episode no longer counted as ended-frozen (F10); staleness fields renamed staleness_at_episode_end_* because leak_factor=0.995 makes an end-of-episode read 0.67% of the within-episode peak over 1000 ticks (F2 -- a true peak tracker is registered separately as staleness_within_episode_peak_tracker). Purely additive; cumulative counters unchanged. Blind spot re-measured: reverting the fixes fails 12 of the 26 contract tests while all 11 pre-existing MECH-279 tests still pass. Contract: tests/contracts/test_mech287_pag_episode_readout.py.",
       "priority": 2,
       "severity": "corrupting",
-      "severity_note": "Reading the landed recommits_per_release as MECH-287's DV yields exactly 1.0 in the comparator arm regardless of the mechanism, and the pre-registered thresholds (8.0 / 4.0 / 13, all derived from V3-EXQ-475's confounded ~12.9) sit above its 1.0 ceiling -- so a run would read as a floor-level null by construction. The field carries an in-code BLOCKING warning for this reason.",
+      "severity_note": "Before the DV decision, reading recommits_per_release as MECH-287's DV yielded exactly 1.0 in the comparator arm regardless of mechanism. That field is now explicitly demoted and dv_name points at recommits_per_episode, so the corrupting read is closed -- but EXP-0371 must stay blocked until the claim text stops quoting the old quantity.",
       "source": "chip-20260924-mech287-pag-recommit-readout-build / campaign science-20260925-orchc-mech287-readout-build",
-      "registered_utc": "2026-09-25T02:24:03Z"
+      "registered_utc": "2026-09-25T02:24:03Z",
+      "last_updated_utc": "2026-09-25T02:56:14Z"
+    },
+    {
+      "sd_id": "staleness_within_episode_peak_tracker",
+      "title": "MECH-284 within-episode staleness PEAK tracker: a running max maintained where integrate()/tick_leak() run, because an end-of-episode read is destroyed by leak",
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "status_phase": "not_started",
+      "ready": true,
+      "design_doc": "REE_assembly/evidence/planning/mech287_readout_redteam_findings_20260925.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-284",
+        "MECH-287"
+      ],
+      "failure_record": [
+        {
+          "run_id": "(dry run, not a landed manifest) _dry_v3_exq_1097_..._20260924T133736Z_v3.json, D_BOTH_ON seed 1",
+          "experiment_type": "V3-EXQ-1097 pre-queue dry run",
+          "metric": "mean_staleness_peak 0.432491 (driver's own per-episode tracker) vs staleness_max 0.000000 and staleness_n_integrations 0 from the post-loop read",
+          "target": "a per-episode staleness magnitude that reflects what the accumulator actually integrated",
+          "resolved": "not resolved -- the 2026-09-25 readout captures BEFORE reset, but leak has already destroyed the magnitude by then",
+          "source": "chip-20260924-mech287-pag-recommit-readout-build red-team finding F2"
+        }
+      ],
+      "implementation_hint": "StalenessAccumulator.tick_leak() multiplies every region by leak_factor (default 0.995) on EVERY tick and deletes rows below drop_epsilon=1e-6. Measured decay of the 0.432491 peak the V3-EXQ-1097 dry run recorded: 0.261990 at 100 ticks (60.6%), 0.035279 at 500 (8.2%), 0.002878 at 1000 (0.67%); after ~2589 quiet ticks the map is empty and max_staleness is exactly 0.0. So ANY end-of-episode sample is a lower bound of unknown tightness, and a quiet tail reads ~0 however loud the episode was. Fix: maintain a running max inside StalenessAccumulator, updated in integrate() (and left alone by tick_leak), exposed on get_stats() as within_episode_peak and zeroed by reset(). Then have REEAgent._capture_mech287_episode_snapshot() record it alongside the existing staleness_at_episode_end fields. Default-additive, read-only, no behaviour change. Contract: a scripted integrate-then-leak sequence where the end-of-episode value is <1% of the peak and the new field still reports the peak -- that test must FAIL against the end-of-episode read.",
+      "implementation_note": "",
+      "priority": 3,
+      "severity": "misleading",
+      "severity_note": "The field the 2026-09-25 build ships is correctly NAMED staleness_at_episode_end_*, so nothing currently misreads it. This entry exists so the quantity the analysis doc actually cites (the within-episode peak) becomes available rather than staying permanently unmeasurable.",
+      "source": "chip-20260924-mech287-pag-recommit-readout-build red-team F2 / decision chip-20260925-mech287-dv-choice",
+      "registered_utc": "2026-09-25T02:56:14Z"
     }
   ],
   "schema_version": "substrate_queue/v2",
