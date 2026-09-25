@@ -17,6 +17,8 @@ v3:     bt0925-a1v3, chip_ref chip-20260925-coupled-a1-prereg-v3, 2026-09-25. Fo
                       classifier (the pilot measured it DEGENERATE: ICC 0.02) with a pre-registered fallback,
                       and the harness-side shared-init hook (share_init; ree_core change not needed).
           floor       rec-20260925-b89fe715: benign reward-change floor 0.43 (measured), superseding 1.44.
+        v3 addendum (user direction 2026-09-25 ~18:20Z, via the orchestrator): REPORT-ONLY "init-dominance" readout
+        (init_dominance) from the reseed arms A1 already runs; never gating (selftest shows it cannot flip a verdict).
 
 WHAT THIS FILE IS
   * The ARM WIRING and the ORDER OF OPERATIONS of the A1 run, with every call site of the I1
@@ -479,6 +481,7 @@ def score_variant(v: str, strata: Dict[str, List[Dict[str, Any]]]) -> Dict[str, 
     res["gains_P1b"] = {s["seed"]: g for s, g in zip(b, d["P1b"])}
     res["gain_P1b_mean"] = sum(d["P1b"]) / len(d["P1b"])
     res["attribution"] = attribution(v, b)
+    res["init_dominance"] = init_dominance(strata, v)     # REPORT-ONLY (prereg 6.6); nothing below reads it
     cds = [k for k, r in c.items() if r["status"] == CD]
     if cds:
         res.update(verdict=CD, reason="ni_underpowered (non-inferiority cannot pass at this noise): %s" % cds)
@@ -505,6 +508,75 @@ def score_variant(v: str, strata: Dict[str, List[Dict[str, Any]]]) -> Dict[str, 
             sig.append("P4 headroom-limited (6.4)")
         res["fail_signatures"] = sig
     return res
+
+
+# ----------------------------------------------------------------------------- init-dominance readout (REPORT-ONLY)
+def _entropy_bits(counts: Dict[Any, float]) -> float:
+    tot = float(sum(counts.values()))
+    return -sum((c / tot) * math.log(c / tot, 2) for c in counts.values() if c > 0) if tot else float("nan")
+
+
+def _modal_share(counts: Dict[Any, float]) -> float:
+    tot = float(sum(counts.values()))   # probes/a1_rt5/analyze_rt5.py modal_share, same definition
+    return max(counts.values()) / tot if tot else float("nan")
+
+
+def _tv(a: Dict[Any, float], b: Dict[Any, float]) -> float:
+    ta, tb = float(sum(a.values())), float(sum(b.values()))
+    keys = set(a) | set(b)
+    return 0.5 * sum(abs(a.get(k, 0) / ta - b.get(k, 0) / tb) for k in keys) if ta and tb else float("nan")
+
+
+def init_dominance(strata: Dict[str, List[Dict[str, Any]]], v: str) -> Dict[str, Any]:
+    """v3 addendum (user direction 2026-09-25 ~18:20Z; prereg 6.6). PRE-REGISTERED, REPORT-ONLY, NEVER GATING.
+    Uses only arms A1 already runs: family NATIVE = NATIVE vs NATIVE-R1..R3; family INT = INT-v vs INT-v-R1.
+    Per arm (optional fields, RT-5 format): `action_counts` {class: count} over the closed loop, `own_stratum` (the
+    RT-5 / I1-5 classify rule applied to THAT arm's own closed-loop steps 0-599).
+    Per family and stratum: mean modal-action share and action entropy (bits) over base + reseed arms; between-reseed
+    spread 2 x RMS of (base - reseed) reward_LAST and contacts_LAST (probes/a1_rt5/analyze_rt5.py two_rms); mean
+    total-variation distance between base and reseed action histograms; own-label concordance (reseed own_stratum ==
+    base own_stratum). Predicted direction, STATED NOT ASSUMED: INT spread < NATIVE spread, INT concordance >
+    NATIVE concordance, INT modal share lower / entropy higher. `direction_observed` reports it; nothing reads it."""
+    fam = {"NATIVE": ("NATIVE", [a for a in ("NATIVE-R%d" % k for k in range(1, N_RESEED + 1))]),
+           "INT": ("INT-%s" % v, ["INT-%s-R1" % v])}
+    out: Dict[str, Any] = {"report_only": True, "gates_nothing": True}
+    for g in (BENIGN, TRAPPED):
+        blk: Dict[str, Any] = {}
+        for fname, (base, reps) in fam.items():
+            dr, dc, tvs, conc, ms, ent = [], [], [], [0, 0], [], []
+            for s in strata.get(g, []):
+                arms = s["arms"]
+                if base not in arms:
+                    continue
+                b = arms[base]
+                for r in [x for x in reps if x in arms]:
+                    ra = arms[r]
+                    dr.append(b["reward_LAST"] - ra["reward_LAST"])
+                    dc.append(b["contacts_LAST"] - ra["contacts_LAST"])
+                    if b.get("action_counts") and ra.get("action_counts"):
+                        tvs.append(_tv(b["action_counts"], ra["action_counts"]))
+                    if b.get("own_stratum") is not None and ra.get("own_stratum") is not None:
+                        conc[0] += int(ra["own_stratum"] == b["own_stratum"])
+                        conc[1] += 1
+                for a in [base] + reps:
+                    if a in arms and arms[a].get("action_counts"):
+                        ms.append(_modal_share(arms[a]["action_counts"]))
+                        ent.append(_entropy_bits(arms[a]["action_counts"]))
+            avg = lambda xs: (sum(xs) / len(xs)) if xs else None  # noqa: E731
+            blk[fname] = {"n_pairs": len(dr), "spread_reward_2rms": 2 * _rms(dr) if dr else None,
+                          "spread_contacts_2rms": 2 * _rms(dc) if dc else None, "action_tv_mean": avg(tvs),
+                          "own_label_concordance": (conc[0] / conc[1]) if conc[1] else None, "concordance_n": conc,
+                          "modal_share_mean": avg(ms), "entropy_bits_mean": avg(ent)}
+        n_, i_ = blk["NATIVE"], blk["INT"]
+        cmp = lambda a, b, f: (None if a is None or b is None else f(a, b))  # noqa: E731
+        blk["direction_observed"] = {
+            "int_reward_spread_lower": cmp(i_["spread_reward_2rms"], n_["spread_reward_2rms"], lambda a, b: a < b),
+            "int_contacts_spread_lower": cmp(i_["spread_contacts_2rms"], n_["spread_contacts_2rms"], lambda a, b: a < b),
+            "int_concordance_higher": cmp(i_["own_label_concordance"], n_["own_label_concordance"], lambda a, b: a > b),
+            "int_entropy_higher": cmp(i_["entropy_bits_mean"], n_["entropy_bits_mean"], lambda a, b: a > b),
+        }
+        out[g] = blk
+    return out
 
 
 def head_to_head(results: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
@@ -784,6 +856,28 @@ def _cases() -> List[Any]:
                 len(rep["copied"]), rep["shape_mismatch"], rep["int_only"])
     add("O12 share_init: shared same-shape keys from NATIVE; mismatch + INT-only kept", "share",
         _share, ("N", "N", "I", "I", 2, ["e2.in"], ["trainer.w"]))
+    # v3 addendum: init-dominance readout is report-only -- perturbing every field it reads cannot move any verdict
+    def _initdom():
+        def dress(seeds, collapse):
+            for s in seeds:
+                for a, r in s["arms"].items():
+                    k = 0 if collapse or a.startswith("NATIVE") else (s["seed"] + len(a)) % 5
+                    r["action_counts"] = {k: 900, (k + 1) % 5: 100} if collapse else {c: 200 + 10 * ((c + k) % 3) for c in range(5)}
+                    r["own_stratum"] = (TRAPPED if (collapse and a.endswith("R1")) else s["stratum"])
+            return seeds
+        verdicts, reads = [], []
+        for strata in ({B: _good(B), T: _good(T)}, {B: _seeds(B, 0.1, shuf_gain=-1.0), T: _good(T)},
+                       {B: _good(B), T: _seeds(T, 0.0, shuf_gain=-40.0, jit=8.0)}):
+            pair = []
+            for collapse in (False, True):
+                st = {g: dress([dict(x, arms={a: dict(r) for a, r in x["arms"].items()}) for x in seeds], collapse)
+                      for g, seeds in strata.items()}
+                r = score_variant("CODEC", st)
+                pair.append(r["verdict"])
+                reads.append(r.get("init_dominance", {}).get(BENIGN, {}).get("INT", {}).get("modal_share_mean"))
+            verdicts.append(pair[0] == pair[1])
+        return (all(verdicts), len(set(round(x, 3) for x in reads if x is not None)) > 1)
+    add("init-dominance readout cannot flip any verdict (report-only), yet it moves", "initdom", _initdom, (True, True))
     add("cost estimate: 24 admitted seeds, 12 arms ABSENT", "cost",
         lambda: (cost_estimate("ABSENT")["admitted_seeds"], cost_estimate("ABSENT")["arms_native_family"] +
                  cost_estimate("ABSENT")["arms_int"]), (24, 12))
@@ -871,6 +965,8 @@ def describe() -> None:
         print("SHUF targets %-5s: %s" % (v, ", ".join(SHUF_TARGETS[v])))
     print("pre-A1 gates: %s" % json.dumps(REQUIRED_GATES))
     print("reported until W5: %s" % json.dumps(REPORTED_UNTIL_W5))
+    print("init-dominance readout (report-only, never gating): NATIVE vs NATIVE-R1..R3 and INT-v vs INT-v-R1 --"
+          " modal share, action entropy, reseed spread (reward, contacts, action TV), own-label concordance")
     for mode in VALUATION_MODES:
         print("cost %s: %s" % (mode, json.dumps(cost_estimate(mode, int_arm_s_t2_trapped=1080.0), default=str)))
 
