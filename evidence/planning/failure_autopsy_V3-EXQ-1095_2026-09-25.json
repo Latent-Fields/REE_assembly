@@ -1,0 +1,200 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-25T05:20:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "scripts/check_dry_run_citations.py run over the target run_id, V3-EXQ-1095 and --family v3_exq_1095: 0 dry, 1 real. Also cites v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair_20260722T162850Z_v3 (real, read for the cross-run noise-control figure).",
+  "targets": [
+    {
+      "run_id": "v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3",
+      "queue_id": "V3-EXQ-1095",
+      "claim_ids": [
+        "MECH-439"
+      ],
+      "bears_on": [
+        "substrate_queue:f_dominance_conversion_ceiling",
+        "e3_fdominance_causal_discrimination"
+      ],
+      "experiment_purpose": "evidence",
+      "self_route_label": "matched_noise_control_unmeetable",
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- by construction this operator-ON design cannot emit weakens (the operator reduces F's variance share, so MECH-439's falsifying antecedent has no instance), and the supports branch it grades against is GFLAG-0471's PROPOSED, still-unratified restatement. The run could only support or route.",
+        "biological_reference": "partial -- divisive normalisation / gain control before value integration (Carandini & Heeger 2012; Louie, Khaw & Glimcher 2013), downstream action-selection commitment (BG). Lit present (targeted_review_connectome_mech_439). The 1012c EMA-vs-concurrent-pool divergence is carried unchanged.",
+        "prerequisites": "partial -- SD-E3-CHANNEL-COMMENSURABILITY present and validated at the eligibility stage, re-measured in situ here (R_ON 0.29-0.81 in 4/4 seeds, R_OFF 0.00-0.011). f_dominance_conversion_ceiling depends_on_unresolved items [0] (SD-018 field-head validation) and [1] (SD-e1 var-bar) are untouched, and ready stays false. Candidate generation is pool-limited at seed 43: exactly 2 first-action classes in all four arms, including both proposer-sourced controls. ALSO LIVE, and not carried by the driver's Step 2.5c list: SD-056's open failure_record item (571b, resolved=open, severity corrupting, paths e2_fast.py::rollout_with_world + e3_selector.py::compute_reality_cost). With the rollout clamp armed, E3 committed score range collapses ~800x and 92-97% of rollouts pin at the ceiling. Its own target says 'any experiment reading E3 selection behaviour with the clamp armed depends on the answer'. Here the clamp is armed (ratio 2.0) in 16/16 cells. It is arm-uniform, so it cannot by itself manufacture a between-arm difference, but it bounds external validity and is an alternative explanation for weak conversion. Committed score range was not recorded, so its magnitude here is unknown.",
+        "implementation": "complete -- operator_engaged True in 4/4 ON cells, 0/12 elsewhere; instrument_clean (I1/I1b/I1c 0 failures, worst I2 0.0000); Factor B active on 91-100% of committed ticks in the matched-noise arm and 0% elsewhere; committed_frac 1.0 in all 16 cells; fixed N=200 committed samples per cell.",
+        "environment": "partial -- the seed-43 world yields a binary candidate pool in every arm (pool_first_action_classes 2.000-2.005, arm-invariant), which bounds the committed-class DV at ln 2 there. Seed 45 sits on the gate threshold (2.945-3.030; PROPOSER_CTRL/45 below it). Seeds 42 and 46 are adequate (3.23-4.20).",
+        "measurement": "under-instrumented at the control layer -- (a) the registered matched-noise control fired (Factor B gap_scaled_commit_active 0.91-1.00) yet lifted committed-class entropy over the collapsed proposer on only 2/4 seeds. This is the FOURTH failed construction of a verified-lifting committed-class noise null in the MECH-439 lineage: V3-EXQ-689c (Factor B on the e2wf source, recorded T_eff ~2.3-2.4, lifts <= +0.025 or negative; fallback_ladder rung 1 'REFUTED ... DO NOT re-propose'), V3-EXQ-689i (proposer-source Factor B, 1/4, including a single-class-collapse cell at seed 43), V3-EXQ-700d (field noise magnitude-matched at 1.0x, 0/2 verified lifting, destructive) and now 1095. 'Both verified lifting' is plausibly unmeetable BY THESIS on this substrate -- a score-scale monopoly that caps conversion of injected diversity is what MECH-439 asserts -- rather than mis-calibrated. (b) The candidate_first_action_classes readiness gate aggregates by WORST SEED of the whole arm while every verdict criterion aggregates by >=3/4 seeds, so one seed vacates all 16 cells: the F3 shape the driver already fixed for C_CONTROL_DISTINCT, left in place for this gate. (c) Recording: gap_scaled_commit_temperature_eff / gap_norm (e3_selector.py:2320-2334) and conflict_gap_norm are emitted per tick but never read by the driver, so a magnitude shortfall cannot be told apart from a near-uniform softmax over a class-poor E (red-team pass-1 F3). Neither (a) nor (b) changes the verdict under the pre-registered bar (see counterfactual).",
+        "integration": "partially coupled -- the operator is wired and live at eligibility in 4/4 seeds. An operator-attributable committed-entropy lift appears on 2/4 seeds (+0.246 seed 42, +0.368 seed 45) and is null on the other two. Seed 43 is a GENUINE commit-stage null, not a forced tie: the binary pool bounds H at ln 2 but does not force ON = OFF (PROPOSER split 178/22 vs OFF 120/80 in the same pool). With the operator engaged (R_ON 0.697 vs R_OFF 0.011) the committed split came out byte-identical to OFF ({1:80, 2:120}). Seed 46 is effectively null (-0.053).",
+        "scale": "likely insufficient for the C1b contrast -- 4 seeds x 200 committed samples against a >=3/4 strict bar, for a +0.14-nat mean effect."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT), not chargeable to REE -- the operator did what it was built to do at eligibility. The run cannot say whether commensurate eligibility converts, because the negative control did not validate and one seed's pool could not express the DV."
+      },
+      "counterfactual_verdict": "Robust to both measurement defects UNDER THE PRE-REGISTERED 3-of-4 BAR. Per-seed gating excluding seed 43 only: C1b 2/3, noise-lift 1/3 (1/2 if PROPOSER_CTRL/45, at 2.945 < 3.0, is also excluded from proposer-involving contrasts). Both fail SEEDS_REQUIRED=3. Drop the C_NOISE_LIFTS gate entirely: C1 passes 4/4, but C1b fails 2/4 -> conversion_not_attributable_to_operator, also non_contributory. Only a triple-stacked relaxation reaches supports: per-seed exclusion + no noise gate + MECH-439's registered >=2/3 fraction in place of the driver's 3-of-4 (C1 3/3, C1b 2/3). The pre-registered thresholds bind, so the verdict is unaffected. The design cannot reach weakens.",
+      "biological_reference": {
+        "closest_mechanism": "divisive normalisation of value signals before integration, followed by BG action-selection commitment",
+        "dependencies": [
+          "concurrent-pool normalisation (not EMA)",
+          "a downstream commitment stage that reads normalised value",
+          "a candidate generator that proposes more than a binary choice"
+        ],
+        "is_formal_import": false,
+        "divergence": "carried from 1012c: REE's EMA-of-own-SD normaliser sits closer to slow adaptation than to concurrent divisive normalisation (R_ON < R_ORACLE in 8/8 cells there; here R_ON < R_ORACLE in 3/4 cells). Not load-bearing for this verdict.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement / test-design: matched_noise_control_unmeetable -- the fourth failed construction of MECH-439's verified-lifting noise null (689c, 689i, 700d magnitude-matched 1.0x, 1095). Plus a worst-seed readiness-gate aggregation that mismatches the >=3/4 verdict aggregation. No substrate build is owed by this run.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-439": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-09-25, failure_autopsy_V3-EXQ-1095_2026-09-25]: V3-EXQ-1095 (operator-ON conversion falsifier, residue-FED, 4 arms x 4 seeds, the governance-2026-09-24 named follow-on) is NON_CONTRIBUTORY and stays so under every single-defect counterfactual at the pre-registered 3-of-4 bar. Instrument clean, controls distinct. The eligibility stage replicated in situ: R_ON 0.29-0.81 (4/4 seeds >= 0.25) vs R_OFF <= 0.011. ON exceeded BOTH collapsed-proposer and matched-noise controls on 4/4 seeds (+0.10 to +0.32 nats, Miller-Madow). The operator-specific contrast C1b (ON vs its own operator-OFF twin), however, was 2/4: +0.25, 0.00 (seed 43: binary candidate pool in every arm; operator engaged, R_ON 0.70, yet the committed split was byte-identical to OFF -- a genuine commit-stage null), +0.37, -0.05. That is the pre-registered H3 cell (summary-source-not-operator): ARM_OFF also clears both controls on 2/4. Run vacated on two gates, neither verdict-changing: (i) the registered matched-noise control (Factor B gap-scaled commit, alpha 1.0) fired on 91-100% of committed ticks yet lifted over the proposer on only 2/4 seeds -- the fourth failed construction of that control after 689c (Factor B, T_eff ~2.4), 689i and 700d (1.0x magnitude-matched, 0/2), so MECH-439's 'both verified lifting' requirement is plausibly unmeetable by thesis on this substrate; (ii) the pool-width readiness gate aggregates worst-seed-per-arm, so seed 43 alone reds all four arms. Scope bound not carried by the driver: SD-056's open clamp-armed score-compression item (571b) applies in 16/16 cells, arm-uniform, magnitude unrecorded. Design cannot emit weakens (GFLAG-0471). Not a substrate_ceiling hit; brake count unchanged at 15. pending_retest_after_substrate stays true.",
+      "per_claim_recommendation": {
+        "MECH-439": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "status, epistemic_category (already standard), pending_retest_after_substrate (stays true) and diagnostic_evidence_adjudicated all unchanged; append the drafted evidence_quality_note and move the live_status citation off failure_autopsy_V3-EXQ-1012c_2026-09-24 -> stamp failure_autopsy_V3-EXQ-1095_2026-09-25",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The substrate under test (SD-E3-CHANNEL-COMMENSURABILITY) worked as built. f_dominance_conversion_ceiling needs no failure_record: this run is a claim falsifier, not a substrate validation, and no failure mode is substrate-located. severity and substrate_paths unchanged."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "MECH-439 carries no supports entries; nothing to narrow, so no illusory-conflict risk from this non_contributory.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+          "failure_autopsy_V3-EXQ-571b_2026-09-01",
+          "failure_autopsy_V3-EXQ-571c_2026-09-02",
+          "failure_autopsy_V3-EXQ-689_2026-06-19",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23 (x2: 700, 700a)",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-711-713_2026-07-20 (x2: 711, 713)",
+          "failure_autopsy_V3-EXQ-936_2026-08-18",
+          "failure_autopsy_V3-EXQ-936a_2026-08-30",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "note": "R1-R3 recipe re-run 2026-09-25: 15 hits for MECH-439 (unchanged from 1012c). This target does not count: its category is standard with a test-design marker in the note, and it owes no build (predicate step 2). fired:false means THIS run adds no hit; the lineage brake stays fired. Governance 2026-09-24 released the refusal ONLY for operator-ON falsifiers in this regime, and 1095 was that falsifier. A lettered same-control re-run (1095a) is NOT recommended: with the noise control lifting on 3/8 seeds pooled, it would most likely vacate on the same gate.",
+        "refused_requeue": true,
+        "route_to": "governance",
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "granularity_debt_cluster.py MECH-439: 22 tagging targets / 20 files. No target reads claim_alignment 'weakened' (intact / unclear / other throughout), so this is measurement/substrate debt, not granularity debt."
+      },
+      "learning_extracted": [
+        "MEASUREMENT (NOT new -- fourth instance): MECH-439's 'collapsed-proposer plus magnitude-matched-noise control, both verified lifting' requirement has now failed in four constructions -- 689c (Factor B, e2wf source, T_eff ~2.4, lifts <= +0.025), 689i (Factor B, proposer, 1/4), 700d (field noise magnitude-matched 1.0x, 0/2, destructive; already in MECH-439's own notes), and 1095 (Factor B, proposer, 2/4). One of those was explicitly magnitude-calibrated. So 'verified lifting' is plausibly unmeetable BY THESIS on this substrate -- injected diversity failing to convert is the F-monopoly/score-scale reading itself -- not a calibration fault. Same family as GFLAG-0480: part of MECH-439's registered control set cannot carry its own DV.",
+        "TEST-DESIGN GAP (template): the readiness gate aggregates by worst seed per arm while verdicts aggregate >=3/4 seeds, so one seed's pathology vacates every arm. That is the same regression shape the driver already repaired for C_CONTROL_DISTINCT (red-team pass-2 F3). Future drivers in this lineage should exclude a failing SEED from the paired contrasts rather than red the whole arm.",
+        "PRE-REGISTERED GRID: the ungated result sits in the queue entry's H3 cell (summary-source-not-operator: C1 true, C1b false). ARM_OFF also clears both controls on 2/4, and H_off mean 0.869 is above both control means. H2 (ceiling-is-downstream, C1 false) did NOT occur. The single seed-level observation that speaks to H2 is seed 43, a genuine commit-stage null (operator engaged, R_ON 0.70, committed split byte-identical to OFF). The earlier draft reading that 'attribution does not track R_ON, so the bottleneck is downstream' is WITHDRAWN (red-team F2): it rested on 3 free points against a pre-registered grid that places the run elsewhere.",
+        "SCOPE BOUND (found by Step 7b C2): SD-056's open 571b item (clamp-armed E3 score-range collapse) applies to this run in 16/16 cells and was not in the driver's Step 2.5c known-limitations list. It is arm-uniform, so it does not threaten the non_contributory verdict. It does weaken the 'bottleneck is downstream at final-commit' reading above, because a compressed-score clamped regime could equally explain weak conversion. RECORDING GAP: committed score range / clamp-pinned fraction per cell was not recorded, so the two cannot be told apart from this manifest. Any follow-on in this lineage (the noise-control calibration, the final-commit replay) should record max||z_w||/ceiling and committed score range per cell.",
+        "CONFOUND CONFIRMED: ON's lift over both controls (C1 4/4) is not operator-specific. ARM_OFF (e2wf source, operator OFF) also exceeds both controls on 2/4 seeds, and H_off mean 0.869 sits above both control means (0.772 / 0.804). The C1b attribution contrast the red-team added was load-bearing; without it the run would have read as a clean conversion.",
+        "ENVIRONMENT: seed 43's candidate pool is binary in every arm, including proposer-sourced ones, which puts the limit upstream of candidate_summary_source. That is read-across to e3_fdominance_causal_discrimination H3-upstream-insufficiency (not adjudicated).",
+        "RECORDING (minor): substrate_commit names the post-drift commit (commit_describes_recorded_hash false). All 16 cells share substrate_hash 946f8c56..., which is the authoritative identity."
+      ],
+      "routing": "governance",
+      "work_graph_class": "complex (probe-gated) / mystery (known data) for the control-set question -- two runs already show the registered noise control does not lift; reframe it, do not gather more under it",
+      "routing_detail": {
+        "governance_apply": [
+          "Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.",
+          "The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified lifting' of the noise control; keep that requirement only for interpreting a NULL. It is a sensitivity check. Four constructions, one magnitude-matched, show it does not lift on this substrate, which is itself what the claim predicts, and C1's proposer half already certifies that the bar is real. Option (i), a calibration sweep, is NOT recommended: the lineage already holds the calibrated measurements (689c T_eff, 700d 1.0x)."
+        ],
+        "follow_on_named_not_spawned": [
+          "Recording only, not an experiment: any future driver in this lineage records per-cell gap_scaled_commit_temperature_eff / gap_norm distributions and per-tick eligible-set class composition, alongside committed score range and max||z_w||/ceiling (SD-056 571b). A near-uniform softmax over a class-poor E can then be told apart from a magnitude shortfall.",
+          "The RESERVED final-commit-stage replay (1012c sec 7b) stays reserved and a user release decision. This run gives it NO new motivation beyond seed 43's single commit-stage null (the H2 reading was withdrawn, red-team F2). The only prior attempt, chip-20260914-mech439-e3-final-commit-shadow-replay, is WITHDRAWN in TASK_CHIPS.",
+          "Driver-template fix: per-seed exclusion for readiness preconditions in the mech439 baseline lineage (experiments/_lib/precondition_gate.py consumers), so a single-seed pool pathology cannot vacate every arm."
+        ],
+        "explicitly_not_recommended": [
+          "A lettered V3-EXQ-1095a with the same matched-noise control: expected to vacate on the same gate.",
+          "Reading C1 4/4 as MECH-439 support: C1b shows the lift is not operator-attributable.",
+          "Any weakens reading: the design has no weakens branch.",
+          "A Factor B alpha sweep / noise-control calibration diagnostic: the lineage already holds the calibrated measurements (689c, 700d) -- work_graph class is mystery (known data)."
+        ]
+      },
+      "fanout_recommendation": null,
+      "hypothesis_space_ledger_pending": {
+        "action": "none",
+        "note": "V3-EXQ-1095 is registered as the adjudicating run of no leg, opens no fan-out, and does not measure the DV of any e3_fdominance_causal_discrimination leg (F-share / disagreement-conditioned discrimination). Per the 1012c F3 precedent, it is not appended as a resolving run. Bears-on notes only: H2-primary-field-dominance (eligibility commensuration was not sufficient for reliable conversion) and H3-upstream-insufficiency (seed-43 binary pool). Mode D (GOV-HOTHER-1) checked: this run supplies none of signals 1-6 for the question, because it does not read the partition's DV. The question's standing CANDIDATE signal (2 confirmed, 4 alive) is pre-existing and untouched."
+      },
+      "step7b_dispositions": [
+        {
+          "check": "C2",
+          "name": "SD-056",
+          "disposition": "ACTED ON -- added to prerequisites + learning_extracted as an arm-uniform scope bound and a recording gap. No SD-056 failure_record_entry is recommended: this run did not record score range or clamp-pinned fraction, so it adds no measurement to SD-056's open 571b item."
+        },
+        {
+          "check": "C2",
+          "name": "q092-behavioural-discriminability-umpire-harness",
+          "disposition": "DISMISSED -- a registration-only (not build-authorised) behavioural-discriminability harness for Q-092/MECH-490 trajectory features. Its unblocks list names MECH-439, but it does not bear on this committed-class-entropy falsifier or on either failed gate."
+        },
+        {
+          "check": "C5",
+          "name": "inapplicable",
+          "disposition": "prose-keyed, no sibling .md at check time; Step 7c carries that load"
+        },
+        {
+          "check": "fire_count",
+          "disposition": "fire_count 1 = one C2 fire naming two entries; SD-056 acted on, q092 dismissed."
+        }
+      ],
+      "pre_registered_grid_mapping": "The queue entry (ree-v3 f8288e1) pre-registered H1 monopoly-at-eligibility (C1 true, C1b true, C2 true), H2 ceiling-is-downstream (C1 false, C2 true), H3 summary-source-not-operator (C1 true, C1b false) and H4 pool-geometry (collapsed-proposer control not below ON/OFF; pool tracks committed entropy across arms). Observed, ungated: C1 4/4, C1b 2/4, C2 4/4 -- the H3 cell. H2's signature (C1 false) did NOT occur. H4's discriminating prediction fails, since the proposer is below ON on 4/4, though pool width does track entropy across SEEDS (seed 43). H1 is partially present (2/4 seeds attributable) but below its bar. The mapping is GATED, not adjudicated: the run vacated before C1/C1b could carry a direction.",
+      "step7c_redteam": {
+        "model": "Fable 5.1 (cross-model; drafter on Opus 5.5)",
+        "verdict": "CONTESTED",
+        "applied": [
+          "F1 (medium): noise-control premise stale -- four constructions, not two; calibration follow-on dropped, option (ii) recommended",
+          "F2 (medium): result mapped onto the pre-registered grid as H3; 'measured motivation' for the final-commit replay withdrawn",
+          "F3 (low-med): T_eff/gap_norm/E-class-composition recording gap added",
+          "F4 (low): counterfactual scoped to the pre-registered 3-of-4 bar",
+          "F5 (low): seed 43 re-read as a genuine commit-stage null, not a forced tie",
+          "H1-H4, H6, H7 hygiene"
+        ],
+        "survived": [
+          "all arithmetic recomputed exactly",
+          "689i/1095 pooling is the same operationalisation",
+          "routing governance / no re-queue / nothing already queued or chipped",
+          "brake 15, target excluded",
+          "SD-056 571b scope bound",
+          "option (ii) reasoning"
+        ]
+      },
+      "recording_note": "combination_rule is present under interpretation.combination_rule (validate_recording's advisory refers to the top level). 689i's DV key selected_action_class_entropy_mm is the same statistic as 1095's committed_action_class_entropy_mm."
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-09-25T05:42:23Z",
+  "user_confirmation": {
+    "session": "fa-1095-20260925",
+    "utc": "2026-09-25T05:42:23Z",
+    "decisions": [
+      {
+        "record_id": "rec-20260925-5988ba61",
+        "question": "matched-noise control handling",
+        "selected": "Option (ii): supports-branch ungated (Recommended)"
+      },
+      {
+        "record_id": "rec-20260925-001951da",
+        "question": "overall disposition",
+        "selected": "Confirm as drafted (Recommended)"
+      }
+    ]
+  }
+}
