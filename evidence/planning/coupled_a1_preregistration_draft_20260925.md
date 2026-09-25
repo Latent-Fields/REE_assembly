@@ -1,11 +1,12 @@
 # A1 integrated closed-loop acceptance: pre-registration DRAFT v2 (coupled loop-repair campaign)
 
-- **Status: DRAFT v2. The user's decisions on v1 are folded in; A1 is HELD until both variants pass their member gates (rec-20260925-38b81685).** v1 written 2026-09-25 by session `bt0925-a1prereg` (headless design worker, `orchestrate-20260924-breakthrough`), chip_ref `chip-20260925-coupled-a1-preregistration-draft`. v2 written 2026-09-25T14:27Z by `bt0925-a1v2`, chip_ref `chip-20260925-coupled-a1-prereg-v2`.
+- **Status: DRAFT v3 (2026-09-25T18:24Z).** RT-5 (`a1_rt5_native_reseed_probe_20260925.md`, `332ab3f7f8`) and three user decisions (O11 power: paired mean test + more seeds, rec-20260925-42ed9d20; O12 stratum: env-only classifier + shared init, rec-20260925-a6132a2d; benign reward-change floor 0.43, rec-20260925-b89fe715) are folded in; see "v3 changes". Written by `bt0925-a1v3`, chip_ref `chip-20260925-coupled-a1-prereg-v3`. **Two v3 measurements change how those decisions land:** the env-only classifier is DEGENERATE in this env (sec 3.1; a pre-registered fallback applies, open item O12b), and shared init is achievable harness-side with no `ree_core` change (sec 3.2).
+- **v2 status (kept):** DRAFT v2. The user's decisions on v1 are folded in; A1 is HELD until both variants pass their member gates (rec-20260925-38b81685).** v1 written 2026-09-25 by session `bt0925-a1prereg` (headless design worker, `orchestrate-20260924-breakthrough`), chip_ref `chip-20260925-coupled-a1-preregistration-draft`. v2 written 2026-09-25T14:27Z by `bt0925-a1v2`, chip_ref `chip-20260925-coupled-a1-prereg-v2`.
 - **Nothing was queued, built or registered.** No queue entry, no `ree_core` edit, no registry edit. A1 cannot queue until W6 (the integrated preset), I1 (the acceptance instruments) and both variants' member gates exist and pass; see sec 1 and sec 7.1.
-- **Evidence domain of this document: D0 + one re-analysis.** The design is D0. The absolute floors in sec 6 come from a new re-analysis of existing raw probe data (`probes/a1_draft/floor_grounding.py`). No new agent run was made.
+- **Evidence domain of this document: D0 + one re-analysis + (v3) two small D1 probes.** The design is D0. The absolute floors in sec 6 come from a new re-analysis of existing raw probe data (`probes/a1_draft/floor_grounding.py`). v3 adds an env-only rollout pilot (`probes/a1_draft/env_only_classifier_pilot.py`, no agent) and a construction-only agent probe (`probes/a1_draft/shared_init_probe.py`, no env steps). The noise numbers come from RT-5 (`332ab3f7f8`). No agent was run in the closed loop by v3.
 - **Refs at writing:** ree-v3 `origin/main` @ `23714f0562`; `origin/integration/coupled-loop-repair` @ `cc20be5663` (= BR0, no branch commits yet). REE_assembly `origin/master` @ `eecdfe2e4d0`. **v2 re-measure (14:27Z):** ree-v3 `origin/main` @ `1a61800c0c`; the branch is still `cc20be5663`; REE_assembly `origin/master` @ `2ba75b0f60`.
 - **Parent:** `coupled_loop_repair_campaign_plan.md` sec 5 (the A1 draft this refines), sec 6 (sequencing, merge gate), sec 9 and "User decisions on this plan". Where this document differs from plan sec 5, the difference is listed in sec 13 with its reason.
-- **Skeleton:** `probes/a1_draft/a1_integrated_acceptance_skeleton.py`. It has the arm wiring and I1 call sites, and it implements the whole scoring half (margins, criteria, verdict ladder, head-to-head, NOVAL attribution, the pre-A1 hold). `--selftest` (v2b: 32 cases plus 5 mutations) shows that every criterion can FAIL, that every CANNOT_DETERMINE and INVALID branch can be reached, and that each head-to-head, attribution and hold branch gives its pre-registered answer.
+- **Skeleton:** `probes/a1_draft/a1_integrated_acceptance_skeleton.py`. It has the arm wiring and I1 call sites, and it implements the whole scoring half (margins, criteria, verdict ladder, head-to-head, NOVAL attribution, the pre-A1 hold). `--selftest` (v3: 42 cases plus 8 mutations) shows that every criterion can FAIL, that every CANNOT_DETERMINE and INVALID branch can be reached, and that each head-to-head, attribution and hold branch gives its pre-registered answer.
   - The two red-team cases (RT-1, RT-2) were mutation-checked. With the pre-red-team rules restored (`>= 0` P1g, no balloon guard), both flip to BAD (sec 15).
 - **Red-team: CONTESTED.** An independent sonnet subagent reviewed it read-only. Its findings RT-1 through RT-4 and RT-6 are folded in; RT-5 stays open (sec 15).
 
@@ -15,7 +16,7 @@
 
 | # | change | where | source |
 |---|---|---|---|
-| V1 | Floors **accepted**: reward 0.90 benign / 2.4 trapped, harm contacts 1.6 / 4.8 (per 100 steps; contacts per 600-step window) | sec 0, 6.3, 14 | rec-20260925-5fc6c256 |
+| V1 | Floors **accepted**: reward 0.90 benign / 2.4 trapped, harm contacts 1.6 / 4.8 (per 100 steps; contacts are a per-100 rate over the 600-step window -- v3 units fix, RT-5 edit 3) | sec 0, 6.3, 14 | rec-20260925-5fc6c256 |
 | V2 | Benign reward-change (P4) floor **0.92 -> 1.44**, the harm-bearing-seed value (2 x 0.643 x sqrt(1.25)) | sec 6.3, 13, skeleton `FLOORS` | rec-20260925-aa066e96 |
 | V3 | P1g (strict `> 0`) **accepted** | sec 0, 8 | rec-20260925-5fc6c256 |
 | V4 | **A1 is held until INT-CODEC and INT-ACT both pass their member gates**; they then run head to head on one pinned sha. Option (b) (INT-ACT first under a lettered id) is not taken | sec 0, 7.1, 8.3, 14 | rec-20260925-38b81685 |
@@ -37,6 +38,24 @@
 | V20 | **Open item raised (from N3-pre):** pick-in-Q-best readouts are capped by E3's valuation until W5. That covers W4(b), and also the **consumer-mediated (e) leg that both member gates now carry** (sec 14, O3). **Closed by V21** | sec 14 | N3-pre `d4bb6449b3` |
 | V21 | **v2b, user decision on O3:** both variants' consumer-mediated (e) legs **move after W5, like W4(b)**. Until W5 lands they are reported, not gating; A1's hold clears on (a)-(d) + containment + (f). **Oracle diagnostic added**, report-only: each variant's pool is scored with env-Q standing in for E3's valuation. A1 stays runnable in GROUNDED and ABSENT modes. Skeleton: `REPORTED_UNTIL_W5`, `oracle_diagnostic`, 32 cases + 5 mutations (one restores the old gating and fails) | sec 6.1, 7.1, 8.3, 14 | rec-20260925-a16786f5 |
 
+## v3 changes (2026-09-25, `bt0925-a1v3`)
+
+**Sources:** RT-5 `a1_rt5_native_reseed_probe_20260925.md` (`332ab3f7f8`; its sec 7.2 lists edits 1-10, all applied below) and the user decisions of 2026-09-25T18:09Z. Skeleton v3: REE_assembly `41c09950a8`.
+
+| # | change | where | source |
+|---|---|---|---|
+| X1 | **Paired-mean scoring replaces the per-seed ">= 4/5 exceed margin" counts** for every superiority and non-inferiority criterion (P1b, P1t, P2b, P2t, P3b, P3t, P4), and, for consistency, for P1g, the head-to-head and the NOVAL attribution. Superiority: mean paired delta > 2 x SE. Non-inferiority: mean deficit + 2 x SE <= the floor. SE uses SD_used = max(sample SD, floor / 2), so **the floors stay floors** | 6.2, 8, 8.3, 8.4, skeleton `superiority`, `noninferiority` | O11, rec-20260925-42ed9d20 |
+| X2 | **12 benign + 12 trapped admitted seeds** (was 5 + 5), each with 2 reserves. n is chosen from RT-5's measured SDs (sec 6.5) | 3, 6.5, 9, 11 | O11, rec-20260925-42ed9d20 |
+| X3 | The RT-2 **balloon guard is re-expressed**: a non-inferiority test is CANNOT_DETERMINE (`ni_underpowered`) when 2 x SE > the floor and the interval straddles it. Under paired scoring, noise makes a non-inferiority test harder to pass, not easier, so the leniency RT-2 guarded against is gone structurally | 6.2, 8.1 | RT-5 edit 6; O11 |
+| X4 | **Benign reward-change (P4) floor 1.44 -> 0.43** (RT-5's measured NATIVE-reseed change noise). Supersedes rec-20260925-aa066e96 | 0, 6.3, 6.4, skeleton `FLOORS` | rec-20260925-b89fe715 |
+| X5 | **Env-only stratum classifier** (fixed-seed RandomPolicy rollout on the env seed) adopted, **with a validity gate**. The v3 pilot shows it is degenerate in this env (ICC 0.02; every env seed has 18-28 early terminations, so all classify trapped). A pre-registered fallback applies: the (env seed, agent seed) pair is classified from NATIVE, which is meaningful for INT only because of X6. **Open item O12b** | 3.1, 9, 14, skeleton `classify_stratum_env_only`, `env_only_classifier_validity`, `choose_stratum_rule` | O12, rec-20260925-a6132a2d; this revision's pilot |
+| X6 | **Shared init.** NATIVE's module set is built from the agent seed first; INT-only modules come from a separate generator (agent seed + 20,000); every shared state_dict key is copied from NATIVE. **Harness-side; no `ree_core` knob is needed** (probe, sec 3.2). The v2 premise that matching agent seeds shares the common init was false: flag-on modules shift the obs encoders' init | 3, 3.2, skeleton `share_init`, `build_env_agent` | O12, rec-20260925-a6132a2d; this revision's probe |
+| X7 | RT-5 recorded: Q12 (the measured noise), the floor verdicts (4 of 5 are lower bounds; the change floor was not), the units of contacts (per 100 steps over the 600-step window), the 2/9 trapped concordance, the pilot trapped rate 3/8, NATIVE's per-step cost | 1, 3, 6.3, 11, 15 | RT-5 edits 1-3, 5, 7, 8, 10 |
+| X8 | O1 (RT-5) **CLOSED**; O11 and O12 **DECIDED** (rec ids); O6 eased by X4; new O12b (fallback stratum rule), O13 (reseed arms are no longer load-bearing), O14 (P1g's conversion to the paired form) | 14 | RT-5 edit 9; this revision |
+| X9 | NATIVE-R1..R3 and INT-v-R1 **no longer set a margin**; they are reported noise only (the paired test's SD comes from the scored arms themselves) | 5.1, 6.2 | consequence of X1 |
+| X10 | Cost re-estimated from NATIVE's measured per-arm wall: **~17 CPU-h (ABSENT) / ~20 CPU-h (GROUNDED)** mid for 24 admitted seeds (range 11-44 / 13-53); ~48 / ~59 if INT arms on trapped seeds run at the T2 agent's per-step cost | 11 | RT-5 edit 8; this revision |
+| X11 | Skeleton: paired-mean scoring, env-only classifier call site + validity gate + fallback, shared-init hook, cost function. `--selftest`: 42 cases plus 8 mutations; each mutation restores one retired rule and flips its case (incl. per-seed counting, the 1.44 floor, no validity gate, no shared init) | skeleton | this revision |
+
 ## 0. Decisions already taken (implemented here, not reopened)
 
 | decision | effect on A1 | ledger |
@@ -44,9 +63,12 @@
 | Env tie-break ON in every arm | `proximity_approach_magnitude_tiebreak=True` in every arm, calibration arms included | rec-20260925-b4355023 |
 | Codec repair AND action-space proposals, in parallel, head-to-head | two tested variants, INT-CODEC and INT-ACT. Each gets its own SHUF and FROZEN controls. Both are scored against the same criteria (sec 8.3) | rec-20260925-6a675285 |
 | If V3-EXQ-1105a fails, run A1 without grounded valuation | `valuation_mode` is GROUNDED or ABSENT. It is fixed from C2's verdict before any admitted seed runs (sec 5.2) | rec-20260925-805f605c |
-| 5 trapped + 5 benign seeds; margin = 2 x SD of NATIVE vs reseeded-NATIVE deltas, with absolute floors; 3,000 closed-loop steps per arm | locked in (sec 3, 6). The floor values are derived in sec 6 | rec-20260925-7e7e9825 |
+| 5 trapped + 5 benign seeds; margin = 2 x SD of NATIVE vs reseeded-NATIVE deltas, with absolute floors; 3,000 closed-loop steps per arm | 3,000 steps locked in. **v3: the seed count and the margin rule are superseded by O11** (12 + 12 seeds, paired-mean tests); the floors remain | rec-20260925-7e7e9825 (partly superseded by rec-20260925-42ed9d20) |
 | Measured floors (reward 0.90 / 2.4, contacts 1.6 / 4.8) and P1g | accepted; they supersede the plan's draft floors (sec 6.3, sec 8) | rec-20260925-5fc6c256 |
-| Benign reward-change floor | 1.44 (harm-bearing-seed value), not 0.92 (sec 6.3) | rec-20260925-aa066e96 |
+| Benign reward-change floor | ~~1.44 (harm-bearing-seed value), not 0.92~~ **superseded by v3: 0.43** | rec-20260925-aa066e96 (superseded) |
+| (v3) Benign reward-change floor | **0.43**, RT-5's measured NATIVE-reseed change noise (sec 6.3) | rec-20260925-b89fe715 |
+| (v3) O11, A1 power | **paired test on the mean INT - comparator delta across seeds** (mean > 2 x SE for superiority; the analogous bound for non-inferiority) **plus more seeds**; the absolute floors stay floors on the margin (sec 6.2, 6.5, 8) | rec-20260925-42ed9d20 |
+| (v3) O12, stratum | **env-only classifier** (fixed-seed random-policy rollout on the env seed) **and shared init** of INT/NATIVE common modules (sec 3.1, 3.2). The env-only half is validity-gated; the pilot failed the gate (O12b) | rec-20260925-a6132a2d |
 | Action-space proposals have no build or gate yet | **hold A1 until both variants pass their member gates**; then run them head to head (sec 7.1, 8.3) | rec-20260925-38b81685 |
 | No-valuation diagnostic arms | **added**: INT-CODEC-NOVAL and INT-ACT-NOVAL in GROUNDED mode, with an attribution readout (sec 5.1, 8.4) | rec-20260925-c2519d92 |
 | Gate parity between the variants (design U1) | the consumer-mediated leg is added to BOTH gates: W1(e) keeps containment-vs-shuffled and gains it; G-ASP (e) uses it (sec 7.1) | rec-20260925-b9652a9b |
@@ -67,6 +89,9 @@
 | Q9 (v2) | C2 has not run yet (Q1) | 14:27Z, on `origin/main` @ `1a61800c0c`: queue item `V3-EXQ-1105a` is `claimed` (running). There is no manifest yet | holds. `valuation_mode` is still undetermined |
 | Q10 (v2) | I1 is not on main (Q2) | `experiments/_lib/coupled_acceptance.py` is absent from `origin/main` @ `1a61800c0c`. Plan row I1: built and contracts green, awaiting its commit | holds. The skeleton's I1 names remain a guide |
 | Q11 (v2) | The branch has no commits beyond BR0 | `git ls-remote`: `integration/coupled-loop-repair` = `cc20be5663` | holds. No W-member has landed, so no gate can be read yet |
+| Q12 (v3) | RT-5: NATIVE-vs-reseeded-NATIVE spread, tie-break ON, measured (`a1_rt5_native_reseed_probe_20260925.md` sec 6; results commit `332ab3f7f8`) | 2 x RMS: benign reward 1.70, trapped reward 12.7, benign contacts 5.07, trapped contacts 35.4, benign change 0.43 (9 deltas per stratum, 3 seeds x 3 reseeds) | **corrected.** The floors were asserted to be lower bounds (sec 6.3); 4 of 5 are, the change floor was not. At 5 seeds the measured noise made P1b unreachable and P1t / P2 CANNOT_DETERMINE. O11 and O12 respond to this |
+| Q13 (v3) | "hazard_trapped" is an env-seed property (v2 sec 3, implicit) | RT-5: 2 of 9 reseeds of a trapped seed stay trapped. v3 pilot (sec 3.1): a fixed-seed RandomPolicy dies early 18-28 times per 600 steps on every one of 40 env seeds; ICC across env seeds 0.023. Cause, D0: `CausalGridWorldV2.reset` re-draws the layout from the env's own RNG every episode (`causal_grid_world.py:1688-1712` @ `f0331054133a`), so an env seed is a stream of exchangeable layouts | **corrected.** Trappedness is a property of the policy, i.e. of the agent init, not of the env seed |
+| Q14 (v3) | "Matching agent seeds removes the shared part of the init noise" (v2 sec 3 caveat) | construction probe (sec 3.2): with one flag-on module, the same agent seed gives NATIVE and INT **different** `body_obs_encoder` and `world_obs_encoder` weights, because those are registered after every flag-gated module (`ree_core/agent.py:3416-3420` @ `f0331054133a`) | **corrected.** In v2, NATIVE and INT differed in their obs encoders, the input to z_world. Shared init (X6) fixes this harness-side |
 
 ## 2. The question and the domain
 
@@ -81,17 +106,46 @@
   - NATIVE and every INT-* arm use `agent_seed = s`.
   - NATIVE-Rk uses `agent_seed = s + 10,000 x k`, k = 1..3.
   - The env is constructed with `seed=s` BEFORE the agent RNG is seeded (Q6).
-  - **Caveat:** an INT-* agent constructs extra modules, so its initial weights differ from NATIVE's even at the same agent seed. Matching agent seeds removes the shared part of the init noise. It does not make NATIVE and INT bit-comparable.
+  - ~~**Caveat:** an INT-* agent constructs extra modules, so its initial weights differ from NATIVE's even at the same agent seed. Matching agent seeds removes the shared part of the init noise.~~ **v3 (Q14): false as stated.** The extra modules shift the init of the obs encoders, so seeding alone shares nothing downstream of the first flag-gated module. **v3 shared init (sec 3.2)** makes every module the two agents have in common bit-identical, and the INT-only modules come from a separate generator.
 - **Seed range:** 301 upward, screened in ascending order. It is disjoint from 42-200, from 1105's 111-200 and from 1105a's 201-290.
-- **Stratum** (plan sec 5; implemented by I1-5 `classify_stratum`):
+- **Stratum** (plan sec 5; implemented by I1-5 `classify_stratum`). **v3: this v2 rule is now the pre-registered FALLBACK, applied at the (env seed, agent seed) pair level under shared init; the adopted rule is env-only, behind a validity gate (3.1).**
   - A seed is `hazard_trapped` iff NATIVE has >= 10 episodes that terminate with length < 200 steps within its closed-loop steps 0-599. Otherwise it is `benign`.
   - An episode still running at step 600 does not count.
   - The classification uses NATIVE **alone**. It is written to the sidecar (`write_stratum_sidecar`, write-once) before NATIVE's step 600 and before any other arm starts.
   - Every other arm calls `require_stratum_sidecar` before its first step. If the sidecar is missing, the arm raises.
-- **Admission:** the first 5 benign and the first 5 trapped seeds in screen order, plus 2 reserves per stratum (sec 9).
+- **Admission (v3, O11):** the first **12 benign and the first 12 trapped** seeds in screen order, plus 2 reserves per stratum (sec 9). n is chosen in sec 6.5.
   - Screen ceiling: 80 seeds.
-  - Expected screen length: at the measured trapped rate of 0.21 (4 of 19; `probes/nulldet2/results/SCREEN_log.json`), 7 trapped seeds (5 + 2 reserves) need about 33 screened seeds.
-- **Stratum source of truth:** the in-run NATIVE classification, not the screen (sec 9, cross-machine rule).
+  - Expected screen length (v3, RT-5 edit 7): the NATIVE pilot trapped rate is **3/8 = 0.375** (v2 used 0.21 from the T2 screen). 14 trapped seeds (12 + 2 reserves) need about **37** screened seeds; 14 benign need about 22, so the trapped quota binds. Sensitivity: over every NATIVE-family arm RT-5 classified (26 pairs), 6 were trapped (0.23), which would need about 61. Both are small-n; re-measure on the pin.
+- **Stratum source of truth:** the in-run NATIVE classification, not the screen (sec 9, cross-machine rule). Under the env-only rule (3.1) the Stage-S sidecar is the source of truth instead: it involves no agent, so it does not diverge across machine classes.
+- **v3 (RT-5 edit 5):** RT-5 measured 2/9 reseed concordance in the trapped stratum. The stratum is agent-init dependent, which is what O12 addresses (3.1, 3.2).
+
+### 3.1 Stratum rule (v3, O12; rec-20260925-a6132a2d)
+
+- **Adopted rule (user decision): env-only.** For env seed s, build `CausalGridWorldV2(ENV_KW, seed=s)` and roll it 600 steps with `RandomPolicy(seed=s)`, resetting on done; no agent is constructed, so agent init cannot move the label. `hazard_trapped` iff >= 10 episodes end with length < 200. Skeleton: `classify_stratum_env_only`.
+- **Validity gate (added in v3, because the pilot failed it).** Before Stage S, on the pinned sha, run the classifier on >= 20 env seeds x 5 policy seeds. The rule is VALID iff the one-way ICC of the early-termination count across env seeds is >= 0.5 AND each stratum holds >= 10% of the env seeds under the classifier's own policy seed. Skeleton: `env_only_classifier_validity`.
+- **Pilot (D1, this revision):** env seeds 2001-2040, policy seeds s..s+4, ree-v3 `origin/main` @ `f0331054133a`, env steps only (73 s on the Mac). Script, output and table: `probes/a1_draft/env_only_classifier_pilot.{py,out,json}`.
+  - Every env seed had 18-28 early terminations in 600 steps, all `health_depleted`; the 3,000-step count was 106-127.
+  - Between-env mean square 4.06 vs within-env (policy seed) 3.62: **ICC 0.023**. The env seed explains almost none of the variance.
+  - Under the threshold of 10, **all 40 env seeds classify `hazard_trapped`**. The three RT-5 trapped seeds (2001, 2007, 2008: 23, 20, 21) are indistinguishable from the five benign ones (20-23).
+  - Mechanism (D0): the env re-draws its layout every episode from its own RNG (Q13), and a random policy lives about 25 steps per episode, so 600 steps average over about 24 exchangeable layouts.
+  - **Verdict: DEGENERATE.** No threshold on this statistic separates env seeds, because no env-seed property exists for it to measure.
+- **Pre-registered fallback (applies whenever the gate is not VALID; the DRAFT default until the user decides O12b):** classify the **(env seed, agent seed) pair** from NATIVE's own closed-loop steps 0-599 (the v2 rule, I1-5 `classify_stratum`), written to the sidecar before NATIVE's step 600. This is meaningful for the INT arms at the same agent seed **only because of shared init (3.2)**: they share every common module with that NATIVE, including the obs encoders and E3, so they start from the same init "personality" that made the pair trapped. Skeleton: `choose_stratum_rule` returns `native_pair_shared_init` with the O12b flag.
+- **What the fallback does not fix:** INT's trainer and extra modules still change behaviour over the run, so a trapped pair's INT arm may leave the trapped condition for mechanism reasons. That is the effect under test, not a confound. NATIVE-Rk arms have their own inits; their stratum is reported only (RT-5 continuity) and they score nothing.
+
+### 3.2 Shared init (v3, O12; harness-side, no `ree_core` change)
+
+- **Protocol, every arm** (skeleton `build_env_agent`, `share_init`):
+  1. `seed_all(agent_seed)`; build the NATIVE agent;
+  2. INT arms only: `seed_all(agent_seed + 20,000)`; build the INT agent (its INT-only modules take this separate generator's init); copy every state_dict key that NATIVE also has **at the same shape** from NATIVE into INT (`load_state_dict`). Shape-mismatched shared names are not copied; they stay INT-specific and are listed in the manifest;
+  3. `seed_all(agent_seed)` again before phase 1, identically in every arm, so every arm starts its runtime stream from the same state.
+- **Probe (D1, construction only, 2 threads, under the Mac lock):** `probes/a1_draft/shared_init_probe.{py,out}`, ree-v3 `origin/main` @ `f0331054133a`, env seed 2002, world_dim 32 (deployed). Flag sets on main that construct extra modules inside `REEAgent.__init__`: `latent.use_e2_world_uncertainty`, `use_e2_harm_a`, `latent.use_e2_harm_s_forward`, and all three together.
+  - Control: NATIVE built twice at one seed is bit-identical (0 of 200 state_dict keys differ).
+  - **Naive same-seed construction (the v2 protocol):** for every flag set, 4 shared tensors differ: `body_obs_encoder.0.{weight,bias}` and `world_obs_encoder.0.{weight,bias}`. They are registered after every flag-gated module (`agent.py:3416-3420`), so each flag-on module ahead of them shifts their init. Flag-gated constructions span `agent.py:421-2565` and beyond; the first extra parameter tensor sits at index 133 of 143.
+  - **Harness copy:** 200 shared keys copied, **0 differ afterwards**, 0 shape mismatches, and every INT-only key (6-19) equals a fresh build at the separate seed.
+  - D0 checks for state the copy would miss: no `deepcopy`, `load_state_dict`, `copy_` or `.data =` inside `REEAgent.__init__`; the private RNGs in `ree_core` (`hippocampal/module.py:3187`, `e3_selector.py:1251`, `self_model_aggregator.py:144`, `candidate_rule_field.py:333`, `waking_trainer.py:179`, `zworld_p0.py:513,580`) are seeded from config or arguments, not from the global stream, so they are identical across arms by construction.
+- **Verdict: shared init is achievable harness-side. No default-OFF `ree_core` knob and no build row are needed.**
+- **Residual, stated:** the W6 members are not built. Before queueing, re-run `shared_init_probe.py` against the W6 preset on the pinned sha. Proceed if it shows 0 differing shared keys after the copy. A W6 member that reshapes a shared module appears as a shape mismatch: it is then INT-specific by construction, and it is listed. A member that derives state from a shared module **at construction** (e.g. a target copy) would need that state re-derived after the copy. Only that last case would need a `ree_core` change, and none exists today.
+- **What shared init buys:** the paired NATIVE-vs-INT deltas no longer carry independent init noise in the obs encoders, or in any other common module registered after an INT-only one. (E3 and the modules built before `agent.py:421` already matched under same-seed construction.) It does not reduce NATIVE-vs-NATIVE-Rk noise, which is reported only in v3.
 
 ## 4. Phases (per arm, identical lengths in every arm)
 
@@ -108,11 +162,11 @@
 | arm | agent seed | config | trainer | scored? | role |
 |---|---|---|---|---|---|
 | NATIVE | s | all flags off, pinned `ree_core` | - | yes | comparator; **stratum source** |
-| NATIVE-R1..R3 | s + 10k x k | as NATIVE | - | **no** | margin calibration only (sec 6) |
+| NATIVE-R1..R3 | s + 10k x k | as NATIVE | - | **no** | v3: reported reseed noise only (RT-5 continuity; O13) |
 | INT-CODEC | s | W6 preset, codec variant (W1), `valuation_mode` | ON | yes | tested |
 | INT-CODEC-SHUF | s | as INT-CODEC; every grounding target permuted (5.3) | ON | yes | grounding control (P3) |
 | INT-CODEC-FROZEN | s | as INT-CODEC | OFF in phase 3 | yes | learning control (P4) |
-| INT-CODEC-R1 | s + 10k | as INT-CODEC | ON | **no** | INT-vs-INT margin calibration only (RT-2) |
+| INT-CODEC-R1 | s + 10k | as INT-CODEC | ON | **no** | v3: reported INT reseed noise only (O13) |
 | INT-CODEC-NOVAL (GROUNDED mode only) | s | INT-CODEC with valuation ABSENT | ON | **no** | attribution only (sec 8.4) |
 | INT-ACT | s | W6 preset + `use_action_space_proposals=True`, `action_space_first_action_mode="stratified"`, `action_space_cem_score_horizon` = `CEM_SCORE_WINDOW` (sec 5.4); codec and prior members NOT registered; `use_action_class_scaffold_candidates=False` asserted; `valuation_mode` | ON | yes | tested |
 | INT-ACT-SHUF, -FROZEN, -R1 | s (R1: s + 10k) | as INT-ACT (SHUF per 5.3) | as the CODEC rows | as the CODEC rows | as the CODEC rows |
@@ -180,15 +234,28 @@ These are fixed once for both variants, so the head-to-head compares the proposa
   - **v2b (rec-20260925-a16786f5):** both variants' consumer-mediated (e) leg results, carried from their member gates (reported until W5; sec 7.1).
   - **v2b oracle diagnostic (report-only):** on the R3 probe states, score each pool (INT-CODEC, INT-ACT, and today's NATIVE-POOL) with **env-Q standing in for E3's valuation**. The oracle picks the pool's best first-action class. Per pool, report the fraction of states where that pick is in the env-Q-best set and the mean regret (max Q over all classes minus the best Q in the pool). It shows whether the pool itself carries better options, independently of E3's valuation, which is at chance before W5. A stratified INT-ACT pool contains every class, so its value is 1.0 / 0.0 by construction and is reported as such; the informative comparison is INT-CODEC vs NATIVE-POOL. Skeleton: `oracle_diagnostic`. It feeds no criterion, no precondition and no hold.
 
-### 6.2 Margin rule (accepted)
+### 6.2 Test rule (v3: paired mean, O11 rec-20260925-42ed9d20)
 
-margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk, pooled over that stratum's admitted seeds ; floor(metric, stratum) ).
+**v3 rule (governs every criterion).** For each criterion, take the per-seed paired deltas d_i (INT-v minus its comparator, oriented as in sec 8) over the stratum's n admitted seeds. Let SD be their sample SD (n - 1), SD_used = max(SD, floor / 2), and SE = SD_used / sqrt(n).
+- **Superiority** (P1b, P3b, P3t, P4): holds iff mean(d) > 2 x SE.
+  - The floor is 2 x a per-seed replicate SD (6.3), so here it floors the SD. In margin units it enters as floor / sqrt(n): 0.26 for benign reward and 0.12 for the change at n = 12.
+- **Non-inferiority** (P1t, P2b, P2t), with d oriented as a deficit (larger = worse for INT):
+  - holds iff mean(d) + 2 x SE <= delta, where **delta = the absolute floor** (2.4 trapped reward; 1.6 / 4.8 contacts);
+  - **CANNOT_DETERMINE: `ni_underpowered`** iff 2 x SE > delta and mean(d) - 2 x SE <= delta. Even a zero observed deficit could not pass, and the data do not show INT worse than delta;
+  - otherwise NOT held.
+  - This is the **re-expressed RT-2 balloon guard**. Under paired scoring, noise widens the interval and makes the test harder to pass, so the leniency the v2 guard existed for cannot occur. The guard now only stops an underpowered test from being read as a FAIL. At n = 12, it fires at a per-seed SD above about 1.7 x delta. The v2 guard fired at 2 x RMS > 3 x floor, i.e. an SD above 1.5 x floor: close, by construction.
+- **P1g** (strict sign guard): mean(G delta) > 2 x SE with no SD floor. A 0 = 0 tie on every seed gives mean 0, which does not hold (RT-1 preserved). **O14:** the conversion of P1g from a per-seed count is this revision's reading of O11 (sec 14).
+- **Why the floors floor the SD and not the mean (decision recorded, O11 wording "keep the absolute floors as floors on the margin").** The floors were derived as 2 x the RMS of within-seed replicate deltas, a per-seed noise quantity. Under a mean test that quantity scales as 1/sqrt(n). Reading the floor instead as a floor on the mean gain (mean > max(2 x SE, 0.90)) would require a benign gain above 0.90 at any n. That exceeds the maximum reachable benign gain of about 0.6-0.8 (RT-5 7.1), so P1b would be unreachable by construction, which is the problem O11 was decided to solve. For non-inferiority, delta = floor is the fixed margin, and the SD floor makes the test stricter, never more lenient.
+- The NATIVE-R1..R3 and INT-v-R1 arms **no longer set any margin**. The paired SD already contains both arms' noise (RT-2's concern) and uses the shared init. Their 2 x RMS values are reported for RT-5 continuity. Whether to keep them is **O13**.
+
+**v2 rule (retired; kept in the skeleton as `SCORING = "per_seed_count"` only for the mutation check):** margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk, pooled over that stratum's admitted seeds ; floor(metric, stratum) ).
 
 - The RMS form matches the 1105 detector's leave-one-out SD.
 - A margin is CANNOT_DETERMINE when any admitted seed has fewer than 2 completed NATIVE-Rk arms, or the stratum has fewer than 8 deltas.
 - **Superiority vs non-inferiority (RT-2).**
   - **Superiority criteria** (P1b, P3, P4) use max(the NATIVE margin above, 2 x RMS of the per-seed INT-v minus INT-v-R1 deltas). The INT-v-R1 arm measures INT-vs-INT noise directly, so a noisier tested preset cannot pass on NATIVE's smaller noise. The INT margin is CANNOT_DETERMINE when a stratum has fewer than 4 INT reseed deltas.
   - **Non-inferiority criteria** (P1t, P2) use the NATIVE margin alone. A large margin makes them lenient, so there is a **balloon guard**: if the sampled 2 x RMS exceeds 3 x its floor for the trapped reward, benign contacts or trapped contacts, the verdict is `CANNOT_DETERMINE: margin_ballooned`. The non-inferiority test is then unfalsifiable at that noise, and it is never read as PASS. The factor 3 is a DRAFT constant.
+  - **Predicted to fire, measured (RT-5 edit 6):** under this v2 rule the guard fires on trapped reward (12.7 > 7.2), trapped contacts (35.4 > 14.4) and benign contacts at the point estimate (5.07 > 4.8). v2 A1 would therefore have returned CANNOT_DETERMINE on P1t, P2t and P2b. This is one reason for O11; v3 re-expresses the guard above.
 
 ### 6.3 Absolute floors: derivation and provenance
 
@@ -206,15 +273,31 @@ margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk
 |---|---|---|---|---|---|---|---|
 | reward, LAST | benign | **0.403 on the harm-bearing seeds 64-65** (pooled over all 5: 0.257) | 10 (10) (pooled: 25 (15)) | 0.807 (pooled: 0.514) | x1.118 | **0.90** (RT-3; pooled would be 0.57) | 0.25 |
 | reward, LAST | trapped | 1.056 (half2) | 10 (10) | 2.112 | x1.118 | **2.4** | 1.0 |
-| true contacts, LAST 600 | benign | 0.808 | 25 (10) | 1.617 | none (exact 600) | **1.6** | 1.0 |
-| true contacts, LAST 600 | trapped | 2.385 | 10 (9) | 4.769 | none | **4.8** | 1.0 |
-| reward change FIRST -> LAST (P4) | benign | **0.643 on the harm-bearing seeds 64-65** (pooled over all 5: 0.411) | 10 (10) (pooled: 25 (15)) | 1.286 (pooled: 0.822) | x1.118 | **1.44** (v2, user rec-20260925-aa066e96; v1 used the pooled 0.92) | 0.25 |
+| true contacts, LAST 600 (per-100 rate) | benign | 0.808 | 25 (10) | 1.617 | none (exact 600) | **1.6** | 1.0 |
+| true contacts, LAST 600 (per-100 rate) | trapped | 2.385 | 10 (9) | 4.769 | none | **4.8** | 1.0 |
+| reward change FIRST -> LAST (P4) | benign | **0.643 on the harm-bearing seeds 64-65** (pooled over all 5: 0.411) | 10 (10) (pooled: 25 (15)) | 1.286 (pooled: 0.822) | x1.118 | ~~1.44~~ (v2, rec-20260925-aa066e96) -> **0.43 (v3, rec-20260925-b89fe715: RT-5's measured NATIVE-reseed benign change noise, 2 x RMS over 9 deltas)** | 0.25 |
+
+**Units (v3, RT-5 edit 3).** Contacts are a **per-100 rate over the LAST 600-step window**: `floor_grounding.py` `LAST600_contacts_per100`. So 1.6 means 9.6 contacts in 600 steps. The v2 wording "per 600-step window", which reads like a count, is corrected throughout.
+
+**RT-5 verdicts on these floors (v3, RT-5 edit 2; measured, `332ab3f7f8` sec 6).** This replaces the v2 paragraph that asserted "lower-bound noise estimates ... (asserted, not shown; RT-5 open)".
+
+| metric | stratum | floor | measured NATIVE-reseed 2 x RMS (boot 90%) | verdict |
+|---|---|---|---|---|
+| reward LAST | benign | 0.90 | 1.70 (1.08-2.14) | LOWER_BOUND (1.9x) |
+| reward LAST | trapped | 2.4 | 12.68 (8.37-15.85) | LOWER_BOUND (5.3x) |
+| contacts LAST | benign | 1.6 | 5.07 (2.18-6.83) | LOWER_BOUND (3.2x) |
+| contacts LAST | trapped | 4.8 | 35.40 (23.6-44.1) | LOWER_BOUND (7.4x) |
+| reward change | benign | 1.44 | 0.43 (0.36-0.49) | **NOT_LOWER_BOUND**; the CI excludes it. v3 floor = 0.43 |
+
+- **Measured consequence**, replacing v2's "expected consequence": the runtime noise term exceeds the floor in every reward and contact cell, by 1.9-7.4x.
+- The trapped cells are inflated by stratum discordance: a trapped NATIVE was compared against reseeds that were not trapped (Q13).
+- The change floor bound NATIVE's noise because NATIVE learns nothing in the closed loop, so level differences between reseeds cancel in LAST - FIRST.
 
 - **Which estimate each floor uses (RT-3).** Superiority floors (reward, reward change) should err large, and non-inferiority floors (contacts) should err small.
   - The benign reward floor is therefore taken from the harm-bearing seeds 64-65 only. On seeds 61-63, every NULL replicate reproduced M0 exactly, so pooling them in shrinks the SD artificially.
   - The contacts floor keeps the pooled value (the conservative direction for P2).
   - The P4 change floor: v1 kept the pooled value (0.92 after RT-4's arithmetic fix). **v2 uses the harm-bearing value, 1.44** (user decision rec-20260925-aa066e96), for the same reason as the reward floor: seeds 61-63 reproduced M0 exactly and shrink the pooled SD.
-- **The doc's claim that these are lower-bound noise estimates, and its basis (asserted, not shown; RT-5 open):**
+- **v2 text, retained for provenance; superseded by the RT-5 verdicts above. The doc's claim that these are lower-bound noise estimates, and its basis (asserted, not shown; RT-5 open at v2):**
   - (i) a matched-step weight walk perturbs less than a full agent reseed, which also changes the initial weights of every module;
   - (ii) 10 of the 25 benign deltas came from seeds 61-63, where every NULL replicate reproduced M0 exactly. Over the two harm-bearing benign seeds alone (64, 65), 2 x RMS is 0.81 for reward (0.90 after window correction) and 2.56 for contacts;
   - (iii) the benign population in the v2 screen (early terminations 0-8 per 600 steps, 12 of 15 seeds with >= 3) looks more like seeds 64-65 than 61-63.
@@ -231,8 +314,16 @@ margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk
 - Beating NATIVE by > 0.90 on a benign seed therefore needs roughly: most of the harm removed, plus added consumption. Shaping alone cannot pass, because P1g is strict.
 - That is reachable, but it is not slack. P1g stops the approach shaping part from carrying the gain alone.
 - **A P1b FAIL with P1g, P2 and P3 all holding is a "gain too small for the margin" outcome.** The autopsy reports it as such. It is not "the loop did not close".
+- **v3 (RT-5 edit 4), measured headroom:** under the v2 rule the benign superiority margin would be about 1.70 (CI 1.08-2.14). Against it:
+  - the maximum reachable benign gain is about 0.6-0.8 per 100;
+  - NATIVE's benign LAST reward averaged -0.17 in RT-5;
+  - the highest LAST reward among 12 benign-stratum arms was +0.18.
+  So P1b was unreachable at 5 seeds under per-seed counting. This was O11 (user decision: paired mean + more seeds; sec 6.2, 6.5).
+- Under the v3 rule at n = 12, the P1b bound is 2 x max(SD, 0.45) / sqrt(12), about 0.49 at RT-5's SD of 0.85. A true gain of 0.6 / 0.7 / 0.8 passes with probability about 0.67 / 0.80 / 0.90 (6.5).
 
-**Can P4 pass at 1.44? (v2 headroom, D0 arithmetic on measured numbers)**
+**v3: P4 at the 0.43 floor.** The bound is 2 x max(SD, 0.215) / sqrt(12), which is >= 0.12. A learning gain of 0.3 or more over FROZEN therefore passes whenever the paired SD is near the floor. P4's headroom problem (O6) is largely removed. The v2 analysis below is kept for provenance; it was written for the 1.44 per-seed floor.
+
+**Can P4 pass at 1.44? (v2 headroom, D0 arithmetic on measured numbers; superseded by the 0.43 floor)**
 - P4 needs INT-v's FIRST -> LAST reward change to beat INT-v-FROZEN's by more than 1.44 per 100 on >= 4/5 benign seeds.
 - The benign reward range is narrow:
   - a NATIVE-analog FIRST window averages -0.49 per 100 (sec 6.4 above);
@@ -240,6 +331,32 @@ margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk
   - A seed that starts at NATIVE's level and ends harm-free with full consumption therefore changes by about 0.94-1.2.
 - **So P4 at 1.44 is reachable only if** (i) INT-v's FIRST window is below NATIVE's (the trainer-ON agent starts worse and learns out of it), (ii) FROZEN's change is negative, or (iii) shaping contributes well beyond the measured analog. Note that P1g does not guard P4.
 - **Consequence, fixed now:** a FAIL whose only missing criterion is P4, with the FIRST windows near NATIVE's, is reported as **"P4 headroom-limited"** alongside the named signature "architecture helps, waking learning does not". It is not read as evidence that waking learning is absent. This does not relax P4. The floor is the user's decision. The risk is recorded as open item O6 (sec 14).
+
+### 6.5 Seed count and power (v3, O11)
+
+- **Arithmetic, D0 on RT-5's measured numbers.** Normal approximation, power = Phi((mu - bound) / (SD / sqrt(n))).
+  - RT-5's 2 x RMS of NATIVE-vs-reseed deltas is M, so the SD of a paired delta between two independently initialised agents is about M / 2.
+  - Shared init (3.2) should make the NATIVE-vs-INT paired SD smaller. That is unmeasured, so the numbers below are conservative on that axis.
+
+| criterion | SD used (source) | delta / floor | n | bound or half-width | power |
+|---|---|---|---|---|---|
+| P1b (sup) | 0.85 (benign reward M 1.70 / 2) | floor 0.90 | **12** | 0.49 | 0.67 / 0.80 / 0.90 at true gain 0.6 / 0.7 / 0.8 |
+| P1b (sup) | 1.07 (CI upper 2.14 / 2) | 0.90 | 12 | 0.62 | 0.48 / 0.60 / 0.72 |
+| P1b (sup), for comparison | 0.85 | 0.90 | 10 / 16 | 0.54 / 0.43 | 0.73 / 0.90 at gain 0.7 |
+| P4 (sup) | 0.215 (change M 0.43 / 2) | floor 0.43 | 12 | 0.12 | ~1.0 at a learning gain of 0.3 |
+| P2b (NI) | 2.54 (benign contacts M 5.07 / 2; inflated by one discordant reseed) | delta 1.6 | 12 | 1.46 | 0.57 at a true difference of 0 (0.80 needs n = 20) |
+| P1t (NI) | 6.34 (all RT-5 trapped pairs) / 2.95 (the 2 concordant trapped pairs) | delta 2.4 | 12 | 3.66 (CD) / 1.70 | 0.25 / 0.79 at 0 |
+| P2t (NI) | 17.7 (all pairs) / 8.28 (concordant pairs) | delta 4.8 | 12 | 10.2 (CD) / 4.78 | 0.14 / 0.50 at 0 |
+
+- **Chosen n: 12 benign + 12 trapped** (+2 reserves each).
+  - **Benign:** n = 12 is the smallest n that gives 80% power for P1b at the middle of the reachable gain range (0.7; n >= 11.9 needed) at RT-5's point-estimate SD. The user's "~10" gives 0.73. Benign seeds are cheap (sec 11).
+  - **Trapped:** n = 12 (the brief: re-derive with the 3/8 rate; the screen for 14 trapped is about 37 seeds, 3.x).
+    - With all-pairs SDs (independent inits, discordance-inflated), no affordable n powers the trapped non-inferiority tests: P1t needs n >= 28 just to avoid `ni_underpowered`, and P2t needs n >= 55.
+    - With the concordant-pair SDs, the closer proxy under shared init and the pair-level stratum, n = 12 keeps both tests out of `ni_underpowered` (P2t only just: 4.78 < 4.8).
+    - n = 12 therefore rests on shared init reducing the trapped paired SD toward the concordant-pair value. That is stated, not measured.
+    - If it does not, A1 returns `CANNOT_DETERMINE: ni_underpowered` on the trapped tests. Under paired scoring that outcome is never a lenient PASS and never a FAIL.
+- **The conjunction still requires all 8.** At these powers, a real but modest benign gain with truly non-inferior trapped behaviour passes all 8 with probability well below the single-criterion numbers. That is the cost of the family-wise AND (RT-6), and it is stated here rather than hidden.
+- Sample-size re-estimation after admission is not allowed (stop rule 5).
 
 ## 7. Preconditions (INVALID: fix, re-run under a lettered id, never scored as FAIL)
 
@@ -275,19 +392,21 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 
 ## 8. Criteria and verdict
 
-">= 4/5" means at least 4 of that stratum's 5 admitted seeds. Each criterion is evaluated separately for each tested variant v. T = INT-v, S = INT-v-SHUF, F = INT-v-FROZEN, N = NATIVE. The margins m are from sec 6.
+**v3 (O11):** every criterion is a paired-mean test over the stratum's **12** admitted seeds (sec 6.2). "sup(d, floor)" means mean(d) > 2 x max(SD(d), floor / 2) / sqrt(n). "NI(d, delta)" means mean(d) + 2 x max(SD(d), delta / 2) / sqrt(n) <= delta, and CANNOT_DETERMINE (`ni_underpowered`) as in 6.2. Each criterion is evaluated separately for each tested variant v. T = INT-v, S = INT-v-SHUF, F = INT-v-FROZEN, N = NATIVE. Per-seed d_i is computed within a seed; each seed's arms share one agent seed and, with shared init, one common-module init.
 
-| id | stratum | statement | kind |
+| id | stratum | statement (v3) | kind |
 |---|---|---|---|
-| **P1b (PRIMARY)** | benign | reward_LAST(T) - reward_LAST(N) > m_reward on >= 4/5 | superiority |
-| **P1g** | benign | G_LAST(T) - G_LAST(N) **> 0 (strict)** on >= 4/5. A tie, including 0 = 0 on a seed with no contacts or consumptions in either arm, does NOT hold (RT-1). The gain must include at least one fewer true contact or one more consumption; approach shaping alone cannot carry it (Q7, K5/V2) | strict sign guard |
-| P1t | trapped | reward_LAST(N) - reward_LAST(T) <= m_reward on >= 4/5 (gain reported) | non-inferiority |
-| P2 | each stratum separately | contacts_LAST(T) - contacts_LAST(N) <= m_contacts on >= 4/5 | non-inferiority |
-| P3 | each stratum separately | reward_LAST(T) - reward_LAST(S) > m_reward on >= 4/5 | superiority |
-| P4 | benign | [reward_LAST - reward_FIRST](T) - [same](F) > m_change on >= 4/5 | superiority |
+| **P1b (PRIMARY)** | benign | sup(reward_LAST(T) - reward_LAST(N), 0.90) | superiority |
+| **P1g** | benign | mean(G_LAST(T) - G_LAST(N)) > 2 x SE, **strict**, no SD floor. A 0 = 0 tie on every seed gives mean 0, which does NOT hold (RT-1). The gain must include fewer true contacts or more consumptions on average; approach shaping alone cannot carry it (Q7, K5/V2). Paired form: O14 | strict sign guard |
+| P1t | trapped | NI(reward_LAST(N) - reward_LAST(T), 2.4) (gain reported) | non-inferiority |
+| P2 | each stratum separately | NI(contacts_LAST(T) - contacts_LAST(N), 1.6 benign / 4.8 trapped) | non-inferiority |
+| P3 | each stratum separately | sup(reward_LAST(T) - reward_LAST(S), 0.90 benign / 2.4 trapped) | superiority |
+| P4 | benign | sup([reward_LAST - reward_FIRST](T) - [same](F), **0.43**) | superiority |
+
+v2 statements (retired): the same differences, each counted per seed against the margin m of v2 sec 6.2, and holding on >= 4/5 seeds.
 
 **Multiplicity (RT-6).** 2 variants x 8 sub-criteria (P1b, P1g, P1t, P2b, P2t, P3b, P3t, P4) are 16 tests.
-- The adopted control is the **conjunction**: a variant passes only if ALL 8 hold, each at >= 4/5 seeds. That family-wise AND is the whole multiplicity control. No alpha is split, and no single criterion is ever reported as a variant PASS.
+- The adopted control is the **conjunction**: a variant passes only if ALL 8 hold (v3: each by its paired-mean test; v2: each at >= 4/5 seeds). That family-wise AND is the whole multiplicity control. No alpha is split, and no single criterion is ever reported as a variant PASS. Each 2 x SE test is one-sided at roughly alpha 0.035 (t with 11 df).
 - The head-to-head adds no test. It only chooses between two variants that each passed the full conjunction.
 
 ### 8.1 Verdict ladder (per variant, evaluated in this order)
@@ -295,9 +414,8 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 1. **ERROR**: a canary failed, or the pin could not be verified. It is not a verdict about the loop.
 2. **INVALID**: any precondition R0-R7 failed on any admitted seed. Fix and re-run under a lettered id. It is never scored as FAIL.
 3. **CANNOT_DETERMINE**:
-   - a stratum has fewer than 5 admitted seeds after reserves (`under_admitted:<stratum>`);
-   - a margin is not computable (`margin_undetermined:<metric>:<stratum>`), NATIVE or INT;
-   - a non-inferiority margin ballooned (`margin_ballooned`, 6.2);
+   - a stratum has fewer than **12** admitted seeds after reserves (`under_admitted:<stratum>`);
+   - (v3) a non-inferiority test is underpowered (`ni_underpowered`, 6.2). This replaces v2's `margin_undetermined` and `margin_ballooned`: reseed arms no longer set a margin, so a missing reseed is not CD;
    - the screen ceiling was reached (`screen_exhausted`).
 4. **PASS** iff P1b, P1g, P1t, P2 (both strata), P3 (both strata) and P4 all hold.
 5. **FAIL** otherwise. Named signatures are reported, not re-scored:
@@ -306,7 +424,7 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
    - P1b holds without P3: grounding does not matter;
    - P1b holds without P4: the architecture helps, but waking learning does not;
    - P1b fails while P1g, P2 and P3 hold: the gain is too small for the margin (6.4);
-   - (v2) P4 is the only criterion missing and INT-v's FIRST reward is within m_reward(benign) of NATIVE's on >= 4/5 benign seeds: **P4 headroom-limited** (6.4). It is reported next to "architecture helps, waking learning does not" and is not read as evidence that waking learning is absent.
+   - (v2; v3 paired form) P4 is the only criterion missing and the paired mean of INT-v's FIRST reward minus NATIVE's is within P1b's bound: **P4 headroom-limited** (6.4). It is reported next to "architecture helps, waking learning does not" and is not read as evidence that waking learning is absent.
 
 ### 8.2 The FAIL path
 
@@ -319,20 +437,20 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 - **Precondition (v2, rec-20260925-38b81685):** A1 runs only after both variants have passed their member gates (7.1), on one pinned sha, with the same seeds. Running INT-ACT first under a lettered id (design U3 option b) is not taken. **v2b (rec-20260925-a16786f5):** before W5, "passed" means (a)-(d) + containment + (f). The consumer-mediated (e) legs and the oracle diagnostic are reported alongside the head-to-head, but do not enter it.
 - Either variant INVALID -> **A1 INVALID**. The other variant's result is reported but not acted on, because a merge decision needs both arms of the comparison valid.
 - Exactly one variant PASS -> **A1 PASS; that variant wins.**
-- Both PASS -> the larger mean benign P1b gain wins if the difference exceeds m_reward(benign) (the larger of the two variants' benign superiority margins). Otherwise, under the **DRAFT tie rule, INT-ACT wins**, because it is simpler: it removes the decoder and `terrain_prior` from the act path (they remain constructed but unused) and it adds no trainable parameters (E9). **The tie rule is open: its owner is the user, at A1 time** (sec 14, O2). The user may also override at merge time.
+- Both PASS -> (v3) a paired-mean superiority test on the per-seed difference of the two variants' benign P1b gains, floor 0.90. If it holds in either direction, that variant wins. (v2: the larger mean gain won if the difference exceeded m_reward(benign).) Otherwise, under the **DRAFT tie rule, INT-ACT wins**, because it is simpler: it removes the decoder and `terrain_prior` from the act path (they remain constructed but unused) and it adds no trainable parameters (E9). **The tie rule is open: its owner is the user, at A1 time** (sec 14, O2). The user may also override at merge time.
 - Neither PASS -> FAIL if either variant FAILs, CANNOT_DETERMINE if both are CANNOT_DETERMINE.
 - The head-to-head reads P1b only. It does not involve SHUF, so the SHUF asymmetry (5.3) cannot tilt it.
 
 ### 8.4 NOVAL attribution (v2, GROUNDED mode only; reported, never a verdict)
 
-User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can be attributed between grounded valuation and the other repairs". The attribution rule is fixed here, before the run. sup_b is the variant's benign superiority margin (6.2).
+User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can be attributed between grounded valuation and the other repairs". The attribution rule is fixed here, before the run. **v3:** "beats" means sup(d, 0.90) over the benign seeds (6.2); v2 counted per seed on >= 4/5.
 
-| label | rule (on >= 4/5 benign seeds) | reading |
+| label | rule (benign seeds, paired-mean, v3) | reading |
 |---|---|---|
-| `valuation_carries` | reward_LAST(INT-v) - reward_LAST(INT-v-NOVAL) > sup_b, **and** INT-v-NOVAL does not itself beat NATIVE by > sup_b | the gain needs grounded valuation |
-| `other_repairs_carry` | INT-v-NOVAL beats NATIVE by > sup_b, **and** INT-v does not beat INT-v-NOVAL by > sup_b | the gain survives without valuation |
-| `both` | both counts reach 4/5 | both contribute |
-| `undetermined` | neither count reaches 4/5 | no attribution at this noise |
+| `valuation_carries` | INT-v beats INT-v-NOVAL, **and** INT-v-NOVAL does not itself beat NATIVE | the gain needs grounded valuation |
+| `other_repairs_carry` | INT-v-NOVAL beats NATIVE, **and** INT-v does not beat INT-v-NOVAL | the gain survives without valuation |
+| `both` | both tests hold | both contribute |
+| `undetermined` | neither holds | no attribution at this noise |
 | CANNOT_DETERMINE | a NOVAL arm is missing on any admitted benign seed | - |
 | `not_run` | ABSENT mode (no NOVAL arm) | - |
 
@@ -341,22 +459,25 @@ User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can 
 
 ## 9. Screening, admission and sidecar mechanics
 
+- **Stage S0 (v3): stratum-rule validity.** On the pinned sha, run `env_only_classifier_validity` on env seeds 301-320 x 5 policy seeds (env steps only, about a minute). Then `choose_stratum_rule` fixes the rule (env-only or the fallback, 3.1), and it is recorded in the queue entry **before** Stage S. The v3 pilot predicts the fallback.
 - **Stage S, screen (queued or run before the A1 items, not scored).**
-  - For each seed from 301 in order: run NATIVE only, on the pinned sha, through phases 1-2 and closed-loop steps 0-599.
-  - Record the stratum with `classify_stratum`, and append `(seed, stratum, machine, sha)` to a screen artifact.
-  - Stop when 5 + 2 of each stratum are found, or at 80 seeds.
-  - The screen artifact is committed **before** the A1 items are queued, and the A1 queue entry names the 14 seeds.
+  - For each seed from 301 in order, on the pinned sha:
+    - under the env-only rule, run `classify_stratum_env_only(s)` (no agent);
+    - under the fallback, run NATIVE only (agent seed s) through phases 1-2 and closed-loop steps 0-599, and classify with `classify_stratum`.
+  - Append `(seed, stratum, rule, machine, sha)` to a screen artifact.
+  - Stop when **12 + 2** of each stratum are found, or at 80 seeds (expected about 37, sec 3).
+  - The screen artifact is committed **before** the A1 items are queued, and the A1 queue entry names the **28** seeds.
 - **Stage R, per-seed items (one queue item per seed, `machine_affinity` "any").** Each item:
   1. re-runs NATIVE from scratch;
-  2. classifies it in-run at step 599;
-  3. writes the sidecar (write-once) before step 600;
+  2. (fallback rule) classifies it in-run at step 599 and writes the sidecar (write-once) before step 600. Under the env-only rule, the Stage-S sidecar is used instead;
+  3. builds every INT arm with shared init (3.2) from a NATIVE built at that arm's agent seed;
   4. only then runs the other arms, each of which calls `require_stratum_sidecar` first.
 - **Cross-machine rule.** `torch.multinomial` diverges across machine classes (CLAUDE.md, "Running the test suite"), so a screen made on one machine class may classify a seed differently from the in-run NATIVE on another.
   - **The in-run classification is authoritative.**
   - If it differs from the screen, the seed is scored under its in-run stratum, the mismatch is recorded, and admission is re-counted with the reserves.
   - Reserves run under the same pre-registration. Reserve items run only if needed, so the reserves are pre-registered in advance and never chosen after the fact.
   - Admission order is always screen order, never outcome.
-- **Why a screen at all:** without one, about 79% of seeds land in the benign stratum, and filling 5 trapped would cost around 24 full per-seed items (10-12 arms each) instead of 24 NATIVE-only screens.
+- **Why a screen at all:** without one, about 62% (RT-5 pilot, v3) to 79% (T2) of seeds land in the benign stratum. Filling 12 trapped seeds would then cost around 32 full per-seed items (12-14 arms each) instead of about 37 NATIVE-only screens.
 
 ## 10. `substrate_pin` mechanics
 
@@ -371,6 +492,24 @@ User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can 
 - **Merge after PASS:** by merge commit, so the pinned sha stays an ancestor of main (plan M1(c)).
 
 ## 11. Cost estimate (DRAFT; `/queue-experiment` re-measures with trainer-ON timing first, per rec-20260925-7e7e9825)
+
+**v3 (RT-5 edit 8; supersedes the v2 arithmetic below, which is kept for provenance).**
+- **Measured, NATIVE only:** a full arm (5,400 agent steps) took 123-439 s on the shared Mac, median about 180 s (0.023-0.08 s per step). A screen to step 599 took 70-240 s. The v2 figure of 0.18-0.24 s per step for trapped seeds came from the T2 agent. INT arms are unmeasured.
+- **Arithmetic** (skeleton `cost_estimate`): per seed, 4 NATIVE-family arms plus 8 (ABSENT) or 10 (GROUNDED) INT arms. NATIVE arms at 123 / 180 / 439 s; INT arms at the same wall x the DRAFT trainer multiplier 1.2 / 1.3 / 1.4.
+
+| | per seed (low / mid / high) | 24 admitted seeds (low / mid / high) |
+|---|---|---|
+| ABSENT | 0.46 / 0.72 / 1.85 h | **11 / 17 / 44 CPU-h** |
+| GROUNDED | 0.55 / 0.85 / 2.20 h | **13 / 20 / 53 CPU-h** |
+| scenario: INT arms on trapped seeds at the T2 agent's 0.2 s per step (1,080 s per arm), mid otherwise | - | **48 (ABSENT) / 59 (GROUNDED) CPU-h** |
+
+- **Screen:** about 37 seeds, which is 0.7-2.5 h under the fallback (NATIVE to step 599) and about a minute under the env-only rule. Stage S0 takes about a minute.
+- **Reserves:** up to 2 per stratum, adding 4 seeds (about 3-9 CPU-h at mid-high).
+- **Total:** about **18-21 CPU-h mid** (ABSENT / GROUNDED, with screen), about 11-56 CPU-h across the measured range, and about 50-62 if INT arms cost what T2 did on trapped seeds. v2 estimated ~28 / ~33 for 10 seeds, at T2 per-step costs for every arm.
+- **Saving available (O13):** the 5 reseed arms (NATIVE-R1..R3, INT-CODEC-R1, INT-ACT-R1) no longer set a margin. Dropping them would remove 5 of 12 (ABSENT) or 14 (GROUNDED) arms per seed, about 35-40% of the cost. That is the user's call.
+- **Per-item wall (O8):** at the mid estimate, an item is under 1 h. In the T2-like trapped scenario, a GROUNDED trapped item is about 4.1 h. `/queue-experiment` sets `estimated_minutes` from the smoke.
+
+**v2 arithmetic (superseded):**
 
 - **Per-step wall** (from the null-detector runs: 8 arms x 1,500 steps plus a ~240 s preamble, on the shared Mac):
   - benign seeds 424-606 s per seed -> about 0.015-0.03 s per step;
@@ -393,7 +532,7 @@ User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can 
 2. **INVALID stops scoring.** If any precondition fails on an admitted seed, stop. Do not score that variant; fix under a lettered id. Two or more INVALID seeds for one variant also send the preset back to its member gates before any re-run.
 3. **Screen ceiling:** 80 seeds. Hitting it gives `CANNOT_DETERMINE: screen_exhausted` for the under-filled stratum. The ceiling is not raised mid-run.
 4. **Reserves:** at most 2 per stratum, used only to replace a seed that became under-admitted (stratum mismatch) or an item that ERRORed for infrastructure reasons, never one that looked bad.
-5. **Pre-registration freeze:** a change to the pinned sha, `valuation_mode`, the floors, the windows or the arm set after the first Stage-R item starts makes a new lettered id. The old items are not rescored under the new rules.
+5. **Pre-registration freeze:** a change to the pinned sha, `valuation_mode`, the floors, the windows, the arm set, **the stratum rule (fixed at Stage S0), n per stratum or the scoring rule** after the first Stage-R item starts makes a new lettered id. The old items are not rescored under the new rules. No sample-size re-estimation after admission.
 6. **Seed reuse:** no admitted seed is reused by a re-run. A lettered re-run screens from the next unused seed.
 7. **Branch freeze** (sec 10) for the lifetime of the run.
 8. **Wall cap per item:** 2 x the smoke-measured estimate. An item past its cap is ERROR (infrastructure), is replaced by a reserve under rule 4, and is never scored partially.
@@ -413,6 +552,10 @@ User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can 
 | FROZEN | "trainer OFF after warmup" | trainer OFF for the whole closed-loop phase | makes P4 isolate closed-loop waking learning |
 | preconditions | R0-R5 | + R6 (pin provenance), R7 (instrument CD) | a pin failure or a CD instrument must not score |
 | stop rules | none | sec 12 | pre-registration discipline |
+| (v3) scoring | per-seed counts against a reseed margin | paired-mean tests; floors floor the SD; NI against delta = floor; `ni_underpowered` CD | O11, rec-20260925-42ed9d20 |
+| (v3) seeds | 5 + 5 | 12 + 12 (+2 reserves each) | O11; power arithmetic 6.5 |
+| (v3) stratum | NATIVE classifies the env seed | env-only classifier behind a validity gate; fallback to pair-level NATIVE classification under shared init (the pilot fails the gate) | O12, rec-20260925-a6132a2d; Q13 |
+| (v3) init | INT at the same agent seed (init shifted by extra modules) | shared init, harness-side (3.2) | O12; Q14 |
 
 Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the warmup budget under W6a; the trainer-ON cost multiplier.
 
@@ -423,7 +566,10 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
 | v1 item | resolution | ledger | implemented in |
 |---|---|---|---|
 | 1. floors | measured floors accepted: 0.90 / 2.4, 1.6 / 4.8 | rec-20260925-5fc6c256 | 6.3, skeleton `FLOORS` |
-| 1. sub-choice, P4 change floor | 1.44 | rec-20260925-aa066e96 | 6.3, skeleton `FLOORS` |
+| 1. sub-choice, P4 change floor | ~~1.44~~ -> **0.43** (v3) | rec-20260925-aa066e96, superseded by rec-20260925-b89fe715 | 6.3, skeleton `FLOORS` |
+| (v3) O1, RT-5 | **CLOSED (measured)**: `a1_rt5_native_reseed_probe_20260925.md`, `332ab3f7f8` | - | 1 (Q12), 6.3, 15 |
+| (v3) O11, A1 power | **DECIDED**: paired mean test + more seeds (12 + 12) | rec-20260925-42ed9d20 | 6.2, 6.5, 8, skeleton `superiority` / `noninferiority` |
+| (v3) O12, stratum | **DECIDED**: env-only classifier + shared init. Implemented with a validity gate (3.1) and harness-side shared init (3.2) | rec-20260925-a6132a2d | 3.1, 3.2, 9, skeleton |
 | 2. P1g | accepted, strict | rec-20260925-5fc6c256 | 8, skeleton `P1G_STRICT` |
 | 3. ASP build path | design + plan row W1-alt exist; **hold A1 until both variants pass their gates** | rec-20260925-38b81685 | 1 (Q5), 7.1, 8.3, skeleton `a1_queueable` |
 | 4. NOVAL arms | added, required in GROUNDED mode | rec-20260925-c2519d92 | 5.1, 8.4, skeleton `attribution` |
@@ -435,16 +581,19 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
 
 | id | item | owner | note |
 |---|---|---|---|
-| O1 | **RT-5**: the floors come from a T2 weight-walk analog, not from NATIVE reseeded with tie-break ON | orchestrator: route the cheap pre-A1 probe (sec 15) | the runtime 2 x SD term, the INT reseed term and the balloon guard are partial mitigations only |
+| O1 | **CLOSED (v3, measured by RT-5 `332ab3f7f8`).** The floors came from a T2 weight-walk analog. 4 of 5 are lower bounds on NATIVE's measured reseed noise; the change floor was not, and is now 0.43 | - | 6.3 |
 | O2 | **Head-to-head tie rule when both variants PASS within margin** (v1 item 5) | **the user, at A1 time** | the DRAFT default is "INT-ACT wins (simpler)" (8.3, skeleton `SIMPLER_VARIANT`). Alternative: the user decides at merge |
 | O3 | **CLOSED (v2b, rec-20260925-a16786f5).** The N3-pre finding (E3's pick lands in the env-Q-best set only 0.09-0.22 of the time, chance 0.20, `d4bb6449b3`) capped both variants' consumer-mediated (e) legs as well as W4(b). **User decision:** move both (e) legs after W5, like W4(b); they are reported, not gating, until W5 lands, and the hold clears on (a)-(d) + containment + (f). Add a report-only oracle diagnostic that scores each pool with env-Q in place of E3's valuation. A1 stays runnable in GROUNDED and ABSENT modes | user | implemented in 6.1, 7.1, 8.3 and the skeleton (`REPORTED_UNTIL_W5`, `oracle_diagnostic`) |
 | O4 | design **U4**: the value of `CEM_SCORE_WINDOW` (full horizon vs W4's aggregation, for both variants) | user (design sec 7) | the parity rule itself is fixed (5.4); only the value is open. W1 must expose the window |
 | O5 | design **U2**: ASP-E vs ASP-0 if (e1) passes with ACT ~ RANDOM-POOL | user, at gate time | it changes INT-ACT's config, so it must be fixed before the pin |
-| O6 | **P4 headroom at 1.44** (6.4): P4 is reachable only if INT-v starts below NATIVE, FROZEN degrades, or shaping contributes well beyond the measured analog | recorded; user informed | the floor is not reopened. The reading rule "P4 headroom-limited" is fixed in 8.1 |
+| O6 | **Largely resolved (v3).** At the 0.43 floor under the paired test, P4's bound is >= 0.12 at n = 12, well inside the 0.94-1.2 reachable change (6.4). The reading rule "P4 headroom-limited" stays in 8.1 | - | - |
 | O7 | the W3 buffer action format (5.4): "executed as fed to E2" in both is the DRAFT; "argmax in both" is the fair alternative | W3 owner, before the pin | both variants always use the same format |
 | O8 | per-item wall: a trapped GROUNDED item is about 6 h (up to about 7.7 h) (11) | `/queue-experiment` | split per variant only if the NATIVE sidecar is carried to the second item |
 | O9 | ungrounded DRAFT constants: the 2,400-step developmental epoch, the warmup under W6a, the trainer-ON cost multiplier, the balloon factor 3, the R3 action-blind reference head's placement | `/queue-experiment` smoke; the W6a and W4 owners | unchanged from v1 |
 | O10 | I1 is still not on main (Q10), and the ASP propose trace plus the E3-mediated pick-in-Q-best instrument are still to be built (design sec 6 rows 12-13) | I1 owner | the skeleton's I1 names are a guide |
+| **O12b (v3)** | **The env-only stratum classifier is degenerate in this env** (3.1: ICC 0.023; all 40 pilot env seeds classify trapped). The env re-draws its layout every episode, so trappedness is not an env-seed property. The pre-registered fallback, the DRAFT default, is pair-level NATIVE classification under shared init. Alternatives: (a) accept the fallback; (b) drop stratification and score all 24 seeds as one population, re-deriving P1/P2 as all-seed tests; (c) an env-only statistic that the user names and that passes the validity gate | **the user** | the decision rec-20260925-a6132a2d is recorded as taken; this item exists because its env-only half cannot be implemented as specified. It must close before Stage S0 |
+| **O13 (v3)** | NATIVE-R1..R3 and INT-v-R1 no longer set any margin under paired scoring (6.2). Keep them as reported noise (RT-5 continuity) or drop them (about 35-40% of cost, 11) | the user | DRAFT keeps them, per the v2 decisions that added them |
+| **O14 (v3)** | O11 names the superiority and non-inferiority counts. This revision also converts P1g, the head-to-head and the NOVAL attribution to paired-mean form, so one rule governs A1. A per-seed P1g at >= 80% of 12 seeds would reintroduce the power problem: with a G gain of 0.6 and a G delta SD of about 0.98 (RT-5 benign G_LAST M 1.96 / 2), P(>= 10 of 12 positive) is about 0.26 | the user (confirm or revert) | skeleton `P1G_STRICT` keeps RT-1's strictness in the paired form |
 
 ## 15. Red-team pass
 
@@ -463,7 +612,7 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
 | RT-2 | MAJOR | one NATIVE-reseed margin serves both non-inferiority (P1t, P2) and superiority (P1b, P3). Large noise makes P1t/P2 near-unfalsifiable; INT-vs-INT noise may exceed NATIVE's. The INT reseed arm was only a sec-14 suggestion | **FIXED.** INT-v-R1 arms implemented; superiority uses max(NATIVE, INT) noise; non-inferiority gets the balloon guard (CD, never PASS). Two selftest cases added; the balloon case is mutation-checked |
 | RT-3 | MAJOR | the benign reward floor 0.57 was pooled over seeds where 10/25 replicate deltas were exactly zero. The harm-bearing seeds give 0.90 | **FIXED.** Floor 0.90 |
 | RT-4 | MINOR | 2 x 0.411 x sqrt(1.25) = 0.919, i.e. 0.92, not 0.90 | **FIXED.** 0.92 (the consistent harm-bearing alternative, 1.44, went to the user). **v2: the user chose 1.44** (rec-20260925-aa066e96) |
-| RT-5 | RISK | the floor noise comes from a T2 agent with a 4-channel weight walk, not NATIVE reseeded with tie-break ON; "lower bound" is asserted, not shown; a floor can bind exactly when most needed | **OPEN.** Disclosed in 6.3. Mitigations: the runtime 2 x SD term, the INT reseed term, the balloon guard. Closing it needs a measured NATIVE-reseed spread with tie-break ON. That is a cheap pre-A1 probe (5 seeds x 4 NATIVE agent seeds x 3,000 steps, NATIVE only), which could also serve as the Stage-S screen if run on the pinned sha |
+| RT-5 | RISK | the floor noise comes from a T2 agent with a 4-channel weight walk, not NATIVE reseeded with tie-break ON; "lower bound" is asserted, not shown; a floor can bind exactly when most needed | **MEASURED (v3, `332ab3f7f8`):** 4 of 5 floors are lower bounds; the change floor was not (0.43 < 1.44, now the floor). The measured noise made P1b unreachable and P1t / P2 ballooned under the v2 rule. Answered by O11 (paired mean + 12 + 12 seeds) and O12 (env-only classifier, which is degenerate: O12b; shared init) |
 | RT-6 | MINOR | 16 tests with no named multiplicity control | **FIXED.** The AND-of-all-8-per-variant conjunction is stated as the adopted control (sec 8) |
 
 **Unresolved beyond RT-5 (this author's own open items, not raised by the reviewer):**
@@ -472,5 +621,7 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
 - the trainer-ON cost multiplier is ungrounded;
 - the balloon factor of 3 is a DRAFT constant.
 - v2 adds: O3 (the (e) legs are valuation-capped; closed in v2b by rec-20260925-a16786f5), O6 (P4 headroom), O8 (per-item wall). See sec 14.
+
+**v3 was not red-teamed either.** The v3 scoring and stratum rules are covered by selftest cases and a mutation check, not by an independent reviewer: per-seed counting restored, the 1.44 floor, the validity gate off, shared init off, the underpowered-CD guard off. The reading "floors floor the SD" (6.2) and the P1g conversion (O14) are this author's interpretations of the user's wording, and they are flagged as such.
 
 **v2 was not re-red-teamed.** The v2 changes apply decisions made by the user and the orchestrator, and design edits already reviewed in `412882b845`. The new scoring branches (head-to-head, attribution, hold) are covered by selftest cases and a mutation check, not by an independent reviewer.
