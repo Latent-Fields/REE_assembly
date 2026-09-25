@@ -19,6 +19,11 @@ v3:     bt0925-a1v3, chip_ref chip-20260925-coupled-a1-prereg-v3, 2026-09-25. Fo
           floor       rec-20260925-b89fe715: benign reward-change floor 0.43 (measured), superseding 1.44.
         v3 addendum (user direction 2026-09-25 ~18:20Z, via the orchestrator): REPORT-ONLY "init-dominance" readout
         (init_dominance) from the reseed arms A1 already runs; never gating (selftest shows it cannot flip a verdict).
+v3b:    bt0925-a1v3b, user answers 2026-09-25 ~18:50Z (relayed by the orchestrator): O12b stratum = the (env seed,
+        agent seed) PAIR classified from NATIVE's closed-loop steps 0-599, relying on shared init (STRATUM_DECIDED);
+        O13 keep the reseed arms; O14 confirm the paired form for P1g / head-to-head / NOVAL attribution; O15 ADD the
+        babble-attribution arms INT-v-NOBABBLE and INT-v-BABBLE-DATA with a pre-registered SECONDARY contrast
+        (babble_attribution) that has its own rule and never moves A1's verdict.
 
 WHAT THIS FILE IS
   * The ARM WIRING and the ORDER OF OPERATIONS of the A1 run, with every call site of the I1
@@ -107,6 +112,9 @@ FLOORS = {
 #   only because they share NATIVE's init (SHARED_INIT). The fallback is a flagged open item (O12b).
 STRATUM_RULE = "env_only_random_policy"
 STRATUM_FALLBACK = "native_pair_shared_init"
+# v3b (O12b, user 2026-09-25 ~18:50Z): the pair rule is DECIDED. The env-only classifier and its validity check are
+# kept report-only (they document why); choose_stratum_rule returns the decided rule whatever the validity says.
+STRATUM_DECIDED: Optional[str] = STRATUM_FALLBACK
 CLS_STEPS = STRATUM_WINDOW
 EARLY_MIN = 10
 EP_CAP = 200
@@ -189,6 +197,13 @@ def arm_table(valuation_mode: str) -> List[Dict[str, Any]]:
             arms.append(dict(name="INT-%s-NOVAL" % v, trainer=True, shuffle=False,
                              preset="W6:%s:ABSENT" % v, config=VARIANT_CONFIG[v], agent_seed_offset=0,
                              role="attribution ONLY (valuation vs other repairs; no verdict effect)"))
+        # v3b (O15): babble attribution. Same agent seed + shared init as INT-v, same valuation_mode, trainer ON.
+        arms.append(dict(name="INT-%s-NOBABBLE" % v, trainer=True, shuffle=False, preset=base["preset"],
+                         config=dict(VARIANT_CONFIG[v], babbling_source="off"), agent_seed_offset=0,
+                         role="babble attribution ONLY (secondary contrast; no verdict effect)"))
+        arms.append(dict(name="INT-%s-BABBLE-DATA" % v, trainer=True, shuffle=False, preset=base["preset"],
+                         config=dict(VARIANT_CONFIG[v], babbling_source="off", w3_inject="INT-%s retained babbling" % v),
+                         agent_seed_offset=0, role="babble attribution ONLY (secondary contrast; no verdict effect)"))
     return arms
 
 
@@ -296,7 +311,12 @@ def env_only_classifier_validity(counts: Dict[int, List[int]]) -> Dict[str, Any]
 
 def choose_stratum_rule(validity: Dict[str, Any]) -> Dict[str, Any]:
     """Pre-registered: the env-only rule (user decision) if its validity pilot is VALID on the pinned sha, else the
-    fallback (flagged, O12b). Fixed before any admitted seed runs; recorded in the queue entry."""
+    fallback (flagged, O12b). Fixed before any admitted seed runs; recorded in the queue entry.
+    v3b: O12b is decided (STRATUM_DECIDED) -- the pair rule applies regardless of the validity result, which is
+    reported alongside."""
+    if STRATUM_DECIDED is not None:
+        return {"rule": STRATUM_DECIDED, "flag": None, "decided": "user 2026-09-25 (O12b)",
+                "env_only_validity_reported": validity.get("verdict")}
     if validity.get("verdict") == "VALID":
         return {"rule": STRATUM_RULE, "flag": None}
     return {"rule": STRATUM_FALLBACK,
@@ -482,11 +502,14 @@ def score_variant(v: str, strata: Dict[str, List[Dict[str, Any]]]) -> Dict[str, 
     res["gain_P1b_mean"] = sum(d["P1b"]) / len(d["P1b"])
     res["attribution"] = attribution(v, b)
     res["init_dominance"] = init_dominance(strata, v)     # REPORT-ONLY (prereg 6.6); nothing below reads it
+    res["babble_attribution"] = babble_attribution(strata, v)   # SECONDARY (prereg 6.7); own rule, no verdict effect
     cds = [k for k, r in c.items() if r["status"] == CD]
     if cds:
         res.update(verdict=CD, reason="ni_underpowered (non-inferiority cannot pass at this noise): %s" % cds)
         return res
     res["verdict"] = PASS if all(held.values()) else FAIL
+    if BABBLE_CONTRAST_GATES and res["babble_attribution"]["label"] != "behaviour_babbling_carries":
+        res["verdict"] = FAIL   # RETIRED/NEVER-ADOPTED rule, present only so the mutation check can show the separation
     if res["verdict"] == FAIL:
         sig = []
         if held["P1t"] and not held["P1b"]:
@@ -577,6 +600,50 @@ def init_dominance(strata: Dict[str, List[Dict[str, Any]]], v: str) -> Dict[str,
         }
         out[g] = blk
     return out
+
+
+# ----------------------------------------------------------------------------- babble attribution (SECONDARY, own rule)
+BABBLE_CONTRAST_GATES = False        # pre-registered False: the contrast never moves A1's verdict (mutation-checked)
+MODAL_SHARE_FLOOR = 0.05             # DRAFT SD floor (2 x 0.025) for modal-share deltas; no prior measurement
+
+
+def babble_attribution(strata: Dict[str, List[Dict[str, Any]]], v: str) -> Dict[str, Any]:
+    """v3b O15 (user 2026-09-25 ~18:50Z). SECONDARY, pre-registered, own rule; never an A1 criterion.
+    Arms (same agent seed, shared init): T = INT-v (behaviour babbling), D = INT-v-BABBLE-DATA (own phase 1 native,
+    W3 member fed T's retained babbling transitions at the same phase-1 step indices), O = INT-v-NOBABBLE (no babbling).
+    Init-dominance measure per arm: modal-action share over the closed loop (lower = weaker init attractor); under shared
+    init also TV(arm, NATIVE same seed) (higher = further from the init's native policy). Pooled over all admitted seeds.
+      behaviour  = sup(modal(D) - modal(T), MODAL_SHARE_FLOOR)   behaviour babbling beyond its data
+      data       = sup(modal(O) - modal(D), MODAL_SHARE_FLOOR)   babbling data alone
+      label: behaviour_babbling_carries (behaviour and not data) | babbling_data_carries (data and not behaviour) |
+             both | neither_detected. CANNOT_DETERMINE if any seed lacks T/D/O action counts.
+    Prediction (stated, not assumed): if babbling prevents an init attractor, behaviour holds and D ~ O; if babbling only
+    supplies world-head data, data holds and D ~ T. Reward contrasts (benign, floor 0.90) are reported alongside."""
+    T, D, O = "INT-%s" % v, "INT-%s-BABBLE-DATA" % v, "INT-%s-NOBABBLE" % v
+    seeds = [s for g in (BENIGN, TRAPPED) for s in strata.get(g, [])]
+    have = [s for s in seeds if all(a in s["arms"] and s["arms"][a].get("action_counts") for a in (T, D, O))]
+    if not seeds or len(have) < len(seeds):
+        return {"label": CD, "reason": "babble arms or action counts missing on %d seed(s)" % (len(seeds) - len(have)),
+                "secondary": True}
+    ms = lambda s, a: _modal_share(s["arms"][a]["action_counts"])  # noqa: E731
+    beh = superiority([ms(s, D) - ms(s, T) for s in have], MODAL_SHARE_FLOOR)
+    dat = superiority([ms(s, O) - ms(s, D) for s in have], MODAL_SHARE_FLOOR)
+    bh, dh = beh["status"] == HOLDS, dat["status"] == HOLDS
+    label = ("behaviour_babbling_carries" if bh and not dh else "babbling_data_carries" if dh and not bh
+             else "both" if bh and dh else "neither_detected")
+    tv = {}
+    for a in (T, D, O):
+        xs = [_tv(s["arms"][a]["action_counts"], s["arms"]["NATIVE"]["action_counts"]) for s in have
+              if s["arms"]["NATIVE"].get("action_counts")]
+        tv[a] = (sum(xs) / len(xs)) if xs else None
+    b = [s for s in strata.get(BENIGN, []) if s in have]
+    rw = {}
+    if len(b) >= 2:
+        W = lambda s, a: s["arms"][a]["reward_LAST"]  # noqa: E731
+        rw = {"behaviour_reward": superiority([W(s, T) - W(s, D) for s in b], FLOORS[BENIGN]["reward"])["status"],
+              "data_reward": superiority([W(s, D) - W(s, O) for s in b], FLOORS[BENIGN]["reward"])["status"]}
+    return {"label": label, "secondary": True, "gates_a1": BABBLE_CONTRAST_GATES, "behaviour_test": beh,
+            "data_test": dat, "tv_to_native_mean": tv, "reward_contrasts_benign": rw}
 
 
 def head_to_head(results: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
@@ -691,7 +758,8 @@ def _sgn(seed: int) -> int:
 def _synthetic(stratum: str, seed: int, gain: float, *, shuf_gain: Optional[float] = None, frozen_learn: float = 0.0,
                contacts_up: float = 0.0, grounded_delta: float = 0.1, noise: float = 0.05, n_reseed: int = 3,
                pre_ok: bool = True, int_noise: float = 0.05, g_tie: bool = False,
-               noval_gain: Optional[float] = None, jit: float = 0.0, cjit: float = 0.0) -> Dict[str, Any]:
+               noval_gain: Optional[float] = None, jit: float = 0.0, cjit: float = 0.0,
+               babble: Optional[Sequence[float]] = None) -> Dict[str, Any]:
     """jit / cjit: INT-v's reward_LAST / contacts_LAST move by +-jit / +-cjit alternating over seeds, so the paired
     deltas have a nonzero across-seed SD (mean unchanged over an even number of seeds)."""
     base = -0.5 if stratum == BENIGN else -3.0
@@ -712,6 +780,13 @@ def _synthetic(stratum: str, seed: int, gain: float, *, shuf_gain: Optional[floa
         arms["INT-%s-FROZEN" % v] = rec(base + frozen_learn, base, 2.0, -0.2)
         if noval_gain is not None:
             arms["INT-%s-NOVAL" % v] = rec(base + noval_gain, base, 2.0, -0.2)
+        if babble is not None:   # (modal share of T, D, O); NATIVE collapsed at 0.9
+            arms["NATIVE"]["action_counts"] = {0: 900, 1: 100}
+            for nm, m in zip(("INT-%s" % v, "INT-%s-BABBLE-DATA" % v, "INT-%s-NOBABBLE" % v), babble):
+                mj = m + 0.02 * _sgn(seed)
+                if nm != "INT-%s" % v:
+                    arms[nm] = rec(base + gain / 2, base, 2.0, -0.2)
+                arms[nm]["action_counts"] = {0: round(1000 * mj), 1: 1000 - round(1000 * mj)}
     return {"seed": seed, "stratum": stratum, "arms": arms,
             "preconditions": {v: {"R0": pre_ok, "R1": True, "R2": True, "R3": True, "R4": True, "R5": True,
                                   "R6": True, "R7": True} for v in VARIANTS}}
@@ -846,7 +921,7 @@ def _cases() -> List[Any]:
     def _discriminative():
         cnt = {s: ([30, 29, 31, 30, 28] if s % 3 == 0 else [3, 4, 2, 3, 5]) for s in range(30)}
         return choose_stratum_rule(env_only_classifier_validity(cnt))["rule"]
-    add("O12 env-only classifier, discriminative env seeds -> env-only rule", "stratum", _discriminative, STRATUM_RULE)
+    add("O12b decided: pair rule even when env-only would be VALID", "stratum", _discriminative, STRATUM_FALLBACK)
     # v3 O12: shared init
     def _share():
         nat = {"enc.w": _T((4, 3), "N"), "e3.w": _T((5,), "N"), "e2.in": _T((8, 3), "N")}
@@ -878,9 +953,31 @@ def _cases() -> List[Any]:
             verdicts.append(pair[0] == pair[1])
         return (all(verdicts), len(set(round(x, 3) for x in reads if x is not None)) > 1)
     add("init-dominance readout cannot flip any verdict (report-only), yet it moves", "initdom", _initdom, (True, True))
-    add("cost estimate: 24 admitted seeds, 12 arms ABSENT", "cost",
+    # v3b O15: babble attribution (secondary, own rule)
+    def _bab(triple, strata_fn=None):
+        st = {B: _good(B, babble=triple), T: _good(T, babble=triple)} if strata_fn is None else strata_fn(triple)
+        r = score_variant("CODEC", st)
+        return (r["verdict"], r["babble_attribution"]["label"])
+    add("O15 babble: behaviour babbling carries (T 0.5, D 0.85, O 0.85)", "babble",
+        lambda: _bab((0.5, 0.85, 0.85)), (PASS, "behaviour_babbling_carries"))
+    add("O15 babble: data carries (T 0.52, D 0.5, O 0.85)", "babble",
+        lambda: _bab((0.52, 0.5, 0.85)), (PASS, "babbling_data_carries"))
+    add("O15 babble: nothing detected (all 0.85)", "babble", lambda: _bab((0.85, 0.85, 0.85)), (PASS, "neither_detected"))
+    def _bab_noflip():
+        out = []
+        for base_strata in (lambda tr: {B: _good(B, babble=tr), T: _good(T, babble=tr)},
+                            lambda tr: {B: _seeds(B, 0.1, shuf_gain=-1.0, babble=tr), T: _good(T, babble=tr)}):
+            vs = {score_variant("CODEC", base_strata(tr))["verdict"] for tr in ((0.5, 0.85, 0.85), (0.85, 0.85, 0.85),
+                                                                                 (0.52, 0.5, 0.85))}
+            out.append(len(vs) == 1)
+        return all(out)
+    add("O15 babble-attribution arms cannot flip A1's verdict (secondary, own rule)", "babble", _bab_noflip, True)
+    add("O15 babble arms missing -> contrast CD, verdict unchanged", "babble",
+        lambda: (score_variant("CODEC", {B: _good(B), T: _good(T)})["verdict"],
+                 score_variant("CODEC", {B: _good(B), T: _good(T)})["babble_attribution"]["label"]), (PASS, CD))
+    add("cost estimate: 24 admitted seeds, 16 arms ABSENT (v3b: +4 babble arms)", "cost",
         lambda: (cost_estimate("ABSENT")["admitted_seeds"], cost_estimate("ABSENT")["arms_native_family"] +
-                 cost_estimate("ABSENT")["arms_int"]), (24, 12))
+                 cost_estimate("ABSENT")["arms_int"]), (24, 16))
     return C
 
 
@@ -909,13 +1006,18 @@ MUTATIONS = [
                 g["REQUIRED_GATES"].__setitem__("ACT", g["REQUIRED_GATES"]["ACT"] + ("GASP_e_consumer_mediated",)))),
     ("tie winner back to the v1 name 'ASP'", "h2h both PASS within bound -> tie rule (ACT)",
      lambda g: g.__setitem__("SIMPLER_VARIANT", "ASP")),
-    ("O12: env-only validity gate off", "O12 env-only classifier on the measured pilot -> DEGENERATE -> fallback rule",
-     lambda g: (g.__setitem__("ENV_ONLY_MIN_ICC", -1.0), g.__setitem__("ENV_ONLY_MIN_CLASS_FRAC", 0.0))),
+    ("O12: env-only validity gate off (and O12b undecided)", "O12 env-only classifier on the measured pilot -> DEGENERATE -> fallback rule",
+     lambda g: (g.__setitem__("STRATUM_DECIDED", None), g.__setitem__("ENV_ONLY_MIN_ICC", -1.0),
+                g.__setitem__("ENV_ONLY_MIN_CLASS_FRAC", 0.0))),
+    ("O12b undecided (v3: validity-gated env-only rule)", "O12b decided: pair rule even when env-only would be VALID",
+     lambda g: g.__setitem__("STRATUM_DECIDED", None)),
+    ("O15: babble contrast leaks into the A1 verdict", "O15 babble-attribution arms cannot flip A1's verdict (secondary, own rule)",
+     lambda g: g.__setitem__("BABBLE_CONTRAST_GATES", True)),
     ("O12: shared init off (v2: same seed, nothing copied)", "O12 share_init: shared same-shape keys from NATIVE; mismatch + INT-only kept",
      lambda g: g.__setitem__("SHARED_INIT", False)),
 ]
 _MUTABLE = ("FLOORS", "P1G_STRICT", "NI_UNDERPOWERED_CD", "REQUIRED_GATES", "SIMPLER_VARIANT", "SCORING",
-            "ENV_ONLY_MIN_ICC", "ENV_ONLY_MIN_CLASS_FRAC", "SHARED_INIT")
+            "ENV_ONLY_MIN_ICC", "ENV_ONLY_MIN_CLASS_FRAC", "SHARED_INIT", "STRATUM_DECIDED", "BABBLE_CONTRAST_GATES")
 
 
 def mutation_check() -> bool:
@@ -954,7 +1056,7 @@ def describe() -> None:
                   % (a["name"], a["trainer"], a["shuffle"], a["agent_seed_offset"], a["role"]))
     print("seeds: %s admitted per stratum (+%d reserves each); scoring=%s (SE_MULT %.1f)"
           % (json.dumps(N_PER_STRATUM), RESERVE_PER_STRATUM, SCORING, SE_MULT))
-    print("stratum rule: %s if its validity pilot is VALID, else %s (O12b)" % (STRATUM_RULE, STRATUM_FALLBACK))
+    print("stratum rule: %s (DECIDED, O12b user 2026-09-25); env-only %s kept report-only" % (STRATUM_DECIDED, STRATUM_RULE))
     print("pilot validity: %s" % json.dumps(env_only_classifier_validity(PILOT_ENV_ONLY_EARLY600)))
     print("per-seed order: pin(R6) -> [stratum sidecar] -> NATIVE -> NATIVE-R1..R3 -> INT-* arms (each built with"
           " share_init from a NATIVE built at its own agent seed; require_stratum_sidecar first)")
