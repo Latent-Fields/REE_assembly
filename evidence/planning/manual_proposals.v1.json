@@ -3554,6 +3554,85 @@
       "notes": "Minted by IGW-20260923-251 (/queue-experiment, headless, session igw-251-proposal-for-mech-079) purely to carry the blocked_substrate disposition durably: the auto-generated EXP-#### for EVB-1419 is regenerated every governance cycle, so the stop is recorded here keyed on (backlog_id=EVB-1419, proposal_type=experimental) to survive. Fields status/gated_at_utc/gated_by_session/gating_reason/release_condition/blocked_by/blocked_note are all in build_experiment_indexes._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS, so they propagate onto the regenerated auto row (currently EXP-0816). Status is set in BOTH files per REE_assembly 52e37f8ec4 (ARC-019/EVB-1189), where a manual-only edit was silently reverted by the next regen. Sources read: claims.yaml MECH-079 (what_would_answer, full five-part falsifier); evidence/planning/falsifier_completion_and_runnability_audit_20260921.json+.md (MECH-079 row, R7 primary / R8 secondary, scope_class v3_linked, gap_disposition 'EXISTING NODE, MISSING EDGE'); ree-v3 ree_core/hippocampal/anchor_set.py, ghost_goal_bank.py, possibility_topology.py, module.py; ree_core/utils/config.py (HippocampalConfig goal_cue_centering, use_possibility_topology); manifest v3_exq_773_mech076_residue_basin_geometry_doseresponse (MECH-076 PASS/supports). MECH-079 currently has zero experimental evidence (no entry in claim_evidence.v1.json, no experiment in ree-v3/experiments tags it, no queue entry). No experiment script was written and no queue entry was added.",
       "executed_by": null,
       "executed_queue_id": null
+    },
+    {
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-25",
+      "registered_utc": "2026-09-25",
+      "gated_by_session": "thought-digest-registry-backlog-20260925",
+      "proposal_id": "EXP-1405",
+      "claim_id": "SD-002",
+      "related_claims": [
+        "SD-002",
+        "SD-001"
+      ],
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 240,
+      "objective": "Test SD-002's functional content per its what_would_answer (digested 2026-09-25): does the E1 associative prior make HippocampalModule's rollout search terrain-informed? The wiring exists (module.py:562, agent.py:6952) but at shipped defaults no loss trains terrain_prior, so the E1 channel has never been exercised.",
+      "design": "Train the full V3 pipeline with the EXQ-042 / V3-EXQ-1061 terrain_prior BC loss (MSE(terrain_prior mean, selected trajectory AO sequence.detach()), Adam 5e-4), then compare matched-seed arms E1_ON (e1_prior intact into terrain_prior) vs E1_ZERO (e1_prior zeroed in the terrain_prior input only, width preserved, terrain_prior trained under the same ablation) vs E1_SHUFFLED (e1_prior permuted across batch/time), >= 3 seeds. Measure residue/harm along the initial (pre-refit) proposal mean, the post-refit selected trajectory, and episode harm-contact rate / path efficiency.",
+      "acceptance_checks": [
+        "PASS: E1_ON beats both E1_ZERO and E1_SHUFFLED on initial-proposal residue AND on one behavioural metric (harm-contact rate or path efficiency), on >= 2/3 seeds, effect > seed SD of the difference and above an absolute floor.",
+        "FAIL: no arm difference on proposal residue or behaviour with all preconditions met -- the E1 channel is then redundant with z_world + residue_val.",
+        "PARTIAL: an effect at the proposal mean that CEM refit fully erases is reported as partial (shapes initialisation, not selection), not PASS.",
+        "NON-DEGENERACY GUARD (run is vacuous, not FAIL, unless all hold): terrain loss <= 0.7x initial with non-zero per-state proposal-mean variance; E1 loss converged and e1_prior not ~zeros / ~z_world copy; E1-tick zero-fill fraction < 10% on measured E3 ticks."
+      ]
+    },
+    {
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-25",
+      "registered_utc": "2026-09-25",
+      "gated_by_session": "thought-digest-registry-backlog-20260925",
+      "proposal_id": "EXP-1406",
+      "claim_id": "EXT-002",
+      "related_claims": [
+        "EXT-002"
+      ],
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 300,
+      "objective": "Run the stage-2b test EXT-002's what_would_answer specifies (digested 2026-09-25), which the V3-EXQ-1036 autopsy Section 7 routed on 2026-09-17 but which was never queued: does the residue field produce hold-aware revisit-avoidance of erred keys (residue READ on re-approach), under the two outcome-independent screens V3-EXQ-983a already ratified?",
+      "design": "Residue-frozen ablation: A0 (residue intact) vs A1 (residue frozen), matched seeds. Pre-registered outcome-independent screens: P1 revisit_outcome_heterogeneity >= FLOOR_REVISIT_HETEROGENEITY (0.10) on every pooled cell (the 983a PreconditionSpec); P2 per-seed action-stream divergence > 0. P4: hold-aware key registration -- harm on a HELD e3 tick is attributed to the governing FRESH-decision key. P5: keep the harm-event count within the pre/post window well below num_basis_functions=32 to avoid ring-eviction confounding. MIN_POOLED_SEEDS >= 3 with effective n reported separately.",
+      "acceptance_checks": [
+        "PASS: P1-P4 all green AND effective n >= 3 AND A0 shows a lower hold-aware repeat-visit rate to erred keys than A1 at a control-arm-derived bar (NOT the withdrawn 1036 fallback bar).",
+        "FAIL: A0 and A1 show no discriminable hold-aware revisit-avoidance difference with P1-P5 all holding and substantial per-seed action-stream divergence (residue written but not read: H-residue-written-not-read).",
+        "NON-DEGENERACY GUARD: a screen failure (P1 or P2) or effective n < 3 is a non-degenerate refusal, not a FAIL against the claim; P5 residue-capacity confound must be designed out up front."
+      ]
+    },
+    {
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-25",
+      "registered_utc": "2026-09-25",
+      "gated_by_session": "thought-digest-registry-backlog-20260925",
+      "proposal_id": "EXP-1407",
+      "claim_id": "MECH-224",
+      "related_claims": [
+        "MECH-224",
+        "ARC-024",
+        "MECH-071"
+      ],
+      "dispatch_mode": "diagnostic_probe",
+      "estimated_minutes": 120,
+      "objective": "Test the V3-scoped leg of MECH-224 per its what_would_answer (digested 2026-09-25): is E3.harm_eval's output distribution piecewise/clustered across the harm-only event classes (none/approach/contact) rather than smoothly graded? The V4 behavioural-strategy leg stays substrate_conditional.",
+      "design": "Reuse the ARC-024/MECH-071 CausalGridWorldV2 proxy-hazard-field setup (use_proxy_fields=True) and event classifier. On a run that reproduces the live calibration gradient, pool per-event-class harm_eval scores for the harm-only classes (exclude benefit_approach, structurally unreachable at default tie-breaking per ARC-024's R5 finding), and run a unimodal-vs-multimodal test (Hartigan's dip statistic, or BIC comparison of 1- vs 2/3-component Gaussian mixtures), >= 3 seeds.",
+      "acceptance_checks": [
+        "PASS: with the calibration gradient live and >= 20 events/class/seed, the multimodality test rejects the unimodal null in favour of >= 2 components with inter-cluster gaps exceeding within-cluster spread on >= 2/3 seeds.",
+        "FAIL: with preconditions met, the pooled distribution is indistinguishable from a single smooth unimodal fit (response magnitude graded, response form not discrete).",
+        "NON-DEGENERACY GUARD (run is vacuous, not FAIL, unless all hold): calibration_gap clears the EXQ-026 bar of 0.03 LIVE in the same run; >= 20 events per class per seed for none/approach/contact; benefit_approach excluded."
+      ]
     }
   ]
 }
