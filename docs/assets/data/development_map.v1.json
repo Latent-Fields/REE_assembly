@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-24T10:28:00Z",
+  "generated_at": "2026-09-25T05:13:56Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -846,7 +846,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "158 / 255",
+      "value": "164 / 260",
       "detail": "modules recorded as built"
     },
     {
@@ -1193,6 +1193,21 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-069",
+              "title": "The self is defined as the dynamically sustained process maintaining high temporal-depth verisimilitude across time, not a static representation.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "INV-067",
+                "INV-068"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-054",
               "title": "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity.",
               "status": "candidate",
@@ -1222,21 +1237,6 @@
                 "INV-086",
                 "SD-014",
                 "SD-015"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-095",
-              "title": "Existence has value sufficient to justify its continuation.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 0,
-              "depends_on": [
-                "INV-026",
-                "ARC-024"
               ],
               "additional_dependencies": 0
             }
@@ -1454,7 +1454,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 39,
+              "incoming_dependencies": 40,
               "depends_on": [
                 "ARC-005",
                 "MECH-059",
@@ -1766,7 +1766,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 262,
+      "total": 259,
       "buckets": [
         {
           "key": "active",
@@ -2017,8 +2017,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 232,
-          "more_count": 222,
+          "count": 229,
+          "more_count": 219,
           "nodes": [
             {
               "id": "INV-049",
@@ -2196,7 +2196,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 335,
+      "total": 339,
       "buckets": [
         {
           "key": "active",
@@ -2386,7 +2386,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 76,
+              "incoming_dependencies": 77,
               "depends_on": [
                 "SD-010",
                 "ARC-027"
@@ -2542,8 +2542,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 267,
-          "more_count": 257,
+          "count": 271,
+          "more_count": 261,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2833,6 +2833,25 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-405",
+              "title": "Fast empathy mechanism: other-bound affect is produced by routing the agent's OWN motivational-affective streams (SD-011 suffering, MECH-112 wanting, etc.) through a stable other-model slot -- e.g. other-bound suffering = suffering stream + other-model binding; MECH-183 z_beta leakage is one such attribution-gated binding.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "ARC-010",
+                "MECH-031",
+                "MECH-183",
+                "SD-011",
+                "MECH-112",
+                "MECH-163"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-084",
               "title": "Typed signed cognifold coupling: the cognifold represents inter-field coupling as a typed, signed edge -- cognifold_edge = {source, target, sign, gain, precision, gate, timescale, write_authority} -- with competition (sign < 0) as a FIRST-CLASS GENERATIVE coupling mode alongside cooperation (sign > 0) and gated-decoupling, not an emergent by-product of selection softmaxes. Three coupling modes: cooperative (binding, coherent trajectory, shared context), competitive (suppress incompatible trajectories, preserve boundaries, prevent runaway resonance, stop one field absorbing all others), gated-decoupling (isolate simulation / offline integration / unsafe candidates from release authority).",
               "status": "candidate",
@@ -2930,21 +2949,6 @@
                 "ARC-021"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-191",
-              "title": "Stereotyped behavioral signals are causal externalizations of specific internal functional states, making them cross-architecturally legible without learned convention.",
-              "status": "candidate",
-              "phase": "v5",
-              "claim_class": "horizon_v5",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "MECH-182",
-                "MECH-183"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2954,13 +2958,15 @@
   "record_counts": {
     "active": 175,
     "closed": 50,
-    "planned": 963
+    "planned": 964
   },
   "archive": {
-    "snapshot_count": 114,
-    "latest": "2026-09-21",
+    "snapshot_count": 116,
+    "latest": "2026-09-25",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-09-25",
+      "2026-09-24",
       "2026-09-21",
       "2026-09-20",
       "2026-09-19",
@@ -2968,9 +2974,7 @@
       "2026-09-15",
       "2026-09-14",
       "2026-09-13",
-      "2026-09-12",
-      "2026-09-11",
-      "2026-09-08"
+      "2026-09-12"
     ]
   }
 }

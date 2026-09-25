@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-24T10:28:26Z",
+  "generated_at": "2026-09-25T05:14:28Z",
   "counts": {
-    "total": 1188,
+    "total": 1189,
     "reading_drift": 3,
-    "unstamped": 3,
+    "unstamped": 4,
     "needs_review": 2,
-    "never_reviewed": 1167,
-    "provenance_drift": 38
+    "never_reviewed": 1168,
+    "provenance_drift": 41
   },
   "reading_drift": [
     {
@@ -46,6 +46,10 @@
     {
       "claim": "GOV-CRITBAR-1",
       "would_derive": "candidate"
+    },
+    {
+      "claim": "MECH-586",
+      "would_derive": "candidate/substrate_conditional"
     }
   ],
   "needs_review": [
@@ -1231,7 +1235,8 @@
     "MECH-583",
     "MECH-584",
     "MECH-585",
-    "GOV-CRITBAR-1"
+    "GOV-CRITBAR-1",
+    "MECH-586"
   ],
   "provenance_drift": [
     {
@@ -1305,6 +1310,11 @@
       "derived_from": "failure_autopsy_V3-EXQ-1012c_2026-09-24"
     },
     {
+      "claim": "MECH-268",
+      "stored_from": "failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729",
+      "derived_from": "failure_autopsy_V3-EXQ-1089_2026-09-25"
+    },
+    {
       "claim": "MECH-303",
       "stored_from": "failure_autopsy_V3-EXQ-1080_2026-09-24",
       "derived_from": "failure_autopsy_V3-EXQ-939_2026-08-20"
@@ -1342,7 +1352,7 @@
     {
       "claim": "MECH-321",
       "stored_from": "failure_autopsy_MECH-320-defect-cluster_2026-09-23",
-      "derived_from": "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-919"
+      "derived_from": "failure_autopsy_V3-EXQ-1087_2026-09-25"
     },
     {
       "claim": "MECH-329",
@@ -1367,7 +1377,7 @@
     {
       "claim": "MECH-428",
       "stored_from": "failure_autopsy_V3-EXQ-1039a_2026-09-20",
-      "derived_from": "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+      "derived_from": "failure_autopsy_V3-EXQ-1093_2026-09-25"
     },
     {
       "claim": "MECH-445",
@@ -1388,6 +1398,16 @@
       "claim": "ARC-108",
       "stored_from": "failure_autopsy_V3-EXQ-1039_2026-09-16",
       "derived_from": "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+    },
+    {
+      "claim": "SD-081",
+      "stored_from": "decision:SD-081@2026-09-23T09:24:24.993828Z",
+      "derived_from": "failure_autopsy_V3-EXQ-1083_2026-09-25"
+    },
+    {
+      "claim": "SD-092",
+      "stored_from": "decision:SD-092@2026-08-08T08:30:48.805613Z",
+      "derived_from": "failure_autopsy_V3-EXQ-1093_2026-09-25"
     },
     {
       "claim": "ARC-131",

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-24T17:40:17Z
+Generated: 2026-09-25T05:13:55Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,18 +8,19 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **72.3%** across 98 non-deferred nodes in 18 plan(s) with closure frontmatter.
+- Weighted progress: **72.3%** across 98 non-deferred nodes in 19 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **34** nodes.
-- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **11** nodes.
+- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **12** nodes.
 - Deferred (not required for v3 closure): 10 nodes.
 - Done: 64 nodes.
-- Status tally: assembling=11  blocked=13  blocked_pending_substrate=3  deferred=10  done=64  in_progress=9  open=4  partial=3  upstream_blocked=2
+- Status tally: assembling=12  blocked=13  blocked_pending_substrate=3  deferred=10  done=64  in_progress=9  open=4  partial=3  upstream_blocked=2
 
 ## Plans
 
 | plan | title | nodes | progress | status counts | last_updated |
 |------|-------|-------|----------|---------------|--------------|
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
+| `sd_pp_precision_provenance_plan.md` | SD-PP-1..4 precision-provenance substrate + the B-series behavioural/diagnostic follow-on (SD-PP-B1..B11) | 1 | 0% | assembling:1 | 2026-09-25 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-09-08 |
 | `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
 | `zworld_adequacy_plan.md` | observation -> z_world encoding adequacy (the V3 binding-constraint interface) | 2 | 10% | assembling:1 upstream_blocked:1 | 2026-09-21 |
@@ -79,14 +80,14 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-G` | Theory 7 (blocked on GAP-B): MECH-314 curiosity weight (Goldilocks calibration) | blocked |  | low |  | BLOCKED ON behavioral_diversity_isolation:GAP-B only (status partial, severity load-bearin | 2026-08-18 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:MECH-191` | MECH-191 cross-architecture legibility unblock check (does A's dispositional rea | open |  | low |  | depends_on: global_workspace_jlens:A | 2026-07-09 |
 
-## Assembly frontier -- required, under construction (11)
+## Assembly frontier -- required, under construction (12)
 
 Nodes whose honest state is "the substrate for this is being assembled" -- NOT a stalled gap and NOT deferred. They are held out of the closure % (so correct, unhurried construction is never scored as failure) and out of the Remaining backlog, and surfaced here on their own axis. `awaiting` names the substrate under construction; `assembly_status` is its build state (queued / in_progress / built); a node is restful until its optional `revisit_after` date passes (see the drift report's Assembly-frontier section).
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=governance-reclassify | blocked_on_upstream |  | 2026-08-12 |
-| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | {'work_graph_debt_class': 'none on this node -- no build, pr | built |  | 2026-06-23 |
+| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | {'work_graph_debt_class': 'none on this node -- no build, pr | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | {'work_graph_debt_class': 'none on this node -- no build, pr | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | {'work_graph_debt_class': 'none on this node -- no build, pr | blocked_on_upstream |  |  |
@@ -95,6 +96,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | {'work_graph_debt_class': 'none on this node -- no build, pr | built |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | {'work_graph_debt_class': 'none on this node -- no build, pr | blocked_on_upstream |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
+| sd_pp_precision_provenance_plan.md | `sd_pp_precision_provenance:PP-1` | world-forward head readability/action-sensitivity operating-point chai | assembling | Node advances when a driver measures the inverted-map live_g | built |  | 2026-09-25 |
 | zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | observation -> z_world preserves decision-relevant content (SD-106 gen | assembling | SD-106 | built | 2026-10-15 | 2026-09-21 |
 
 ## Deferred -- not required for v3 closure (10)

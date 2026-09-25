@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-09-24T10:27:55Z
+Generated: 2026-09-25T05:13:51Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -21,15 +21,18 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 | policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | blocked | V3-EXQ-938 | manifest_evidence_direction=non_contributory |
 | self_attribution_plan.md | `self_attribution:GAP-1` | blocked | V3-EXQ-445h | case_3_self_tag |
 
-## Stale since last update -- review (1)
+## Stale since last update -- review (4)
 
 Non-terminal nodes (including ones Suppressed above) where newer evidence landed that the node frontmatter may not have absorbed: a later-lettered owner_exq sibling reached terminal state (lineage advanced), and / or a confirmed failure_autopsy touching the node's `unblocks_claims` is dated after the node's `last_updated`. Review each: update owner_exq / status / resume_condition and bump `last_updated`, or (if the new evidence genuinely does not change the node) bump `last_updated` to acknowledge it. Not counted as drift.
 
 | plan | node | status | owner_exq | node last_updated | why |
 |------|------|--------|-----------|-------------------|-----|
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | in-progress | _none_ | 2026-09-16 | failure_autopsy_V3-EXQ-1012c_2026-09-24.json (2026-09-24) reclassified MECH-439 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | in-progress | _none_ | 2026-09-16 | failure_autopsy_V3-EXQ-1089_2026-09-25.json (2026-09-25) reclassified MECH-268 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | in_progress | _none_ | 2026-09-16 | failure_autopsy_V3-EXQ-1089_2026-09-25.json (2026-09-25) reclassified MECH-268 |
+| policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | blocked | V3-EXQ-938 | 2026-08-21 | failure_autopsy_V3-EXQ-1087_2026-09-25.json (2026-09-25) reclassified MECH-321 |
 
-## Assembly frontier -- resting, not drift (11)
+## Assembly frontier -- resting, not drift (12)
 
 Nodes with status `assembling` / `open_by_design`: required for v3 but under construction. They are a stable resting state -- NOT counted as drift or stale, and they need no recurring re-stamp to stay quiet. Listed here for visibility only. A node flagged **revisit_due** has passed its optional `revisit_after` date and should be reviewed (resume / re-state / extend the date).
 
@@ -45,6 +48,7 @@ Nodes with status `assembling` / `open_by_design`: required for v3 but under con
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | assembling | _unset_ | blocked_on_upstream | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | assembling | _unset_ | blocked_on_upstream | _none_ | no |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress | _none_ | no |
+| sd_pp_precision_provenance_plan.md | `sd_pp_precision_provenance:PP-1` | assembling | _unset_ | built | _none_ | no |
 | zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | assembling | SD-106 | built | 2026-10-15 | no |
 
 ## Status-plane drift -- projected `live` != stored `live` (0 of 99 collapsed node(s))

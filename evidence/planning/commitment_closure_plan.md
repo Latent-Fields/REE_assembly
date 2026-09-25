@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -38,10 +38,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -56,10 +56,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -75,10 +75,10 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -126,10 +126,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -153,10 +153,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -171,10 +171,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -188,10 +188,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -210,10 +210,10 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -243,10 +243,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -261,10 +261,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -280,10 +280,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
+        as_of: "2026-09-25"
+        from: "failure_autopsy_V3-EXQ-1089_2026-09-25"
         verdict: "non_contributory/standard"
-        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
