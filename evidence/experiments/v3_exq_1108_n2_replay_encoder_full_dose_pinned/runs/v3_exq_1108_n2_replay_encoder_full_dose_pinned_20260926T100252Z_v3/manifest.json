@@ -1,0 +1,176 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1108_n2_replay_encoder_full_dose_pinned",
+  "run_id": "v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-26T10:02:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "bdfe901b37382017aff2af22b43177086506d563",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world",
+    "env_version": "causal_grid_world/v1",
+    "dynamics_hash": "4e8e3931183d",
+    "reward_hash": "71dc5209a8cb",
+    "observation_hash": "4f8eefa53cb2",
+    "config_hash": "a979df6a5755",
+    "tier": "proxy_fields"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "neither",
+    "summary": "N2 at post 1200, seeds [811, 812, 813, 814, 815]: verdict NEITHER. frozen (a) 4/5, reencode keeps bar False, stored keeps bar False.",
+    "preconditions": [
+      {
+        "name": "control_arm_meets_gate_a",
+        "description": "positive control: the frozen-encoder arm (= the W3 member-gate config) must meet (a) on >= n-1 seeds, else the decision rule returns CANNOT_DETERMINE (pre-registered rule 1)",
+        "measured": 4.0,
+        "threshold": 4.0,
+        "control": "frozen arm: no encoder training, the configuration W3 passed at this dose",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "pre_phase_identical_across_arms",
+        "description": "babbling + pre phase are byte-identical across arms within a seed (W6a trains only post)",
+        "measured": 0.003333333333333355,
+        "threshold": 0.0,
+        "direction": "upper",
+        "met": false
+      },
+      {
+        "name": "retained_babbling_set_frozen",
+        "description": "the W3 retained babbling set is unchanged after the post phase in every run",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "retention_denominator_positive",
+        "description": "(b)'s pre-registered ratio (post - B0)/(pre - B0) is only interpretable when pre > B0; count of real runs with pre <= B0 (red-team F3; the formula itself is unchanged)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "all_runs_completed",
+        "description": "every B0 and (seed, arm, twin) run wrote its record",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "frozen_keeps_bar": true,
+      "reencode_keeps_bar": true,
+      "stored_keeps_bar": true
+    },
+    "what_a_null_does_not_mean": "CANNOT_DETERMINE says the frozen control did not reach the W3 bar at this dose on these seeds, so no replay policy can be judged; it says nothing about re-encode vs stored. NEITHER says neither W3 replay policy keeps the L2R bar while W6a trains the encoder at 1 update per waking step for 1200 steps; it does not say a phased schedule (encoder frozen while W3 trains) fails. D1 only: no E3 consumer or behaviour is read. LEG (e) (amendment A1, red-team F1, stated before the run): in every W6a-ON run seen so far the rollout late-growth max exceeded 1.2 in BOTH the real arm and its label-permuted twin, while every frozen run passed; an (e) failure the twin shares reflects the trained encoder's latent space, which both W6a arms share, not the replay policy. So a NEITHER whose arms fail ONLY (e) (per_arm keeps_bar_excluding_e_secondary true, e_fail_twin_also_fails_e high) is a rollout-stability finding about the W6a encoder, not evidence that the buffer policy loses the L2R bar; the pre-registered verdict is still reported as computed.",
+    "dv_symmetry": "disc4/k are invariant to a uniform rescaling of the latent space, and W6a rescales z_world ~9x; the manipulation still reaches the DV through the head's TRAINING (stored z go stale, re-encoded z do not), not through the readout metric, and S1 (per-dimension standardised) reports whether any break is metric anisotropy. The shuf twin permutes action labels, which argmin-over-classes disc4 is NOT invariant to (it scores the true class)."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "9ada7e44bca5abfd96e1d6bce06212b97cd999fd2e81bc8da767437e03f82ff1",
+  "substrate_commit": {
+    "commit": "bdfe901b37382017aff2af22b43177086506d563",
+    "dirty": false,
+    "branch": "main"
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 28322.451806361,
+  "config": {
+    "post": 1200,
+    "ups": 8,
+    "w6a_ups": 1,
+    "w6a_batch": 64,
+    "pre_updates": 3000,
+    "b0_n_eps": 12,
+    "arms": [
+      "frozen",
+      "reencode",
+      "stored"
+    ],
+    "twins": [
+      "real",
+      "shuf"
+    ],
+    "perm": [
+      1,
+      2,
+      3,
+      4,
+      0
+    ],
+    "grid": 12,
+    "ep_steps": 200,
+    "world_dim": 32,
+    "alpha_world": 0.3,
+    "torch_threads": 2,
+    "substrate_pin": "9b322d5c8e3f4efaf1a4530ebae2e7f3ef2e3055",
+    "thresholds": {
+      "SEEDS": [
+        811,
+        812,
+        813,
+        814,
+        815
+      ],
+      "POST": 1200,
+      "UPS": 8,
+      "W6A_UPS": 1,
+      "W6A_BATCH": 64,
+      "PRE_UPDATES": 3000,
+      "B0_N_EPS": 12,
+      "A_DISC": 0.47,
+      "A_K": 10,
+      "RET_MIN": 0.5,
+      "E_LATE_MAX": 1.2,
+      "E_T30_MAX": 5.0,
+      "KEEP_A": 4,
+      "KEEP_B": 4,
+      "KEEP_TWIN_A_MAX": 1,
+      "KEEP_D": 5,
+      "KEEP_E": 4,
+      "CTRL_MISS_CD": 2,
+      "PERM": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ]
+    }
+  },
+  "seeds": [
+    811,
+    812,
+    813,
+    814,
+    815
+  ]
+}
