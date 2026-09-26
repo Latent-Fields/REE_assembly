@@ -6880,8 +6880,12 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-24T13:29:48Z",
       "staged_at": "2026-09-24T13:29:48Z",
-      "status": "launched_manual",
-      "launched_at": "2026-09-26T11:02:42Z"
+      "status": "completed",
+      "launched_at": "2026-09-26T11:02:42Z",
+      "completed_at": "2026-09-26T17:18:15Z",
+      "completion_summary": "SD-050 comparator event latch landed ree-v3 5d308b3 (default OFF, 16 contracts, liveness 57->7/590->20); V3-EXQ-1110 validation queued ree-v3 615f8a4; REE_assembly f2e9b42 substrate_queue/deps/doc + action-contingent-relief-provider gap; GFLAG-0562",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "SD-050 comparator event latch landed ree-v3 5d308b3 (default OFF, 16 contracts, liveness 57->7/590->20); V3-EXQ-1110 validation queued ree-v3 615f8a4; REE_assembly f2e9b42 substrate_queue/deps/doc + action-contingent-relief-provider gap; GFLAG-0562"
     },
     {
       "igw_id": "IGW-20260924-252",
@@ -10577,6 +10581,22 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-26T15:12:43Z",
       "re_eligible_after": "2026-09-28T15:12:43Z"
+    },
+    {
+      "stable_hash": "ae0f2a18fb33",
+      "igw_id_at_disposition": "IGW-20260924-224",
+      "owner_exq": null,
+      "claim_ids": [
+        "SD-050",
+        "MECH-302",
+        "MECH-304"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: suffering-derivative-comparator-refractory",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-26T17:18:15Z",
+      "re_eligible_after": "2026-09-28T17:18:15Z"
     }
   ]
 }
