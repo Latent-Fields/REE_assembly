@@ -3780,3 +3780,4 @@ One line per hourly tick. ASCII only.
 2026-09-26T16:16:01Z STAGE IGW-20260926-216 skill=/implement-substrate prio=25 worktree=igw-216-substrate-ready-suffering-deriva (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-26T17:18:15Z auto-defer igw-224-substrate-ready-suffering-deriva hash=ae0f2a18fb33 for 48h (complete)
 2026-09-26T17:18:15Z complete igw-224-substrate-ready-suffering-deriva launched_manual->completed outcome=USEFUL_LANDED: SD-050 comparator event latch landed ree-v3 5d308b3 (default OFF, 16 contracts,
+2026-09-26T17:19:39Z complete igw-216-substrate-ready-suffering-deriva staged->completed outcome=DUPLICATE: no action: duplicate of IGW-20260924-224, which landed the SD-050 comparator eve
