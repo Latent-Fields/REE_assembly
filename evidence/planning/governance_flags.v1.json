@@ -7240,9 +7240,9 @@
       "summary": "At dacc_weight>=1.0 the dACC payoff proxy (-e3.last_scores of the previous tick, agent.py select_action) is added back onto E3 scores via DACCtoE3Adapter (-mode_ev), making e3.last_scores an undamped integrator: measured |last_scores| max 2553 -> 11833 -> 23404 over one 1500-step run (seed 42, CausalGridWorldV2 8x8/8 hazards; bounded ~265 at dacc_weight 0.5, ~130 at 0.0). 15 drivers ran dacc_weight>=1.0 with no dacc_bias_max_abs cap (445, 446, 450, 453, 453a, 543f-l, 730, 870, 870a); whether each run's readout was contaminated (it depends on run length and on whether the DV read the E3 argmin/scores) is unverified per driver -- a per-run check is owed before this evidence keeps weighting. Found by the V3-EXQ-1104 red-team (fable), verified independently; substrate item sd032b-payoff-self-feedback-integrator registered.",
       "raised_by_session": "igw-222-substrate-ready-sd032b-candidate",
       "raised_at": "2026-09-25T08:14:06Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:22:42Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652): per-run check done. Of the 15 listed + 9 unlisted uncapped dacc>=1 drivers (610, 610a-f, 655, 656) only V3-EXQ-543k/543l carry scoring weight and their branch-e verdict is set by the dACC-free arms ARM_8/ARM_10 (3/3 inert) -> robust. 870a was capped (2.0), 730 never ran, 870 ERROR, 450 no manifest. No evidence_direction changes owed. Substrate half stays on sd032b-payoff-self-feedback-integrator (sequence after IGW-219's dacc.py build); drivers at dacc_weight>=1 must cap dacc_bias_max_abs until it lands."
     },
     {
       "flag_id": "GFLAG-0508",
