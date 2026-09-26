@@ -1,0 +1,14 @@
+LOCK ACQUIRED 2026-09-26T00:48:24Z n5seed723 freeMB 1643
+/Users/dgolden/REE_Working/REE_assembly/evidence/planning/probes/rollout/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[n5 s723 t=    4s] displacement modal orig {0: '(-1, 0)', 1: '(1, 0)', 2: '(0, -1)', 3: '(0, 1)', 4: '(0, 0)'} | shift {0: '(0, -1)', 1: '(0, 1)', 2: '(1, 0)', 3: '(-1, 0)', 4: '(0, 0)'}
+[n5 s723 t=   76s] INIT disc4 orig 0.2667 shift 0.2700 | B0 0.2533 k 0 (benign)
+[n5 s723 t=  132s] retained 2277 | pre disc4 0.3900 k 7 | PRE-SHIFT (end W3 protocol) orig 0.4133 k 10 bar False ret 1.171 | on shifted map 0.2100 k 10
+[n5 s723 t=  133s] snapshot ok (on-policy 1194, retained 2277)
+[n5 s723 t=  173s] CELL shift_gated      shift-map 0.3200 k 10 bar False | orig 0.4367 k 10 bar False ret 1.341 | bouts 3 (steps 600) events 1 first 600 replaced 573 flushed 1790 orig_left 1704 | g_mean 0.416 s_max 1.58 coinc 383 first 599 | would pe 0 ac 383 | zon ac -0.05 pe -0.15 | ret_err 3.807e-06
+[n5 s723 t=  231s] CELL shift_clamped    shift-map 0.2367 k 10 bar False | orig 0.4833 k 10 bar True ret 1.683 | bouts 0 (steps 0) events 0 first None replaced 0 flushed 0 orig_left 2277 | g_mean 0.1 s_max 1.56 coinc 0 first None | would pe 0 ac 36 | zon ac 0.03 pe -0.21 | ret_err 3.671e-06
+[n5 s723 t=  283s] CELL noshift_gated    shift-map 0.2200 k 10 bar False | orig 0.4633 k 10 bar False ret 1.537 | bouts 2 (steps 210) events 2 first 588 replaced 199 flushed 2166 orig_left 2078 | g_mean 0.123 s_max 0.93 coinc 8 first 587 | would pe 0 ac 8 | zon ac -0.23 pe -0.26 | ret_err 4.175e-06
+[n5 s723 t=  348s] CELL noshift_clamped  shift-map 0.2433 k 10 bar False | orig 0.4800 k 10 bar True ret 1.659 | bouts 0 (steps 0) events 0 first None replaced 0 flushed 0 orig_left 2277 | g_mean 0.1 s_max 1.15 coinc 0 first None | would pe 0 ac 47 | zon ac -0.16 pe -0.16 | ret_err 3.679e-06
+[n5 s723 t=  365s] CELL shift_oracle     shift-map 0.3533 k 10 bar False | orig 0.4067 k 10 bar False ret 1.122 | bouts 6 (steps 1200) events 1 first 0 replaced 1145 flushed 1194 orig_left 1132 | g_mean 1.0 s_max 1.64 coinc 1145 first 1 | would pe 0 ac 211 | zon ac nan pe nan | ret_err 4.064e-06
+[n5 s723 t=  365s] DONE 365s
+LOCK RELEASED 2026-09-26T00:54:31Z rc=0

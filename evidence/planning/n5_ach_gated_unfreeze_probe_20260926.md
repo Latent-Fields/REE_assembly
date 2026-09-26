@@ -1,6 +1,6 @@
 # Probe N5: does ACh-gated unfreeze revise W3's retained memory only when it should? (2x2 on the W3 member)
 
-- **Status: PRE-REGISTERED** (sections 1-3 committed before any registered seed ran). Session `bt0926-n5` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260926-coupled-n5-ach-unfreeze-probe`. Written 2026-09-26T00:24Z.
+- **Status: DONE -- verdict CANNOT_DETERMINE** (pre-registered rule 1: the shared pre-shift state missed the W3 bar on 3/5 seeds). On every seed, including the two evaluable ones, the shift half also fails: the gate does not detect the shift (it opens as often without one), and even an oracle unfreeze does not re-learn the shifted map to the bar in N = 1200. Sections 1-3 were committed before any registered seed ran (`815a8164bf`); addendum 3a before its runs (`3a9f2afa44`). Session `bt0926-n5` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260926-coupled-n5-ach-unfreeze-probe`. Written 2026-09-26T00:24Z.
 - **Code:** ree-v3 `1b013d6` (tag `archive/coupled-loop-repair-1b013d6`, `integration/coupled-loop-repair` with W3 `7428da3` + W6a + W4), throwaway detached worktree `.scratch/wt-n5`. **No `ree_core` edits**: g, surprise, unfreeze and the env shift are all harness-side.
 - **Plan of record:** `coupled_loop_repair_campaign_plan.md` sec 3 W2 (W2b unfreeze rule), sec 4 N5 row, W2b status row. Upstream: W3 record `w3_e2_world_member_build_20260925.md` (f82cb986c5); W3 probe code reused (`probes/w3/w3_l2r_member_probe.py`), B0 recompute recipe from N2 (`probes/n2`).
 - **Probe:** `probes/n5/n5_probe.py` (one process = one seed, all cells), lock wrapper `probes/n5/with_lock.sh` + `lock_acquire.py`, results `probes/n5/results/`.
@@ -62,10 +62,57 @@ Also stated (report-only, not verdict): spurious unfreeze events in `noshift_gat
 
 One seed (B0 + test sets ~150 s, shared phase ~80 s, 5 cells x ~90 s) is ~11 min of Mac wall under one lock hold (2 torch threads). **Reductions fixed before registering:** N = 1200 (not the calibration's 1800) and no mid-run checkpoints, because the Mac probe lock is shared with N2 (5 x ~21 min holds) and another worker. If the ~2.5 h cap is reached before all 5 seeds run, the verdict is reported over the seeds completed, labelled INTERIM, never silently. Lock: mkdir `mac_probe.lock`, owner file written only after the mkdir succeeded, released after each seed; the waiter retries every 30 s and also immediately on a change to the lock's parent directory (kqueue) -- a holder that re-acquires back-to-back otherwise starves a 30 s poller; >= 800 MB free + inactive required before acquiring.
 
-## 3a. Addendum (exploratory, NOT verdict-bearing), registered 2026-09-26T00:36Z after seed 721 only
+## 3a. Addendum (exploratory, NOT verdict-bearing), registered 2026-09-26T00:33Z after seed 721 only
 
 Seed 721 showed the report-only `shift_oracle` (1200 babbling steps at g = 1, FIFO replacing 1143 of 2293 retained entries) reaching only 0.367 on the shifted map. To tell whether the W2b revision rule must invalidate the whole contradicted retained set rather than replace it FIFO, one extra report-only cell runs on seeds 721 and 722 after the five registered seeds, as a separate process (`probes/n5/n5_probe_explore.py`, identical to `n5_probe.py` except the added mode): **`shift_oraclefull`** -- at the shift, all on-policy records are flushed AND the whole pre-shift retained set is quarantined (removed from replay); then N = 2400 babbling steps at g = 1 (a full re-development epoch, the size of the original babbling phase) with 8 updates per step. Readout: the post-shift bar on TE_shift and gate (a) on TE_orig. It does not enter the verdict.
 
-## 4. Results
+## 4. Results (seeds 721-725, all five complete; `probes/n5/results/N5_s72{1..5}.{json,log}`, summary `probes/n5/summarize_n5.py`)
 
-(pending)
+Per seed: disc4_h1 / k on the shifted map (TE_shift) and the original map (TE_orig), retention on the original map, and the gate's behaviour. Bar = disc4_h1 >= 0.47 and k = 10. k = 10 in every row, so the bar is decided by disc4 throughout.
+
+| seed | pre-shift TE_orig (bar) | cell | TE_shift | TE_orig | retention | bouts / unfreeze events (first coincidence step) | replaced / flushed |
+|---|---|---|---|---|---|---|---|
+| 721 | **0.537 (yes)** | shift_gated | 0.223 | 0.533 | 1.26 | 3 / 2 (360) | 572 / 1761 |
+| | | shift_clamped | 0.170 | 0.540 | 1.30 | 0 | 0 |
+| | | noshift_gated | 0.203 | **0.563** | **1.43** | 3 / 3 (472) | 573 / 1759 |
+| | | noshift_clamped | 0.177 | 0.540 | 1.30 | 0 | 0 |
+| | | shift_oracle | 0.367 | 0.433 | 0.70 | 6 / 1 (0) | 1143 / 1192 |
+| 722 | **0.470 (yes)** | shift_gated | 0.240 | 0.517 | 1.19 | 4 / 2 (33) | 765 / 1214 |
+| | | shift_clamped | 0.230 | 0.517 | 1.19 | 0 | 0 |
+| | | noshift_gated | 0.203 | **0.513** | **1.17** | 2 / 2 (590) | 252 / 2089 |
+| | | noshift_clamped | 0.223 | 0.527 | 1.24 | 0 | 0 |
+| | | shift_oracle | 0.393 | 0.400 | 0.54 | 6 / 1 (0) | 1140 / 1182 |
+| 723 | 0.413 (no) | shift_gated | 0.320 | 0.437 | 1.34 | 3 / 1 (599) | 573 / 1790 |
+| | | shift_clamped | 0.237 | 0.483 | 1.68 | 0 | 0 |
+| | | noshift_gated | 0.220 | 0.463 | 1.54 | 2 / 2 (587) | 199 / 2166 |
+| | | noshift_clamped | 0.243 | 0.480 | 1.66 | 0 | 0 |
+| | | shift_oracle | 0.353 | 0.407 | 1.12 | 6 / 1 (0) | 1145 / 1194 |
+| 724 | 0.443 (no) | shift_gated | 0.213 | 0.427 | 1.33 | 6 / 3 (17) | 950 / 1388 |
+| | | shift_clamped | 0.200 | 0.413 | 1.17 | 0 | 0 |
+| | | noshift_gated | 0.173 | 0.427 | 1.33 | 3 / 3 (162) | 573 / 1661 |
+| | | noshift_clamped | 0.213 | 0.427 | 1.33 | 0 | 0 |
+| | | shift_oracle | 0.253 | 0.393 | 0.92 | 6 / 1 (0) | 1144 / 1194 |
+| 725 | 0.460 (no) | shift_gated | 0.223 | 0.477 | 1.47 | 4 / 3 (274) | 747 / 1575 |
+| | | shift_clamped | 0.190 | 0.477 | 1.47 | 0 | 0 |
+| | | noshift_gated | 0.180 | 0.457 | 1.27 | 1 / 1 (104) | 190 / 1262 |
+| | | noshift_clamped | 0.177 | 0.480 | 1.50 | 0 | 0 |
+| | | shift_oracle | 0.320 | 0.427 | 0.97 | 6 / 1 (0) | 1139 / 1173 |
+
+Guard (d) PASS in every cell (closed in the shared phase, before the snapshot). Rollout (e) bounded in 24/25 cells (s723 `shift_oracle` fails it).
+
+**Verdict tally (pre-registered):** pre-shift bar 2/5 (721, 722; s725 missed by 0.010, s724 by 0.027, s723 by 0.057) -> **rule 1 fires: CANNOT_DETERMINE.** For the record: clamped re-learns 0/5 (the other CANNOT_DETERMINE limb does not fire); shift half 0/5; no-shift half 2/5 (fails exactly on the 3 seeds that never had the bar; retention >= 0.5 on 5/5, 1.17-1.54).
+
+### 4.1 What the result says, by half
+
+- **Shift half fails on every seed, including the two evaluable ones -- so the pre-registered CANNOT_DETERMINE does not hide a PASS.** `shift_gated` never gets above 0.320 on the shifted map (0.213-0.320; chance 0.25) and keeps the OLD map (0.427-0.533) -- the same as `shift_clamped` (0.170-0.237 / 0.413-0.540).
+- **(i) Detection: the gate does not see the shift.** The clean test of a detector is the clamped pair (identical g = 0.1, no unfreeze; only the env differs). Fraction of steps with the action-contrastive surprise above threshold, shift vs no-shift: 0.11 vs 0.29, 0.05 vs 0.14, 0.06 vs 0.06, 0.20 vs 0.16, 0.11 vs 0.05 (721-725): higher WITH the shift on 2/5. Mean on-policy z (ac): shift -0.12 / +0.03 / +0.03 / +0.21 / +0.15 vs no-shift +0.13 / -0.03 / -0.16 / +0.10 / -0.13. The report-only PE detector (the brief's example signal) never crosses its threshold in any cell of any seed (would-coincide 0 everywhere) and its mean on-policy z does not separate either. So in the gated cells the gate opened after the shift on 5/5 seeds but **also opened without a shift on 5/5 seeds** (1-3 spurious unfreeze events each, 190-573 retained entries replaced, 1262-2166 on-policy records flushed): it fires at a base rate, not at the shift.
+- **(ii) Revision: even a perfect, sustained unfreeze does not re-learn the map in N = 1200.** `shift_oracle` (on-policy flushed at the shift, every step a babbling step at g = 1, ~1140 of ~2290 retained entries FIFO-replaced by new-map babble, 9600 updates) reaches 0.253-0.393 on the shifted map (0/5 at the bar) and loses the old one (0.393-0.433). With half the retained set still carrying the old map, the replay mix is contradictory. FIFO replacement at bout rate is too slow for a whole-map change at this dose.
+- **No-shift half: no spurious destabilisation of the map, despite spurious unfreezes.** Where the bar existed before the adult phase (721, 722), `noshift_gated` kept it (0.563, 0.513) with retention 1.43 / 1.17, even after 2-3 spurious bouts. That is expected and weak evidence: a spurious re-babble on an unchanged map writes the same map back. The cost of the false alarms is the flushed on-policy working buffer (1262-2166 records per seed), not the map.
+- **W3 gate robustness (side finding).** The W3 member protocol reached the L2R bar on 2/5 fresh seeds here (0.413-0.537) and missed on calibration seed 799 (0.453), against 4/5 on W3's seeds 106-110. Across these 9 seeds the bar (0.47) sits near the recipe's median, not its floor.
+
+### 4.2 Why the surprise cannot see this shift (D1 reading, partly untested)
+
+- Measured: neither statistic separates shift from no-shift on on-policy data, and the head's action discrimination on uniform data is only ~0.45-0.54 (chance 0.25). A one-step error can only register a re-mapped action to the extent the head's prediction depends on the action, and here that dependence is weak relative to state-to-state variation of the error.
+- Not measured (hypothesis): the native policy is concentrated (W3: modal class 42-94% of steps) and presses into walls, where a blocked move produces the same next state under both maps, so much of the on-policy stream carries no information about the map at all. The probe did not log displacement per on-policy step; that is the check that would confirm it.
+
+**Evidence domain: D1.** No consumer or behaviour reading.
