@@ -7899,9 +7899,9 @@
       "summary": "Two premises behind parking EXP-0861 (MECH-157) and EXP-0787 (MECH-039/046) are stale, per REE_assembly e2bbd2a98e evidence/planning/mode_switch_cea_mechanism_trace_20260925.md (D2, 3 seeds). (1) 'The coordinator produces no mode switch' holds only with dACC off. With dACC on it switches once per life and then locks, because dacc_pe is both the only salience source and the dominant internal_planning affinity. Adding external_task_drive gives within-life reversals 0/0/0 -> 2/16/25. The switching half of mode-governance-engagement is input topology, not the cap. (2) 'CeA is silent because harm_eval_head is untrained' is false: CeA reads mean|z_harm_a| from the never-trained affective_harm_encoder (WakingTrainer leaves it bit-identical). An absolute 0.5 threshold on that unanchored scale sits 3x above the init range, and the harm_accum aux overshoots it 25-35x tonically. CeA's salience ceiling of 0.4 is below switch_threshold 1.0, so a CeA fire cannot force the switch on its own.",
       "raised_by_session": "bt0925-modetrace",
       "raised_at": "2026-09-25T13:06:17Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:23:00Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652): Q1 corrected (the coordinator switches with dACC + external_task_drive; 0 switches is the dACC-off config only); Q2 refined by GFLAG-0556 -> 0557. EXP-0787 blocked_note appended and EXP-0861 blocked_note re-headed (MECH-157 option A built, 1a61800; remaining gate is a trained-agent reversal, V3-EXQ-1107 non_contributory on the PAG-freeze lock)."
     },
     {
       "flag_id": "GFLAG-0555",
