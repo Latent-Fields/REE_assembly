@@ -36,6 +36,11 @@ closure_plan:
       title: "Otherness inference: tag an entity OTHER_SELFLIKE without symbolic identity (MECH-031/032)"
       phase: 1
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [GOV-JUST-1]
+        requires_welfare_review: false
+        note: "Which entities get tagged OTHER_SELFLIKE is where unfamiliar minds can be falsely excluded from moral consideration (GOV-JUST-1; tagged 2026-09-26, GFLAG-0515)."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-031, MECH-032]

@@ -5666,6 +5666,15 @@
     claim_text_corrections_recommended): the earlier 'EXQ-171 PASS 4/4 x2 (two independent runs)'
     reading is inaccurate -- the two 171 manifests are one design and seed set, and the 0330
     duplicate is already superseded.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0503 (open): V3-EXQ-055's AO harm_per_step 0.001467
+    is 1.09-1.38x the best constant-action floor in its own env (0.00106-0.00134, GFLAG-0500) -- the full CEM
+    planner did not beat a zero-parameter constant policy at its 600-episode budget. Its supports weight is
+    unadjudicated against that floor, pending /failure-autopsy (PASS target). Duplicate hygiene applied the same
+    day (user decision rec-20260926-a68f91d2): 055 had been counted as 3 supports edges (a byte-identical 094747Z
+    re-emission plus two legacy claim_probe_mech_033/runs twins); both legacy twins are now evidence_direction
+    superseded with superseded_by the canonical v3_exq_055_mech033_kernel_chaining_20260320T191345Z_v3, so 055
+    counts once.
   title: "E2 forward-prediction kernels seed hippocampal rollouts."
   claim_type: mechanism_hypothesis
   subject: hippocampus.kernel_chaining_interface
@@ -15477,6 +15486,18 @@
     interference in combined stack composition, not an isolated SD-008 failure. Integration
     stack diagnostic is a separate workstream (SD-003/SD-007 target).
 
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0559 (resolved this cycle): LatentStack.init_state()
+    zero-initialises z_world and SD-007 is skipped at t=0, so ||z_world||/||raw|| ramps 1-(1-alpha)^(t+1) over ~8
+    ticks after EVERY reset (0.30 at t0 at deployed alpha 0.3). Fix use_zworld_ema_reset_init (ree-v3 298cb8ffd3;
+    siblings z_self/shared/z_harm bdfe901b37) is default OFF on main and ON in the coupled-loop campaign preset,
+    A1 INT arms and new probes. User decision rec-20260926-a561d3d4: KEEP default OFF on main (old runs stay
+    comparable); the preset decision is revisited before A1 is queued (coupled_loop_repair_campaign_plan.md
+    decision (4)). With the fix ON, z_world participation ratio rises 1.15-1.40 -> 3.31-4.32 at alpha 0.3,
+    contradicting U4 (zworld_near_collapse_rootcause_20260926.md, 1294f6edf5c) sec 4's 'mostly separate general-
+    smoothing' weighting of the low-PR finding. First-tick / near-reset comparisons ACROSS the fix are confounded;
+    any 'beats persistence at short horizon' result must exclude ticks < 8 after reset or run with the fix ON (see
+    GFLAG-0560).
+
 - id: SD-009
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: The event-type target must be decodable from the channel the head actually reads (world_obs -> z_world), and no OTHER grounding head may already supply the same discriminative pressure. Neither holds today: zworld_p0.py measured transition_type at or below chance from world_obs (-0.014 3-class, -0.060 6-class) while SD-070's static grounding heads are on in every current recipe.
@@ -17153,6 +17174,14 @@
     a null/reversed effect for the theta-packaging mechanism specifically; a future cycle should
     weigh whether this warrants a further demotion review rather than remaining a standing
     re-examination flag.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-228b/228c/228d (3x weakens) ran
+    in the pre-1fc881692d Stage-H harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired
+    or very likely fired while the freeze no-op was action 0 (UP), so frozen ticks walked the agent into the top
+    wall instead of holding still. Its weakens weight is pending ONE clustered /failure-autopsy over the 8
+    affected runs (228b/c/d, 466e, 514m/o/u, 603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix
+    replication: on post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy). Triage:
+    evidence/planning/gflag0508_scoring_triage_20260926.md.
 
 - id: ARC-033
   title: "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream."
@@ -24127,6 +24156,12 @@
     direct interactive user confirmation (session quirky-mayer-ee5ad2); H1/H2
     pre-registered in hypothesis_space_registry.v1.json under qid
     arc071-commit-latch-persistence.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0454 (open, scope extended to MECH-163 this cycle):
+    V3-EXQ-811a also scores supports here, and its familiarity AUC was measured with familiar layouts probed
+    strictly before novel ones while the FIFO familiarity tracker was live, and with observably different
+    familiar/novel layouts -- confounded with recency / layout features. Pending /failure-autopsy (PASS target) on
+    811a.
   digestion_note: >
     2026-08-06 (thought-digestion, session thoughts-intakes-4fd18d): a
     what_would_answer draft was started (targeting whether leg (1)'s
@@ -37246,6 +37281,14 @@
     + indexer outputs refreshed; substrate_queue.json NOT touched (owned by concurrent
     MECH-341 amend session; SD-049 retest target already pre-registered there).
 
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-514o ran in the pre-1fc881692d
+    Stage-H harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired
+    while the freeze no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of
+    holding still. Its supports weight is pending ONE clustered /failure-autopsy over the 8 affected runs
+    (228b/c/d, 466e, 514m/o/u, 603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on
+    post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy). Triage:
+    evidence/planning/gflag0508_scoring_triage_20260926.md.
+
 - id: MECH-230
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: Foraging competence must deliver enough resource contacts per seed for z_goal to seed at all -- the recorded blocker is 2 of 3 seeds making zero contact on the pre-scaffold substrate -- and the ablated arm must hold z_goal_norm at zero, which V3-EXQ-328b's C3 did not (benefit_threshold=0.6 failed to suppress seeding in the ablated condition on 2 of 3 seeds).
@@ -37326,6 +37369,14 @@
     Substrate gap (E1-frontal -> hippocampal goal projection) still blocks full
     validation -- promotion reflects current evidence strength + zero conflict, not
     closure of the substrate question.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-514m ran in the pre-1fc881692d
+    Stage-H harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired
+    while the freeze no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of
+    holding still. Its supports weight is pending ONE clustered /failure-autopsy over the 8 affected runs
+    (228b/c/d, 466e, 514m/o/u, 603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on
+    post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy). Triage:
+    evidence/planning/gflag0508_scoring_triage_20260926.md.
 
 - id: Q-038
   title: "Is temporal-depth verisimilitude D_V explicitly represented as a signal or does it emerge from distributed dynamics without local representation?"
@@ -42071,6 +42122,16 @@
     (confirmed failure_autopsy_V3-EXQ-445h): V3-tractable in principle but the substrate is too
     coarse to deliver the committed-action-shift distinction c2 needs (conversion ceiling /
     F-dominance)
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0447 (resolved this cycle; user decision
+    rec-20260926-9251624c 'settle Q-080 first'): the meaning of SD-032b's EVC effort term is gated on Q-080 (is
+    effort a harm or a foregone value?). substrate_queue sd032b-candidate-effort-proxy is blocked_on Q-080: no
+    further effort-producer build, validation or cost sweep until Q-080.a has run. The harm_a producer (ree-v3
+    4cce9b8, dacc_candidate_effort_source default 'horizon' = unchanged behaviour) stays unvalidated --
+    V3-EXQ-1104 argmin flip fraction 0.0024/0.0/0.0, effort 3-4 orders below the payoff range, and it is a HARM
+    quantity already charged by E3's harm channels (MECH-354 conflict). Q-080.a's driver V3-EXQ-730 never ran; any
+    re-queue must set dacc_bias_max_abs because it runs at dacc_weight 2.0 (GFLAG-0507 payoff self-feedback
+    integrator).
   implementation_note: >
     IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/dacc.py
     (DACCAdaptiveControl, DACCConfig, DACCtoE3Adapter). Integrated into
@@ -44451,6 +44512,14 @@
     SD-034 amended with both *c failure records.
 
     [2026-09-09 governance, cycle governance-20260909 wave 5] THREE CORRECTIONS APPLIED, no status moved (GFLAG-0176/0177/0178, user-adjudicated). (1) GFLAG-0176 -- live_status.evidence re-pointed from failure_autopsy_V3-EXQ-466d_2026-06-24 (verdict non_contributory) to v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3 (PASS, evidence-purpose, per-claim supports, non_degenerate, reviewed, scoring_excluded None). The claim had been citing the SUPERSEDED PREDECESSOR's non_contributory reading while its ONLY genuine scoring experimental entry -- 466e, which supersedes 466d by one day -- appeared nowhere in claims.yaml. Top-level as_of moved off 2026-07-11, which predated nothing relevant but was simply stale. (2) GFLAG-0177 -- implementation_note corrected: it recorded '616 LOC' and two completion entry points; closure_operator.py is now 816 LOC (verified by wc this cycle) with a THIRD firing route, the ARC-108 JOB-2 habenula negative-RPE abort (habenula_tick, habenula_abort_enabled, habenula_delta_threshold, _n_habenula_aborts, added 2026-06-22), firing the same closure path. The original 616 figure is preserved in the note as the as-built 2026-04-20 value rather than overwritten. (3) GFLAG-0178 -- pending_retest_after_substrate cleared true -> false: its named retest (the non-cap-pinned de-commit DV) was decomposed to MECH-445/446 on 2026-06-19 and those ids have since run (V3-EXQ-717, V3-EXQ-721). RECORDING-QUALITY CAVEAT on the newly-cited run, stated because it is now this claim's live pointer: V3-EXQ-466e's three load-bearing criteria all read passed: true but carry NO measured value and NO threshold, and the manifest has no combination_rule -- the PASS is not re-derivable from its own manifest. This is the same shape found on V3-EXQ-888 and V3-EXQ-900 this cycle, i.e. a recurring corpus pattern rather than a one-off. NOT ACTIONED, deliberately left standing: GFLAG-0178's second half, the 2026-06-13 demote_to_candidate recommendation that was never applied or withdrawn. The user declined to decide it this cycle, and it cuts against 466e being a supports PASS, so it needs its own adjudication rather than a default.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-466e ran in the pre-1fc881692d
+    Stage-H harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired
+    while the freeze no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of
+    holding still. Its supports weight is pending ONE clustered /failure-autopsy over the 8 affected runs
+    (228b/c/d, 466e, 514m/o/u, 603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on
+    post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy). Triage:
+    evidence/planning/gflag0508_scoring_triage_20260926.md.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION -- two-sided, because this test has a tuned control arm that can be
     made vacuous as easily as the treatment arm. (ON side) `use_closure_operator=True` with
@@ -48233,6 +48302,12 @@
     non-contributory entry, NOT contributory evidence. Promotion requires the falsifiable substrate experiments in sd_036_gabaergic_decay_regulator.md.
 
     [2026-09-25 governance-20260925; GFLAG-0506] pag_freeze_noop_action_class's default (previously class 0 = UP, driving the frozen agent into a wall) is fixed on main (ree-v3 1fc881692d, 2026-09-25, user decision rec-20260925-9b948beb: freeze/orienting no-op is now the STAY class, pinned by tests/contracts/test_pag_freeze_noop_is_stay.py). No further action needed on this caveat; historical runs predating the fix are tracked separately under GFLAG-0508.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 resolved: V3-EXQ-776 is NOT affected by the
+    pre-1fc881692d UP no-op defect -- it is env-free and drives agent.pag_freeze_gate.tick() directly, so the no-
+    op action is never executed; its supports edge stands. (Its action_dim=4 residual is likewise irrelevant to
+    776.) None of MECH-279's other listed runs currently score. The remaining affected SCORING runs are tracked on
+    GFLAG-0561.
   title: "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia."
   claim_type: mechanism_hypothesis
   subject: pag.gabaergic_freeze_gate
@@ -57779,6 +57854,22 @@
     held by the parent /governance session (G6). A discrimination portfolio is pre-registered as
     hypothesis-space question arc065_structured_vs_noise_diversity. [confirmed at /governance
     2026-09-24, session governance-20260924; G1 A rec-20260924-aa33086a]
+
+    [governance 2026-09-26, governance-gflags-20260926] (i) GFLAG-0555/0558 (resolved this cycle): SP-CEM floor
+    tokens (one-hot t=0 + exact-zero t=1..29) are off-manifold and rank LAST of 32 in E3 by construction (85/85
+    states at dim 16; rank 31/32 at deployed dim 32; a majority-class token built the same way also ranks last,
+    while an on-manifold class-c candidate ranks ~0). Floor-supplied pool classes are therefore present but
+    unselectable: V3-EXQ-567's 'candidate support 2.810' counts classes PRESENT, not classes that can WIN.
+    Deployed incidence is low (injector fires on 0.8% of probed states at dim 32). User decision
+    rec-20260926-3b948d07: synthetic floor candidates are excluded from selection claims and reported separately;
+    an on-manifold (pm_bt) floor token is a low-priority substrate_queue entry (spcem-onmanifold-floor-token).
+    Evidence: evidence/planning/spcem_zero_continuation_check_20260925.md, spcem_wd32_trained_repeat_20260925.md.
+    (ii) GFLAG-0453 (open): V3-EXQ-569i's ARM_2_MATCHED_NOISE is identical to ARM_0_PROPOSER to 6 decimals on
+    every summary metric (matched_noise_lift_seeds_over_proposer = 0) -- the noise manipulation never reached
+    selection. So NO counted ARC-065 run (567 x2, 614a, 569i) discriminates structured diversity from matched
+    noise. 569i's supports weight is pending /failure-autopsy (PASS target); if it is confirmed defective, a
+    stable -> provisional review is owed (options recorded on GFLAG-0453: provisional now / stay stable on
+    literature with a GOV-DEFEAT-1 display / hold for chip-20260924-arc065-fanout-portfolio).
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -71153,6 +71244,14 @@
     Substrate ceiling LIFTED 2026-06-21 (governance). The SD-049-PHASE-2 bounded-kappa / standing-differential-depletion env amend (kappa_scale 12.0 + per_axis_restoration_fraction 0.15) landed and V3-EXQ-514u (supersedes 514t; PASS, supports, non_degenerate) cleared the drive-coupling effect margin on the enriched substrate via the CONTINUOUS-AMPLITUDE (intensity) reading: mean_cont_amplitude_shift 0.164 > 0.05 floor on all scored seeds (k_sd 1.0, n=76); enriched per-axis drive spread 0.222 > 0.1; OFF/bank-disabled floor and argmax-relevance readiness all met. This shows the claim's "intensity" disjunct (incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive)). The DISCRETE target-FLIP disjunct (C_WL_DRIVE_coupled_dissociation_flip) remains SECONDARY and still fails on the natural enriched substrate (mean wl_drive_delta -0.133), but the overshoot positive control flips most_wanted (0.81) -> the flip shortfall is a magnitude artifact, NOT a falsification (the what_would_answer overshoot disambiguator resolves toward "drive CAN carve"). epistemic_category flipped substrate_ceiling -> standard and pending_retest_after_substrate cleared. NOT promoted: status stays candidate and v3_pending: true holds promotion (hold_pending_v3_substrate). The remaining open work is the target-FLIP disjunct on the V3 enriched env (514u amplitude reading is sufficient to lift the ceiling, not to promote).
 
     2026-06-17 (failure_autopsy_V3-EXQ-514r, confirmed; applied /governance 2026-06-17): the 514r self-stamped weakens is reclassified non_contributory and scoring-excluded. 514r was the pre-registered overshoot disambiguator. Its genuine-weakens precondition ("overshoot CANNOT flip most_wanted even at OVERSHOOT_DRIVE_MAGNITUDE=5.0") is FALSE: overshoot flips most_wanted fully on 2/5 guard-passing seeds (0.727, 1.000) + non-zero on all 5 (mean_overshoot_flip 0.485; seed 44 also flipped 0.800 -> 3/6 across all seeds) -- the drive channel demonstrably CAN carve at adequate magnitude, so 514q's natural delta=0.0 is a drive-MAGNITUDE/env artifact, not a structural inability. Controls non-vacuous (pc_argmax_relevance_frac 1.0, off-floor 1.0, bank populated 1.0). KEY: the positive control flips a 0.5 base_value gap on 100% of seeds, but real in-run gaps on seeds 45/46/47 exceed 0.5 (even mag-5.0 can't flip there) -> the kappa-scaling half of the SD-049-PHASE-2 env amend is LOAD-BEARING, not just differential depletion. MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED -- confirmed correct, NOT weakened, NOT promoted); the SD-049-PHASE-2 differential-depletion + kappa-scaling amend is now GREENLIT (the 514q "DO NOT build until 514r resolves" hold is lifted). MECH-229 leg (a) UNAFFECTED. No demotion. 2026-06-20 (failure_autopsy_V3-EXQ-514t, confirmed; applied /governance 2026-06-20): the SD-049-PHASE-2 amend was built and armed by V3-EXQ-514s/514t. 514t (kappa_scale 6.0->12.0) self-routes mech436_enrichment_insufficient_substrate_ceiling by the honest path (all five non-vacuity preconditions MET; enriched_spread 0.192 -> lever (b) standing-differential-depletion DONE). non_contributory, NOT a weakens: overshoot (mag 5.0) still flips most_wanted 4/5. LOAD-BEARING NEW FINDING: the kappa-MAGNITUDE lever is NON-MONOTONE and EXHAUSTED -- doubling kappa REGRESSED the natural delta (514s +0.064/sd 0.109/2-of-5 -> 514t -0.037/sd 0.188/1-of-5, 2 seeds strongly negative); at kappa_eff=24 the drive term over-amplifies base_value and most_wanted -> argmax(per_axis_drive), read by the argmax-flip-gated WL metric as sign-unstable noise. The "needs more kappa" prediction is FALSIFIED; the diagnosed ceiling is now the MEASUREMENT layer (flip-gate discards continuous sub-flip re-weighting). MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED). Route: V3-EXQ-514u measurement-redesign (continuous incentive-amplitude readout at MODERATE kappa <= 6.0, the 514s C8 bounded-kappa invariant) -- ALREADY QUEUED (supersedes 514t). No /claim-synthesis (convergent 5th-autopsy signature, granularity debt already discharged at 514q). MECH-229 leg (a) wanting!=liking (V3-EXQ-514o PASS 0.80) UNAFFECTED. No demotion.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-514u ran in the pre-1fc881692d
+    Stage-H harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired
+    while the freeze no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of
+    holding still. Its supports weight is pending ONE clustered /failure-autopsy over the 8 affected runs
+    (228b/c/d, 466e, 514m/o/u, 603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on
+    post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy). Triage:
+    evidence/planning/gflag0508_scoring_triage_20260926.md.
   depends_on:
     - MECH-229   # parent umbrella: the wanting!=liking object-bound dissociation this modulation specializes
     - SD-049     # multi-resource per-axis drive substrate -- the drive-state signal source
@@ -71631,6 +71730,14 @@
     only on MECH-485, which does not own this file; it is homed here (SD-059/MECH-358) and narrowed
     to inherited context there. Not adjudicated as a defect: benign-by-design vs worth a substrate
     check is still open. No status change.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-603q (freeze fired on every
+    seed, pag_n_commits 150-190/seed; its DV is Stage-H survival) ran in the pre-1fc881692d Stage-H harness
+    (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired while the freeze
+    no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of holding still. Its
+    supports weight is pending ONE clustered /failure-autopsy over the 8 affected runs (228b/c/d, 466e, 514m/o/u,
+    603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on post-fix code this harness
+    freezes from tick 1 (V3-EXQ-1107 autopsy). Triage: evidence/planning/gflag0508_scoring_triage_20260926.md.
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 - id: MECH-358
@@ -71730,6 +71837,14 @@
     only on MECH-485, which does not own this file; it is homed here (SD-059/MECH-358) and narrowed
     to inherited context there. Not adjudicated as a defect: benign-by-design vs worth a substrate
     check is still open. No status change.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-603q (freeze fired on every
+    seed, pag_n_commits 150-190/seed; its DV is Stage-H survival) ran in the pre-1fc881692d Stage-H harness
+    (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired while the freeze
+    no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of holding still. Its
+    supports weight is pending ONE clustered /failure-autopsy over the 8 affected runs (228b/c/d, 466e, 514m/o/u,
+    603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on post-fix code this harness
+    freezes from tick 1 (V3-EXQ-1107 autopsy). Triage: evidence/planning/gflag0508_scoring_triage_20260926.md.
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 # Registered 2026-06-09 -- candidate-differentiated affective gradients (V4/V5 cluster).
@@ -84508,6 +84623,14 @@
 
     [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
     2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0508 triage: V3-EXQ-717 ran in the pre-1fc881692d
+    Stage-H harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired or very likely fired
+    while the freeze no-op was action 0 (UP), so frozen ticks walked the agent into the top wall instead of
+    holding still. Its weakens weight is pending ONE clustered /failure-autopsy over the 8 affected runs
+    (228b/c/d, 466e, 514m/o/u, 603q, 717), tracked as GFLAG-0561. Do not queue a straight post-fix replication: on
+    post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy). Triage:
+    evidence/planning/gflag0508_scoring_triage_20260926.md.
   depends_on:
     - SD-034    # umbrella design_decision this child decomposes
     - MECH-090  # the bistable latch the closure-plane commit engages
@@ -85330,7 +85453,7 @@
     Indicators: recurrent processing, global availability, attention-like
     selection, self-model, agency, persistent goals, valenced states, memory
     continuity, offline replay, reportability, social modelling, preference-like
-    behaviour. Produce the matrix before V4 individual-mind integration.
+    behaviour. Produce the matrix before V4 proceeds beyond individual-mind integration.
   notes: "Wording: SENT-CLAIM-001. CORRECTED 2026-08-08 (was stale -- read
     'Realised as', implying the doc existed): docs/governance/ai_welfare_consciousness_indicator_matrix.md
     is PLANNED, NOT YET DRAFTED -- it is an unchecked Phase 2 checklist item in
@@ -85338,7 +85461,15 @@
     carry-forward convention the register is authored when the first V4 roadmap
     node with requires_welfare_review: true for this gate ACTIVATES (gains an
     owner_exq), not speculatively; the file does not exist on disk. Cross-ref
-    SENT-15 (AI-welfare crosswalk, same matrix)."
+    SENT-15 (AI-welfare crosswalk, same matrix). TRIGGER WORDING RECONCILED 2026-09-26
+    (GFLAG-0531, user decision rec-20260926-02d79f89): the title's reading governs -- the
+    matrix is owed before V4 proceeds BEYOND individual-mind integration (SELF-1 / V4-EXQ-002,
+    2026-07-01, is individual-mind integration itself, so the gate was not missed). The
+    functional_restatement and ethics_perimeter_plan.md were aligned to 'beyond', and the
+    trigger is now mechanical: SENT-1 is in ethical_metadata.applicable_ethics_gates with
+    requires_welfare_review: true on the first autobiographical_memory_v4 and
+    affect_expression_v4 build nodes, whose activation (gaining an owner_exq) is the
+    authoring trigger."
   what_would_answer: |
     NOT an empirical pass/fail falsifier -- SENT-1 is a governance_rule: this
     specifies the REASSESSMENT TRIGGER / production obligation and the evidence
@@ -88995,6 +89126,11 @@
     (Kool & Botvinick 2010; Westbrook & Braver); least-action / least-effort priors. DISTINCT from ARC-068 (TIME
     opportunity cost, not metabolic ENERGY) and from MECH-279 freeze (threat motor-arrest, not effort-conservation).
     PROMOTES NOTHING (open question; answer_state / asked).
+
+    [governance 2026-09-26, governance-gflags-20260926] SD-032b's effort term is now explicitly blocked on this
+    question (GFLAG-0447, user decision rec-20260926-9251624c): substrate_queue sd032b-candidate-effort-proxy
+    waits on Q-080.a. The Q-080.a driver V3-EXQ-730 has never run; a re-queue must cap dacc_bias_max_abs (it runs
+    at dacc_weight 2.0, GFLAG-0507).
 
 - id: MECH-455
   what_would_answer: |
@@ -93542,6 +93678,15 @@
     arbitrator existed in the substrate. The flat-response shape is this claim's MOTIVATION,
     not evidence for it. Recorded that way deliberately: reframing a null as a support for
     the mechanism whose absence explains it would be evidence-laundering.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0454 (open): 786a's familiarity AUC 0.848 (786a
+    already non_contributory on its own dv_degeneracy autopsy) and 811a's familiarity AUC were measured with
+    familiar layouts probed strictly BEFORE novel ones (811a driver: for cond in ('familiar','novel')) while the
+    SD-025 128-anchor FIFO familiarity tracker was live, and familiar vs novel layouts also differ in locally
+    observable features (size, hazard count). The AUC may measure recency or layout features rather than practice-
+    retained familiarity, so the 'AUC bar met' reading in what_would_answer is not established. 811a's supports
+    weight (MECH-477 and MECH-163) is pending /failure-autopsy (PASS target); the practice-retaining familiarity
+    read is chip-20260925-sd081-familiarity-read.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-22: SD-081 (e3.dualsystem_uncertainty_arbitration) in ree-v3,
     session hopeful-panini-cf272d. Default OFF and bit-identical when OFF, per the
@@ -116205,6 +116350,15 @@
     Disposition 2026-09-25: (b) derivational, use-gated promotion; LIVE and auditable now (count-first
     audit above, baseline recorded). Category stays governance_rule. No EXP-####. NOT a blocking hook
     (GOV-META-1; umbrella "Closed on measurement").
+
+    CORRECTION 2026-09-26 (governance-gflags-20260926) to the 2026-09-25 MET-TODAY / K count above: (a)
+    'GFLAG-0508: MECH-279 x V3-EXQ-776' was a NAME match, not an affected edge -- 776 is env-free and drives
+    pag_freeze_gate.tick() directly, so the UP no-op defect never reaches it; GFLAG-0508 is resolved and its
+    genuinely affected scoring edges (9 edges / 8 runs: ARC-032 x228b/c/d, SD-034 x466e, MECH-230 x514m, MECH-229
+    x514o, MECH-436 x514u, MECH-358 and SD-059 x603q, MECH-445 x717) moved to GFLAG-0561. MECH-279 is no longer
+    ALL-CONTESTED. (b) MECH-033's '3/3' was one run counted three times; the two legacy claim_probe_mech_033 twins
+    are now superseded (rec-20260926-a68f91d2), so MECH-033 is ALL-CONTESTED at 1/1 (GFLAG-0503 still open). The
+    next cycle's count-first audit must be re-run from the live registry rather than copied from this snapshot.
   notes: >
     Registered 2026-09-25 from sections 2 and 8.2 of
     docs/thoughts/2026-09-24_ree_assembly_as_continuous_scientific_assurance.md (intake
@@ -117616,7 +117770,9 @@
     instances are live V3 substrate and the cheapest test site (the PAG freeze gate, MECH-279) exists. It is
     sequenced behind chip-20260926-pag-freeze-lock-confirmer and behind a P1 information-content measurement on
     the channel under test. If P1 fails for z_harm_a, the test site moves to a channel with validated content
-    (the raw hazard-proximity scalar GFLAG-0557 names is not yet exposed to the agent).
+    (the raw hazard-proximity scalar GFLAG-0557 names is reachable via the existing default-OFF env channel
+    obs_dict['safety_proximity_harm'] at safety_proximity_ema_alpha=1.0 -- not yet consumed by CeA; corrected
+    2026-09-26, governance-gflags-20260926).
     DO NOT build a general normaliser or "operating-point regulator" module from this claim. DO NOT queue an
     experiment from it without a /governance routing decision. Any build is a default-OFF,
     single-operating-point change via /implement-substrate.
@@ -118253,6 +118409,14 @@
     routing, and whether any of the three evidence items should be tagged to this id (claim_ids accuracy
     rule: none are tagged by this registration). NOT a V3 build authorisation. The campaign already
     owns the build.
+
+    [governance 2026-09-26, governance-gflags-20260926] GFLAG-0560 (resolved this cycle): the fidelity 'k = 10'
+    figures above (babbling probe; W3 member gate (a) 4/5, which included the k conjunct) are reset-artefact-
+    carried -- excluding ticks < 8 after reset gives k in {5,0,2,3,0,9} and an h=1 err/persistence ratio
+    ~0.97-1.03 (REE_assembly 370c222e20, 63631ec4ff8); k = 10 comes from the near-reset ticks where the zero-
+    initialised z_world EMA (GFLAG-0559) makes persistence trivially beatable. Read retention on disc4 (not
+    confounded); W3 gate (a) is disc4-only per plan decision (3), rec-20260926-eab8b996 (provisional). N3 gate (a)
+    is robust to excluding reset ticks (265f7c2c1f).
   what_would_answer: |
     DIGESTED 2026-09-26 (thought-intake-20260926). DISPOSITION: (a) testable now (standard); proposal EXP-1408
     (replay-fraction dose sweep) minted in manual_proposals.v1.json -- queueing is a separate /queue-experiment

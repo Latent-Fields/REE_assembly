@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "gov-20260925-orch1707",
-  "last_updated_utc": "2026-09-26T12:43:30Z",
+  "last_seen_session": "governance-gflags-20260926",
+  "last_updated_utc": "2026-09-26T13:20:44Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -13183,7 +13183,7 @@
     {
       "sd_id": "sd032b-candidate-effort-proxy",
       "title": "SD-032b Shenhav-EVC consumer: replace the constant candidate_effort proxy with a real per-candidate effort cost. candidate_effort = c.actions.shape[1] (the physical rollout horizon, identical for every candidate in a select_action call), so control_req * candidate_effort is a uniform shift (argmin-invariant) and the Croxson harm_interaction term is identically zero -- the whole EVC effort term cannot change E3 selection in any regime.",
-      "node_class": "complicated (buildable)",
+      "node_class": "complex (probe-gated)",
       "status": "implemented_pending_validation",
       "ready": false,
       "design_doc": "docs/architecture/mech_268_dacc_saturation_form.md",
@@ -13216,14 +13216,16 @@
       ],
       "added_session": "governance-flags-20260923b",
       "added_utc": "2026-09-23T18:57:30Z",
-      "last_seen_session": "governance-20260926",
+      "last_seen_session": "governance-gflags-20260926",
       "provenance": "GFLAG-0330 residual (D half 1), user decision 2026-09-23 in governance-flags-20260923b; owed per docs/architecture/mech_268_dacc_saturation_form.md 'Two substrate_queue entries are owed' item 4.",
       "implemented_utc": "2026-09-25T07:34:03Z",
       "implemented_commit": "ree-v3 4cce9b8",
       "implemented_session": "igw-222-substrate-ready-sd032b-candidate",
       "implementation_note": "Landed ree-v3 main 4cce9b8 (IGW-20260923-222). REEConfig.dacc_candidate_effort_source 'horizon' (default, bit-identical) | 'harm_a_forward' (E2_harm_a rolled over each candidate's own actions, effort_k = mean_t ||z_harm_a_pred_t||); dacc_effort_rollout_steps (0 = full horizon). Contract tests/contracts/test_sd032b_candidate_effort_proxy.py; record docs/substrate/SD-032b-amendment-candidate-effort-proxy.md. Liveness (untrained agent, 8x8/8 hazards, dacc_weight=1.0, 600 env steps, latch cleared): effort spread >0 on 61/61 FRESH dACC evaluations (legacy 0/61; the dACC runs only on E3 ticks). INERT-BY-SCALE at default dacc_effort_cost=0.1: effort-term range ~0.02 vs E3 payoff range ~25 -> committed actions differ on 0/600 steps; at dacc_effort_cost=10, 40/600 (horizon source: 0/600 at any cost). [Corrected 2026-09-25: first version said 80/80 and 10/60, counting latched re-reads.] Caveat: SD-PP-B9 (E2_harm_a below persistence) means the spread may be model error -- liveness is not validity. Validation owed: trained E2_harm_a (P0) + a dacc_effort_cost / dacc_bias_max_abs setting that puts the effort term on the payoff's scale; acceptance = failure_record target. VALIDATION QUEUED 2026-09-25: V3-EXQ-1104 (ree-v3 289aaee; diagnostic, claim-free; within-tick counterfactuals at dacc_weight 0.5 because at 1.0 the dACC payoff self-feedback integrates -- see sd032b-payoff-self-feedback-integrator / GFLAG-0507; the scale numbers above were measured at dacc_weight 1.0 and are an upper bound on the gap, not a measurement).",
       "validation_exq": "V3-EXQ-1104",
-      "status_note": "stays implemented_pending_validation -- do NOT mark validated (Closes the OPEN argmin-responsiveness half of the pre-build failure_record item with a negative. The next step is the GFLAG-0447 design decision, not a cost re-sweep. Refuse a same-question cost re-sweep: it would hand selection to E2_harm_a model error -- overrides this entry's implementation_note. governance-20260926)"
+      "status_note": "stays implemented_pending_validation -- do NOT mark validated (Closes the OPEN argmin-responsiveness half of the pre-build failure_record item with a negative. The next step is the GFLAG-0447 design decision, not a cost re-sweep. Refuse a same-question cost re-sweep: it would hand selection to E2_harm_a model error -- overrides this entry's implementation_note. governance-20260926)",
+      "blocked_on": "Q-080",
+      "gflag0447_decision": "GFLAG-0447 resolved 2026-09-26 (governance-gflags-20260926; user decision rec-20260926-9251624c 'settle Q-080 first'): what 'effort' means for SD-032b's EVC term is gated on Q-080 (is effort a harm or a foregone value?). No further effort-producer build, validation or cost sweep on this entry until Q-080.a has run. The harm_a producer (4cce9b8) is a HARM quantity already charged by E3's harm channels (MECH-354 conflict) and stays unvalidated (V3-EXQ-1104). Q-080.a's driver V3-EXQ-730 has never run; a re-queue must cap dacc_bias_max_abs (dacc_weight 2.0, GFLAG-0507)."
     },
     {
       "sd_id": "commit-readiness-gate-no-behavioural-consumer",
@@ -13745,8 +13747,9 @@
       ],
       "added_session": "igw-222-substrate-ready-sd032b-candidate",
       "added_utc": "2026-09-25T08:14:42Z",
-      "last_seen_session": "igw-222-substrate-ready-sd032b-candidate",
-      "provenance": "V3-EXQ-1104 Step 4.5 red-team (fable) finding 1, independently re-measured; GFLAG-0507 carries the evidence-contamination question."
+      "last_seen_session": "governance-gflags-20260926",
+      "provenance": "V3-EXQ-1104 Step 4.5 red-team (fable) finding 1, independently re-measured; GFLAG-0507 carries the evidence-contamination question.",
+      "gflag0507_evidence_check": "GFLAG-0507 evidence half resolved 2026-09-26 (governance-gflags-20260926): per-run check found only V3-EXQ-543k/543l carry scoring weight among the 15 listed plus 9 unlisted uncapped dacc>=1 drivers (610, 610a-f, 655, 656), and their branch-e verdict is set by the dACC-free arms ARM_8/ARM_10 (3/3 inert), so it is robust; 870a was capped (DACC_BIAS_MAX_ABS=2.0), 730 never ran, 870 ERROR, 450 has no manifest. No evidence_direction changes owed. Until this entry lands, any driver at dacc_weight>=1 must set dacc_bias_max_abs. Build sequencing: the fix edits DACCtoE3Adapter in dacc.py, which the in-flight dacc-pe-scale-normalisation build (IGW-20260925-219) also holds -- sequence after it."
     },
     {
       "sd_id": "MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE",
@@ -13814,6 +13817,102 @@
       "owner_route": "/implement-substrate",
       "registration_is_not_build_authorisation": false,
       "authority": "User decision at governance-20260925 (rec-20260925-deedce42), GFLAG-0456, Option 1."
+    },
+    {
+      "sd_id": "spcem-onmanifold-floor-token",
+      "title": "SP-CEM support-preserving floor: build its minority-class tokens ON the proposal manifold (pm_bt-style) instead of one-hot t=0 + exact-zero t=1..29, so a floor-supplied second class can actually be selected by E3",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "priority": 3,
+      "severity": "cosmetic",
+      "severity_rationale": "Low deployed incidence: the injector fires on 0.8% of probed states at dim 32 (71% at toy dim 16), and ASP-E pools are format-homogeneous so the token cannot arise there; the interim remedy (exclude synthetic floor candidates from selection claims) is a reporting rule, not a build.",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-065"
+      ],
+      "failure_record": [
+        {
+          "run_id": "spcem_zero_continuation_check_20260925 + spcem_wd32_trained_repeat_20260925 (planning probes, no queued run)",
+          "experiment_type": "SP-CEM floor token construction probe (D2)",
+          "metric": "native floor token ranks LAST (31/32) in E3 at 85/85 states on 3 seeds (dim 16) and 31/32 at deployed dim 32; a majority-class token built the same way also ranks last; on-manifold class-c candidate ranks 0/7.5/2.1",
+          "target": "an on-manifold floor token of the missing class ranks within the native candidates' distribution (not systematically last) at deployed dims"
+        }
+      ],
+      "implementation_hint": "hippocampal/module.py:1361-1398 (via :1627) builds the floor token as one-hot at t=0 plus exact-zero continuation; build it from the proposer's own action-object distribution conditioned on the missing class (pm_bt-style), default OFF. ASP-R reintroduces the token (a strict xfail pins it, action_space_proposals_build_20260925.md sec 5a) -- flip that xfail when this lands.",
+      "substrate_paths": [
+        "ree_core/hippocampal/module.py"
+      ],
+      "authority": "User decision rec-20260926-3b948d07 (GFLAG-0555/0558): exclude synthetic floor candidates from selection claims now + low-priority on-manifold token build.",
+      "added_session": "governance-gflags-20260926",
+      "added_utc": "2026-09-26T13:20:44Z",
+      "last_seen_session": "governance-gflags-20260926",
+      "version_scope": "V3-native"
+    },
+    {
+      "sd_id": "cea-onset-input-selector",
+      "title": "CeA fast route (MECH-046/MECH-039) needs an onset-bearing input: probe then add a default-OFF CeA input selector reading raw hazard proximity",
+      "node_class": "complex (probe-gated)",
+      "status": "pending_implementation",
+      "ready": false,
+      "ready_blocked_by": "probe first: no tested CeA input meets the pre-registered onset bar (d'>=1.0 AND H>=0.5). A 2D rate+ratio gate / FA-matched ROC probe on the raw hazard-proximity stream must meet the bar before any ree_core edit.",
+      "priority": 2,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-046",
+        "MECH-039"
+      ],
+      "failure_record": [
+        {
+          "run_id": "cea_gate_calibration_probe_20260925 + cea_onset_input_reprobe_20260925 (pre-registered planning probes, 3 seeds, D1)",
+          "experiment_type": "CeA onset-input / relative-gate probe",
+          "metric": "relative gates on mean|z_harm_a| hit <= 7/106 onsets (d' <= 0.43) untrained and trained; env de-saturation does not help; raw hazard_at_agent under a rate-of-change gate d'=1.00 H=33% (baseline), d'=0.73 H=28% (non-saturated)",
+          "target": "d' >= 1.0 AND hit rate >= 0.5 at N=5 or N=10"
+        }
+      ],
+      "implementation_hint": "The raw stream already exists env-side: obs_dict['safety_proximity_harm'] (causal_grid_world.py:3049-3052, :4181; env kwarg safety_proximity_signal_enabled, default OFF) is an EMA of clip(hazard_at_agent,0,1) with safety_proximity_ema_alpha (default 0.05) -- at alpha=1.0 it IS the probe's pre-EMA stream, so no new env field is needed. Caveat: the same channel feeds MECH-303 when contextual_safety_gate_source=='proximity_signal'. If the probe meets the bar: add default-OFF cea_fast_route_input in {'z_harm_a','safety_proximity'} plus a rate-of-change gate. SEPARATE, deferred design decision: CeA salience ceiling 0.4 < switch_threshold 1.0, so a CeA fire cannot force the mode switch alone (defer until an onset input meets the bar).",
+      "substrate_paths": [
+        "ree_core/amygdala/",
+        "ree_core/cingulate/salience_coordinator.py"
+      ],
+      "authority": "GFLAG-0554/0556/0557 chain resolution, governance-gflags-20260926 (user-approved bookkeeping batch rec-20260926-ba9106d2).",
+      "added_session": "governance-gflags-20260926",
+      "added_utc": "2026-09-26T13:20:44Z",
+      "last_seen_session": "governance-gflags-20260926",
+      "version_scope": "V3-native"
+    },
+    {
+      "sd_id": "noop-class-defaults-up",
+      "title": "Six other no-op action-class defaults still point at class 0 (UP) -- the GFLAG-0508 defect class outside the PAG freeze / defensive orienting (fixed in ree-v3 1fc881692d)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "design_first",
+      "ready": true,
+      "priority": 2,
+      "severity": "degrading",
+      "severity_rationale": "Any run enabling one of these mechanisms walks the agent UP whenever the mechanism emits its 'no-op'; changing the defaults alters every run that enables them, so the fix needs a design choice (flip defaults to the stay class 4 with a contract, or require the class per driver), not a silent default edit.",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "failure_record": [
+        {
+          "run_id": "GFLAG-0508 residual (c) (no queued run; ree-v3 1fc881692d review, 2026-09-25)",
+          "experiment_type": "no-op class audit",
+          "metric": "tonic_vigor_noop_class, blocked_agency_noop_class, avoidance_noop_class, escape_noop_class, trainable_escape_noop_class, escape_linker_noop_class all default 0 (UP) in ree_core/utils/config.py (~5787, 6761, 6825, 6907, 6954, 6981) and the matching from_dims defaults (~8771-9023)",
+          "target": "each no-op class resolves to the environment's stay action (class 4 on CausalGridWorld) or is explicitly set per driver, pinned by a contract like tests/contracts/test_pag_freeze_noop_is_stay.py"
+        }
+      ],
+      "implementation_hint": "Mirror 1fc881692d: default each *_noop_class to the stay class 4 behind a contract, or make it required. Also cover residuals (a) action_dim=4 envs have no stay action (class 4 clamps to 3 = RIGHT) and (b) world_rule_shift permutes the action map so the stay class can move -- resolve the stay action through the env, not a literal. GFLAG-0483 already advises tonic_vigor 4 for MECH-320.",
+      "substrate_paths": [
+        "ree_core/utils/config.py"
+      ],
+      "authority": "GFLAG-0508 resolution, governance-gflags-20260926 (user decision rec-20260926-764e8499: untracked noop_class defaults routed).",
+      "added_session": "governance-gflags-20260926",
+      "added_utc": "2026-09-26T13:20:44Z",
+      "last_seen_session": "governance-gflags-20260926",
+      "version_scope": "V3-native"
     }
   ],
   "schema_version": "substrate_queue/v2",

@@ -25,6 +25,7 @@ closure_plan:
     - id: "self_model_v4:SELF-1"
       title: "z_self promoted from body-state latent to a stateful self-model (DR-13 temporal depth)"
       status: done
+      owner_exq: V4-EXQ-002  # backfilled 2026-09-26 (GFLAG-0531): previously recorded only in prose
       ethical_metadata:
         welfare_relevance: high
         applicable_ethics_gates: [SENT-3, SENT-13]
@@ -80,6 +81,7 @@ closure_plan:
     - id: "self_model_v4:SELF-3"
       title: "z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability"
       status: in_progress
+      owner_exq: V4-EXQ-003  # backfilled 2026-09-26 (GFLAG-0531): previously recorded only in prose
       severity: load-bearing
       live:
         as_of: "2026-07-12"
@@ -106,6 +108,7 @@ closure_plan:
     - id: "self_model_v4:SELF-4"
       title: "E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability"
       status: in_progress
+      owner_exq: V4-EXQ-001  # backfilled 2026-09-26 (GFLAG-0531): previously recorded only in prose
       severity: medium
       live:
         as_of: "2026-07-12"

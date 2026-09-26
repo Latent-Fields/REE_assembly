@@ -26,8 +26,9 @@ closure_plan:
       status: blocked
       ethical_metadata:
         welfare_relevance: moderate
-        applicable_ethics_gates: [SENT-2, SENT-13]
-        requires_welfare_review: false
+        applicable_ethics_gates: [SENT-1, SENT-2, SENT-13]
+        requires_welfare_review: true
+        sent1_trigger_note: "SENT-1 trip-wire (GFLAG-0531, user decision rec-20260926-02d79f89): this is a first V4 build node BEYOND individual-mind integration; when it gains an owner_exq, docs/governance/ai_welfare_consciousness_indicator_matrix.md must be authored first."
         note: "Per-candidate valence substrate foundation; Class-2 alone, becomes Class-4 when bound to self-model + autobiographical memory + replay."
       blocker_class: v3_substrate
       severity: load-bearing

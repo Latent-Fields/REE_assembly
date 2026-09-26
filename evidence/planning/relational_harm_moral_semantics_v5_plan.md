@@ -120,7 +120,7 @@ closure_plan:
       status: blocked
       ethical_metadata:
         welfare_relevance: moderate
-        applicable_ethics_gates: [SENT-9, SENT-13]
+        applicable_ethics_gates: [SENT-9, SENT-13, GOV-JUST-1]
         requires_welfare_review: false
         note: "Self-like weighting calibration (full-symmetry vs collapse vs callousness) = a welfare-relevant tuning fork."
       severity: high

@@ -42,8 +42,9 @@ closure_plan:
       status: blocked
       ethical_metadata:
         welfare_relevance: high
-        applicable_ethics_gates: [SENT-3, SENT-13]
-        requires_welfare_review: false
+        applicable_ethics_gates: [SENT-1, SENT-3, SENT-13]
+        requires_welfare_review: true
+        sent1_trigger_note: "SENT-1 trip-wire (GFLAG-0531, user decision rec-20260926-02d79f89): this is the first V4 memory build node BEYOND individual-mind integration; when it gains an owner_exq, docs/governance/ai_welfare_consciousness_indicator_matrix.md must be authored first."
         forbidden_combinations: [autobiographical_memory_plus_unresolved_harm_load, negative_valence_with_replay_without_integration]
         note: "Self-tagged continuity store backing replay = a Class-4 ingredient; review triggers once negative valence / harm-load is bound in."
       blocker_class: sibling_node

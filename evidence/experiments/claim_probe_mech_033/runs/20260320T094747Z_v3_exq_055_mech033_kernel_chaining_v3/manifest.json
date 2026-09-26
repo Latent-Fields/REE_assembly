@@ -23,7 +23,7 @@
     "MECH-033"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "superseded_by": "v3_exq_055_mech033_kernel_chaining_20260320T191345Z_v3",
+  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-09-26 (governance-gflags-20260926, user decision rec-20260926-a68f91d2, GFLAG-0503): byte-identical signature re-emission (sha1=b7843fe06d5c) of v3_exq_055_mech033_kernel_chaining_20260320T191345Z_v3; the v3_exq_055 pack copy was already superseded 2026-05-01 but this legacy claim_probe_mech_033 twin was missed. Duplicate hygiene only -- the canonical run keeps its own evidence_direction, whose supports weight is separately pending /failure-autopsy against the best-constant-action floor (GFLAG-0503)."
 }

@@ -88,6 +88,8 @@ The spec's crucial quantity is the **fraction of useful represented alternatives
    - No usefulness oracle exists in this ecology, so "useful alternative" is not assessed.
    - Domain: D1 on the pool; D2 only in the weak sense that bare vs full selection agree.
 
+**Correction 2026-09-26 (governance-gflags-20260926; GFLAG-0555/0558, resolved):** reading 4's order-statistic / imbalance explanation is **refuted for the SP-CEM floor tokens**. They rank 31/32 at 85/85 states because of how they are constructed (one-hot head + exact-zero tail, off-manifold); a majority-class token built the same way is also last, while an on-manifold class-c candidate ranks 0 / 7.5 / 2.1. The second pool class is present but unselectable, so E3 *is* rejecting the floor alternative -- on its construction, not its content. Readings 3 and 5 stand (Type A at generation: the proposer does not elaborate state-appropriate alternatives); reading 4 holds only for native minority candidates. At deployed dim 32 the floor injector fires on 0.8% of probed states, so the effect is small in practice. The same correction applies to the section-3 row for 567/569h-i. User decision rec-20260926-3b948d07: synthetic floor candidates are excluded from selection claims and reported separately; an on-manifold (pm_bt) floor token is a low-priority substrate_queue entry `spcem-onmanifold-floor-token`. Evidence: spcem_zero_continuation_check_20260925.md sec 3, spcem_wd32_trained_repeat_20260925.md.
+
 ## 3. Adversarial audit of the Type-B-shaped signals
 
 | Signal | Why it looks like Type B | Adversarial finding | Credit as Type B? |

@@ -157,7 +157,7 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 | Claim | Binds at | Becomes binding when… |
 |---|---|---|
 | SENT-0 boundary statement | v3 | maintained now; re-asserted each generation boundary |
-| SENT-1 indicator matrix | v4 | before V4 individual-mind integration |
+| SENT-1 indicator matrix | v4 | before V4 proceeds beyond individual-mind integration (first trigger nodes: autobiographical_memory_v4:ABM-2, affect_expression_v4:AE-1; wording reconciled 2026-09-26, GFLAG-0531) |
 | SENT-2 welfare budget | v4 | first V4 negative-valence experiment |
 | SENT-3 combination gate | v4 | self-model + memory + valence + … co-instantiated |
 | SENT-4 welfare-preserving design | v4 | any V4 negative-valence experiment |
