@@ -2,7 +2,7 @@
 
 # Is N3's W4 gate (a) DISC_0.5 pass (4/5 seeds) confounded by near-reset probe states, the way W3's k criterion was? (probe only, pre-registration)
 
-- **Status: PRE-REGISTERED, committed BEFORE any registered seed runs.** Session `bt0926-n3post` (`orchestrate-20260924-breakthrough-c2`), chip_ref `chip-20260926-n3-gate-a-reset-confound`. Written 2026-09-26.
+- **Status: FINAL (2026-09-26T12:55Z). RESULTS appended below; the pre-registration (committed 09:21Z as `4821bc4146`) is unchanged apart from this line and the status stamp.** Session `bt0926-n3post` (`orchestrate-20260924-breakthrough-c2`), chip_ref `chip-20260926-n3-gate-a-reset-confound`. Written 2026-09-26. **Verdict: ROBUST.** The canary reproduced N3's committed numbers exactly (0 float-level, not merely within tolerance). Restricting to ticks-since-reset >= 8 leaves DISC_0.5 gate (a) at 4/5 seeds, the SAME seed (s533) missing, with per-seed diffs within 0.03 of the all-states reading. Turning the SD-008 reset-init fix ON strengthens gate (a) to 5/5 (s533 now passes too). Neither reading shows the collapse GFLAG-0560 found for W3's `k`.
 - **Question being closed:** `n3_e3_aggregation_probe_20260925.md`'s pre-registered verdict (9608f3117a) is: gate (a) (Spearman(J_pred, J_true), REAL minus SHUF > 0.15) passes for DISC_0.5 on 4/5 seeds. GFLAG-0560 found that W3's structurally analogous `k==10` fidelity criterion, on the SAME family of native head, was ARTEFACT-CARRIED by the ~44% of its held-out ticks within 8 ticks of a reset (`w3_k_excluding_reset_ticks_20260926.md`, `370c222e20`), because the pre-fix zero-initialised z_world EMA (`zworld_ema_reset_init_build_20260926.md`, GFLAG-0559) makes a trivial baseline trivially easy to beat near a reset. This probe asks whether N3's gate (a) -- a DIFFERENT statistic (a same-tick Spearman rank correlation, not an absolute-scale error-vs-persistence streak) -- carries the SAME confound. It does not change the W4 gate; it re-scores the SAME instrument (I1 `e3_choice_quality` via `n3_probe.py`'s own `metrics()`) restricted to probe states with ticks-since-reset >= 8 vs < 8 vs all, for BOTH the reset-init fix OFF (N3's own code) and ON.
 - **Code:** `ree-v3` tag `archive/coupled-loop-repair-042895a` (N3's own sha, `042895a3a2be3a54e5a74199e8e3950cc058cb31`) in a throwaway detached worktree `/Users/dgolden/REE_Working/.scratch/wt-n3post` (OFF arm); the SAME tag with `main`'s `298cb8ffd3` (the SD-008 reset-init build) cherry-picked on top, in a second detached worktree `/Users/dgolden/REE_Working/.scratch/wt-n3post-on` (ON arm), result sha `f361c336a19d3e44179af6b36070c911296c00a1`. Cherry-pick applied cleanly (`Auto-merging ree_core/utils/config.py`, `Auto-merging tests/test_flag_inertness.py`; 4 files changed, 260 insertions -- the identical shape reported by every prior record in this line, including `w3_k_excluding_reset_ticks_20260926.md`'s own cherry-pick of the same commit). Both worktrees removed at the end. **No `ree_core` edits.** Probe script `probes/n3post/n3post_probe.py` (committed alongside this record's results section) REUSES `probes/n3/n3_probe.py`'s own functions byte-identically (loaded by `exec` with exactly one textual substitution: its hardcoded worktree-path constant, so its `train_member`/`eval_tew`/`depth_scores`/`aggregate`/`score_head`/`metrics`/`habit_contrast` bodies are untouched) and adds exactly two things: (1) a local copy of I1's `collect_probe_states` that additionally records each state's ticks-since-reset; (2) an ON/OFF knob that sets `agent.config.latent.use_zworld_ema_reset_init` on every constructed agent via a single monkeypatch of `babble_probe.fresh_agent`, so `train_member`/`collect` need no edits either. No queue, no chips beyond the one closed here, no `claims.yaml` edits.
 - **Evidence domain: D1 for the tick-partition analysis** (re-pooling an existing D2 instrument -- N3's own head-vs-twin Spearman contrast -- by an index tag; no new intervention on the head or the aggregation). **D2 for the fix-ON arm** (intervening on z_world's reset behaviour changes E3's own native ranking-quality readout, in a direction this record measures against the OFF baseline).
@@ -53,4 +53,63 @@ Probe script: `probes/n3post/n3post_probe.py` (committed alongside this record's
 
 ## 5. Results
 
-_To be appended after all registered seeds/arms complete._
+**Status: FINAL over all 5 pre-registered seeds x 2 knob settings (10 runs).** Written 2026-09-26T12:55Z. Wall time: ~6-7 min per job when the Mac lock was free; two of the ten runs (s533/on, s534/off) queued behind an unrelated live session (`bt0926-decprobe`) holding the shared Mac probe lock, per the lock discipline's "never break a lock younger than 45 min or with a live owner" rule -- total elapsed wall clock 09:24Z-11:50Z (~2h26m including that queueing), pure compute ~65 min. Full per-seed/per-arm JSON: `probes/n3post/results/N3POST_{off,on}_s53{1..5}.json`; summary script `probes/n3post/summarize_n3post.py`.
+
+### Canary: PASS, exact (not merely within tolerance)
+
+Every one of the 20 checked values (5 seeds x 4 aggregations x {REAL, SHUF} rho_scaf, OFF arm, all-states partition) reproduced `n3_e3_aggregation_probe_20260925.md`'s committed JSON (`probes/n3/results/N3_s53{1..5}.json`) to full float precision -- e.g. s531 DISC_0.5 REAL 0.5046511627906975 both old and new, SHUF -0.24418604651162787 both. This is a stronger result than the pre-registered 1e-6 bound required, and confirms the tick-tagging instrumentation changes nothing about N3's own computation (P1/P2 both hold as measured, not merely assumed): `collect_probe_states_tagged` draws the identical RNG sequence and produces the identical scored trajectories as `CA.collect_probe_states`, differing only in one extra recorded field per state.
+
+### P3 resolved: N3's continuous single-run probe sees far FEWER near-reset states than W3's segmented held-out set
+
+| seed | OFF n / n_ge8 / n_lt8 (frac_lt8) | ON n / n_ge8 / n_lt8 (frac_lt8) |
+|---|---|---|
+| 531 | 43 / 37 / 6 (0.140) | 44 / 33 / 11 (0.250) |
+| 532 | 41 / 39 / 2 (0.049) | 41 / 39 / 2 (0.049) |
+| 533 | 41 / 38 / 3 (0.073) | 42 / 38 / 4 (0.095) |
+| 534 | 40 / 39 / 1 (0.025) | 40 / 39 / 1 (0.025) |
+| 535 | 40 / 39 / 1 (0.025) | 40 / 39 / 1 (0.025) |
+
+`frac_lt8` ranges 2.5%-25% (mean ~9%), a full order of magnitude below `w3_k_excluding_reset_ticks_20260926.md`'s 38.6%-49.2%. Mechanism (matches that record's own P3 finding, opposite direction): N3's probe is ONE continuous 320-step native-waking run per seed sampled every 8 ticks (up to 40 samples from a single episode attempt), so it accrues near-reset states only when the run itself hits an early hazard-triggered termination -- rare at this policy/env combination -- rather than W3's many short held-out episodes where a large fraction of usable starts fall in a short early window by construction. **Consequence, flagged in advance and realised here:** the `lt8` partition is underpowered on every seed, both arms (n_lt8 1-11, informative-state counts identical or lower) -- far below the pre-registered >= 10-informative-states floor in all but s531 (both arms). Per seed `lt8` diffs are reported below for completeness but are NOT read as pass/fail (per the pre-registered rule); the load-bearing partition is `ge8`.
+
+### CANNOT_DETERMINE preconditions
+
+All instrument canaries PASS on all 10 runs: `probe_state_validation` PASS (max |diff| 0.0), `canary_e3_structure`/`canary_action_discrimination` reproduced, depth-decomposition canary 0.0, batched-vs-single scorer canary <= 1.1e-7 relative -- on both arms, every seed. **Twin at chance: 5/5 both arms** (SHUF disc4_h1 0.12-0.23 OFF, similarly anti-mapped ON). **L2R bar (k-based): OFF 4/5** (only s532 misses, at disc4 0.467 -- the SAME seed and value N3's own run found). **ON 0/5** -- `k` collapses to 0 on every seed (REAL/SHUF/BLIND/BLINDR/INIT alike), reproducing GFLAG-0559/0560's documented ON-arm signature exactly. Per this probe's own pre-registration (sec 2), this ON-arm bar miss is the EXPECTED, diagnostic consequence of the fix removing the near-reset trivial-beat-persistence artefact that `k` was built on -- it is read as information, not as CANNOT_DETERMINE. No canary failure occurred on either arm, so the probe reading is a genuine verdict, not CANNOT_DETERMINE.
+
+### Gate (a), DISC_0.5 (N3's selected aggregation): OFF all vs ge8 vs lt8, REAL-SHUF diff per seed
+
+| partition | s531 | s532 | s533 | s534 | s535 | pass (diff>0.15, n_inf>=10) |
+|---|---|---|---|---|---|---|
+| **all** (N3's own reading) | +0.749 | +0.566 | +0.095 (miss) | +0.955 | +0.233 | **4/5** |
+| **ge8** (>=8 ticks since reset) | +0.808 | +0.577 | +0.087 (miss) | +0.972 | +0.203 | **4/5** |
+| lt8 (<8 ticks, underpowered) | +0.383 (n=6) | +0.35 (n=2) | +0.20 (n=3) | +0.30 (n=1) | +1.40 (n=1) | not read (n_inf < 10 on every seed) |
+
+The SAME seed (s533) misses under both `all` and `ge8`, at essentially the same margin (0.095 vs 0.087) -- restricting to ticks >= 8 changes NOTHING about which seeds pass. Per-seed diffs move by at most 0.06 between `all` and `ge8` (s531 +0.06, s532 +0.01, s533 -0.01, s534 +0.02, s535 -0.03) -- noise-scale, not the near-total collapse (`k` 10 -> 0-9, `err_over_pers` 0.30 -> ~1.0) GFLAG-0560 found for W3. DISC_0.8 shows the same pattern (OFF all 4/5, OFF ge8 4/5, identical diffs to within 0.03). FULL (N3's own baseline aggregation, already known not to pass gate (a) independent of any reset question) stays at 3/5 on both `all` and `ge8` (s532's anti-tracking, -0.91 all / -0.94 ge8, is if anything slightly stronger restricted to ge8, not weaker).
+
+### Gate (a), DISC_0.5: ON arm, all-states
+
+| s531 | s532 | s533 | s534 | s535 | pass |
+|---|---|---|---|---|---|
+| +0.659 | +1.059 | +0.674 | +0.788 | +0.563 | **5/5** |
+
+Every seed passes, INCLUDING s533 (the OFF-arm miss) -- REAL's rho_scaf rises from 0.112 (OFF) to 0.460 (ON) while SHUF's stays anti-tracking (0.017 OFF -> -0.214 ON). DISC_0.8 ON all-states: 5/5 too (diffs 0.53/1.14/0.50/0.82/0.48). FULL ON all-states: 4/5 (s533 now -0.07, essentially flat rather than the OFF arm's clear anti-track pattern on other seeds -- FULL remains the weakest aggregation, unaffected in kind by this question).
+
+### Verdict: ROBUST (both readings agree)
+
+Per the pre-registered rule (sec 3): DISC_0.5 gate (a) passes >= 4/5 seeds on the `ge8` partition (4/5, same seed as `all`) AND on the ON arm's all-states reading (5/5, stronger than OFF). **Neither the near-reset-tick restriction nor the substrate fix that removes the near-reset artefact degrades N3's gate (a) pass rate; the ON arm's own reading is if anything better.** This is the opposite signature from W3's `k` (GFLAG-0560: `k` collapsed from 10 to 0-9 on 6/6 seeds when restricted to `ge8`, and to 0 on `all` under the fix).
+
+**Mechanism, consistent with `w3_k_excluding_reset_ticks_20260926.md`'s own reading of WHY `k`/ratio was confounded and disc4 was not:** gate (a)'s Spearman(J_pred, J_true) is a SAME-TICK, SAME-STATE relative RANKING across the five candidate first actions (like disc4) -- a reset tick's absolute-scale collapse in z_world affects every candidate at that state equally (same z0 for all five rollouts), so it mostly cancels out of a rank correlation computed within that state. `k` (and the raw err/persistence ratio it is built on) is instead an ABSOLUTE-scale comparison between the model's rollout error and a naive "persist x0" baseline computed ACROSS ticks -- exactly the comparison a reset-tick's z_world collapse distorts. This probe's own pre-registration (sec "Reasoning to report up front") predicted this cancellation in advance ("J is a same-state ranking across candidates ... so the confound may cancel -- the probe decides"); the results confirm it.
+
+**Domains reached:** D1 for the tick-partition analysis (re-pooling N3's own D2 instrument by an index tag, no new intervention). D2 for the ON arm (intervening on z_world's reset behaviour changes E3's own native Spearman-ranking readout, in the measured direction -- an improvement, not the degradation the confound hypothesis would predict). No D3 (no closed-loop behavioural consequence measured here, matching N3's own scope).
+
+### Not done / limits
+
+- The `lt8` partition is reported but never gated (underpowered by design, per P3) -- this probe cannot speak to whether gate (a) would hold or fail on near-reset states specifically, only that EXCLUDING them changes nothing about the current 4/5 verdict.
+- FULL and D1 are reported for context only, exactly as in N3's own record; this probe does not reopen whether FULL should be the selected aggregation (it still is not, on either partition or arm).
+- Gate (c) (BLIND/BLINDR flip rate) is untouched -- out of scope per the pre-registration; N3's own record already found it a non-discriminating instrument for this twin, independent of the reset question.
+- This probe does not decide whether the SD-008 reset-init fix should default ON -- that remains the open user decision `zworld_ema_reset_init_build_20260926.md` sec 5 already named; this record adds one more data point in favour (gate (a) strengthens under it) alongside GFLAG-0560's finding that it removes an artefact from W3's `k`.
+- The W4 gate is not changed anywhere in this probe, per the brief.
+
+### Reproduction
+
+- `probes/n3post/n3post_probe.py` (one seed, one knob setting; env vars `N3POST_WT`/`N3POST_FIXON`; expects the two detached worktrees at `.scratch/wt-n3post` (tag `042895a`) and `.scratch/wt-n3post-on` (tag `042895a` + `298cb8ffd3`), which were removed at session close -- re-create via the `git worktree add --detach` commands in sec "Code" above).
+- `run_all.sh` (Mac probe lock, memory gate, all 10 jobs sequential); `summarize_n3post.py` (canary check + partitioned gate tables, reproduced above).
