@@ -140,3 +140,23 @@ MECH-091 (opposite-polarity urgency interrupt), MECH-094 (VALENCE_LIKING write g
 V3-EXQ-515 PASS 2026-05-04 (4-arm comparator logic diagnostic: unit tests on synthetic norm sequences).
 V3-EXQ-516 queued (4-arm agent-loop integration diagnostic: OFF / event-fires / valence-write / flat-signal).
 See experiment script `experiments/v3_exq_516_mech302_suffering_derivative_integration.py`.
+
+## Amendment 2026-09-26: event latch (one relief event per descent)
+
+**Problem.** As built, `tick()` returns True on every tick whose window drop clears
+`drop_threshold`, so a single damage->heal trajectory emits a train of events (~9-17 per
+scheduled injection in V3-EXQ-517d; failure_autopsy_gflag0452-D1-cluster_2026-09-24). Each
+releases beta and writes VALENCE_LIKING at successive z_world. The Solution section above
+describes "a relief-completion event" per sustained drop; the biology (phasic relief-offset
+DA, Navratilova 2012) is a transient, not a train.
+
+**Amendment (opt-in).** `suffering_event_latch_enabled` (default False, bit-identical OFF)
+adds a re-arm-on-rise latch: after a fire the comparator latches and tracks the trough; it
+re-arms when the norm rises `suffering_rearm_rise` (default = `suffering_drop_threshold`)
+above the trough, restarting its window from that peak. First-crossing timing is kept, so
+latched events are a strict subset of unlatched events. Implementation record:
+`ree-v3/docs/substrate/SD-050-suffering-comparator-event-latch.md`.
+
+**Not addressed.** The "Required event" in SD-050's what_would_answer (a descent produced by
+the agent's own trajectory, not scheduled injection) still has no environment provider;
+registered as substrate_queue `action-contingent-relief-provider` (ready: false).

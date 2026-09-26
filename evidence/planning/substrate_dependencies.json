@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-09-25T07:34:18Z",
+  "last_updated_utc": "2026-09-26T17:13:12Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -959,6 +959,20 @@
       "mechanism_changing": false,
       "mechanism_changing_note": "Additive, default no-op: with the new knobs at defaults the live SD-105 controller is bit-identical to origin/main 6de633c (verified differentially: action + per-tick multiplier trace hashes, floor OFF and ON-unfrozen, 2 seeds x 80 steps; pinned by contract B14). No evidence has ever been produced under the frozen form (V3-EXQ-963b was never queued; 963c not yet authored), so there is no candidate-stale evidence.",
       "candidate_stale": []
+    },
+    {
+      "substrate": "suffering-derivative-comparator-refractory: SD-050 comparator re-arm-on-rise event latch",
+      "code_landed_commit": "ree-v3 5d308b3",
+      "code_landed_utc": "2026-09-26T17:13:12Z",
+      "landed_utc": "2026-09-26T17:13:12Z",
+      "dependent_claims": [
+        "SD-050",
+        "MECH-302",
+        "MECH-304"
+      ],
+      "description": "SufferingDerivativeComparator opt-in latch (REEConfig.suffering_event_latch_enabled, suffering_rearm_rise): one relief-completion event per descent instead of a per-tick train. Contracts R1-R7.",
+      "mechanism_changing": false,
+      "mechanism_changing_note": "Additive, default OFF: with the latch disabled the comparator is tick-identical to the pre-latch class (contract R2 verbatim oracle), so no recorded MECH-302/SD-050/MECH-304 evidence was produced under a changed mechanism. No candidate-stale entries."
     }
   ]
 }
