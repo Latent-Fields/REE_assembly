@@ -53,4 +53,62 @@ Smoke (seed 9001, post=200, not registered): B0 ~83s, real arm (pre+post+rollout
 
 ## 4. Results
 
-*(to be appended after the registered seeds run; this section is empty at pre-registration commit time)*
+**Status: FINAL over N=15 (reduced from the pre-registered 20; DOSE probe run on 4 of the pre-registered 5 seeds).** Both reductions are the pre-registered cost/stop-rule exercised, not a change to the recipe or the predictor list -- stated here, not silently. Written 2026-09-26T04:16Z. Code sha `1b013d613b3e00fc7fbf8bd414dca1cb1d388308` (tag `archive/coupled-loop-repair-1b013d6`, unchanged from pre-registration). Bug found and fixed before any DOSE-probe seed ran (does not affect the 15 main-sweep results, which never take the cache path): the `--b0-cache` loader in `probes/w3rel/w3rel_probe.py` read `b0c["B0"]["disc4_h1"]`, but the cache file stores `B0` as a bare float; fixed to `B0 = b0c["B0"]`.
+
+**Seeds run: 901-915 (15 of the pre-registered 901-920).** Reduction reason: seed cost varies far more than the pre-registration's smoke estimate (~4.5-5 min/seed) predicted -- a hazard-trapped seed's B0 recompute (`gen_POL`) and post-phase both cost much more per step (many early episode terminations -> many `env.reset()` calls): seed 901 alone took 714s vs the smoke's 124s at a 6x smaller post. Observed range 137s-714s per registered-seed real-arm-plus-B0 cost; average ~300s. At the observed rate, 20 seeds plus a 5-seed DOSE probe would have exceeded the ~2h probe budget and left no room for write-up inside the session's ~3h cap; stopped at 15 main-sweep seeds + 4 DOSE seeds instead.
+
+### Pass rate
+
+| N | pass | pass rate | Wilson 95% CI |
+|---|---|---|---|
+| 15 | 9 | 0.600 | [0.357, 0.802] |
+
+(Clopper-Pearson exact CI not computed: scipy unavailable in this environment; Wilson is the pre-registered primary interval.)
+
+**Every one of the 15 seeds hit k=10 on the real arm** (the reference-encoder discrimination test's full mark count); the pass/fail split is decided entirely by the disc4_h1 >= 0.47 threshold, exactly as W3/N2/N3 already found ("k = 10 in every row, so the bar is decided by disc4"). Guard PASS 15/15, FROZEN-retained-unchanged 15/15, rollout (e) bounded 15/15 -- no anomalies to report.
+
+### Predictor separation (Cohen's d, pass-group mean minus miss-group mean; threshold |d| >= 0.8)
+
+| predictor | pass mean | miss mean | d | separating? |
+|---|---|---|---|---|
+| **B0 disc4** | 0.3278 | 0.2706 | **1.227** | **YES** |
+| INIT disc4 | 0.2522 | 0.2539 | -0.089 | no |
+| babble entropy | 1.6071 | 1.6077 | -0.245 | no |
+| babble stay-share | 0.1897 | 0.1949 | -0.561 | no |
+| babble wall-push share of moves | 0.2475 | 0.2448 | 0.136 | no |
+| post entropy | 0.7439 | 0.5482 | 0.532 | no |
+| post stay-share | 0.0894 | 0.1268 | -0.191 | no |
+| post wall-push share of moves | 0.8059 | 0.8181 | -0.088 | no |
+
+**B0 disc4 is the one separating predictor**, and it is available BEFORE the babbling/pre/post phases even run (it needs only a 2400-step native rollout + 3000-update head fit, ~85-300s depending on hazard stratum). A seed whose on-policy-data head already discriminates somewhat better than average is more likely to end up over the bar after the W3 member's own babbling+replay training. This is descriptive (d=1.23 on 9 vs 6 seeds) -- not causally tested here; a held-out replication or a B0-conditioned re-sample would be the next step, not run here (scope).
+
+**N5's untested wall-push hypothesis is NOT supported by this predictor list.** Neither babble-phase nor post-phase wall-push share separates pass from miss (|d| < 0.15 both). Action entropy and stay-share also do not separate. This does not resolve N5's mechanism claim about WHY the on-policy stream carries little map information (that was about within-run signal quality for a shift-detection gate, a different question) -- it says only that the STATIC pre-registered summary statistics of the babble/post action distribution do not predict THIS gate's pass/fail across seeds.
+
+### A1 hazard stratum (from this run's own post-phase `done` flags, no extra rollout)
+
+| stratum | n | pass | rate | Wilson 95% CI |
+|---|---|---|---|---|
+| hazard_trapped | 5 | 4 | 0.800 | [0.376, 0.964] |
+| benign | 10 | 5 | 0.500 | [0.237, 0.763] |
+
+Intervals overlap substantially -- **not called separating** under the pre-registered non-overlap rule, despite the point-estimate gap (0.80 vs 0.50). N=15 is too small to resolve this; more seeds would be needed. Directionally consistent with N2's finding that hazard-trapped seeds banked more gain over the W3 dose (both 611-615 hazard-trapped seeds and this sample's hazard-trapped seeds show higher post-disc4 on average), but not established here at a pre-registered confidence level.
+
+### DOSE probe (report-only; post=2400, real arm only, cached B0/INIT; 4 of the 5 planned seeds -- 910 not run, time budget)
+
+| seed | post=1200 disc4 (miss) | post=2400 disc4 | post=2400 gate (a) | reading |
+|---|---|---|---|---|
+| 901 | 0.4567 | 0.4933 | **PASS** | dose-limited: recovers with more post-phase training |
+| 903 | 0.3900 | 0.4667 | miss (closer: 0.0033 short) | partially dose-limited: improves but does not clear the bar in 2x the steps |
+| 906 | 0.4567 | 0.4833 | **PASS** | dose-limited: recovers |
+| 909 | 0.4333 | 0.4333 | miss (unchanged to 4 decimal places) | NOT dose-limited: doubling post steps does not move this seed at all |
+
+**2 of 4 misses are dose-limited (recover fully by post=2400), 1 is partially dose-limited (closes most of the gap but not all), 1 shows no dose response.** So a fixed post=1200 dose materially undercounts the recipe's reliability ceiling -- at least some of the 40% miss rate at post=1200 is an artifact of the fixed dose, not a property of the seed. But it is not the whole story: seed 909's flat non-response rules out "just train longer" as a universal fix. The dose-response is seed-dependent, and this probe (N=4) is far too small to say what fraction of misses are dose-limited in general.
+
+### Reading (what this changes, what it doesn't)
+
+- The W3 member gate as currently specified (post=1200, fixed threshold 0.47) has a real per-seed miss rate, plausibly ~30-45% (Wilson CI [0.36, 0.80] on this N), not the ~20% (4/5) the original 5-seed W3 record suggested. That record's own seeds (106-110) were not randomly representative of this rate by chance, or the 5-seed W3 sample was favourable; either way, downstream consumers (N3, N5, any future A1 work built on "the W3 head reliably clears the bar") should treat a single fresh seed's pass as ~60% likely, not close to certain.
+- B0 disc4 (a cheap, pre-training-outcome signal) is a real, if modest-N, predictor of which seeds will pass -- useful for a future design that wants to screen seeds or understand WHY some fail, but not evidence of a mechanism (D1 only; no intervention performed on B0 itself).
+- The dose finding says the fixed post=1200 gate threshold conflates "will never reach 0.47 under this recipe" with "would reach it given more on-policy steps" -- a genuine ambiguity in what a single-dose PASS/FAIL means for reliability claims built on this gate.
+- Nothing here touches E3, consumption, or behaviour (still D1). This is upstream of N3/W4/A1 exactly as scoped.
+
+Probe scripts: `probes/w3rel/w3rel_probe.py`, `probes/w3rel/analyze.py`. Raw results: `probes/w3rel/results/` (not committed alongside -- see close note; scratch copy at `.scratch/breakthrough-20260924/w3rel/results/`).
