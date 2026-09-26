@@ -413,6 +413,14 @@ Decision log entries are appended below, newest last.
  (3) The W3 member gate (a) is disc4 ALONE. The k conjunct is dropped because it was reset-artefact-carried (370c222e20, GFLAG-0560). A t>=8 persistence criterion with its own threshold and null control is deferred.
  (4) The EMA reset-init knobs (z_world 298cb8ffd3; z_self / shared / z_harm bdfe901b37) stay default-OFF on main. All four are ON in the coupled-loop preset, the A1 INT arms and new campaign probes (GFLAG-0559).
 
+- 2026-09-26T15:29:42Z: USER decisions (live, held-list review in orchestrate-20260924-breakthrough-c2; plain-language options with orchestrator recommendations; user said "yes for 1-4"):
+ (a) V3-EXQ-1105b is queued now (route A already chosen at the 1105a autopsy gate, rec-20260926-862b9110). It is the W5 unblocker.
+ (b) Audit H2 (N5b shift detector) and H3 (babbling ends on own learning progress) probes run on the Mac, harness-only.
+ (c) ASP gate (c) narrow fail (3/5): a PRE-REGISTERED seed extension. The gate and statistic are unchanged; seeds 106-110 stay in the count.
+ (d) The MECH-280 LH-PAG override build is PARKED until V3-EXQ-1109 resolves the freeze input. harm_obs_a in the 1107 harness is body damage, not hazard proximity (DCD2 plan 41cfe94841; 1109 red-team).
+ (e) A1 compute (~177 CPU-h): the user suggests commissioning a larger cloud machine so A1 runs in reasonable wall time. The orchestrator prepares the option (machine, wall time, cost) when A1 unblocks.
+ (f) EMA reset-init default-ON on main: NOT YET. Provisional decision (4) stands.
+ (g) A1 retained set FROZEN (no unfreeze path): agreed "for now".
 ## User decisions on this plan (2026-09-25T10:41:23Z; answered live in orchestrate-20260924-breakthrough)
 
 | Plan question | User decision | Ledger |
