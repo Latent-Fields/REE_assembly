@@ -392,6 +392,24 @@ def _phase3_freshness_color(age_s: float | None,
     return "red"
 
 
+def _mark_heartbeat_writer_retired(writers: dict) -> None:
+    """Grey the heartbeat_writer row as `retired` instead of grading its age.
+
+    The phase3 heartbeat git writer was retired 2026-09-06
+    (PHASE3_HEARTBEAT_GIT_MATERIALIZE=0; A-93, and CLAUDE.md "Closed on
+    measurement" item 7 forbids re-enabling it). Its row therefore has no tick
+    and a commit that only ever ages, so both colour functions above painted it
+    permanently red -- an alarm on a deliberate state. The row is kept (its last
+    commit is still useful provenance), but a present last_error keeps red: a
+    retired writer that is somehow erroring IS worth a look.
+    """
+    row = writers.get("heartbeat_writer")
+    if not isinstance(row, dict) or row.get("last_error") is not None:
+        return
+    row["color"] = "grey"
+    row["status"] = "retired"
+
+
 def _parse_phase3_log_line(line: str) -> dict:
     """One line of `git log --pretty='%H %at %s'`. Returns {sha10, ts, subject}
     or {} on empty/malformed."""
@@ -524,6 +542,7 @@ def _fetch_phase3_writer_health_http(cfg: dict) -> dict | None:
     writer_status = "errored" if any_error else "idle"
     for row in writers.values():
         row["status"] = writer_status
+    _mark_heartbeat_writer_retired(writers)
 
     spool_pending = None
     raw_spool = doc.get("spool_pending")
@@ -726,6 +745,7 @@ def run_phase3_writers_summary() -> dict:
             writer_status = "idle"
         for row in writers.values():
             row["status"] = writer_status
+        _mark_heartbeat_writer_retired(writers)
 
         try:
             spool_pending = int(s_block.strip().splitlines()[-1])
@@ -6434,6 +6454,24 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
                 "Fix harness/setup; wait for HEALTHY + div 0 before cutover.",
             ],
         }
+    if verdict == "IDLE":
+        return {
+            "phase": 3,
+            "phase_label": "Phase 3 -- fleet idle (queue empty)",
+            "parallel": "Coordinator owns claims; sync_daemon is sole git "
+                        "writer. No active queue items, so the scaler has "
+                        "powered workers down and nobody needs to heartbeat.",
+            "assess": ("Expected quiet: 0 active items, divergence=%d. Workers "
+                       "wake on claimable>0." % div),
+            "retire": "Nothing to do. If you just queued work and this does "
+                      "not flip to HEALTHY within a few minutes, check the "
+                      "cloud-scaler on the hub.",
+            "next": [
+                "Queue experiments via /queue-experiment to wake the fleet.",
+                "The Mac runner stays off while ~/.ree_runner_disabled exists "
+                "(cleared by the explorer Start button).",
+            ],
+        }
     if verdict == "NO_SIGNAL":
         if mode == "coordinator":
             return {
@@ -6506,9 +6544,23 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
     }
 
 
-def _shadow_verdict(st: dict, stale_mins: float = 10.0) -> tuple:
+def _shadow_verdict(st: dict, stale_mins: float = 10.0,
+                    queue_active: int | None = None) -> tuple:
     """Same logic as ree-v3/coordinator/check_shadow.py (kept in sync by
-    hand -- the two live in different repos so duplication is deliberate)."""
+    hand -- the two live in different repos so duplication is deliberate),
+    plus ONE explorer-only verdict, IDLE, that check_shadow.py does not have.
+
+    IDLE (2026-09-26): no machine is fresh AND the coordinator reports zero
+    active queue items (pending / claimed / suspended). That is the scaler
+    doing its job -- workers power down after `scaler_idle_after_grace` and the
+    Mac runner is off by operator choice -- so silence is expected, not a
+    fault. Before this, an idle fleet painted the Coordination dot amber
+    permanently. The queue count, not machine lifecycle fields, is the
+    predicate: "is there work nobody is doing" is the question the amber was
+    for. `queue_active=None` means the count could not be fetched, and that
+    stays NO_SIGNAL -- an unreadable queue must never read as "nothing to do".
+    check_shadow.py is deliberately not changed: it has no queue view, and
+    phase3_preflight.py consumes its NO_SIGNAL."""
     from datetime import datetime, timezone
     ndiv = st.get("adjusted_divergences",
                   st.get("divergences_blocking", st.get("divergences", 0)))
@@ -6529,9 +6581,28 @@ def _shadow_verdict(st: dict, stale_mins: float = 10.0) -> tuple:
             fresh += 1
     if ndiv > 0:
         return ("DIVERGENCE", "red")
+    if total > 0 and fresh == 0 and queue_active == 0:
+        return ("IDLE", "green")
     if total == 0 or fresh == 0:
         return ("NO_SIGNAL", "amber")
     return ("HEALTHY", "green")
+
+
+def _coordinator_queue_active_count(url: str, tok: str) -> int | None:
+    """Number of pending/claimed/suspended items in the coordinator mirror, or
+    None when it cannot be determined (the caller treats None as unknown, never
+    as zero). Never raises."""
+    import urllib.request
+    try:
+        req = urllib.request.Request(
+            url.rstrip("/") + "/queue/active",
+            headers={"Authorization": "Bearer " + tok}, method="GET")
+        with urllib.request.urlopen(req, timeout=4) as r:
+            doc = json.loads(r.read().decode("utf-8"))
+        items = doc.get("items")
+        return len(items) if isinstance(items, list) else None
+    except Exception:  # noqa: BLE001 -- unknown, not zero
+        return None
 
 
 def read_shadow_status() -> dict:
@@ -6588,10 +6659,12 @@ def read_shadow_status() -> dict:
     # reflects the same set the caller will see.
     st_filtered = dict(st)
     st_filtered["machines"] = fresh_machines
-    verdict, color = _shadow_verdict(st_filtered)
+    queue_active = _coordinator_queue_active_count(url, tok)
+    verdict, color = _shadow_verdict(st_filtered, queue_active=queue_active)
     guide = _shadow_operator_guide(verdict, st_filtered)
     return {"verdict": verdict, "color": color,
             "mode": st.get("mode"),
+            "queue_active": queue_active,
             "total_claims": st.get("total_claims", 0),
             "divergences": st.get("divergences", 0),
             "adjusted_divergences": st.get(
