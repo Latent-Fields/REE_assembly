@@ -1,0 +1,14 @@
+| seed | stratum | arm | pre disc4/k | **post disc4/k (current)** | disc5 | retention | SHUF post disc4/k | (e) t30/t0, late max | S1 std disc4/k | S2 ref-space disc4/k | norm x | PR ref->cur | woe drift | stale ret/onp | guard |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 611 | benign | frozen | 0.447 / 8 | **0.417 / 10** | 0.383 | 0.79 | 0.160 / 10 | 1.39, 1.064 | 0.447 / 10 | 0.417 / 10 | 1.00 | 1.30->1.30 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 612 | hazard-trapped | frozen | 0.507 / 8 | **0.427 / 10** | 0.347 | 0.57 | 0.180 / 9 | 1.39, 1.078 | 0.413 / 9 | 0.427 / 10 | 1.00 | 1.27->1.27 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 613 | hazard-trapped | frozen | 0.440 / 9 | **0.440 / 10** | 0.393 | 1.00 | 0.140 / 10 | 1.10, 1.018 | 0.407 / 10 | 0.440 / 10 | 1.00 | 1.25->1.25 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 614 | hazard-trapped | frozen | 0.507 / 10 | **0.517 / 10** | 0.470 | 1.06 | 0.167 / 9 | 1.49, 1.064 | 0.500 / 7 | 0.517 / 10 | 1.00 | 1.52->1.52 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 615 | hazard-trapped | frozen | 0.413 / 9 | **0.377 / 10** | 0.320 | 0.69 | 0.170 / 10 | 1.37, 1.053 | 0.390 / 10 | 0.377 / 10 | 1.00 | 1.36->1.36 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 611 | benign | reencode | 0.447 / 8 | **0.520 / 10** | 0.470 | 1.51 | 0.133 / 0 | 2.87, 1.236 | 0.520 / 10 | 0.230 / 0 | 8.94 | 1.30->7.45 | 1.442 | 0.94 / 0.31 | e2_world:PASS,world_encoder:PASS |
+| 611 | benign | stored | 0.447 / 8 | **0.257 / 0** | 0.223 | -0.33 | 0.290 / 0 | 3.19, 1.498 | 0.267 / 0 | 0.363 / 0 | 8.84 | 1.30->7.75 | 1.479 | 0.93 / 0.33 | e2_world:PASS,world_encoder:PASS |
+
+frozen: n=5 (a)=1/5 (b)=5/5 twin-meets-(a)=0/5 (d)=5/5 (e)=5/5 | S1 std (a)=0/5 S2 ref (a)=1/5 -> keeps bar: False
+reencode: n=1 (a)=1/5 (b)=1/5 twin-meets-(a)=0/5 (d)=1/5 (e)=0/5 | S1 std (a)=1/5 S2 ref (a)=0/5 -> keeps bar: False
+stored: n=1 (a)=0/5 (b)=0/5 twin-meets-(a)=0/5 (d)=1/5 (e)=0/5 | S1 std (a)=0/5 S2 ref (a)=0/5 -> keeps bar: False
+VERDICT: CANNOT_DETERMINE

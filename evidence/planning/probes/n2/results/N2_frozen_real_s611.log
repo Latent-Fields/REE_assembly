@@ -1,0 +1,10 @@
+/Users/dgolden/REE_Working/REE_assembly/evidence/planning/probes/rollout/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[n2 s611 frozen/real t=   3s] INIT disc4 0.2800 B0 0.3033 (benign)
+[n2 s611 frozen/real t=   3s] members ['e2_world'] W3 W=26 alpha_world=0.30 latent=reencode
+[n2 s611 frozen/real t=   5s] babble done: retained 2283 classes [504, 444, 529, 442, 481]
+[n2 s611 frozen/real t=  12s] pre disc4 0.4467 k 8
+[n2 s611 frozen/real t=  19s] post ep 0 done (7s) steps {'e2_world': 4600}
+[n2 s611 frozen/real t=  27s] post ep 1 done (15s) steps {'e2_world': 6200}
+[n2 s611 frozen/real t=  34s] post ep 2 done (22s) steps {'e2_world': 7800}
+[n2 s611 frozen/real t=  38s] RESULT cur disc4 0.4167 k 10 disc5 0.3833 gate_a False ret 0.791 | std 0.4467 k 10 | refspace 0.4167 k 10 | e True t30 1.39 late 1.023/1.064 | norm x1.00 PR 1.30->1.30 woe 0.000 | guard {'e2_world': 'PASS'} frozen True | stale {'retained': 0.0, 'on_policy': 0.0}

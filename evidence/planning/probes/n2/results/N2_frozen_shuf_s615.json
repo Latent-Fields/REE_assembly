@@ -1,0 +1,136 @@
+{
+ "seed": 615,
+ "arm": "frozen",
+ "twin": "shuf",
+ "hazard_class": "hazard-trapped",
+ "config": {
+  "post": 600,
+  "ups": 8,
+  "w6a_ups": 1,
+  "w6a_batch": 64,
+  "replay_latent": "reencode",
+  "w3_window": 26,
+  "w6a_window": null,
+  "wt": "/Users/dgolden/REE_Working/.scratch/wt-n2"
+ },
+ "init": {
+  "n_starts": 300,
+  "disc4_h1": 0.27,
+  "disc4_h3": 0.25,
+  "disc4_h5": 0.24666666666666667,
+  "disc5_h1": 0.27,
+  "k": 0,
+  "err_over_pers_h1": 24.771729625634624,
+  "err_over_pers_h5": 51.407885894172004
+ },
+ "B0": 0.29333333333333333,
+ "pre": {
+  "n_starts": 300,
+  "disc4_h1": 0.23666666666666666,
+  "disc4_h3": 0.23,
+  "disc4_h5": 0.26,
+  "disc5_h1": 0.17666666666666667,
+  "k": 8,
+  "err_over_pers_h1": 0.7384663387416489,
+  "err_over_pers_h5": 0.729523670161018
+ },
+ "post_current": {
+  "n_starts": 300,
+  "disc4_h1": 0.17,
+  "disc4_h3": 0.2,
+  "disc4_h5": 0.22333333333333333,
+  "disc5_h1": 0.1,
+  "k": 10,
+  "err_over_pers_h1": 0.7468818509880106,
+  "err_over_pers_h5": 0.713563052296788
+ },
+ "post_current_std": {
+  "n_starts": 300,
+  "disc4_h1": 0.24,
+  "disc4_h3": 0.22666666666666666,
+  "disc4_h5": 0.23333333333333334,
+  "disc5_h1": 0.16666666666666666,
+  "k": 8,
+  "err_over_pers_h1": 0.853025802802193,
+  "err_over_pers_h5": 0.8638709873280822
+ },
+ "post_refspace": {
+  "n_starts": 300,
+  "disc4_h1": 0.17,
+  "disc4_h3": 0.2,
+  "disc4_h5": 0.22333333333333333,
+  "disc5_h1": 0.1,
+  "k": 10,
+  "err_over_pers_h1": 0.7468818509880106,
+  "err_over_pers_h5": 0.713563052296788
+ },
+ "retention": 2.176470588235294,
+ "gate_a": false,
+ "gate_a_std_secondary": false,
+ "gate_a_refspace_secondary": false,
+ "rollout_current": {
+  "t30_over_t0_median": 1.300188560494406,
+  "late_growth_median": 1.0170190762393392,
+  "late_growth_max": 1.0926407387640207,
+  "gate_e": true
+ },
+ "rollout_refspace": {
+  "t30_over_t0_median": 1.300188560494406,
+  "late_growth_median": 1.0170190762393392,
+  "late_growth_max": 1.0926407387640207,
+  "gate_e": true
+ },
+ "guard": {
+  "e2_world": "PASS"
+ },
+ "frozen_retained_unchanged_after_post": true,
+ "retained_n": 2284,
+ "babble_class_counts": [
+  420,
+  529,
+  474,
+  499,
+  478
+ ],
+ "onpol_n": 573,
+ "updates": {
+  "e2_world": 7800
+ },
+ "drawn_retained": 140736,
+ "drawn_on_policy": 108864,
+ "n_reencoded": 2918,
+ "n_cache_hits": 247194,
+ "latent_ref": {
+  "pr": 1.36105477809906,
+  "norm_median": 0.47849780321121216
+ },
+ "latent_current": {
+  "pr": 1.36105477809906,
+  "norm_median": 0.47849780321121216
+ },
+ "norm_ratio_current_over_ref": 1.0,
+ "world_obs_encoder_rel_change": 0.0,
+ "w6a_last_terms": null,
+ "staleness": {
+  "retained": {
+   "n": 256,
+   "rel_diff_median": 0.0,
+   "norm_ratio_current_over_stored_median": 1.0
+  },
+  "on_policy": {
+   "n": 256,
+   "rel_diff_median": 0.0,
+   "norm_ratio_current_over_stored_median": 1.0
+  }
+ },
+ "post_reward_per_100": -4.389510965247949,
+ "post_action_counts": {
+  "0": 358,
+  "1": 0,
+  "2": 36,
+  "3": 1,
+  "4": 205
+ },
+ "t_post_s": 71.78946471214294,
+ "t_total_s": 84.39292192459106
+}

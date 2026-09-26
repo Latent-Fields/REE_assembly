@@ -1,6 +1,6 @@
 # Probe N2: does W3's retained replay keep the L2R bar while W6a trains the world encoder through the read path? (Q4c, P8)
 
-- **Status: PRE-REGISTERED** (this section committed before any registered seed ran). Session `bt0925-n2` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260925-coupled-n2-replay-probe`. Written 2026-09-25T23:11:26Z.
+- **Status: RUN -- VERDICT CANNOT_DETERMINE** (control arm missed (a) on 4/5 at the pre-registered reduced dose; sec 3). Pre-registration (secs 1-2) committed `025fc6a5cfe` before any registered seed ran. Session `bt0925-n2` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260925-coupled-n2-replay-probe`. Written 2026-09-25T23:11:26Z.
 - **Code:** ree-v3 `9b322d5` (tag `archive/coupled-loop-repair-9b322d5`, the W6a commit on `integration/coupled-loop-repair`), throwaway detached worktree `.scratch/wt-n2`. No `ree_core` edits. All three arms are configuration only on this sha.
 - **Plan of record:** `coupled_loop_repair_campaign_plan.md` sec 4 N2 row, sec 1 P8, sec 3 W-trainer (buffer-staleness requirement) and W3 member gate (a)-(e). Upstream records: W3 `w3_e2_world_member_build_20260925.md` (f82cb986c5), W6a `w6a_world_encoder_member_build_20260925.md` (eb055574c05).
 - **Probe:** `probes/n2/n2_probe.py` (one invocation = one seed x arm x twin), runner `probes/n2/run_seed.sh`, results `probes/n2/results/`.
@@ -61,3 +61,56 @@ W6a: from_dims defaults (lr 1e-3, batch 64, window auto = 26 at alpha 0.3, grad_
 **Also reported (D0, reasoned from the result):** whether `HarmEvalMember`, `CodecMember` and `E1Member` -- which replay stored latents -- need the same policy.
 
 **Cost / stop rules:** At W3's 1200 post steps, one seed (B0 + 3 arms x 2 twins) takes ~45 min of Mac wall (P2), over the brief's ~20 min per seed. **Pre-registered reduction: the post phase is 600 waking steps** (3 episodes, k = 50..52). The rate stays at 8 W3 updates per step, with the same replay ratio and mix, so the post phase has 4800 W3 updates instead of 9600, plus 600 W6a updates. This deviates from the W3 gate dose and is fixed before any registered seed runs. It gives the on-policy stream less time to erode the babbling map in every arm, the control included. It also gives W6a 600 updates rather than ~2000; P5 shows most of the scale shift is already present at 200. Expected ~22 min per seed, one lock hold per seed. Runs are serial under the Mac probe lock (2 torch threads). If a seed exceeds ~20 min of Mac wall, the post phase is shortened for the remaining seeds and that is stated in sec 3 (never silently).
+
+## 3. Result (written 2026-09-26T01:24:56Z; sections 1-2 unchanged since the pre-registration commit `025fc6a5cfe`)
+
+### VERDICT: **CANNOT_DETERMINE** (pre-registered rule 1: the control arm misses (a) on 4/5 seeds)
+
+The frozen-encoder control meets (a) on **1/5** seeds (614 only). Rule 1 needs >= 2 misses and gets 4, so N2 is **not decided** at the pre-registered dose. The control's miss is not a harness fault. The canary reproduces W3 exactly (P3). Twins fail 5/5, guard PASS 5/5, FROZEN intact 5/5, (b) retention 5/5, (e) bounded 5/5. The control fails only the 0.47 threshold of (a): post disc4 0.377-0.517, k = 10 on 5/5.
+
+**Why the control missed: the pre-registered dose cut** (post 600 instead of W3's 1200; sec 2 Cost). At the W3 dose the post phase ADDS discrimination over pre on 4/5 seeds (W3 seeds 106-110: pre 0.433-0.473 -> post 0.460-0.523). At 600 steps, post is at or below pre on 4/5 seeds (611 0.447 -> 0.417, 612 0.507 -> 0.427, 613 0.440 -> 0.440, 615 0.413 -> 0.377; 614 0.507 -> 0.517). The fresh seeds' pre values sit in W3's range. So the gain W3 banked comes from the second half of its on-policy phase, which the cut removed. **The reduced dose was chosen to fit a Mac probe and it broke the control. I made that call; the brief's rule was applied as written.**
+
+### Per-run table (primary = current-encoder space; S1/S2 secondary, not gating)
+
+| seed | stratum | arm | pre disc4/k | **post disc4/k (current)** | disc5 | retention | SHUF post disc4/k | (e) t30/t0, late max | S1 std disc4/k | S2 ref-space disc4/k | norm x | PR ref->cur | woe drift | stale ret/onp | guard |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 611 | benign | frozen | 0.447 / 8 | **0.417 / 10** | 0.383 | 0.79 | 0.160 / 10 | 1.39, 1.064 | 0.447 / 10 | 0.417 / 10 | 1.00 | 1.30->1.30 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 612 | hazard-trapped | frozen | 0.507 / 8 | **0.427 / 10** | 0.347 | 0.57 | 0.180 / 9 | 1.39, 1.078 | 0.413 / 9 | 0.427 / 10 | 1.00 | 1.27->1.27 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 613 | hazard-trapped | frozen | 0.440 / 9 | **0.440 / 10** | 0.393 | 1.00 | 0.140 / 10 | 1.10, 1.018 | 0.407 / 10 | 0.440 / 10 | 1.00 | 1.25->1.25 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 614 | hazard-trapped | frozen | 0.507 / 10 | **0.517 / 10** | 0.470 | 1.06 | 0.167 / 9 | 1.49, 1.064 | 0.500 / 7 | 0.517 / 10 | 1.00 | 1.52->1.52 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 615 | hazard-trapped | frozen | 0.413 / 9 | **0.377 / 10** | 0.320 | 0.69 | 0.170 / 10 | 1.37, 1.053 | 0.390 / 10 | 0.377 / 10 | 1.00 | 1.36->1.36 | 0.000 | 0.00 / 0.00 | e2_world:PASS |
+| 611 | benign | reencode | 0.447 / 8 | **0.520 / 10** | 0.470 | 1.51 | 0.133 / 0 | 2.87, 1.236 | 0.520 / 10 | 0.230 / 0 | 8.94 | 1.30->7.45 | 1.442 | 0.94 / 0.31 | e2_world:PASS,world_encoder:PASS |
+| 611 | benign | stored | 0.447 / 8 | **0.257 / 0** | 0.223 | -0.33 | 0.290 / 0 | 3.19, 1.498 | 0.267 / 0 | 0.363 / 0 | 8.84 | 1.30->7.75 | 1.479 | 0.93 / 0.33 | e2_world:PASS,world_encoder:PASS |
+
+Aggregates: `frozen` n = 5: (a) 1/5, (b) 5/5, twin meets (a) 0/5, (d) 5/5, (e) 5/5. `reencode` and `stored` **n = 1 (seed 611 only)**.
+
+**Run order, stated.** Seed 611 ran all six runs in one lock hold (23:40-00:01Z). The Mac probe lock was then held by other workers for ~53 min. To reach the decision within the ~3 h cap, the remaining seeds were **reordered** (rule unchanged): B0 + the control arm (real and shuf) for 612-615 ran in one hold (00:54-01:23Z). The control's second miss (612, 01:04Z) already fixed the verdict under rule 1, so the W6a arms for 612-615 were not run. No run was discarded. Every completed run is in `probes/n2/results/`.
+
+### What seed 611 shows (n = 1, D1, descriptive only, not a verdict)
+
+| arm | post disc4 / k (current space) | S2: same head, reference space | (e) late growth max | test-set norm x | PR | stored-z staleness (retained / on-policy) |
+|---|---|---|---|---|---|---|
+| frozen | 0.417 / 10 | 0.417 / 10 | 1.064 | 1.00 | 1.30 | 0 / 0 |
+| reencode | **0.520 / 10** (twin 0.133 / 0) | 0.230 / 0 | **1.236** | 8.94 | 1.30 -> 7.45 | 0.94 / 0.31 |
+| stored | **0.257 / 0** (twin 0.290 / 0) | 0.363 / 0 | 1.498 | 8.84 | 1.30 -> 7.75 | 0.93 / 0.33 |
+
+- **Re-encode tracked the moving encoder on this seed.** 600 W6a updates moved `world_obs_encoder` by 1.44x its norm, scaled the sensed test-set z_world 8.9x and raised PR 1.3 -> 7.5. The W3 head, replaying raw obs re-encoded through the current path, still discriminates in the new space (0.520, k 10, above the frozen control's 0.417 on the same seed). It no longer speaks the old space (S2 0.230). Its shuffled twin fails (0.133 / k 0). One leg broke: (e), late per-step growth max 1.236 against the 1.2 bound (median 1.057, t30/t0 2.87 < 5). So the rollout from the new, larger-norm states is less contractive. Whether that recurs is a 1-seed question.
+- **Stored replay collapsed the head on this seed.** disc4 0.257, k 0, retention < 0, rollout unbounded (late max 1.50). The retained babbling z were sensed by the untrained encoder and are 0.93 relative-distance from what the current encoder produces for the same observations. Even the on-policy buffer (<= 600 ticks old) is 0.33 stale. The head is trained on a mix of two incompatible latent spaces and reads neither (S2 0.363 / k 0). The non-registered smoke on seed 106 (sec 1 disclosure) showed the same after 200 W6a updates.
+- **S1 (scale-normalised) is not the explanation for anything here.** On 611 the per-dimension standardised readout gives the same pass/fail as the primary in all three arms (reencode 0.520 / 10, stored 0.267 / 0). As stated at pre-registration, disc4 and k are invariant to a uniform rescaling, so the 9x scale shift can act only through training. It is harmless under re-encode and fatal under stored-z, and that difference is a staleness effect, not a metric artefact.
+
+### Harm_eval / codec / E1 (D0, reasoned from 611 + code; not measured on those members)
+
+`HarmEvalMember.observe` stores the tick's DETACHED `z_world` (`waking_trainer.py` HarmEvalMember). `CodecMember` stores z_world. `E1Member` replays the agent's own detached experience buffers (W6a record sec 5). All three are the `stored` policy by construction. On 611, stored z went 0.93 stale for babble-age records and **0.33 stale even for records <= 600 ticks old** at 1 W6a update per tick. A bounded-age buffer would therefore have to be much shorter than the default `waking_trainer_buffer_max` 2000 to stay near current. That shrinks the harm_eval head's rare-positive sample count, which it cannot afford. **Reasoned recommendation: all three need the raw-obs re-encode policy (as W3 has), not bounded age**, or W6a must be phased so the encoder is frozen while they train. This is reasoned from one seed and code (D0/weak D1). It is not a measured result about those heads.
+
+### What would decide N2 (the next action; an orchestrator call)
+
+Re-run **the same pre-registered design at the W3 dose (post 1200, 9600 W3 updates, ~1200 W6a updates)**, with no change to the rule. The Mac cost is ~45 min per seed (P2): ~13 min per `reencode` run, ~6 min per `stored` run. That is a **cloud-worker** job, or a Mac job only with a reserved multi-hour lock window. The probe takes `--post`; `run_seed.sh` needs only `--post 1200`. To reuse seeds 611-615, pre-register the dose change as an amendment first. Seed 611's arm-2/arm-3 split (0.520 vs 0.257) predicts HOLDS-REENCODE with an open question on (e). It is one seed at a reduced dose and is not credited as the answer.
+
+### Evidence domain reached
+
+**D1.** Head discrimination on held-out data in the encoder space it is consumed in, plus measured latent staleness. No E3 consumer or behaviour reading (N3 / W4 / A1).
+
+### Landing
+
+- Pre-registration `025fc6a5cfe` (before any registered seed). This results section is appended in a separate commit, with the result JSON/logs, `summarize_n2.py` and `results/summary.txt` under `probes/n2/`.
+- Plan sec 2 N2 row updated (status + one-line result). Nothing else in the plan changed.
