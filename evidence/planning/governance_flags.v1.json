@@ -7940,9 +7940,9 @@
       "summary": "Refines GFLAG-0556's routing. Per REE_assembly 04fbe381e1b evidence/planning/cea_onset_input_reprobe_20260925.md (pre-registered, 3 seeds x 2 env configs, D1), env saturation is REFUTED as the cause of CeA's missing onset info: de-saturating the hazard field (nh=1, decay=2.0; on-trajectory hazard_at_agent mean 0.11-0.14 vs baseline 0.85-0.87) does not restore z_harm_a's onset-selectivity -- its relative-gate d' goes negative, below its own silent-floor. STREAM CHOICE is the dominant factor: the raw, un-encoded, un-smoothed hazard_at_agent scalar (candidate b) beats both z_harm_s (candidate a) and a fast EMA (candidate c) in both configs under a rate-of-change gate (baseline d'=1.00 H=33%, nonsat d'=0.73 H=28%), but none reach the pre-registered working bar (d'>=1.0 AND H>=0.5) at N=5 or N=10. This scalar is not currently exposed in obs_dict (harm_obs normalises it, harm_obs_a EMAs it) -- a build needs a new raw hazard-proximity field, not a rewire of an existing one. Do not gate a build on choosing a non-saturated env config.",
       "raised_by_session": "bt0925-ceacal2",
       "raised_at": "2026-09-25T20:28:38Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:23:14Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652): conclusion carried into substrate_queue cea-onset-input-selector (complex, probe-gated: 2D/FA-matched gate probe first, then a default-OFF CeA input selector). PREMISE CORRECTION: the raw hazard-proximity scalar is already exposed env-side as the default-OFF obs_dict['safety_proximity_harm'] at safety_proximity_ema_alpha=1.0 -- no new env field needed (ARC-155 note corrected). CeA salience ceiling 0.4 < switch_threshold 1.0 is a separate design decision, deferred until an onset input meets the bar."
     },
     {
       "flag_id": "GFLAG-0558",
