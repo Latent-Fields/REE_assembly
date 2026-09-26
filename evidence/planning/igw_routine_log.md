@@ -3772,3 +3772,8 @@ One line per hourly tick. ASCII only.
 2026-09-26T14:20:37Z STAGE IGW-20260926-214 skill=/implement-substrate prio=25 worktree=igw-214-substrate-ready-mech-279 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-26T15:12:43Z auto-defer igw-220-substrate-ready-mech288-slow-sca hash=05d4c828bb98 for 48h (complete)
 2026-09-26T15:12:43Z complete igw-220-substrate-ready-mech288-slow-sca launched_manual->completed outcome=USEFUL_LANDED: MECH-288 slow-scale rail: magnitude-relative BOCPD trigger built default-off (re
+2026-09-26T16:16:22Z GC removed worktree igw-219-substrate-ready-dacc-pe-scale-no (removed; branch deleted)
+2026-09-26T16:16:23Z GC removed worktree igw-220-substrate-ready-mech288-slow-sca (removed; branch deleted)
+2026-09-26T16:16:01Z GC sweep removed 2 orphan worktree(s), kept 22
+2026-09-26T16:18:22Z workset published (regen -- 256 items, 31 ready, 0 in flight)
+2026-09-26T16:18:22Z workset committed (regen -- 256 items, 31 ready, 0 in flight)
