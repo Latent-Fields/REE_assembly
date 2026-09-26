@@ -2514,6 +2514,17 @@ def read_machines() -> dict:
     STALE_EXCLUDE_SECONDS = (
         float(os.environ.get("MACHINE_STALE_EXCLUDE_HOURS", "6")) * 3600
     )
+    # Excluded rows are still REPORTED, compactly, as offline_machines: a
+    # powered-off worker used to vanish from /machines entirely, which reads
+    # as "that box does not exist" rather than "that box is off".
+    offline_machines = [
+        {"machine": m.get("machine"), "state": m.get("state"),
+         "age_seconds": m.get("age_seconds"),
+         "last_tick_utc": m.get("last_tick_utc")}
+        for m in out_machines
+        if m.get("age_seconds") is not None
+        and m["age_seconds"] > STALE_EXCLUDE_SECONDS
+    ]
     out_machines = [
         m for m in out_machines
         if m.get("age_seconds") is None
@@ -2542,6 +2553,7 @@ def read_machines() -> dict:
         "telemetry_mode": telemetry_mode,
         "coordinator_overlay": telemetry_mode == "coordinator",
         "machines": out_machines,
+        "offline_machines": offline_machines,
     }
 
 

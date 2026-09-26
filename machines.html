@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- MACHINES_VERSION: 2026-08-20.1 -->
+<!-- MACHINES_VERSION: 2026-09-26.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -35,6 +35,9 @@
     .state.unknown { background: #eee; color: #666; }
     .state.stale { background: #fff5de; color: #7c5a1f; }
     .state.dispatching { background: #ede7f6; color: #4527a0; }
+    .offline { margin-top: 18px; font-size: 13px; color: #555; }
+    .offline table { border-collapse: collapse; margin-top: 6px; }
+    .offline td { padding: 3px 14px 3px 0; border-top: 1px solid #eee; }
     .recent { font-size: 11px; color: #555; margin-top: 6px;
               max-height: 60px; overflow-y: auto; }
     .recent .pass { color: #2e7d32; }
@@ -69,6 +72,7 @@
   <h1>REE Machines Dashboard</h1>
   <div class="meta" id="meta">Loading...</div>
   <div class="grid" id="grid"></div>
+  <div class="offline" id="offline"></div>
   <div class="toast" id="toast"></div>
   <div class="footer">
     <p>Heartbeats are posted to the coordinator each runner loop tick when the runner is
@@ -194,7 +198,10 @@ async function refresh() {
     return;
   }
   const machines = data.machines || [];
-  meta.textContent = `${machines.length} machine(s) -- ${machines.filter(m=>m.fresh).length} fresh -- updated ${data.now_utc}`;
+  const offline = data.offline_machines || [];
+  meta.textContent = `${machines.length} machine(s) -- ${machines.filter(m=>m.fresh).length} fresh`
+    + (offline.length ? ` -- ${offline.length} offline` : "") + ` -- updated ${data.now_utc}`;
+  renderOffline(offline, data.stale_exclude_seconds);
 
   // Fetch all per-machine command files in parallel for inline history
   const cmdResults = await Promise.all(machines.map(m => fetchCommands(m.machine)));
@@ -231,6 +238,19 @@ async function refresh() {
       ${renderCommands(cmds)}
     </div>`;
   }).join("");
+}
+
+// Boxes with no heartbeat for longer than the server's stale window (default
+// 6h) -- usually a worker the scaler has powered off. Listed, not carded:
+// they have no live state to show, but omitting them made them look gone.
+function renderOffline(rows, windowSeconds) {
+  const el = document.getElementById("offline");
+  if (!rows.length) { el.innerHTML = ""; return; }
+  const hours = windowSeconds ? Math.round(windowSeconds / 3600) : 6;
+  el.innerHTML = `<strong>Offline</strong> -- no heartbeat for over ${hours}h (powered off or not running)`
+    + `<table>${rows.map(r => `<tr><td>${r.machine}</td>`
+      + `<td>last seen ${fmtAge(r.age_seconds)}</td>`
+      + `<td>last state: ${r.state || "?"}</td></tr>`).join("")}</table>`;
 }
 
 // Orchestrator boxes (Phase H metaworker-dispatch) run no experiments -- no
