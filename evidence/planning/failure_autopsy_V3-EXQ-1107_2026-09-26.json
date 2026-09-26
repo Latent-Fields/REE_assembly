@@ -1,0 +1,150 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-26T10:19:36Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "dry_run_check_note": "scripts/check_dry_run_citations.py run over all 7 2026-09-25 diagnostic run_ids of this batch: 0 dry, 7 clean.",
+ "batch": "failure-autopsy-20260926-batch7 (V3-EXQ-1105a/1067/1106/1107/1099/1104/1090)",
+ "targets": [
+  {
+   "run_id": "v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3",
+   "queue_id": "V3-EXQ-1107",
+   "claim_ids": [
+    "SD-032a",
+    "MECH-157"
+   ],
+   "experiment_purpose": "diagnostic",
+   "self_route_label": "substrate_not_ready_requeue",
+   "self_route_holds": "the not-ready outcome holds; the stated reason (contact guard unmet) is a symptom of a PAG-freeze lock that is PROVABLE from the gate's own rule and the recorded latent: post-p0 ||z_harm_a|| = 2.8-4.2, so with duration 1 the commit value exceeds theta_freeze 0.8 on tick 1 of every life; exit requires ||z_harm_a|| < 0.8 (gaba_tone 1.0) and max_freeze_duration is 0 (never). The action is overridden to STAY inside select_action (agent.py ~11526-11548). Pinned env seeds put every eval life on the same hazard-adjacent spawn, which is why all 15 lives are identical; the lock is why the agent never leaves. A blind re-queue would reproduce it.",
+   "failed_criterion": "absolute",
+   "facts": {
+    "collapse": "probe lives: init 6-22 steps; p0/hazard/p1/p2 exactly 6 on all 3 seeds; final eval 6 x 15 in both arms; every life ends at harm ~-1.0..-1.26 (health depletion), so a 6-step life = the agent at a hazard from spawn, never leaving. NOTE: 6-step lives also appear at init on 2/3 seeds (untrained agent sometimes leaves, trained never does).",
+    "935a_contrast": "V3-EXQ-935a, same harness and seed labels, 2026-09-16: guard 5/5, P2 contact rate 0.09-0.32 (44-156 contact events)",
+    "deltas_vs_935a": "935a ran the same freeze-gate settings (theta 0.8, duration threshold 0.2, harm pathway trained) on PRE-fix code, where a frozen agent walked UP one cell per tick -- which is how a permanently frozen agent still logged contacts. GFLAG-0508 (open) lists 935/935a among affected runs. So 935a is NOT a validated healthy baseline, and 1fc881692d UNMASKED the lock rather than caused it. Env-seed pinning (ENV_SEED_BASE 1107, reaching the training scheduler) explains the identical lives, not the failure to leave.",
+    "negative_instrument": "drive_engages_on_arm / dacc_salience_live report measured 0.0 because they are computed over guard-passing seeds only and _frac([]) returns 0.0; raw per-seed drive_engaged and dacc_live are true on 3/3",
+    "C1_raw": "ON arm classes INTERMEDIATE / PINNED_EXTERNAL / ONE_WAY; max n_into_external 2 -- but read inside a 6-step catatonic life, meaningless",
+    "latent_constancy": "||z_harm_a|| and dacc_pe are identical on all 90 eval ticks; near-constancy also holds at init while the agent moves, so this reads as an input-insensitive (saturated) harm encoder, NOT as proof of stationarity. Stationarity is argued from the gate arithmetic instead."
+   },
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- a readiness failure; neither SD-032a nor MECH-157 could express. SD-032a stays stable; MECH-157's non-degeneracy precondition (a coordinator-driven within-life transition) remains unmeasured.",
+    "biological_reference": "partial -- salience-network switching (targeted_review_sd_032a present). No MECH-157 review exists. The collapse itself resembles tonic immobility with no release, i.e. the MECH-287 gap.",
+    "prerequisites": "missing -- a foraging-competent agent; the curriculum produced a catatonic one.",
+    "implementation": "complete for the tested arms (drive live, dACC live, coordinator ticking).",
+    "environment": "inadequate -- the 935a harness (freeze gate on, trained harm stream) yields a permanently frozen agent on post-fix code; on pre-fix code the same lock was masked by UP-walking (GFLAG-0508).",
+    "measurement": "partially misleading -- secondary readiness fractions default to 0.0 on an empty denominator; 'dacc_live' is a constant (identical on 90 ticks), live only in the sense of non-zero; no freeze telemetry or MECH-357 suppression count recorded.",
+    "integration": "coupled but unstable -- the freeze gate's fixed theta (0.8) sits far below the trained ||z_harm_a|| scale (2.8-4.2) and has no release.",
+    "scale": "n/a"
+   },
+   "failure_location": {
+    "mechanism": "established",
+    "measures": "partial",
+    "environment": "not_established",
+    "ree": false,
+    "net_classification": "ENVIRONMENT/harness (freeze gate locks from tick 1 against the trained harm scale; masked pre-fix by UP-walking, GFLAG-0508) + MEASURES (empty-denominator readiness, constant 'live' signals), not chargeable to REE"
+   },
+   "biological_reference": {
+    "closest_mechanism": "salience-network mode switching (Menon & Uddin 2010)",
+    "dependencies": [
+     "a behaving agent"
+    ],
+    "is_formal_import": false,
+    "divergence": "n/a for this failure",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_per_claim": {
+    "SD-032a": "standard",
+    "MECH-157": "standard"
+   },
+   "recommended_evidence_direction": "non_contributory",
+   "per_claim_recommendation": {
+    "SD-032a": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "STANDS",
+     "status_change": "none -- stays stable"
+    },
+    "MECH-157": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "STANDS",
+     "status_change": "none -- stays candidate; first autopsy target, precondition unmeasured"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "MECH-279",
+    "sd_id_suggested": null,
+    "title_addendum": "After 1fc881692d (freeze no-op = STAY), freeze-gated trained-harm harnesses produce a catatonic agent: recalibrate pag_theta_freeze to the trained ||z_harm_a|| scale, or give the freeze a release",
+    "implementation_hint": "The lock is provable from the gate rule vs the trained ||z_harm_a|| (2.8-4.2 vs theta 0.8, no exit, max duration 0). Levers: pag_max_freeze_duration (existing config, default 0 = never) is the cheapest; otherwise scale pag_theta_freeze to the post-training ||z_harm_a|| distribution, or supply a release (the MECH-287 question). Record MECH-357 suppression counts. Confirmer before relying on it: one seed, current main, 935a config, init/p0/final probes, recording freeze_active fraction, n_commits, n_releases, _n_freeze_suppressed, per-tick ||z_harm_a|| -- with use_pag_freeze_gate False as the counterfactual. If the freeze-off arm ALSO dies in 6 steps with a saturated latent, harm-encoder saturation is the root and this entry is the wrong target. The per-run supersession audit is GFLAG-0508's, not this entry's.",
+    "unblocks_claims_addendum": [
+     "SD-032a",
+     "MECH-157",
+     "MECH-266",
+     "MECH-279",
+     "MECH-287"
+    ],
+    "depends_on_unresolved": [
+     "the MECH-287 decision conflict (B vs A)"
+    ],
+    "priority_suggested": 1,
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/agent.py (PAG freeze gate action override)",
+     "experiments/_lib (935a/603-lineage harness configs with use_pag_freeze_gate=True)"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3",
+     "experiment_type": "v3_exq_1107_sd032a_trained_mode_reversal_drive",
+     "metric": "every life from p0 onward exactly 6 steps (3/3 seeds, both arms); P2 contact 0.0 vs 935a 0.09-0.32; ||z_harm_a|| constant across 90 eval ticks",
+     "target": "P2 contact rate > 0 with z_goal peak > 0.4 on >=2/3 seeds in the 935a harness on current main",
+     "resolved": "open"
+    },
+    "confidence_note": "lock is derived from the gate predicate applied to recorded values (not merely inferred); the ilPFC (MECH-357) escape is unrecorded, and the freeze-off counterfactual is what separates 'freeze lock' from 'harm-encoder saturation'",
+    "note": "amend, not create: the lock is MECH-279 (PAG freeze gate) behaviour after 1fc881692d; mode-governance-engagement and MECH-267 (C2 fire) cover different gaps",
+    "attach_to_flag": "GFLAG-0508"
+   },
+   "pending_retest_after_substrate": true,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "note": "readiness failure, category standard"
+   },
+   "learning_extracted": [
+    "The PAG freeze gate's fixed theta (0.8) is far below the trained ||z_harm_a|| scale (2.8-4.2) and it has no release: the freeze-gated harness locks from tick 1. Pre-fix, the lock was masked by UP-walking; 1fc881692d unmasked it (GFLAG-0508).",
+    "A guard that passed under a masked lock (935a) is not a healthy baseline to cite for reachability.",
+    "Readiness fractions computed over a filtered subset must report 'cannot compute' on an empty subset, not 0.0.",
+    "A constant latent across ticks can be an encoder saturation, not stationarity; argue stationarity from the controller's rule."
+   ],
+   "routing": "implement-substrate",
+   "routing_note": "Run the confirmer (freeze on vs off, gate telemetry) first; attach to GFLAG-0508, which owns the per-run supersession audit. Only then a same-question 1107a on a harness that yields a behaving agent. Given that queued freeze-gated runs (GFLAG-0508 lists 475a, 600, 603v, 1068, 1097) would meet the same lock, the confirmer is urgent.",
+   "pre_routing_checks": {
+    "C2": "ACTED -- switched create -> amend on MECH-279 (the freeze gate), the entry that owns the behaviour; mode-governance-engagement / MECH-267 are unrelated gaps (operator and proposals)"
+   },
+   "bears_on": [
+    "GFLAG-0508",
+    "substrate_queue:MECH-279"
+   ],
+   "redteam_7c": {
+    "model": "fable",
+    "verdict": "CONTESTED",
+    "applied": "lock argued from gate arithmetic not latent constancy; STAY fix unmasked not caused; 935a not a baseline; attached to GFLAG-0508; pag_max_freeze_duration lever; freeze-off counterfactual added; init 6-step caveat",
+    "file": "redteam_B.md"
+   },
+   "spawned_follow_on": {
+    "chip_ref": "chip-20260926-pag-freeze-lock-confirmer",
+    "task_id": "task_ad36ff97",
+    "why": "user overrode the autopsy-does-not-chip-its-own-routing rule for this item at the gate (rec-20260926-ae63c5b8) because queued freeze-gated runs may be burning compute"
+   }
+  }
+ ],
+ "confirmed_at": "2026-09-26T10:43:53Z",
+ "confirmed_by": "user at /failure-autopsy Step 8 interactive gate (session failure-autopsy-20260926-batch7)",
+ "recommendation_ledger": [
+  "rec-20260926-614b94c8",
+  "rec-20260926-ae63c5b8"
+ ],
+ "redteam_model_note": "Step 7c red-team run on fable (cross-model; drafter opus)"
+}

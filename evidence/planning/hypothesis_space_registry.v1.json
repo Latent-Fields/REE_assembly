@@ -4140,6 +4140,14 @@
         "V3-EXQ-935a"
        ],
        "text": "935a is the first fully out-of-sample test. r=2.65 replicates at 4/5 across two independent seed sets (8/10 pooled), so H1 is materially STRENGTHENED -- but the pre-registered lower edge 2.45 fell to 3/5, the adjacency reproducibility bar returns graded=false on the fresh seeds (longest_adjacent_run=1), and the criterion clears with probability 0.53-0.74 at the rates observed. NOT an elimination-bar event in either direction; met_elimination_bar stays false. Caution for whoever fills the bar fields: the manifest's criteria_non_degenerate is a RUN-LEVEL readiness conjunction (driver 1376-1383), not a per-criterion certificate, and must not be copied into non_degenerate for this leg without saying so."
+      },
+      {
+       "recorded_utc": "2026-09-26T10:43:53Z",
+       "source": "failure_autopsy_V3-EXQ-1067_2026-09-26.json",
+       "runs": [
+        "V3-EXQ-1067"
+       ],
+       "text": "V3-EXQ-1067 (squash vs clamp vs gain-matched clamp, 5-cap grid 0.75-1.75): the squash arm reproduces the clamp margin at effective cap c*v/(c+v) to +-0.002 on 2/3 seeds, i.e. a gain cut; its only graded cell (cap 1.0, 3/3 mixed) is the clamp at effective cap 0.91. The occupancy transition is ~0.2 effective-cap units wide, narrower than the 0.25 grid, so no bounded operator can show two adjacent graded caps on this grid. Consistent with H1 / grid too coarse. Not an elimination-bar event; met_elimination_bar stays false. Next: a finer clamp-only sweep 0.70-1.00 in 0.05 steps on post-STAY-fix code."
       }
      ]
     },
@@ -4200,6 +4208,14 @@
         "V3-EXQ-935a"
        ],
        "text": "935a repaired 935's INFO_ONLY H-KNIFE defect and its hardcoded route_reason, and exhibits three NEW instances of the same family: an occupancy-only graded predicate blind to alternation on a latched register; a run-level flag named per-criterion; and a recorded-but-unconsumed substrate_hash mismatch. The family keeps producing a fresh instance after each repair, which is itself the signal."
+      },
+      {
+       "recorded_utc": "2026-09-26T10:43:53Z",
+       "source": "failure_autopsy_V3-EXQ-1067_2026-09-26.json",
+       "runs": [
+        "V3-EXQ-1067"
+       ],
+       "text": "V3-EXQ-1067 adds another instance of the instrumentation family: the gain-matched control matched gain on the external_task drive (~0 in eval, et_drive_mean 0.0005) instead of dacc_pe, the input the operator bites on, so the gain/gradedness decomposition mislabels a gain cut as gradedness; and the drive-signal precondition is a max-over-cells check blind to a near-dead drive. Also: 1067 executed pre-1fc881692d code with the freeze gate on (GFLAG-0508). State unchanged."
       }
      ]
     },
@@ -4233,6 +4249,14 @@
         "V3-EXQ-935a"
        ],
        "text": "NEW quantitative support from 935a, independent of anything withdrawn: the seeds with a near-constant external_task probability are exactly those whose ext_margin_mean is LINEAR in cap at R^2 0.9996-0.9999 (935a seeds 48/50/51, 935 seeds 45/46), i.e. the affinity input is clipped at every tested cap, so the clip erases the within-cell variation a mixed regime needs. Not an elimination and not a confirmation: 935's seeds 45 and 46 are equally saturated and still graded."
+      },
+      {
+       "recorded_utc": "2026-09-26T10:43:53Z",
+       "source": "failure_autopsy_V3-EXQ-1067_2026-09-26.json",
+       "runs": [
+        "V3-EXQ-1067"
+       ],
+       "text": "V3-EXQ-1067 did NOT test H4: a fixed-sigma squash (sigma = cap) on dacc_pe 5-11x sigma acts as a gain cut (output ~0.85-0.93 x cap), and this run cannot separate gain from gradedness. A divisive normaliser would move the same transition to effective cap ~cap/2 and meet the same grid problem. State unchanged; H4 remains untested."
       }
      ]
     }
