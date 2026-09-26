@@ -1,6 +1,6 @@
 # Committed conflict markers in igw_routine_log.md: durable fix (metaworker-learning)
 
-**Status: AWAITING USER REVIEW**
+**Status: APPROVED 2026-09-26 (rec-20260926-bce5797e, F1+F2) and BUILT** -- REE_Working `a3e4a53e57`. F3 not built (not chosen).
 
 - **Session:** `mwlearn-20260926-1044`, 2026-09-26
 - **Chip:** `chip-20260924-learning-igwlog-conflictmarker-rootcause-v2`

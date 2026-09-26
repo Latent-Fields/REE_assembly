@@ -1,6 +1,6 @@
 # Cross-dispatch collision detector -- durable fix (metaworker-learning)
 
-**Status: AWAITING USER REVIEW**
+**Status: APPROVED 2026-09-26 (rec-20260926-ae8bfaf1, steps 1+2; step 3 deferred) and BUILT** -- step 1 REE_Working `7132a0fab`; step 2 ree-v3 `436a988742` (hub `ree-coordinator` restarted 2026-09-26T11:25:20Z, drift CURRENT) + CLI mirror REE_Working `a8c42d9c5e`.
 
 - Session: `mwlearn-20260926-1044`, 2026-09-26
 - Chip: `chip-20260925-xdispatch-detector-metaworker-learning`

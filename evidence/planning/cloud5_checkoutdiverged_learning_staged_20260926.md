@@ -1,6 +1,6 @@
 # ree-cloud-5 checkout divergence: the recurrence was apparent, not genuine (metaworker-learning)
 
-**Status: AWAITING USER REVIEW**
+**Status: APPROVED 2026-09-26 (rec-20260926-09c03883, A1+A2) and BUILT** -- `--divergence-status` + metaworker-repair skill text, REE_Working `7132a0fab`.
 
 - **Session:** `mwlearn-20260926-1044`, 2026-09-26.
 - **Chip:** `chip-20260924-learning-cloud5-checkoutdiverged-rootcause-v2`.
