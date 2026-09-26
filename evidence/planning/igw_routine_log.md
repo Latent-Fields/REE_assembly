@@ -3754,3 +3754,4 @@ One line per hourly tick. ASCII only.
 2026-09-26T11:01:27Z auto-defer igw-222-substrate-ready-sd-zself-trainin hash=cc9b781d9a56 for 48h (complete)
 2026-09-26T11:01:47Z complete igw-222-substrate-ready-sd-zself-trainin staged->completed outcome=DUPLICATE: Not launched: already built on ree-v3 main 863d23d (2026-09-24, sd_zself_trainin
 2026-09-26T11:02:29Z GC removed worktree igw-225-substrate-ready-sd-epistemic-def (removed; branch deleted)
+2026-09-26T11:03:36Z LAUNCH (manual interactive) IGW-20260924-224 worktree=igw-224-substrate-ready-suffering-deriva
