@@ -7956,6 +7956,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0559",
+      "claim_ids": [
+        "SD-008",
+        "SD-106"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Defect: LatentStack.init_state() zeroes z_world and SD-007 is skipped at t=0, so the z_world EMA ramps ||z||/||raw|| = 1-(1-alpha)^(t+1) over ~8 ticks after every reset (0.30 at t0 at deployed alpha 0.3); fixed default-OFF on ree-v3 main 298cb8ffd3 (use_zworld_ema_reset_init), record REE_assembly evidence/planning/zworld_ema_reset_init_build_20260926.md (3969d212ba). Matched scripted-action comparison: ON lifts per-seed z_world PR 1.15-1.40 -> 3.31-4.32 at alpha 0.3, contradicting U4 (1294f6edf5c) sec 4's 'mostly separate general-smoothing' weighting of the observation->z_world low-PR finding; default-ON (and z_self/shared-latent siblings) is pending the user, and first-tick comparisons across the fix are confounded.",
+      "raised_by_session": "bt0926-emainit",
+      "raised_at": "2026-09-26T04:16:15Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
