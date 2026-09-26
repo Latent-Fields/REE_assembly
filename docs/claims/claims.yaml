@@ -118487,3 +118487,169 @@
         /queue-experiment, not a build.
     Consumer / boundary: the E2 world head's action discrimination. Whether retained discrimination
     reaches E3 (D2) or behaviour (D3) is out of this claim's scope: see campaign W4 and A1.
+- id: MECH-598
+  title: "Aversive-PE-driven cue associability: an unexpected negative change in valued self-state transiently raises the learning rate of each CANDIDATE CAUSE in a short, decaying retrospective eligibility window (recent z_world / entity / context codes and recent actions) -- selectively, not as a broadcast gain -- and each candidate's associability persists as a Pearce-Hall-style state driven by the |PE| of outcomes it was present for, so the likely cause is learned about faster on subsequent encounters."
+  claim_type: mechanism_hypothesis
+  subject: amygdala.aversive_pe_cue_associability
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-26'
+  source_thought: evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
+  location: docs/architecture/harm_to_threat_causal_credit.md#mech-598
+  depends_on:
+  - SD-011
+  - SD-020
+  - MECH-074d
+  - SD-099
+  - MECH-431
+  - MECH-368
+  related_claims:
+  - MECH-074a
+  - MECH-074b
+  - MECH-398
+  - MECH-452
+  - MECH-290
+  - MECH-599
+  - Q-113
+  source:
+  - evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
+  - evidence/planning/thought_intake_2026-09-26_harm_source_attention_and_aversive_credit_assignment.md
+  notes: >-
+    Registered 2026-09-26 by the thought-ingestion pass (session thought-ingest-harm-to-threat-20260926)
+    over the two sibling intakes written from the V3-EXQ-1109 observation "the thing that harms perhaps
+    deserves attention". Both intakes deliberately deferred registration pending an overlap audit
+    against SD-099 / MECH-074d; this entry is the narrow residue of that audit, not the whole thought.
+    WHAT IS NEW: a persistent, PER-CANDIDATE learning-rate state (Pearce-Hall associability) set by
+    aversive PE over a RETROSPECTIVE window of candidate causes. Nothing in the registry states that.
+    DISTINCT FROM (and why): MECH-074a and MECH-398 / ARC-093 are SCALAR gains applied to every write --
+    they are this claim's broadcast CONTROL, and the claim fails if a matched-total broadcast gain does
+    as well. MECH-074b tags the trace being encoded NOW for replay priority; it is not retrospective
+    over preceding candidate causes and not a learning-rate state carried into future trials. MECH-431
+    (tag-and-capture) decides whether an event's durable write is consummated; it does not set how fast
+    a cue is learned about on later encounters. MECH-368 licenses individual events to write; same
+    distinction. MECH-074d's attribution selects codes to OVERWRITE (partial remap); this claim selects
+    codes whose future plasticity RISES. MECH-452 is the appetitive, DA, selector-loop case of "local
+    credit under a broadcast teaching signal"; this is the aversive, world-cue case. MECH-290 is a
+    backward credit sweep at trajectory end, a single propagation of the outcome, not a persistent
+    per-cue associability. A plain regression-trained harm readout (E3 harm_eval) already implements a
+    Rescorla-Wagner-like delta rule; this claim is specifically the Pearce-Hall (attention/associability)
+    half, which a delta rule does not provide. TRIGGER: an aversive PE or phasic z_harm_s / negative
+    valued-self-state DELTA -- NOT persistent ||z_harm_a|| magnitude (the V3-EXQ-1109 semantic mismatch).
+    LITERATURE (named in the intakes, NOT yet verified by a /lit-pull in this repo): Holland & Schiffino
+    2016 (Neurobiol Learn Mem, PMID 26948122; CeA-dependent surprise-induced associability); Johansen et
+    al 2010 (Nat Neurosci, PMID 20601946; expectation-modulated aversive teaching signal in LA/PAG);
+    Iordanova et al 2021 (Neurosci Biobehav Rev, PMID 33453307); McHugh et al 2014 (J Neurosci; aversive
+    PE in amygdala). DO NOT build in V3 and DO NOT queue an experiment: Q-113 must first establish that
+    the existing chain does not already close, and source-specific credit is presumptively gated on
+    z_world cue differentiation (MECH-153; the 894-series MECH-074d failure). FLAG FOR /governance
+    ROUTING: a V3 analogue would be cheap (a per-code associability vector alongside BLAAttributionHead),
+    so v4 is a default, not a finding.
+- id: MECH-599
+  title: "Cue-specific conditioned threat predictor: a discrete predictive structure encodes 'this z_world prototype predicts that harm will follow', is taught by aversive-PE events with credit distributed over candidate causes, and is read by defensive consumers (SD-099 release, MECH-279 freeze entry, E3 harm scoring) as PREDICTED near-term threat -- so that defence can precede fresh damage and can fall when the predicted threat falls even while accumulated injury (z_harm_a) remains high. Threat-side mirror of MECH-304 / SD-051."
+  claim_type: mechanism_hypothesis
+  subject: threat_prediction.cue_specific_conditioned_threat_store
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-26'
+  source_thought: evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
+  location: docs/architecture/harm_to_threat_causal_credit.md#mech-599
+  depends_on:
+  - SD-011
+  - SD-020
+  - MECH-258
+  - MECH-598
+  - SD-035
+  - SD-099
+  - MECH-279
+  related_claims:
+  - MECH-304
+  - MECH-303
+  - MECH-073
+  - MECH-074d
+  - MECH-357
+  - ARC-155
+  - ARC-156
+  - Q-113
+  source:
+  - evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
+  - evidence/planning/thought_intake_2026-09-26_harm_source_attention_and_aversive_credit_assignment.md
+  notes: >-
+    Registered 2026-09-26 by the thought-ingestion pass (session thought-ingest-harm-to-threat-20260926).
+    WHAT IS NEW: the SAFETY side of REE already separates a cue-specific, event-taught predictor
+    (MECH-304, built as SD-051 ConditionedSafetyStore, taught by MECH-302 relief events) from a
+    contextual, slow one (MECH-303). The THREAT side has only the contextual half -- the residue field
+    and E3 harm_eval index harm to place / z_world state with no cue competition and no discrete teaching
+    event -- and no cue-specific, event-taught threat predictor. Audit 2026-09-26: no claim and no
+    ree-v3/ree_core structure (grep ConditionedThreat / threat_store / conditioned_threat: 0 hits).
+    CONSUMER CONTRACT (the part V3-EXQ-1109 made load-bearing): defensive consumers read the predictor's
+    output as predicted threat; accumulated injury modulates vigour, guarding and negative valence but is
+    not a synonym for external threat. This sharpens -- and does not replace -- SD-011's injury/proximity
+    split and SD-020 / MECH-258's "z_harm_a enters action selection as PE, not raw magnitude". MECH-279
+    currently gates freeze on raw z_harm_a x duration; that is a standing consumer-contract tension with
+    SD-020/MECH-258 which this registration surfaces but does NOT adjudicate -- MECH-279's raw-magnitude
+    reading may be deliberate for its catatonia phenotype. DISTINCT FROM: MECH-074d (attribution to
+    ContextMemory codes for REMAP; the trainable BLAAttributionHead is supervised to predict z_harm_a,
+    i.e. accumulated damage, and has no downstream prospective consumer); MECH-073 (valence intrinsic to
+    hippocampal map geometry -- contextual, not a cue-specific discrete store); MECH-357 (instrumental
+    action-efficacy credit -- "does my action reduce harm", not "what in the world causes harm");
+    ARC-155 / ARC-156 (operating point and regime exit -- they can fix scale and release but not a
+    signal whose semantic role is wrong). ETHICAL LINK (from the intakes): A4 vulnerability + D2 model
+    refinement -- a harmful change creates an endogenous demand to identify its cause; prerequisite for
+    later self-/other-/environment-caused harm attribution. LITERATURE (named, NOT yet verified by
+    /lit-pull): Han et al 2015 (Cell; CGRP PB->CeA pathway creates threat memory); Levy & Schiller 2021
+    (Trends Cogn Sci, PMID 33384214); Moscarello & Penzo 2022 (Nat Neurosci; CeA defensive modes across
+    threat imminence); Roelofs & Dayan 2022 (Nat Rev Neurosci; freezing as information gathering). DO NOT
+    build in V3 and DO NOT queue an experiment until Q-113 is answered; a V3 build would be a cheap
+    SD-051 mirror, which is a /governance routing call, not this registration's.
+- id: Q-113
+  title: "After an unexpected harm event, does the current V3 stack (SD-099 orienting + MECH-074d attribution + E1 / residue memory + E3 harm scoring) selectively strengthen the representation of the thing, action or context that caused it, such that that representation later changes prediction and action BEFORE harm recurs -- and if not, is the missing edge integration, an injury-vs-threat consumer split, a new credit mechanism (MECH-598 / MECH-599), or z_world cue identity itself?"
+  claim_type: open_question
+  subject: threat_prediction.harm_to_source_closure
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-26'
+  source_thought: evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
+  location: docs/architecture/harm_to_threat_causal_credit.md#q-113
+  depends_on:
+  - SD-011
+  - SD-099
+  - MECH-489
+  - MECH-074d
+  - SD-035
+  - MECH-153
+  - MECH-279
+  related_claims:
+  - MECH-598
+  - MECH-599
+  - MECH-304
+  - MECH-258
+  - ARC-155
+  - ARC-156
+  source:
+  - evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
+  - evidence/planning/thought_intake_2026-09-26_harm_source_attention_and_aversive_credit_assignment.md
+  notes: >-
+    Registered 2026-09-26 by the thought-ingestion pass (session thought-ingest-harm-to-threat-20260926)
+    as the "highest-value next question" both sibling intakes end on. The four admissible answers are the
+    intakes' own classification plus the representation-gated outcome both list as a falsifier:
+    (1) INTEGRATION -- parts exist, not causally joined; (2) SEMANTIC SPLIT -- injury and threat need
+    separate consumer contracts (SD-011 / SD-020 / MECH-258 already say so for representation; MECH-279
+    does not honour it for freeze); (3) NEW MECHANISM -- MECH-598 and/or MECH-599 are required;
+    (4) REPRESENTATION-GATED -- z_world does not carry stable enough cue identity for source-specific
+    credit at all. Answer (4) is the strongest PRIOR, not a finding: MECH-074d's attribution already
+    failed on context differentiation (V3-EXQ-894/894a/894b/894c; blocked on MECH-153), and 39/43 work-graph
+    nodes chain to the observation -> z_world binding constraint. Work-graph class: complex (probe-gated)
+    -- a readiness/trace audit over the existing edges (producer, representation semantics, consumer,
+    default status, oracle-free?) is the first probe, before any experiment. MECH-598 / MECH-599 are
+    related_claims, not depends_on, so this v3 question carries no v4 prerequisite edge. FLAG FOR
+    /governance ROUTING: v3 is proposed because the question is asked of existing V3 substrate; whether
+    it is askable before MECH-153 lands is /governance's call. NOT a build authorisation; nothing queued.

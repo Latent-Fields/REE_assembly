@@ -1,7 +1,9 @@
 # Thought intake -- harm-to-threat causal attention and credit assignment
 
 **Date:** 2026-09-26
-**Status:** intake / candidate refinement; **NOT yet registered as a new claim** pending overlap adjudication against SD-099, MECH-074d, ARC-155/156 and the current harm-stack work.
+**Status:** processed -- overlap audit run and narrow claims registered 2026-09-26 (see section 10 below).
+**Claims registered:** MECH-598, MECH-599, Q-113 (doc: `docs/architecture/harm_to_threat_causal_credit.md`)
+**Companion intake:** `thought_intake_2026-09-26_harm_source_attention_and_aversive_credit_assignment.md` (same origin, written two minutes earlier; processed together in this pass)
 **Origin:** user observation after V3-EXQ-1109 that bodily harm should plausibly drive immediate defensive primitives and negative affect, but that the *thing that caused the harm* may also deserve privileged attention so that the organism can learn fear/avoidance of the cause.
 **Immediate empirical trigger:** V3-EXQ-1109 (`v3_exq_1109_pag_freeze_veto_earliest_edge`) showed that `z_harm_a` is highly faithful to its own input (mean held-out encoder-fidelity R² ~0.992) while only weakly/variably tracking hazard proximity, because in this harness `harm_obs_a` is a 7-d accumulated body-damage stream. The PAG freeze gate simultaneously sat above its exit operating point across sampled states. This makes a semantic distinction between **injury state** and **predicted external threat** load-bearing rather than cosmetic.
 
@@ -316,3 +318,50 @@ The highest-value next question is therefore:
 > **After an unexpected harm event, can current REE identify and selectively strengthen the representation of the thing/action/context that caused it, such that the cause later changes prediction and action before harm recurs?**
 
 If not, that is a concrete, falsifiable missing edge in the organism loop.
+
+---
+
+## 10. Ingestion pass -- overlap audit and registration (2026-09-26)
+
+Session `thought-ingest-harm-to-threat-20260926`. This pass ran the overlap audit that section 7 above and the
+companion intake's section 10 both deferred, and processed the two intakes together as one thought.
+
+### Novelty table
+
+| Thread | Existing REE coverage | Verdict |
+|---|---|---|
+| H1 injury state is not threat prediction | SD-011 (`z_harm_s` proximity/intensity vs `z_harm_a` accumulated deviation); SD-020 and MECH-258 (`z_harm_a` enters action as PE, not raw magnitude) | **owned.** The V3-EXQ-1109 mismatch is a *consumer* issue: MECH-279 gates freeze on raw `z_harm_a` x duration, in tension with SD-020 / MECH-258. Surfaced in MECH-599's notes, not adjudicated |
+| Harm/surprise -> arrest -> orient -> identify | SD-099 / MECH-489 | **owned**, cross-ref only |
+| H2 eligibility window, write licensing | MECH-368 (event write-authority), MECH-431 (tag-and-capture), MECH-290 (backward credit sweep), MECH-452 (local credit under a broadcast DA signal) | **adjacent.** None carries a persistent per-candidate learning-rate state set by aversive PE over a retrospective window |
+| "Learn harder after harm" (broadcast) | MECH-074a (arousal gain on writes), MECH-398 / ARC-093 (ACh plasticity gain) | **owned.** This is the *control* condition in section 5 |
+| Tag the current trace for replay | MECH-074b | **owned**; not retrospective, not associability |
+| H3 candidate causes compete for credit | MECH-074d + `BLAAttributionHead` (trainable, over ContextMemory slots, supervised to predict `z_harm_a`) | **adjacent.** Attribution exists but its consumer is REMAP, its target is accumulated damage, and it failed on context differentiation (894 series, blocked on MECH-153) |
+| Pearce-Hall associability (section 2.2) | none. A regression harm readout already does Rescorla-Wagner-style learning; nothing does the associability half | **new -> MECH-598** |
+| H4 credited cause -> prospective threat predictor | residue field / E3 `harm_eval` / MECH-073 are CONTEXTUAL. The safety side has cue-specific MECH-304 / SD-051; the threat side has no cue-specific predictor (0 hits in `ree_core`) | **new -> MECH-599** (threat mirror of MECH-304) |
+| H5 defence reads predicted threat, not raw injury | SD-020 / MECH-258 for action selection; nothing for freeze / orienting release | folded into MECH-599's consumer contract |
+| "Does the existing chain close?" (sections 5 and 9) | none | **new -> Q-113** (open question, four admissible answers) |
+| Ethical link A4 / D2 | foundations | cross-ref in MECH-599 notes |
+
+### Registered (all `candidate`, `substrate_conditional`, no build, nothing queued)
+
+- **MECH-598** -- aversive-PE-driven cue associability over a retrospective eligibility window (v4 default,
+  flagged for `/governance` routing).
+- **MECH-599** -- cue-specific conditioned threat predictor; mirror of MECH-304 / SD-051; defensive consumers
+  read predicted threat (v4 default, flagged).
+- **Q-113** -- does harm close into source-specific prospective avoidance on the current V3 stack? Answers are
+  integration / semantic split / new mechanism / representation-gated (v3 proposed, flagged). The strongest
+  prior is representation-gated.
+
+### Not registered
+
+- The generic "harm causes orienting" framing (SD-099 owns it).
+- A separate "injury != threat" invariant (SD-011 / SD-020 / MECH-258 own it). The MECH-279 consumer tension
+  is a `/governance` matter.
+- The pain multidimensionality literature. It corroborates SD-011 and adds no new REE content.
+
+### Literature status
+
+Every citation in both intakes is **unverified** in this repo, and no `/lit-pull` entries exist. A `/lit-pull`
+on Pearce-Hall / CeA associability (Holland & Schiffino 2016) and on cue-specific threat memory (Han 2015,
+Johansen 2010) is owed before either mechanism claim is hardened.
+

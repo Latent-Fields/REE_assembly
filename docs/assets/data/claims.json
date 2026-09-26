@@ -7196,8 +7196,8 @@
   },
   "MECH-268": {
     "assembly_state": "mature",
-    "assembly_status": "in_progress",
-    "awaiting": "MECH-090",
+    "assembly_status": "built",
+    "awaiting": "dacc-pe-scale-normalisation",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "provisional",
@@ -7482,7 +7482,7 @@
   },
   "MECH-288": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE",
     "coupled_with": [],
     "epistemic_stance": "believed",
@@ -10840,6 +10840,24 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "DIGESTED 2026-09-26 (thought-intake-20260926). DISPOSITION: (a) testable now (standard); proposal EXP-1408\n(replay-fraction dose sweep) minted in manual_proposals.v1.json -- queueing is a separate /queue-experiment\nstep, and v3 routing / evidence tagging remain /governance's call. The unfreeze half is NOT asserted here\n(W2b / N5 own it).\n\nNON-DEGENERACY PRECONDITIONS (a null under any unmet one is not evidence against):\n  P1. A GAIN TO RETAIN. The post-developmental head must first beat the on-policy baseline head (B0)\n      by the pre-registered margin on the held-out uniform-random test set:\n        - disc4_h1, margin max(0.05, SD of B0 across seeds);\n        - the retention ratio (post - B0)/(pre - B0) must have a positive denominator.\n      The 09-25 probe shows why this matters: the NATIVE Phase-0 source had no gain on 4/5 seeds,\n      so R was CANNOT_DETERMINE. The source must be the structured (L2 / StructuredBabbler) form.\n  P2. NARROWER LATER EXPERIENCE. The on-policy phase's measured action-class entropy is below the\n      developmental source's. Its update exposure is at least 3x the developmental training\n      exposure, so forgetting pressure is real.\n  P3. INFORMATION, NOT REGULARISATION. A label-shuffled retained-replay twin (fixed class\n      permutation, class marginals kept) is run. It must FAIL the bar; otherwise any retention is a\n      replay-as-regulariser effect.\n  P4. READ-PATH REGIME DECLARED. State whether the encoder is frozen or trained through the read\n      path (and whether replay stores raw observations re-encoded, or stored latents). The claim is\n      asserted for the frozen regime. The trained regime is the open generalisation.\n\nCONFIRMING: At matched on-policy exposure and matched seeds (>= 5, fresh):\n  - the retained-replay arm (25% of world-head batches from the protected developmental set) keeps\n    retention >= 0.5 AND the discrimination bar on >= 4/5 seeds;\n  - the one-off arm fails retention on >= 2/5;\n  - the shuffled twin fails the bar.\nStrengthened by a monotone DOSE response over the retained fraction {0, 10, 25, 50%}.\n\nFALSIFYING (any one):\n  - the one-off arm retains >= 0.5 on >= 4/5 seeds at matched exposure (rehearsal is not needed);\n  - the retained-replay arm fails to retain;\n  - the shuffled twin retains as well as the real replay (it is a regulariser, not developmental\n    information).\nIf retention holds frozen but not with a trained encoder, NARROW the claim to the frozen read path\nrather than count it against the claim.\n\nEXISTING EVIDENCE (D1; not tagged to this id; /governance decides tagging):\n  - Babbling probe secondary readout (descriptive, pre-registered as secondary): L2R 5/5 (1.31-1.53)\n    vs one-off L2 2/5.\n  - Campaign W3 member gate (b): 5/5 (0.96-1.71), frozen encoder; shuffled twin (a) 0/5.\n  - V3-EXQ-1108 (autopsy CONFIRMED 2026-09-26, verdict NEITHER):\n      - frozen arm (a) 4/5, (b) 5/5;\n      - re-encode arm with encoder training (a) 3/5, (e) 1/5;\n      - stored-latent arm 0/5.\n    This fits the frozen-regime scope. The trained-encoder generalisation is not supported at that\n    dose. See failure_autopsy_V3-EXQ-1108_2026-09-26.md.\n\nSUBSTRATE / INSTRUMENT REQUIREMENT:\n  - Present: StructuredBabbler (main, default-OFF); E2WorldMember retained buffer\n    (integration/coupled-loop-repair); probe harness probes/babble + probes/w3 + probes/n2.\n  - Missing for the dose leg: a pre-registered replay-fraction sweep. That is one queue entry via\n    /queue-experiment, not a build.\nConsumer / boundary: the E2 world head's action discrimination. Whether retained discrimination\nreaches E3 (D2) or behaviour (D3) is out of this claim's scope: see campaign W4 and A1.\n"
   },
+  "MECH-598": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "amygdala.aversive_pe_cue_associability",
+    "title": "Aversive-PE-driven cue associability: an unexpected negative change in valued self-state transiently raises the learning rate of each CANDIDATE CAUSE in a short, decaying retrospective eligibility window (recent z_world / entity / context codes and recent actions) -- selectively, not as a broadcast gain -- and each candidate's associability persists as a Pearce-Hall-style state driven by the |PE| of outcomes it was present for, so the likely cause is learned about faster on subsequent encounters.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-599": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "threat_prediction.cue_specific_conditioned_threat_store",
+    "title": "Cue-specific conditioned threat predictor: a discrete predictive structure encodes 'this z_world prototype predicts that harm will follow', is taught by aversive-PE events with credit distributed over candidate causes, and is read by defensive consumers (SD-099 release, MECH-279 freeze entry, E3 harm scoring) as PREDICTED near-term threat -- so that defence can precede fresh damage and can fall when the predicted threat falls even while accumulated injury (z_harm_a) remains high. Threat-side mirror of MECH-304 / SD-051.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "coupled_with": [],
@@ -11996,6 +12014,15 @@
     "type": "open_question",
     "what_would_answer": "DIGESTED 2026-09-26 (thought-intake-20260926). DISPOSITION: (c) substrate_conditional -- two of four legs\n(contingency, viability) lack a lever and the generality leg needs a second world family. The\nstructured-action and retention legs are carried by MECH-597 and the coupled campaign. Do NOT queue\nanything from this entry.\n\nNON-DEGENERACY PRECONDITIONS (a null or a \"removal costs nothing\" reading under any unmet one is\nuninterpretable, not evidence):\n  P1. FULL-SET DEVELOPS. An over-provisioned general candidate set must first produce development on\n      its own. The pre-registered developmental DVs must clear their bars:\n        - E2 action discrimination (the disc4_h1 executed-closest metric, bar >= ~0.47, with fidelity\n          k reported), retained under later on-policy training;\n        - a closed-loop behavioural readout (A1-type).\n      If the full set does not develop, every ablation is floored and says nothing about necessity.\n  P2. EACH CANDIDATE IS A SEPARABLE LEVER. Each candidate must be a default-OFF, OFF-bit-identical\n      switch that removes that element ONLY, and never enabling architecture with it.\n      UNMET today for contingency sensitivity: E2's world head is action-conditioned by\n      construction, so \"remove contingency bias\" currently also removes the action input.\n      UNMET for viability grounding: there is no arm that removes valued self-state while keeping\n      exploration and modelling.\n      MET for structured action (StructuredBabbler) and for retention (the W3 retained buffer, on\n      the integration branch).\n  P3. >= 2 PREDECLARED WORLD FAMILIES (GOV-ECOL-1). Seeds alone cannot answer the generality leg.\n  P4. DEVELOPMENTAL DVs, not endpoint reward (sec 15 of the source thought):\n        - action-space coverage, and action->consequence MI;\n        - world-model action discrimination;\n        - persistence of developmental knowledge;\n        - PE and PE reduction;\n        - survival duration;\n        - time to first model-based behaviour;\n        - recovery after change;\n        - E3 dependence on learned causal information.\n      Each emergent capacity must also have a causal-path check (GOV-PATHVALID-1).\n\nCONFIRMING (per leg):\n  (a) NECESSITY. Each candidate necessity produces its OWN predicted failure when removed from the\n      developing full set, and an accelerator ablation only slows or destabilises development.\n      Predicted failures:\n        - no structured endogenous action -> E2 discrimination stays at the on-policy baseline;\n        - no retention -> the developmental gain decays under on-policy training;\n        - no valued self-state -> no stable preservation or goal behaviour;\n        - no contingency bias -> agency/controllability estimates fail to form.\n      Restoring the removed element repairs development WITHOUT environment-specific content, i.e.\n      the restored element is identical across world families.\n  (b) GENERALITY. The same small set bootstraps development in both world families, with no\n      environment-specific scaffold admitted. Orienting and curiosity-like behaviour emerge without an\n      explicit orienting rule.\n  (c) AXIOM MAPPING. Removing viability grounding (the A2/D1 implementation) abolishes stable\n      preservation / goal behaviour, and no other source supplies it. This is consistent with A2/D1\n      being developmental prerequisites (not proof of the axioms).\n\nFALSIFYING (any one answers the question AGAINST the candidate as a necessity):\n  - A candidate necessity is removed with no developmental cost across BOTH world families. It was\n    an accelerator or redundant: reclassify under ARC-157.\n  - Unstructured or native behaviour yields equally informative world models once other training\n    defects are corrected. That would contradict the 09-25 D1 result at larger scale.\n  - A candidate can only be \"restored\" by environment-specific content. It is then an ecological\n    scaffold, not a general prior (ARC-157).\n  - Leg (c): preservation / goal behaviour arises without any valued self-state or equivalent. A2's\n    implementation then requires reconsideration, and the finding is routed to the derivational\n    layer with GOV-INSERT-1 / GOV-HOTHER-1.\n\nEXISTING EVIDENCE (bears on leg (a) only, D1, structured-action + retention elements):\n  - babbling_e2_action_coverage_probe_20260925.md: native Phase-0 policy S FAIL 1/5, DR FAIL 0/5.\n    The structured L2 source was sufficient pre-post 5/5, with retained replay 5/5 vs one-off 2/5\n    (secondary, descriptive).\n  - V3-EXQ-1108: autopsy confirmed 2026-09-26 (verdict NEITHER; frozen read path holds, trained-encoder\n    case open; see MECH-597).\n  Nothing yet on contingency, viability or generality.\n\nSUBSTRATE / INSTRUMENT REQUIREMENT:\n  - a separable contingency-bias lever;\n  - a viability-grounding ablation arm;\n  - a second declared world family;\n  - an integrated closed-loop acceptance harness (campaign A1 is the nearest; it is HELD).\nConsumer / boundary: developmental trajectory, not an adult-competence endpoint.\nExisting ownership: INV-073, ARC-074, MECH-461, ARC-157, MECH-597, coupled_loop_repair_campaign_plan.md\n(W2a, W3, A1).\n"
   },
+  "Q-113": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "threat_prediction.harm_to_source_closure",
+    "title": "After an unexpected harm event, does the current V3 stack (SD-099 orienting + MECH-074d attribution + E1 / residue memory + E3 harm scoring) selectively strengthen the representation of the thing, action or context that caused it, such that that representation later changes prediction and action BEFORE harm recurs -- and if not, is the missing edge integration, an injury-vs-threat consumer split, a new credit mechanism (MECH-598 / MECH-599), or z_world cue identity itself?",
+    "type": "open_question"
+  },
   "RA-001": {
     "assembly_state": "remaining",
     "coupled_with": [],
@@ -12738,7 +12765,7 @@
   },
   "SD-050": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "suffering-derivative-comparator-refractory",
     "coupled_with": [],
     "epistemic_stance": "believed",

@@ -1,7 +1,7 @@
 # Thought intake -- harm-source attention and aversive causal credit assignment
 
 **Date:** 2026-09-26  
-**Status:** intake / candidate refinement -- NOT yet registered  
+**Status:** processed 2026-09-26 together with its companion `thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md` (section 10 there holds the novelty table). Claims registered: MECH-598, MECH-599, Q-113.  
 **Origin:** user proposal during interpretation of V3-EXQ-1109: "The thing that harms perhaps deserves attention." Followed by targeted literature search and reconciliation against the current REE threat/orienting architecture.  
 **Scope:** this is not a proposal to add a generic "fear module". It asks whether REE is missing, or has not yet integrated, the bridge by which a negative change in valued self-state recruits attention and causal credit toward the thing/action/context that produced it, allowing prospective threat learning.
 
