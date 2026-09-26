@@ -602,3 +602,33 @@ suppressions:
     added: "2026-09-24"
     added_by: "governance-20260924"
     review_after: "2026-12-24"
+
+  - finding_id: "D-006:GFLAG-0555"
+    reason: >-
+      Adjudicated 2026-09-26 (governance-20260926): GFLAG-0555 and GFLAG-0558 share claim
+      ARC-065 / stale_note / 2026-09-25 but are two DIFFERENT probes, not a re-raise. 0555
+      reports the SP-CEM floor token ranking last of 32 in E3 at toy dims 16
+      (spcem_zero_continuation_check_20260925.md). 0558 is a later repeat at DEPLOYED dims 32
+      (spcem_wd32_trained_repeat_20260925.md) that reproduces the rank-last finding but adds a
+      NEW fact 0555 lacks: the injector's firing rate collapses from 71% to 0.8%, which changes
+      how 0555's fix should be prioritised. Collapsing them would lose that scale caveat. Both
+      stay open for /governance to resolve together. If a THIRD same-day entry joins this group,
+      re-read rather than assuming this entry covers it.
+    added: "2026-09-26"
+    added_by: "governance-20260926"
+    review_after: "2026-12-26"
+
+  - finding_id: "D-006:GFLAG-0556"
+    reason: >-
+      Adjudicated 2026-09-26 (governance-20260926): GFLAG-0556 and GFLAG-0557 share claims
+      MECH-039/MECH-046 / stale_note / 2026-09-25 but are a CHAIN of successive probes, not a
+      duplicate. 0556 (cea_gate_calibration_probe_20260925.md, dfe73c29b7d) finds no relative gate
+      on mean|z_harm_a| is onset-selective and blames the harm_obs_a EMA of a saturated field.
+      0557 (cea_onset_input_reprobe_20260925.md, 04fbe381e1b) then REFUTES env saturation as the
+      cause and names stream choice (a new raw hazard-proximity obs field) as the build
+      requirement. Each explicitly refines the prior flag's routing (0556 refines GFLAG-0554).
+      The chain is the audit trail of the routing; do not supersede one into the other. If a
+      THIRD same-day entry joins this group, re-read rather than assuming this entry covers it.
+    added: "2026-09-26"
+    added_by: "governance-20260926"
+    review_after: "2026-12-26"
