@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-25T12:05:14Z
+Generated: 2026-09-26T12:26:44Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -22,15 +22,15 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
 | `sd_pp_precision_provenance_plan.md` | SD-PP-1..4 precision-provenance substrate + the B-series behavioural/diagnostic follow-on (SD-PP-B1..B11) | 1 | 0% | assembling:1 | 2026-09-25 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-09-08 |
-| `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
+| `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-09-25 |
 | `zworld_adequacy_plan.md` | observation -> z_world encoding adequacy (the V3 binding-constraint interface) | 2 | 10% | assembling:1 upstream_blocked:1 | 2026-09-21 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-09-04 |
 | `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 32% | blocked:1 done:1 in_progress:2 open:2 | 2026-09-17 |
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 50% | partial:1 | 2026-08-29 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-09-01 |
-| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-16 |
-| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-16 |
+| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-25 |
+| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-25 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-16 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
@@ -88,13 +88,13 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | {'governance_apply': ['Record non_contributory/standard on M | blocked_on_upstream |  | 2026-08-12 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | {'governance_apply': ['Record non_contributory/standard on M | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | {'governance_apply': ['Record non_contributory/standard on M | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | {'governance_apply': ['Record non_contributory/standard on M | blocked_on_upstream |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | {'governance_apply': ['Record non_contributory/standard on M | ran_non_contributory |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | {'governance_apply': ['Record non_contributory/standard on M | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | {'governance_apply': ['Record non_contributory/standard on M | built |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | {'governance_apply': ['Record non_contributory/standard on M | blocked_on_upstream |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=implement-substrate | blocked_on_upstream |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | routing=implement-substrate | ran_non_contributory |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | routing=implement-substrate | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=implement-substrate | built |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=implement-substrate | blocked_on_upstream |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
 | sd_pp_precision_provenance_plan.md | `sd_pp_precision_provenance:PP-1` | world-forward head readability/action-sensitivity operating-point chai | assembling | Node advances when a driver measures the inverted-map live_g | built |  | 2026-09-25 |
 | zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | observation -> z_world preserves decision-relevant content (SD-106 gen | assembling | SD-106 | built | 2026-10-15 | 2026-09-21 |

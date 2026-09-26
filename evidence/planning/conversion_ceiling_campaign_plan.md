@@ -14,14 +14,14 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_exhausted_for_substrate
     - id: "conversion_ceiling_campaign:P-comp"
@@ -29,14 +29,14 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_non_contributory
     - id: "conversion_ceiling_campaign:P2-rootC"
@@ -44,14 +44,14 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_exhausted_for_substrate
     - id: "conversion_ceiling_campaign:P3-ofc"
@@ -59,14 +59,14 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: built
     - id: "conversion_ceiling_campaign:FULLSTACK"
@@ -74,14 +74,14 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_exhausted_for_substrate
       cross_plan_link: ["behavioral_diversity_isolation:GAP-I"]
@@ -90,14 +90,14 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: blocked_on_upstream
       upstream_block_reason: "CORRECTED 2026-09-01 (GFLAG-0069, govdesk-20260901): the corrected-DV instrument this node was blocked on HAS LANDED -- ree-v3 c309bc6486, 2026-08-19, adding experiments/_lib/gate_dv.py (GateDVRecorder) plus a 315-line contract test; and governance ADJUDICATED the 713x re-letter on 2026-08-21 (GFLAG-0045, resolved) and REFUSED it, holding the refusal in place -- instrument existence is not a lift. So neither the instrument nor that decision is outstanding. [SUPERSEDED WORDING] Blocked on a CORRECTED-DV INSTRUMENT for committed-action-class entropy (accumulate on E3 ticks only, or read a fresh-selection latch). The 2026-07-06 exhaustion this node carried was WITHDRAWN 2026-07-20 by confirmed failure_autopsy_V3-EXQ-711-713_2026-07-20 -- see substrate_queue.json v4_loop_segregation.arbitration_reweighting_route_2026_07_20 for the verbatim withdrawal, and the mirrored node behavioral_diversity_isolation:GAP-K, corrected in the same pass. Without a corrected instrument no re-run of the 709/711/713 route can produce a valid conversion measurement, which is why a 713x re-letter is REFUSED rather than merely deprioritised. Secondarily blocked on the upstream substrate the /implement-substrate routing still names, f_dominance_conversion_ceiling, which is NOT BUILT and is itself parked behind MECH-457 + INV-088. Field shape follows conversion_ceiling_campaign:GENERATION in this same plan."
@@ -112,14 +112,14 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-25"
-        from: "failure_autopsy_V3-EXQ-1095_2026-09-25"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "{'governance_apply': ['Record non_contributory/standard on MECH-439 with the drafted evidence_quality_note; stamp this artifact.', \"The user decides a restatement of MECH-439's control set, folded into the open GFLAG-0471 (operator-ON confirming-branch restatement) or raised as its own evidence_discrepancy beside GFLAG-0480. Recommended: option (ii). Stop gating the SUPPORTS branch on 'verified..."
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:f_dominance_conversion_ceiling", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
+        bears_on: ["ARC-063", "EVB-1409", "GFLAG-0506", "GFLAG-0508", "arc131_installability:coalition_endogenous_recruitment", "chip-20260925-mech287-lock-dv-path-decision", "e3_fdominance_causal_discrimination", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: blocked_on_upstream
       cross_plan_link: ["behavioral_diversity_isolation:GAP-A", "arc_062_rule_apprehension:GAP-H"]

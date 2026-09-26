@@ -14,15 +14,14 @@ closure_plan:
       status: blocked
       severity: load-bearing
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "routing=governance-demotion"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, MECH-191]
       depends_on: []
@@ -36,15 +35,14 @@ closure_plan:
       status: open
       severity: high
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "routing=governance-demotion"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, SD-027, MECH-254]
       depends_on: ["global_workspace_jlens:A"]
@@ -59,15 +57,14 @@ closure_plan:
       status: blocked
       severity: load-bearing
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "routing=governance-demotion"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, SD-027, MECH-254]
       depends_on: ["global_workspace_jlens:GATE-B"]
@@ -80,15 +77,14 @@ closure_plan:
       status: open
       severity: low
       live:
-        as_of: "2026-09-24"
-        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        as_of: "2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
         verdict: "non_contributory/standard"
-        next: "routing=governance-demotion"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
-        bears_on: []
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [MECH-191]
       depends_on: ["global_workspace_jlens:A"]

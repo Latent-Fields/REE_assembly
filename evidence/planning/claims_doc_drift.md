@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-26T01:10:38Z
+Generated: 2026-09-26T12:33:27Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (154)
+## Unresolved with a hand status line -- INFO (157)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -55,6 +55,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `control_vector_logging.md` -- "IMPLEMENTED"
 - `corrigibility_positioning.md` -- "first pass (WS-7 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `critical_period_crystallization.md` -- "IMPLEMENTED 2026-05-17"
+- `dacc_pe_scale_normalisation.md` -- "DESIGN (design-first build, per user decision `dec-20260923T185804-MECH-268`, option 2,"
 - `default_mode.md` -- "stable"
 - `developmental_bootstrapping_hippo_retrieval.md` -- "Draft -- claims INV-073, MECH-325, MECH-326, ARC-072 registered (candidate)"
 - `developmental_curriculum.md` -- "provisional"
@@ -71,6 +72,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `e3.md` -- "stable"
 - `efficiency_dimensionality_hypothesis.md` -- "Working hypothesis — Phase 2 ablations pending"
 - `effort_dissociation_env.md` -- "IMPLEMENTED 2026-07-09."
+- `endogenous_operating_point_regulation.md` -- "all three claims are `candidate`, `substrate_conditional`, registered v3 / v3_v4 with the version"
 - `entities_and_binding.md` -- "provisional"
 - `ephaptic_hippocampal_now_construction.md` -- "candidate (both claims)"
 - `established_ethical_systems.md` -- "architecture derivation note"
@@ -99,6 +101,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `learned_cross_loop_arbitration.md` -- "IMPLEMENTED 2026-07-01. PROMOTES NOTHING. Behind a no-op-default flag, byte-identical OFF."
 - `learned_error_routing.md` -- "candidate, substrate_conditional. DO NOT build in V3; DO NOT queue an experiment."
 - `lens_predictive_sensorimotor_transformation.md` -- "conceptual lens. Registers **no** REE claim and changes no architecture,"
+- `minimal_developmental_prior.md` -- "Q-112 and ARC-157 are `candidate`, `substrate_conditional`, v4. MECH-597 is `candidate`, v3,"
 - `mode_manager.md` -- "legacy"
 - `modes_of_cognition.md` -- "provisional"
 - `modulatory_bias_selection_authority.md` -- "IMPLEMENTED 2026-06-03 (substrate-readiness validation pending V3-EXQ)."

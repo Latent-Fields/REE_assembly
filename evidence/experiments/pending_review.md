@@ -1,11 +1,31 @@
 # Pending Experiment Review
 
-Generated: `2026-09-25T12:04:20Z`  
+Generated: `2026-09-26T12:25:51Z`  
 Last review: `2026-09-25T06:06:12Z`  
-Scanned: 2991 claim_evidence entries considered (3016 already reviewed), 4887 manifest file(s) on disk.  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Scanned: 3002 claim_evidence entries considered (3016 already reviewed), 4905 manifest file(s) on disk.  
+Pending: **8** item(s) -- 0 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_1105a_grounded_valuation_null_detector_v4a_20260925T154155Z_v3` | 2026-09-25T15:41 | INV-054, MECH-523 | — |
+| `v3_exq_1067_mech266_squash_vs_clamp_cap_sweep_20260925T161024Z_v3` | 2026-09-25T16:10 | MECH-266, SD-032a | — |
+| `v3_exq_1106_mech287b_stage0_lock_precondition_20260925T164510Z_v3` | 2026-09-25T16:45 | MECH-287 | — |
+| `v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3` | 2026-09-25T17:53 | MECH-157, SD-032a | — |
+| `v3_exq_1099_contamination_truncation_extension_probe_20260925T182543Z_v3` | 2026-09-25T18:25 | (no claim tags) | — |
+| `v3_exq_1104_sd032b_effort_proxy_validation_20260925T202059Z_v3` | 2026-09-25T20:20 | (no claim tags) | — |
+| `v3_exq_1090_mech449_endogenous_safety_veto_validation_20260925T221242Z_v3` | 2026-09-25T22:12 | MECH-449 | — |
+| `v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3` | 2026-09-26T10:02 | (no claim tags) | — |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3` | FAIL | neither | **precondition_unmet** |
 
 ---
 
