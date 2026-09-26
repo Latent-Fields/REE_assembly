@@ -1,0 +1,103 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-26T10:46:26Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3",
+      "queue_id": "V3-EXQ-1108",
+      "claim_ids": [],
+      "bears_on": [
+        "coupled_loop_repair_campaign_plan:N2",
+        "coupled_loop_repair_campaign_plan:W6a",
+        "coupled_loop_repair_campaign_plan:P8"
+      ],
+      "failed_criterion": "discrimination",
+      "self_route_label": "neither",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids []; campaign design probe gating the W6 preset buffer policy)",
+        "biological_reference": "partial: hippocampal replay re-expresses stored episodes through the CURRENT cortical code (replay is regenerative, not a tape of old activations); stale-latent replay has no biological analogue",
+        "prerequisites": "present (W3 + W6a built on branch 9b322d5; pin verified)",
+        "implementation": "complete for the probe; stored-z arm is a deliberate configuration, not a defect",
+        "environment": "adequate (the W3 member-gate protocol, CausalGridWorldV2 size 12)",
+        "measurement": "under-instrumented for the reencode-vs-control question: (a) as registered carries the k==10 conjunct shown reset-artefact-carried (w3_k_excluding_reset_ticks_20260926, 6/6) and PROVISIONALLY dropped from the W3 gate at 09:33Z (unratified; branch_rebase record re-scores no past result); the 4/5 count threshold on a leg whose control base rate is ~0.60 (W3 sweep 9/15, same recipe) gives P(keep)=0.337 for an arm identical to control; (e) is a max-over-40-starts growth statistic whose starts include near-reset ticks, on a pin (9b322d5) that predates the reset-init build -- the same EMA zero-init artefact the 09:33Z decision (1) found carried 84% of the ASP literal growth-bound failure. Adequate for the stored arm (disc4 margin ~0.23, S1/S2 agree).",
+        "integration": "partially coupled: W3 re-encode tracks the W6a-moved encoder (disc4 parity with the control) but rollouts from the W6a-trained space fail the literal (e) bound (1/5; frozen 5/5); whether that is a genuine instability or the reset-transient growth artefact is not yet separated",
+        "scale": "adequate (full W3 dose, 1200 W6a updates)"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM+MEASURES) for the reencode arm, not chargeable to REE; the stored arm's failure is a genuine negative for the stored-z policy (measures established)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "claim-free campaign design probe; no category applies",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1108 (N2, claim-free, D1): pre-registered verdict NEITHER stands as computed. Stored-z replay loses the L2R bar under a training encoder on 5/5 seeds (post disc4 -0.231 vs the frozen control, paired sd 0.052; k 0; (b) and (e) fail; retained z 0.95-0.97 stale). Re-encode matches the control on disc4 (paired mean -0.005, sd 0.050), retention 5/5, twins 0/5, but as registered fails (a) 3/5 and (e) 1/5 (keeps_bar_excluding_e_secondary false), so the pre-stated F1 reading does not fire. Conditional on ratification of the provisional 09:33Z disc4-only (a): re-encode's 812 miss is k-only (disc4 0.563) and 815 misses with the control, leaving (e) as its only failed leg (twin shares 4/4) = the F1 rollout-stability reading about the W6a-trained encoder. Leg (e) is not yet separated from the reset-transient growth artefact (pin predates reset-init).",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "campaign branch work tracked in coupled_loop_repair_campaign_plan.md, not substrate_queue.json"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "campaign-orchestrator",
+        "upstream_substrate": null,
+        "note": "claim-free; brake counts claim ids only"
+      },
+      "learning_extracted": [
+        "Stored-latent replay is invalid while the encoder trains through the read path (D1, 5/5): retained z 0.95-0.97 relatively stale, on-policy 0.30-0.64. The N2 record's D0 recommendation (harm_eval / codec / E1 need re-encode or phased W6a) now rests on a measured policy result, though still not on those heads themselves.",
+        "Raw-obs re-encode keeps W3's discrimination at control parity in the moved space (test-set norm x10.5-12.0; reencode PR ~1.5 -> 7.85-9.81).",
+        "For the reencode arm, whose only difference from frozen is W6a ON (frozen late-growth max <= 1.021), the (e) miss is attributable to the W6a-trained encoder space; in the stored arm (e) magnitude (t30 up to ~3.5e5) tracks the replay policy. Whether reencode's (e) miss is genuine instability or the reset-transient growth artefact is open.",
+        "Design lesson: a 4/5 count gate on a leg whose control pass rate is ~0.6 cannot discriminate arms (P=0.337 for an arm identical to control; rule-1 CANNOT_DETERMINE ~66% likely a priori). The paired per-seed disc4 difference vs control is the discriminating statistic. (The W3 sweep measuring 9/15 landed after A1 was pre-registered.)",
+        "pre_phase_identical_across_arms is formally met:false (max 1/300) in 4 stored-arm cells only (812/815 real, 811/814 shuf): stored vs re-encoded z differ by EMA-window truncation even with a frozen encoder (frozen stale_on_policy up to 6.6e-5), so the premise was false by construction for the stored arm. Immaterial to the verdict."
+      ],
+      "routing": "implement-substrate",
+      "routing_owner": "campaign orchestrator (orchestrate-20260924-breakthrough-c2; coupled_loop_repair_campaign_plan N2 / W6 rows). /governance chips after ratification; this session spawns nothing.",
+      "routing_note": "(1) W6 preset buffer policy = raw-obs re-encode; stored-z replay ruled out (D1, 5/5). (2) HarmEvalMember / CodecMember / E1Member store detached z and so need a raw-obs re-encode build (as W3 has) or a phased schedule (encoder frozen while they train) -- complicated (buildable). (3) Leg (e) under W6a: re-read relative to env truth with the reset-init knobs ON (decision (1)/(4) of 2026-09-26T09:33Z) before crediting it as a W6a rollout defect -- complex (probe-gated) / puzzle (known rules). (4) Design lesson for any N2 re-run: gate arms on the paired per-seed disc4 difference vs the control, not a 4/5 count at a ~0.6 base rate. (5) Revisit the leg-(a) reading when the provisional disc4-only contract is ratified or reverted."
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-09-26T11:00:42Z",
+  "confirmation": {
+    "mode": "interactive Step 8 gate",
+    "routing_choice": "Hand to campaign orchestrator (rec-20260926-b9dce86a)",
+    "leg_a_choice": "As computed, re-read conditional (rec-20260926-55cd5454)"
+  },
+  "red_team": {
+    "model": "fable (cross-model; session on opus)",
+    "verdict": "CONTESTED",
+    "findings_applied": [
+      "F1: F1 reading rule stated as conditional on the unratified disc4-only (a) re-read; as registered reencode fails (a) AND (e), keeps_bar_excluding_e_secondary false",
+      "F2: (e) attribution narrowed to the reencode arm (only difference from frozen is W6a ON); stored-arm (e) magnitude tracks the policy",
+      "F3: routing moved from queue-experiment to the campaign orchestrator; (e) confound tied to the existing 09:33Z decision (1) (growth relative to env truth; EMA zero-init artefact) and pin 9b322d5 predates reset-init"
+    ],
+    "hygiene_applied": [
+      "pre_phase mismatch is 4 stored cells, not 1",
+      "PR ranges per arm"
+    ]
+  },
+  "pre_routing_checks": {
+    "fire_count": 0,
+    "inapplicable": [
+      "C1",
+      "C2",
+      "C3 (claim-free)",
+      "C5 (no .md at check time)"
+    ],
+    "note": "quiet report is structural blindness on a claim-free target; 7c carried the load"
+  },
+  "hypothesis_space_ledger": {
+    "step_9b": "skipped",
+    "reason": "no fanout_recommendation; no registered ledger question covers N2 (pre-registration lives in n2_replay_encoder_probe_20260925.md); claim-free campaign design probe. Precedent: failure_autopsy_V3-EXQ-1099/1104_2026-09-26."
+  }
+}
