@@ -15799,6 +15799,9 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-25T21:09:38Z",
+      "gated_by_session": "igw-243-proposal-for-mech-109",
+      "gating_reason": "MECH-109 falsifier ABSENT on V3: no voluntary/on-demand breath-hold or sigh controller (BreathOscillator is a fixed periodic sweep timer); plan-sweep sweep also INERT at trained commit_variance (GFLAG-0346). Audit class R8 primary.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-109 via targeted experiment runs.",
       "priority": "medium",
@@ -15807,6 +15810,7 @@
       "refusal_route": "implement_substrate",
       "refused_by_session": "igw-243-proposal-for-mech-109",
       "refused_utc": "2026-09-25T21:09:41Z",
+      "release_condition": "An on-demand sweep-trigger + hold API (voluntary-breath-controller-api, to be registered via /implement-substrate) exists on top of mech108-breath-phase-rollout-initiation-instrument, AND a probe shows a triggered sweep measurably moves committed_step_fraction / plan-abandonment latency at the trained operating point. The physiological 'one handle' exclusivity half remains external-only (R8) even then.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15826,11 +15830,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "gated_at_utc": "2026-09-25T21:09:38Z",
-      "gated_by_session": "igw-243-proposal-for-mech-109",
-      "gating_reason": "MECH-109 falsifier ABSENT on V3: no voluntary/on-demand breath-hold or sigh controller (BreathOscillator is a fixed periodic sweep timer); plan-sweep sweep also INERT at trained commit_variance (GFLAG-0346). Audit class R8 primary.",
-      "release_condition": "An on-demand sweep-trigger + hold API (voluntary-breath-controller-api, to be registered via /implement-substrate) exists on top of mech108-breath-phase-rollout-initiation-instrument, AND a probe shows a triggered sweep measurably moves committed_step_fraction / plan-abandonment latency at the trained operating point. The physiological 'one handle' exclusivity half remains external-only (R8) even then."
+      ]
     },
     {
       "acceptance_checks": [
@@ -15887,16 +15887,28 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1429",
+      "blocked_by": [
+        "mech108-breath-phase-rollout-initiation-instrument",
+        "MECH-107"
+      ],
+      "blocked_note": "Step 2.5d falsifier-runnability STOP (ABSENT): MECH-110's falsifier needs a laughter/forced-exhalation bout as EVENT+DV, and V3 emits no laughter or respiratory-exhalation response at all -- no producer, no DV, no instrument. The claim's own what_would_answer (falsifier_completion_and_runnability_audit_20260921, R8) already rules out a synthetic tag-oscillation stand-in as DV. Upstream: MECH-110 is built on MECH-107's exhalation=tag-clear mapping, whose breath-phase instrument (mech108-breath-phase-rollout-initiation-instrument) is registration-only and unbuilt. A queued run would be vacuous, not a verdict. Node: complicated (buildable) only for the MECH-107/108 breath-phase layer; the laughter DV itself is out of V3 scope (external behavioural/respiratory recordings) -- literature lane (LIT twin) is the live route.",
       "claim_id": "MECH-110",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-26T02:33:16Z",
+      "gated_by_session": "igw-244-proposal-for-mech-110",
+      "gating_reason": "IGW-20260926-244 /queue-experiment headless substrate-readiness call: DO NOT QUEUE. Falsifier-runnability trace (Step 2.5d) is ABSENT on all three legs: EVENT (incongruity followed by safe resolution eliciting a laughter bout), DV (laughter bout / forced-exhalation timing) and INSTRUMENT (behavioural/respiratory recording) have no producer in ree-v3 -- the agent has no laughter or exhalation response. The claim's own what_would_answer (audit R8, falsifier_completion_and_runnability_audit_20260921) forbids substituting a synthetic hypothesis-tag oscillation as its own DV, so any runnable proxy would be circular. MECH-110 also rests on MECH-107 (each exhalation = one plan-sweep tag clear), whose breath-phase instrument substrate entry is registration-only and unbuilt. A FAIL here would be vacuous, not evidence against the claim.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-110 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0834",
       "proposal_type": "experimental",
+      "refusal_route": "governance",
+      "refused_by_session": "igw-244-proposal-for-mech-110",
+      "refused_utc": "2026-09-26T02:32:55Z",
+      "release_condition": "Either (a) mech108-breath-phase-rollout-initiation-instrument is BUILT (named scan/execute phases + exhale-end boundary event) AND a V3 respiratory/exhalation-burst output exists whose timing is measured independently of the hypothesis-tag cycle (per MECH-110's non-degeneracy precondition), with an environment that can elicit incongruity then safe vs ambiguous resolution; or (b) governance re-scopes MECH-110 as V4+/external-evidence-only, in which case this experimental proposal should close and the literature twin (LIT, same EVB-1429) carries the claim.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15909,7 +15921,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_110",
       "target_repo": "ree-v3",
       "why_now": [
