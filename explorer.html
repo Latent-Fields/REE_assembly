@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-26.3 -->
+<!-- EXPLORER_VERSION: 2026-09-26.4 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -6913,6 +6913,55 @@ END CONFLICT RESOLUTION`;
         </details>`;
     }
 
+    // Claim detail panel. selectClaim() paints it twice -- immediately with
+    // what is in memory, then again once the claim text and conflict context
+    // have loaded -- so both paints share this template and wiring rather than
+    // two hand-kept copies (which had already drifted apart).
+    function claimDetailHtml(c, { loc, dependents, conflicts, toggleBlock,
+                                  claimLineText = null, loadingNote = '', tail = '' }) {
+      const idLinks = ids => ids.length
+        ? ids.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-';
+      const overlay = overlaySummaryHtml(c.id);
+      return `
+        <h2>${c.id}</h2>
+        <div class="meta">${c.type} | ${c.status}</div>
+        ${loadingNote}
+        ${toggleBlock}
+        <ul>
+          ${claimLineText !== null ? `<li><strong>Claim:</strong> ${claimLineText}</li>` : ''}
+          <li><strong>Subject:</strong> ${c.subject || '-'}</li>
+          <li><strong>Polarity:</strong> ${c.polarity || '-'}</li>
+          <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
+          <li><strong>Depends On:</strong> ${idLinks(c.depends_on)}</li>
+          <li><strong>Dependents:</strong> ${idLinks(dependents)}</li>
+          ${coupledWithDetailLi(c)}
+          <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
+          <li><strong>Conflict files:</strong> ${conflicts.length ? conflicts.map(f => {
+            const link = relativeLink(f);
+            return `<a href="${link}" target="_blank">${f}</a>`;
+          }).join(', ') : '-'}</li>
+        </ul>
+        ${overlay ? `<div class="epistemic-overlay-box">${overlay}</div>` : ''}
+        ${tail}
+      `;
+    }
+
+    function wireClaimDetail(id) {
+      els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          selectClaim(a.getAttribute('data-id'));
+        });
+      });
+      els.detailContent.querySelectorAll('button[data-doc]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openDocFromLocation(btn.getAttribute('data-doc'));
+        });
+      });
+      wireDetailToggles(id);
+    }
+
     async function selectClaim(id) {
       selectedId = id;
       renderTable();
@@ -6931,39 +6980,11 @@ END CONFLICT RESOLUTION`;
         </div>
       `;
 
-      els.detailContent.innerHTML = `
-        <h2>${c.id}</h2>
-        <div class="meta">${c.type} | ${c.status}</div>
-        <div class="meta">Loading claim text...</div>
-        ${toggleBlock}
-        <ul>
-          <li><strong>Subject:</strong> ${c.subject || '-'}</li>
-          <li><strong>Polarity:</strong> ${c.polarity || '-'}</li>
-          <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
-          <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
-          <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
-          ${coupledWithDetailLi(c)}
-          <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
-          <li><strong>Conflicts:</strong> ${conflicts.length ? conflicts.map(f => {
-            const link = relativeLink(f);
-            return `<a href="${link}" target="_blank">${f}</a>`;
-          }).join(', ') : '-'}</li>
-        </ul>
-        ${overlaySummaryHtml(c.id) ? `<div class="epistemic-overlay-box">${overlaySummaryHtml(c.id)}</div>` : ''}
-      `;
-      els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          selectClaim(a.getAttribute('data-id'));
-        });
+      els.detailContent.innerHTML = claimDetailHtml(c, {
+        loc, dependents, conflicts, toggleBlock,
+        loadingNote: '<div class="meta">Loading claim text...</div>',
       });
-      els.detailContent.querySelectorAll('button[data-doc]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          openDocFromLocation(btn.getAttribute('data-doc'));
-        });
-      });
-      wireDetailToggles(c.id);
+      wireClaimDetail(c.id);
 
       try {
         const [{ claimLine, excerpt }, conflictDetails] = await Promise.all([
@@ -6988,41 +7009,11 @@ END CONFLICT RESOLUTION`;
           </details>
         `;
 
-        els.detailContent.innerHTML = `
-          <h2>${c.id}</h2>
-          <div class="meta">${c.type} | ${c.status}</div>
-          ${toggleBlock}
-          <ul>
-            <li><strong>Claim:</strong> ${claimLineText}</li>
-            <li><strong>Subject:</strong> ${c.subject || '-'}</li>
-            <li><strong>Polarity:</strong> ${c.polarity || '-'}</li>
-          <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
-            <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
-            <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
-            ${coupledWithDetailLi(c)}
-            <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
-            <li><strong>Conflict files:</strong> ${conflicts.length ? conflicts.map(f => {
-              const link = relativeLink(f);
-              return `<a href="${link}" target="_blank">${f}</a>`;
-            }).join(', ') : '-'}</li>
-          </ul>
-          ${overlaySummaryHtml(c.id) ? `<div class="epistemic-overlay-box">${overlaySummaryHtml(c.id)}</div>` : ''}
-          ${sectionBlock}
-          ${conflictDetailsBlock}
-        `;
-        els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
-          a.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectClaim(a.getAttribute('data-id'));
-          });
+        els.detailContent.innerHTML = claimDetailHtml(c, {
+          loc, dependents, conflicts, toggleBlock, claimLineText,
+          tail: sectionBlock + conflictDetailsBlock,
         });
-        els.detailContent.querySelectorAll('button[data-doc]').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openDocFromLocation(btn.getAttribute('data-doc'));
-          });
-        });
-        wireDetailToggles(c.id);
+        wireClaimDetail(c.id);
       } catch (err) {
         if (selectedId !== id) return;
         els.detailContent.innerHTML += `<div class="meta">Failed to load claim text: ${escapeHtml(String(err))}</div>`;
@@ -7719,8 +7710,6 @@ END CONFLICT RESOLUTION`;
       }
       renderDecisionPanel(panel, dec);
     }
-
-    function decKey(row) { return row.decision_id || ('claim:' + row.claim_id); }
 
     function renderDecisionPanel(panel, dec) {
       const rows = dec.pending || [];
