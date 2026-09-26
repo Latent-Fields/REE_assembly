@@ -3634,6 +3634,36 @@
         "FAIL: with preconditions met, the pooled distribution is indistinguishable from a single smooth unimodal fit (response magnitude graded, response form not discrete).",
         "NON-DEGENERACY GUARD (run is vacuous, not FAIL, unless all hold): calibration_gap clears the EXQ-026 bar of 0.03 LIVE in the same run; >= 20 events per class per seed for none/approach/contact; benefit_approach excluded."
       ]
+    },
+    {
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "backlog_id": null,
+      "machine_affinity": "any",
+      "added_utc": "2026-09-26",
+      "registered_utc": "2026-09-26",
+      "gated_by_session": "thought-intake-20260926",
+      "proposal_id": "EXP-1408",
+      "claim_id": "MECH-597",
+      "related_claims": [
+        "MECH-597",
+        "Q-112",
+        "ARC-074",
+        "INV-073",
+        "MECH-334",
+        "MECH-165"
+      ],
+      "dispatch_mode": "diagnostic_probe",
+      "estimated_minutes": 240,
+      "objective": "Test MECH-597 per its what_would_answer (digested 2026-09-26): is developmental action-consequence knowledge in the E2 world head durable under narrower later on-policy training only when a retained fraction of the structured developmental experience keeps entering the head's training stream, with a monotone dose response over the retained fraction? Frozen read path (the asserted regime).",
+      "design": "Reuse the committed babbling / W3 probe harness (StructuredBabbler L2 source, ree-v3 main 2ea0e3c; E2WorldMember retained buffer on integration/coupled-loop-repair). Frozen encoder. Structured developmental phase, then on-policy phase with >= 3x the developmental update exposure. Arms: retained fraction of world-head batches {0 (one-off), 10, 25, 50%} plus a label-shuffled 25% twin (fixed class permutation, marginals kept). >= 5 fresh seeds, matched exposure. Readouts: disc4_h1 on the held-out uniform-random test set, fidelity k, retention ratio (post - B0)/(pre - B0) against the on-policy baseline head B0.",
+      "acceptance_checks": [
+        "PASS: the 25% arm keeps retention >= 0.5 AND the discrimination bar on >= 4/5 seeds; the one-off (0%) arm fails retention on >= 2/5; the shuffled twin fails the bar; retention is monotone non-decreasing across {0,10,25,50%} in the seed median.",
+        "FAIL: the one-off arm retains >= 0.5 on >= 4/5 seeds at matched exposure, OR the 25% arm fails to retain, OR the shuffled twin retains as well as real replay.",
+        "NON-DEGENERACY GUARD (run is vacuous, not FAIL, unless all hold): post-developmental head beats B0 by max(0.05, SD of B0 across seeds) on disc4_h1 (positive retention denominator) on every scored seed; on-policy action-class entropy below the developmental source's; on-policy update exposure >= 3x developmental exposure; read-path regime declared frozen in the manifest."
+      ]
     }
   ]
 }

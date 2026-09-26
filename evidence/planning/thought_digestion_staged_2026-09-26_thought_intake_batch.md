@@ -9,6 +9,17 @@ reviewed with the user by `/thought-digestion` in the same session. Each section
 review outcome once decided. Provisional drafting ids were OP-1..3 / DP-1..3; the mapping is
 OP-1=ARC-155, OP-2=ARC-156, OP-3=Q-111, DP-1=Q-112, DP-2=ARC-157, DP-3=MECH-597.
 
+**REVIEW OUTCOME (2026-09-26, user, interactive, session thought-intake-20260926) -- APPLIED to claims.yaml:**
+- Group A (`rec-20260926-41452f7c`, accepted as recommended): ARC-155 WWA applied, kept `substrate_conditional`
+  (P1/P4 unmet; move to standard + proposal once the freeze-lock confirmer reports and P1 is measured).
+  ARC-156 WWA applied, `epistemic_category: derivational` (structural core; freeze leg owned by MECH-280).
+  Q-111 WWA applied, kept `substrate_conditional` (disposition (c) rather than the drafted (f): P2/P3 unmet).
+- Group B (`rec-20260926-be28c959`, accepted as recommended): Q-112 and ARC-157 WWAs applied, kept
+  `substrate_conditional`. MECH-597 WWA applied (`standard`), proposal **EXP-1408** (replay-fraction dose
+  sweep) minted in `manual_proposals.v1.json`; not queued.
+- Applied WWA text = the drafts below, with the V3-EXQ-1108 lines updated to the confirmed autopsy (NEITHER)
+  and a dated DISPOSITION paragraph prepended to each.
+
 **Governance flags surfaced while drafting (for /governance; none applied here):**
 - ARC-074: `evidence_quality_note` owed since GFLAG-0504 deferred it "to the W2a build" (W2a landed
   2026-09-25T19:45Z); its Garcia-Guzman 2026 gloss ("pre-reward Hebbian phase") may mis-describe the paper.
