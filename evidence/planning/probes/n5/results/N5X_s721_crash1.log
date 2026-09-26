@@ -1,0 +1,16 @@
+LOCK ACQUIRED 2026-09-26T01:56:47Z n5explore721 freeMB 1830
+/Users/dgolden/REE_Working/REE_assembly/evidence/planning/probes/rollout/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[n5 s721 t=    4s] displacement modal orig {0: '(-1, 0)', 1: '(1, 0)', 2: '(0, -1)', 3: '(0, 1)', 4: '(0, 0)'} | shift {0: '(0, -1)', 1: '(0, 1)', 2: '(1, 0)', 3: '(-1, 0)', 4: '(0, 0)'}
+[n5 s721 t=  101s] INIT disc4 orig 0.2667 shift 0.2333 | B0 0.3067 k 1 (trapped)
+[n5 s721 t=  161s] retained 2293 | pre disc4 0.4867 k 8 | PRE-SHIFT (end W3 protocol) orig 0.5367 k 10 bar True ret 1.278 | on shifted map 0.2233 k 10
+[n5 s721 t=  162s] snapshot ok (on-policy 1192, retained 2293)
+Traceback (most recent call last):
+  File "/Users/dgolden/REE_Working/.scratch/breakthrough-20260924/n5/n5_probe_explore.py", line 457, in <module>
+    out["cells"][cell] = run_cell(cell)
+                         ~~~~~~~~^^^^^^
+  File "/Users/dgolden/REE_Working/.scratch/breakthrough-20260924/n5/n5_probe_explore.py", line 420, in run_cell
+    ret_err = float(np.mean([np.exp(rec_err(mem._retained[int(i)])) for i in ret_probe_idx]))
+                                            ~~~~~~~~~~~~~^^^^^^^^
+IndexError: list index out of range
+LOCK RELEASED 2026-09-26T01:59:49Z rc=1

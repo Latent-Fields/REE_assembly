@@ -417,7 +417,7 @@ def run_cell(cell):
     ev_o = BB.evaluate(ref, hd, TE, "z", S)
     ev_s = BB.evaluate(ref, hd, TE_S, "z", S)
     with torch.no_grad():
-        ret_err = float(np.mean([np.exp(rec_err(mem._retained[int(i)])) for i in ret_probe_idx]))
+        ret_err = float(np.mean([np.exp(rec_err(mem._retained[int(i)])) for i in ret_probe_idx if int(i) < len(mem._retained)]))
     n_orig_left = sum(1 for r in mem._retained if r["source"] != ON and r["step"] <= SNAP.waking_trainer.members["e2_world"].n_observed)
     res = {
         "cell": cell, "shift": shift, "mode": mode, "n_adult": steps["n"],

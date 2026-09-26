@@ -116,3 +116,15 @@ Guard (d) PASS in every cell (closed in the shared phase, before the snapshot). 
 - Not measured (hypothesis): the native policy is concentrated (W3: modal class 42-94% of steps) and presses into walls, where a blocked move produces the same next state under both maps, so much of the on-policy stream carries no information about the map at all. The probe did not log displacement per on-policy step; that is the check that would confirm it.
 
 **Evidence domain: D1.** No consumer or behaviour reading.
+
+### 4.3 Addendum result (exploratory, not verdict-bearing): wholesale revision does re-learn
+
+`shift_oraclefull`, seed 721 only (`probes/n5/results/N5X_s721.{json,log}`): on-policy flushed and the whole pre-shift retained set (2293) quarantined at the shift, then 2400 babbling steps at g = 1 (19200 updates). **Shifted map 0.523 / k 10 -- meets the bar**; original map 0.193 / k 10 (below chance: the old map is fully overwritten, as it should be after a real re-map). Rollout bounded. So the revision half of W2b works when the contradicted retained set is invalidated wholesale and a full developmental babbling epoch refills it; FIFO replacement at bout rate (`shift_oracle`, 0.25-0.39) does not. One seed, not replicated: seed 722 was not run (time cap). The first attempt crashed at the final retained-error readout (index past the refilled set's length; `N5X_s721_crash1.log`); the readout was guarded and the seed re-run unchanged otherwise.
+
+## 5. What this means for W2b (for the orchestrator)
+
+- **W2b is not buildable as specified.** Its two halves were tested separately and only one has a working form:
+  - **Detection / g signal: none found.** The member's own one-step error does not see an action-map shift, raw (the brief's example) or action-contrastive, on 5/5 seeds; both fire at base rates unrelated to the shift. The native candidate (E3 `last_instantaneous_pe`, `e3_selector.py:1036-1052`) is the same quantity as the raw PE detector here and has no native ACh/MECH-398 consumer on `1b013d6`.
+  - **Revision: wholesale, not FIFO.** Quarantine the pre-onset retained set and re-babble a full epoch (0.523 on s721); partial FIFO replacement leaves a contradictory replay mix (0/5 at the bar).
+- **What g should be driven by (proposal, untested):** a detector chosen by the clamped-pair separation test before any build. The obvious candidate is **active probing** -- short periodic W2a babbling probes (all classes, not wall-concentrated) scored action-contrastively against the retained-set baseline -- because the on-policy stream is the part that carries no map information. Probe N5b should test that detector (clamped pair, shift vs none) and the wholesale revision rule together, on seeds whose pre-shift state meets the W3 bar.
+- **Decision for the user / orchestrator (not taken here):** whether W6's integrated preset waits for W2b, or ships with the retained set FROZEN (W3's state, which N5 shows is stable under no shift, with no unfreeze path).
