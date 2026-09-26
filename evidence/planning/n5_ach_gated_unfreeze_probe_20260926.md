@@ -62,6 +62,10 @@ Also stated (report-only, not verdict): spurious unfreeze events in `noshift_gat
 
 One seed (B0 + test sets ~150 s, shared phase ~80 s, 5 cells x ~90 s) is ~11 min of Mac wall under one lock hold (2 torch threads). **Reductions fixed before registering:** N = 1200 (not the calibration's 1800) and no mid-run checkpoints, because the Mac probe lock is shared with N2 (5 x ~21 min holds) and another worker. If the ~2.5 h cap is reached before all 5 seeds run, the verdict is reported over the seeds completed, labelled INTERIM, never silently. Lock: mkdir `mac_probe.lock`, owner file written only after the mkdir succeeded, released after each seed; the waiter retries every 30 s and also immediately on a change to the lock's parent directory (kqueue) -- a holder that re-acquires back-to-back otherwise starves a 30 s poller; >= 800 MB free + inactive required before acquiring.
 
+## 3a. Addendum (exploratory, NOT verdict-bearing), registered 2026-09-26T00:36Z after seed 721 only
+
+Seed 721 showed the report-only `shift_oracle` (1200 babbling steps at g = 1, FIFO replacing 1143 of 2293 retained entries) reaching only 0.367 on the shifted map. To tell whether the W2b revision rule must invalidate the whole contradicted retained set rather than replace it FIFO, one extra report-only cell runs on seeds 721 and 722 after the five registered seeds, as a separate process (`probes/n5/n5_probe_explore.py`, identical to `n5_probe.py` except the added mode): **`shift_oraclefull`** -- at the shift, all on-policy records are flushed AND the whole pre-shift retained set is quarantined (removed from replay); then N = 2400 babbling steps at g = 1 (a full re-development epoch, the size of the original babbling phase) with 8 updates per step. Readout: the post-shift bar on TE_shift and gate (a) on TE_orig. It does not enter the verdict.
+
 ## 4. Results
 
 (pending)
