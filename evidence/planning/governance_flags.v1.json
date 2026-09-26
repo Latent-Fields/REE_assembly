@@ -7912,9 +7912,9 @@
       "summary": "Default-ON SP-CEM floor tokens (one-hot t=0 + exact-zero t=1..29, hippocampal/module.py:1361-1398 via :1627) rank LAST of 32 in E3 at 85/85 states on 3 seeds in the V3-EXQ-1061 regime, and a majority-class token built the same way is also last. So the loss is construction-driven (off-manifold head and tail), not the order-statistic/imbalance effect that monostrategy_type_a_vs_b_discrimination_20260924.md sec 2.3 records. An on-manifold class-c variant ranks 0/7.5/2.1. SP-CEM 'pool support 2.0 classes' is therefore unselectable by construction. Evidence: evidence/planning/spcem_zero_continuation_check_20260925.md (D2, toy dims 16, no D3).",
       "raised_by_session": "bt0925-spcem",
       "raised_at": "2026-09-25T14:40:30Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:23:19Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652), resolved jointly with GFLAG-0558: monostrategy_type_a_vs_b sec 2.3 correction (reading 4 refuted for floor tokens) and ARC-065 evidence_quality_note. User decision rec-20260926-3b948d07: synthetic floor candidates excluded from selection claims and reported separately; low-priority substrate_queue spcem-onmanifold-floor-token (severity cosmetic)."
     },
     {
       "flag_id": "GFLAG-0556",
