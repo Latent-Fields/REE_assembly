@@ -3764,3 +3764,6 @@ One line per hourly tick. ASCII only.
 2026-09-26T12:10:05Z GC removed worktree igw-222-substrate-ready-sd-zself-trainin (removed; branch deleted)
 2026-09-26T12:09:05Z GC sweep removed 1 orphan worktree(s), kept 23
 2026-09-26T12:09:05Z no eligible item (skipped 259): IGW-20260926-001:skill /governance not allowed; IGW-20260926-002:skill /governance not allowed; IGW-20260926-004:skill /governance not allowed
+2026-09-26T13:16:11Z skip: paused (.igw_routine_pause present)
+2026-09-26T14:56:14Z auto-defer igw-219-substrate-ready-dacc-pe-scale-no hash=559b19d5bc2c for 48h (complete)
+2026-09-26T14:56:14Z complete igw-219-substrate-ready-dacc-pe-scale-no launched_manual->completed outcome=USEFUL_LANDED: Built MECH-268 dacc_pe scale normalisation (design-first, red-teamed): ree-v3 c4
