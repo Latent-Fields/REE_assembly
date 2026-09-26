@@ -3738,3 +3738,7 @@ One line per hourly tick. ASCII only.
 2026-09-26T03:35:27Z workset committed (regen -- 258 items, 32 ready, 0 in flight)
 2026-09-26T03:33:01Z SPAWN IGW-20260926-244 skill=/lit-pull prio=40 uuid=e9533897-93b6-4a46-97b0-e54c377bc47d pid=369 worktree=igw-244-literature-proposal-for-mech-110
 2026-09-26T03:44:27Z auto-defer igw-244-literature-proposal-for-mech-110 hash=3551bc8bf567 for 48h (complete)
+2026-09-26T03:45:45Z complete igw-244-literature-proposal-for-mech-110 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-110: 5 entries (3 supports, 1 mixed, 1 weakens), REE_assembly 4c95
+2026-09-26T04:40:48Z GC removed worktree igw-244-literature-proposal-for-mech-110 (removed; branch deleted)
+2026-09-26T04:38:44Z GC sweep removed 1 orphan worktree(s), kept 25
+2026-09-26T04:38:44Z no eligible item (skipped 258): IGW-20260926-001:skill /governance not allowed; IGW-20260926-003:skill /governance not allowed; IGW-20260926-225:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
