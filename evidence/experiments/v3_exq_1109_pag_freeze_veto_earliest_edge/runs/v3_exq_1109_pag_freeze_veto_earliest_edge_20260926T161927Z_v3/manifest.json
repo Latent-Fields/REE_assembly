@@ -1,0 +1,248 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1109_pag_freeze_veto_earliest_edge",
+  "run_id": "v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-26T16:19:27Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "22aadc0c9d27e3b1703d7fdd76abf24ca988f23f",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "f0_indeterminate",
+    "f0_verdict": "F0_INDETERMINATE",
+    "f1_verdict": "F1_BOTH_COLLAPSE_F0_INDETERMINATE",
+    "f3_verdict": "F3_H3_LIVE",
+    "f0_classes": [
+      "HOLDS",
+      "INDETERMINATE",
+      "INDETERMINATE"
+    ],
+    "f1_classes": [
+      "BOTH",
+      "BOTH",
+      "BOTH"
+    ],
+    "f3_classes": [
+      "NO_ORGANISM_EFFECT",
+      "NO_ORGANISM_EFFECT",
+      "VETO_NO_CANDIDATE_CONTRAST"
+    ],
+    "combination_rule": "PASS iff F0 (LOAD-BEARING: the earliest edge, harm representation validity) reached a decisive verdict (F0_REPRESENTATION_HOLDS or F0_HSV_*) AND F1 (the chip's freeze on/off lock rule) reached a non-MIXED verdict. PASS means the edge was adjudicated, not that REE behaves. F3 is Q-111 leg-1 PRECONDITION DATA, never in the gate. Each leg's verdict is a majority (>= 2/3) of per-seed classes; F1's BOTH-collapse branch reads F0's verdict to separate saturation from other collapse.",
+    "preconditions": [
+      {
+        "name": "curriculum_reached_final_checkpoint",
+        "kind": "readiness",
+        "description": "fraction of seeds that completed the 935a curriculum (no stage abort).",
+        "control": "V3-EXQ-1107 reached the final eval on 3/3 of these seeds on this curriculum.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "f0_walk_samples_proximity",
+        "kind": "readiness",
+        "description": "fraction of seeds whose scripted walk gave >= 100 held-out ticks with nearest-hazard distance SD >= 0.75 (the R^2 target must vary or R^2 is undefined).",
+        "control": "a uniform random walk over the 4 moves in a 12x12 grid with 4 hazards (positive control: the target varies by construction unless lives are ~1 step).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "F0_representation_validity_decisive",
+        "load_bearing": true,
+        "passed": false,
+        "verdict": "F0_INDETERMINATE",
+        "measured": 0.06583,
+        "threshold": 0.25,
+        "threshold_fail": 0.1,
+        "comparator": ">=",
+        "per_seed_statistic": "held-out ridge R^2 of z_harm_a on capped nearest-hazard distance (ARM_WALK, final); measured = worst ready seed"
+      },
+      {
+        "name": "F1_freeze_lock_on_vs_off",
+        "load_bearing": true,
+        "passed": true,
+        "verdict": "F1_BOTH_COLLAPSE_F0_INDETERMINATE",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "comparator": ">=",
+        "per_seed_statistic": "LOCK: FZ_ON collapses (len <= 15.0 or stationary >= 0.9) with freeze_active >= 0.9, FZ_OFF does not"
+      },
+      {
+        "name": "F3_veto_precondition_data",
+        "load_bearing": false,
+        "passed": false,
+        "verdict": "F3_H3_LIVE",
+        "threshold_not_applicable": "precondition data for Q-111 leg 1; classes, not a bar",
+        "per_seed_statistic": "VETO_OFF entropy >= 1.0 bits; attributable divergence >= 0.5; hazard contact reduced >= 0.2"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "F0_representation_validity_decisive": true,
+      "F1_freeze_lock_on_vs_off": true,
+      "F3_veto_precondition_data": true
+    },
+    "f3_scope": "Q-111 leg-1 PRECONDITION DATA, not a Q-111 test",
+    "gate_input_independent": true,
+    "gate_input_independent_rule": "min over the final scripted walk of ||z_harm_a|| >= theta_freeze on >= 2/3 reached seeds: the freeze EXIT (z < theta*tone, tone 1.0) is unreachable at every sampled input, so the lock is an operating-point SCALE fact (ARC-155 H1 site) whatever F0's R^2 says; a HOLDS verdict then does NOT by itself make ARC-155/ARC-156 PAG designs runnable.",
+    "dv_symmetry": {
+      "F0_walk_vs_own": "NOT INVARIANT: policy changes the sampled states; R^2 needs target variance.",
+      "F1_freeze_on_vs_off": "NOT INVARIANT: removes the STAY override of the executed action.",
+      "F3_veto_on_vs_off": "NOT INVARIANT: per-candidate safety axis changes the eligible set."
+    },
+    "premise_corrected": "harm_obs_a in this harness is 7-d BODY DAMAGE (limb_damage_enabled=True, SD-022), not the proximity EMA the CeA re-probe measured; 1107 eval envs were seed-pinned to one spawn, this run uses a fresh paired seed per episode."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "db3ea106882945b1e66ee756c055f1d2c2cf0869da810849fa64046ec35baef3",
+  "substrate_commit": {
+    "commit": "22aadc0c9d27e3b1703d7fdd76abf24ca988f23f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_resource_encoder": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "heartbeat.beta_gate_bistable": true,
+    "goal.drive_floor": 0.9,
+    "goal.z_goal_enabled": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.use_cue_recall": true,
+    "use_dacc": true,
+    "use_salience_coordinator": true,
+    "use_external_task_drive": true,
+    "use_lateral_pfc_analog": true,
+    "use_instrumental_avoidance": true,
+    "use_pag_freeze_gate": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_split_surprise": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_conjunction": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4405.994195566001,
+  "config": {
+    "arms_probe": [
+      "ARM_FZ_ON",
+      "ARM_FZ_OFF",
+      "ARM_WALK"
+    ],
+    "arms_final": [
+      "ARM_FZ_ON",
+      "ARM_FZ_OFF",
+      "ARM_WALK",
+      "ARM_VETO_OFF",
+      "ARM_VETO_ON"
+    ],
+    "checkpoints": [
+      "init",
+      "p0",
+      "final"
+    ],
+    "probe_own_eps": 3,
+    "final_own_eps": 12,
+    "walk_eps_nominal": 8,
+    "walk_min_ticks": 600,
+    "walk_max_eps": 120,
+    "walk_steps": 150,
+    "env_seed_base": 1107,
+    "eval_env_stream": 7,
+    "seeds": [
+      47,
+      48,
+      49
+    ],
+    "train_steps": 200,
+    "thresholds": {
+      "r2_track": 0.25,
+      "r2_fail": 0.1,
+      "dist_cap": 6,
+      "dist_sd_min": 0.75,
+      "min_heldout": 100,
+      "damage_sd_min": 0.001,
+      "ridge_lambda": 0.01,
+      "collapse_len": 15.0,
+      "stationary_frac": 0.9,
+      "freeze_frac_lock": 0.9,
+      "h_min_bits": 1.0,
+      "diverge_frac_min": 0.5,
+      "contact_reduction": 0.2,
+      "min_off_hazard_contacts": 5,
+      "harm_range_precondition": 0.02,
+      "min_fraction": 0.6666666666666666
+    },
+    "mech449_producer": {
+      "z_threshold": 2.0,
+      "ema_decay": 0.999,
+      "sd_floor": 0.01,
+      "warmup": 200,
+      "floor": 0.5
+    },
+    "scaffold_curriculum": {
+      "stage0": 20,
+      "stage0b": 10,
+      "p0": 100,
+      "hazard": 40,
+      "p1": 50,
+      "p2": 15,
+      "config_basis": "V3-EXQ-1107 / 935a _make_config (freeze ON)"
+    }
+  },
+  "seeds": [
+    47,
+    48,
+    49
+  ],
+  "z_goal_stream": {
+    "ticks_total": 12710,
+    "ticks_active": 12126,
+    "writer_calls": 4261,
+    "active_frac": 0.9540519276160504,
+    "writer_defect": false,
+    "n_agents": 36,
+    "goal_state_present": true
+  }
+}
