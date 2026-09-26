@@ -77,7 +77,7 @@ Window: 2026-08-27 → 2026-09-26 (30 days). Both halves below read the same sou
 
 **2. The hero question's map — settled science, an outdated sign.**
 - *REE-side (settled):* the child locus question is resolved (0 alive; H-F confirmed at D1), and the front has moved inward to the native learner.
-- *REE_assembly-side (entirely addressable):* the hero's `live_gate` still names 1010 as running, the child's decision is unrecorded after three days, and `CURRENT_FRONT.md` derives its "Live question" line from that hero entry. This is the same shape as 09-08's stale-hero finding (then fixed by GFLAG-0115). The map was re-pointed once but not kept current.
+- *REE_assembly-side (entirely addressable):* the hero's `live_gate` still names 1010 as running, the child's decision was unrecorded after three days, and the `/progress` dashboard shows that `live_gate` as the hero's gate. *(Fixed after generation, 2026-09-26T16:22Z: decision recorded at `decision_log.v1.jsonl@2026-09-26T16:22:29.678100Z`, gate re-stated.)* This is the same shape as 09-08's stale-hero finding (then fixed by GFLAG-0115). The map was re-pointed once but not kept current.
 
 **Explicitly not overlap cases:**
 - **SD-082 / SD-078** (822 d / e / f FAIL, 822g refused) — every run autopsied within about a day, and the regression was localised into its own question. The slowness is entirely REE-side.
