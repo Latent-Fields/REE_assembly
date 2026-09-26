@@ -55,21 +55,21 @@ Partridge et al. (2002) showed that nAChR activation in dorsal striatum contribu
 
 ### 2.3 The crucial nAChR function is a dopamine *filter*, not a scalar gain
 
-Presynaptic β2-containing nAChRs on striatal dopamine terminals are tonically engaged by acetylcholine released from cholinergic interneurons. Under tonic engagement they raise release probability for isolated / low-frequency dopamine activity but also produce short-term depression, reducing the relative impact of subsequent high-frequency bursts.
+Presynaptic beta-2-containing nAChRs on striatal dopamine terminals are tonically engaged by acetylcholine released from cholinergic interneurons. Under tonic engagement they raise release probability for isolated / low-frequency dopamine activity but also produce short-term depression, reducing the relative impact of subsequent high-frequency bursts.
 
-When cholinergic interneurons pause and local ACh falls — or when those nAChRs are otherwise functionally switched off/desensitised — low-frequency dopamine release falls while burst-evoked release becomes relatively favoured. The result is an increased phasic-to-tonic contrast: dopamine release more faithfully reflects the firing pattern of dopamine neurons.
+When cholinergic interneurons pause and local acetylcholine falls — or when those nAChRs are otherwise functionally switched off/desensitised — low-frequency dopamine release falls while burst-evoked release becomes relatively favoured. The result is an increased phasic-to-tonic contrast: dopamine release more faithfully reflects the firing pattern of dopamine neurons.
 
 That is a much more useful REE abstraction than a generic `ACh_gain` parameter. The gate is **frequency- and timing-sensitive**.
 
 Relevant synthesis:
 - Exley & Cragg (2008), *Presynaptic nicotinic receptors: a dynamic and diverse cholinergic filter of striatal dopamine neurotransmission*, PMCID PMC2268048.
-- Sulzer, Cragg & Rice-associated striatal DA-release literature reviewed in PMCID PMC4850498.
+- Sulzer, Cragg & Rice-associated striatal dopamine-release literature reviewed in PMCID PMC4850498.
 
 ### 2.4 Cholinergic pauses are learned, salient-event-linked timing events
 
 Striatal cholinergic interneurons pause around salient or conditioned events after learning, approximately coincident with phasic changes in dopamine-neuron activity. This creates a plausible temporal conjunction between:
 
-`state/action trace` + `salient outcome` + `phasic dopamine` + `ACh/nAChR state`.
+`state/action trace` + `salient outcome` + `phasic dopamine` + `acetylcholine/nAChR state`.
 
 That conjunction is well placed to solve credit assignment: **which of the action representations active just before this outcome should actually be changed?**
 
@@ -77,11 +77,11 @@ That conjunction is well placed to solve credit assignment: **which of the actio
 
 ### 2.5 But cholinergic signalling is not simply pro-habit
 
-This is important. Experimental disruption of dorsal-striatal cholinergic signalling can *increase* habitual responding. Silencing vesicular acetylcholine transport promoted habits, with dorsomedial-striatal ACh loss sufficient to reproduce maladaptive habit-like behaviour in mice (Favier et al. 2020; PMID 33164988).
+Experimental disruption of dorsal-striatal cholinergic signalling can *increase* habitual responding. Silencing vesicular acetylcholine transport promoted habits, with dorsomedial-striatal acetylcholine loss sufficient to reproduce maladaptive habit-like behaviour in mice (Favier et al. 2020; PMID 33164988).
 
 Other work suggests dorsolateral-striatal cholinergic interneurons can contribute strongly to exploration and behavioural flexibility rather than being necessary for the canonical habit function of the dorsolateral striatum itself (Amaya & Smith 2021; PMCID PMC8562003).
 
-Therefore the candidate REE mechanism should **not** be "ACh strengthens habits". A better interpretation is that cholinergic signalling governs the *specificity, timing, revision and flexibility* of reinforcement writing. Both too little and incorrectly timed gating could cause maladaptive habitual control, by different routes.
+Therefore the candidate REE mechanism should **not** be "acetylcholine strengthens habits". A better interpretation is that cholinergic signalling governs the *specificity, timing, revision and flexibility* of reinforcement writing. Both too little and incorrectly timed gating could cause maladaptive habitual control, by different routes.
 
 ### 2.6 Nicotine provides an informative perturbation, not the physiological model
 
@@ -112,7 +112,7 @@ The May DA–ACh thought intake was registered on 2026-09-25:
 
 - MECH-453 owns temporally coordinated DA–ACh striatal writing;
 - ARC-154 separates action selection from reinforcement marking, plasticity permission, persistence and effort calibration;
-- Q-109 asks whether ACh-gated waking traces are later used by sleep/offline processing.
+- Q-109 asks whether acetylcholine-gated waking traces are later used by sleep/offline processing.
 
 Its computational sketch already has:
 
@@ -139,7 +139,7 @@ What is not yet explicit is:
 `deliberative proposal`
 `    -> executed action`
 `    -> outcome / signed RPE`
-`    -> ACh/nAChR timing filter`
+`    -> acetylcholine/nAChR timing filter`
 `    -> selective corticostriatal credit`
 `    -> repeated context-specific evidence`
 `    -> chunk / cached proposal becomes habit-route eligible`
@@ -180,7 +180,7 @@ A better abstraction is something like:
 
 where `G_phasic_contrast` is high when the temporal relation between cholinergic state and the teaching event makes the event diagnostic rather than tonic/background.
 
-At V3 scale, `G_phasic_contrast` need not model receptor kinetics. It can be a bounded local write factor attached to the waking eligibility trace, with an explicit future mapping to β2-containing presynaptic nAChR filtering.
+At V3 scale, `G_phasic_contrast` need not model receptor kinetics. It can be a bounded local write factor attached to the waking eligibility trace, with an explicit future mapping to beta-2-containing presynaptic nAChR filtering.
 
 ### 4.3 Separate three questions that are easy to conflate
 
@@ -222,9 +222,9 @@ Practice count can remain evidence, but it should not be the cause by itself.
 | DA–ACh temporally gated striatal policy write | MECH-453 | Existing |
 | Separate selection / marking / permission / persistence / effort calibration | ARC-154 | Existing |
 | Three-factor signed-RPE E3 learned gating | ARC-108 + MECH-450 implementation | Existing |
-| **nAChR-like frequency/contrast filtering of the teaching signal, rather than scalar ACh gain** | No explicit owner found | **Novel refinement** |
+| **nAChR-like frequency/contrast filtering of the teaching signal, rather than scalar acetylcholine gain** | No explicit owner found | **Novel refinement** |
 | **Use that gated teaching evidence as the bridge that earns transfer from deliberative composition into the habit proposer** | No explicit owner found | **Novel bridge** |
-| ACh/nAChR as the real-time habit/planning selector | No; evidence is mixed and argues against overclaiming | **Do not register** |
+| acetylcholine/nAChR as the real-time habit/planning selector | No; evidence is mixed and argues against overclaiming | **Do not register** |
 
 The safest governance action is therefore **not** to create an independent "nicotinic habit switch" claim. Reconcile this intake with MECH-453 / ARC-154 and the pending dual-route-proposer claim, then register only the narrow bridge if it remains unowned.
 
@@ -330,24 +330,33 @@ That is a successful scientific outcome: the biology would have inspired a test,
 
 ---
 
-## 10. Implications for REE's ethical testbed
+## 10. Implications for REE's ethical testbed — without an ethical scorer
 
-This mechanism is relevant beyond motor efficiency.
+REE has **no ethical scorer**, and this thought must not imply one. Ethical causation in REE is supposed to emerge through the same ordinary machinery that constructs and evaluates trajectories: representations of self and others, predicted harm and benefit, uncertainty, vulnerability, responsibility, relationship/love, memory, affect, and commitment. The axioms are hypotheses about what becomes causally operative in that machinery, not inputs to a separate moral-value function.
 
-If deliberative choices can become cheap habitual proposals, then ethically significant behaviour can also become routinised. REE therefore needs to distinguish:
+Habit formation nevertheless matters to the ethical experiment because the same action can have different **causal ancestry**.
 
-- a behaviour that repeatedly emerges because current trajectory evaluation still supports it;
-- a behaviour that is being emitted by a learned shortcut whose originating reasons are no longer recomputed.
+A prosocial action might be produced because, on this occasion, trajectory construction and selection are actively sensitive to another agent's state, predicted harm, responsibility, relationship and future possibility. The outwardly identical action might later be emitted as a cheap learned chunk because earlier experience repeatedly reinforced that response in similar contexts.
 
-That distinction matters for causal ethical testing. A prosocial action that has become habitual may still be valuable behaviour, but it is weaker evidence that the relevant self/other, responsibility and love machinery is currently causally operative.
+Those are behaviourally similar but experimentally different. The second case does not show that an ethical scorer has gone offline — none exists. It shows that the current action may depend less on the rich representations whose causal role REE is intended to test, because some of their previous work has been compressed into a learned proposal.
 
-Accordingly, REE behavioural assays should record **route of origin** and be able to force re-deliberation under devaluation, novelty, changed-other state or conflict. An ethical habit should remain revisable when the world changes.
+Accordingly, the relevant measurements are:
 
-This creates a useful experimental question:
+- route of origin of the committed action;
+- which self/other, harm/benefit, responsibility, relationship and future-state representations actually contributed to the action on that trial;
+- whether changed-other state, devaluation, novelty or conflict reopens richer trajectory construction;
+- whether ablation of the relevant representations changes newly composed behaviour, mature habitual behaviour, or both;
+- whether a habit remains appropriately revisable when the circumstances that originally made it useful no longer hold.
 
-> can ethical deliberation train fast prosocial habits without those habits becoming detached from the representations that made them ethically justified?
+The key experimental question is therefore not:
 
-The habit system is therefore not merely an efficiency optimization. It becomes part of the apparatus for testing whether ethical learning can become fluent **without becoming blind**.
+> did an ethical evaluator approve this action?
+
+It is:
+
+> **did the representations and mechanisms that instantiate REE's ethical hypotheses causally shape the learning and/or present selection of this action, and can that causal history be demonstrated by intervention?**
+
+Habit can therefore be scientifically useful to REE. It lets the experiment distinguish **online causal participation** from **earlier causal participation that has subsequently been compressed into policy**. A fast prosocial habit may be a product of prior self/other and responsibility-sensitive learning while requiring less recomputation on each occurrence. That is a hypothesis to test, not evidence of a separate ethical subsystem.
 
 ---
 
@@ -357,7 +366,7 @@ The habit system is therefore not merely an efficiency optimization. It becomes 
 2. Add route-of-origin + habit-maturity observability if not already present.
 3. Run the repetition-only vs generic-gate vs phasic-contrast-gate comparison with matched total update magnitude.
 4. Register a new claim only if the phasic-contrast term adds explanatory or behavioural power beyond the existing generic DA–ACh write gate.
-5. If it survives, retain the computational name `phasic_contrast/write_gate`; treat β2-containing striatal nAChRs as its biological exemplar rather than requiring literal receptor simulation.
+5. If it survives, retain the computational name `phasic_contrast/write_gate`; treat beta-2-containing striatal nAChRs as its biological exemplar rather than requiring literal receptor simulation.
 
 ---
 
