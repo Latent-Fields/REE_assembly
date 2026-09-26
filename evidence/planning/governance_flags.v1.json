@@ -7970,6 +7970,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0560",
+      "claim_ids": [
+        "SD-056"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The E2 world-head 'L2R bar' k criterion (beats persist-x0 at all horizons 1-10, used by the babbling probe, W3 member gate (a), N2, N3, N5 and the W3 reliability sweeps) is ARTEFACT-CARRIED: with fix OFF, held-out ticks >=8 after reset give k in {5,0,2,3,0,9} and an h=1 err/persistence ratio of ~0.97-1.03; the k=10 comes only from the ~44% near-reset ticks where the zero-initialised z_world EMA (GFLAG-0559) makes persistence trivially beatable (REE_assembly 370c222e20, 63631ec4ff8). disc4 (same-tick action discrimination) is not confounded; any record or claim citing k=10 as evidence that the head learned dynamics beyond persistence should be re-read on disc4 or a t>=8 criterion.",
+      "raised_by_session": "orchestrate-20260924-breakthrough-c2",
+      "raised_at": "2026-09-26T08:34:34Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
