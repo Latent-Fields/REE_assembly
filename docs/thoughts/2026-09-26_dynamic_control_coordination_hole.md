@@ -1,5 +1,5 @@
 Status: processed
-Intake: evidence/planning/thought_intake_2026-09-26_dynamic_control_coordination_hole.md (no new claims; covered by ARC-155, ARC-156, Q-111 from the sibling intake). The 9-step audit remains deferred to the coupled-loop orchestrator.
+Intake: evidence/planning/thought_intake_2026-09-26_dynamic_control_coordination_hole.md (no new claims; covered by ARC-155, ARC-156, Q-111 from the sibling intake). The 9-step audit is owned by the coupled-loop orchestrator (DC-A/B/C chips, started 2026-09-26T11:57Z).
 
 # REE may have the machinery for several cognitive regimes but no endogenous mechanism that decides when the organism should become what
 

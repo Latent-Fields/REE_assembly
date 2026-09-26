@@ -12,6 +12,9 @@ registration only. **The 9-step AUDIT the thought requests is NOT performed here
 coupled-loop orchestrator (`orchestrate-20260924-breakthrough-c2`) on the same deferral schedule. Nothing
 here interrupts or alters the coupled-loop / N3 work.
 
+
+**Status update (2026-09-26, same session, after landing):** the audit is no longer deferred. The orchestrator dispatched it at 11:57Z as chips `chip-20260926-dynctl-a-inventory-causal-map` (bt0926-dca, output `evidence/planning/dynamic_control_audit_inventory_20260926.md`), `-b-imposed-regimes` and `-c-biology`, and was messaged the ownership map below. Read "deferred" in this intake as "owned by that audit".
+
 ## 1. Verbatim prompt
 
 > REE may increasingly possess the machinery for multiple cognitive regimes while lacking the endogenous
