@@ -13765,8 +13765,8 @@
       "sd_id": "MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE",
       "title": "MECH-288's slow-scale BOCPD rail (z_goal, absolute ~6.18 one-tick norm-jump trigger) cannot fire on the in-agent z_goal stream: GoalState.update moves ||z_goal|| by at most 0.005*||z_goal||+0.05*||z_world-0.995*z_goal|| per tick, measured live norm max 0.305, ~20x short of the required jump",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "design_first",
+      "status": "implemented",
+      "status_phase": "implemented",
       "ready": true,
       "ready_note": "ready true per the user's decision (rec-20260925-deedce42, GFLAG-0474, option (a)): redesign the detector side with a magnitude-relative trigger (not the absolute ~6.18 jump) so it can fire in the measured 0.1-0.3 z_goal-norm regime. Design-first: an /implement-substrate session must write and red-team the trigger redesign (prior_var/hazard/posterior_threshold or a relative-magnitude reformulation, default-off lever, contract tests) before any ree_core edit.",
       "priority": 2,
@@ -13783,18 +13783,32 @@
           "experiment_type": "arithmetic/red-team analysis, EXP-1388 refusal at /queue-experiment Step 4.5",
           "metric": "GoalState.update per-tick ||z_goal|| displacement bound 0.005*||z_goal||+0.05*||z_world-0.995*z_goal||; measured live norm max 0.305; required one-tick jump for the absolute trigger ~6.1775",
           "target": "a one-tick ||z_goal|| jump exceeding ~6.1775 to fire the slow-scale rail as currently specified",
-          "resolved": "open -- GOVERNANCE DECISION 2026-09-25 (rec-20260925-deedce42, option (a)): redesign detector-side with a magnitude-relative trigger"
+          "resolved": "resolved 2026-09-26 -- relative trigger built (ree-v3 1d66991 + 22aadc0); replay 21/22 write onsets vs 0/22 canonical; live ON/OFF 2 vs 0. Original: open -- GOVERNANCE DECISION 2026-09-25 (rec-20260925-deedce42, option (a)): redesign detector-side with a magnitude-relative trigger"
         }
       ],
       "implementation_hint": "The rail is unreachable by construction, not by tuning: even the measured live maximum z_goal norm (0.305) is ~20x short of the one-tick jump the current absolute-6.18 trigger needs. Redesign the trigger to be magnitude-relative to the CURRENT z_goal norm/scale (e.g. a jump threshold scaled by ||z_goal(t-1)|| or by a running estimate of typical per-tick displacement) rather than an absolute Euclidean-norm-jump constant, so BOCPD's hazard/posterior_threshold machinery can fire in the measured 0.1-0.3 regime. Any successor to EXP-1388 must also re-derive: (1) the fast/inner PE-threshold scale's construction floor, which is STALE at ~15% in MECH-288's what_would_answer -- in-agent measurement finds 0.4% (GFLAG-0468); (2) the false-positive-rate ceiling anchor, which currently cites V3-EXQ-757's C288_silence result, but that run is non_contributory/standard per the confirmed D1 cluster autopsy (failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757) and is not a valid anchor.",
       "added_session": "governance-20260925",
       "added_utc": "2026-09-25T11:45:21Z",
-      "last_seen_session": "governance-20260925",
+      "last_seen_session": "igw-220-substrate-ready-mech288-slow-sca",
       "source_audit": "GFLAG-0474 (evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md, REE_assembly d46c032239); GFLAG-0468 Parts 2/3 folded in (fast/inner construction-floor and FP-ceiling-anchor corrections)",
       "owner_route": "/implement-substrate",
       "registration_is_not_build_authorisation": false,
       "authority": "User decision at governance-20260925 (rec-20260925-deedce42), option (a): redesign the slow-scale BOCPD rail detector-side with a magnitude-relative trigger.",
-      "blocking_note": "EXP-1388 (MECH-288 slow-scale in-agent liveness) is blocked_by this exact gap and cannot be authored until the rail is either redesigned or the claim is narrowed; MECH-287's broadcast trigger (Verdict 3, downstream of MECH-288 boundaries) has no live slow-scale boundary source in the meantime."
+      "blocking_note": "EXP-1388 (MECH-288 slow-scale in-agent liveness) is blocked_by this exact gap and cannot be authored until the rail is either redesigned or the claim is narrowed; MECH-287's broadcast trigger (Verdict 3, downstream of MECH-288 boundaries) has no live slow-scale boundary source in the meantime.",
+      "implementation_status": "implemented",
+      "substrate_paths": [
+        "ree_core/hippocampal/event_segmenter.py::_BOCPDGaussianDetector (scale_mode='relative', readout='short_run_mass')",
+        "ree_core/hippocampal/event_segmenter.py::EventSegmenter._build_detector (rollout stream forced canonical)",
+        "ree_core/hippocampal/module.py::HippocampalModule.__init__ (bocpd_* pass-through)",
+        "ree_core/utils/config.py::EventSegmenterScaleConfig.bocpd_*",
+        "ree_core/utils/config.py::REEConfig.from_dims(event_segmenter_slow_relative_trigger)"
+      ],
+      "implementation_note": "Implemented 2026-09-26 by igw-220-substrate-ready-mech288-slow-sca (IGW-20260925-220), design-first per the ready_note: design + adversarial red-team landed first (REE_assembly f75e38ce43, evidence/planning/mech288_slow_scale_rail_redesign_20260926.md). Build: ree-v3 1d66991 (detector + pass-through + contracts R1-R9 + docs/substrate/MECH-288-relative-slow-trigger.md) and 22aadc0 (EventSegmenterScaleConfig bocpd_* fields + from_dims knob event_segmenter_slow_relative_trigger, contract R10). Three defects fixed, not one: absolute prior_var=1.0 (fresh-run prior sd now k=6 x EMA of the stream's own per-tick displacement), a scale-dependent -20-nat cutoff (now a standardised-residual backstop, z=6), and a dead p0 readout (P(r_t=0)==hazard every tick; now P(r_t<=3) with burn-in after start and every reseed). Same stream, Gaussian model, hazard, top-k and min_segment_length. Observation stream only: the rollout stream stays canonical (the MECH-321 probe's repeated z_goal samples collapse a relative detector: 1332 fires/21624 in the red-team replay). Defaults bit-identical to pre-change 7f08512. Measured: replay of live in-agent traces (EXQ-830 live-z_goal config, 3 seeds) 21/22 z_goal write-burst onsets detected, 0 fires outside a write burst, latency 0-1 tick (canonical 0/22); live ON/OFF rollout seed 23: 2 vs 0 slow fires, each 2 ticks after an env resource event. Full suite from a throwaway tree: 7015 passed, 2 failed (the substrate-index check, fixed in 1d66991; test_runner_merge_peer_status_source, passes 8/8 locally with and without this change -- worker-environment dependent).",
+      "validation_experiment": null,
+      "validation_note": "Not queued by this build; chipped to /queue-experiment. Validation must set BOTH event_segmenter_slow_relative_trigger=True AND a live z_goal (z_goal_enabled=True, benefit_threshold=0.05, explicit agent.update_z_goal(...) each step) -- either alone reproduces 0 slow fires. Episodes must be long enough to hold several slow segments (agent.reset() resets the segmenter every episode; write-onset gaps measured 28-130 ticks; EXQ-830's 24-step episodes cannot). Alignment to env resource events must be scored against a rate-matched shuffled-label baseline (write onsets are defined on the detector's own scalar, so onset-hit alone is liveness, not CONFIRMING (a) evidence). Carry GFLAG-0468's corrections: measure the fast-scale floor in-agent (1.1-1.6% here), and do not anchor the FP ceiling on V3-EXQ-757.",
+      "governance_open": "Flagged, not decided by this build: (1) in-agent the slow boundary's referent is 'goal-write onset after benefit-gated consummation' (z_goal direction never switches at this config, cos 1st pct 0.99) -- whether that is the 'high-level task transition' of MECH-288 CONFIRMING (a); (2) whether the segmenter should reset on episode boundaries at all, given GoalState does not.",
+      "implemented_session": "igw-220-substrate-ready-mech288-slow-sca",
+      "implemented_utc": "2026-09-26T15:05:46Z"
     },
     {
       "sd_id": "sd036-eval-replicate-determinism",

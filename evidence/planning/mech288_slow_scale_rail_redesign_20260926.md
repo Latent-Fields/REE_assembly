@@ -297,3 +297,22 @@ port of `_BOCPDGaussianDetector` with the three changes switchable.
 | 7 | bit-identity holds only if the build keeps the 1e-6 floor, first-tick 1.0, `total<=0` branch, -20 nats, p0 in absolute mode | MINOR | build plan item 1 keeps absolute mode as the untouched code path |
 
 MECH-287 tonic guardrail and the cross-scale rule: checked, no effect (<= 1 slow event per 15 ticks).
+
+## 10. Landed (2026-09-26)
+
+- **ree-v3 `1d66991`** -- detector (`scale_mode="relative"`, `readout="short_run_mass"`, burn-in after
+  start and every reseed), rollout stream forced canonical, `hippocampal/module.py` pass-through,
+  contracts R1-R9, `docs/substrate/MECH-288-relative-slow-trigger.md` + index line.
+- **ree-v3 `22aadc0`** -- `EventSegmenterScaleConfig.bocpd_*` fields and
+  `REEConfig.from_dims(event_segmenter_slow_relative_trigger=...)` (all three sites), contract R10
+  (fails on the pre-knob tree: from_dims swallowed the kwarg).
+- Default path bit-identical to pre-change `7f08512` (events, posteriors, run-length probabilities,
+  both input streams). ree_core build reproduces section 4 exactly (21/22, 0 off-burst).
+- **Liveness on a real rollout** (seed 23, 20 episodes, live-z_goal config): 0 slow fires OFF, 2 ON
+  (ticks 49 and 163, each 2 ticks after an env `resource` event). Same trajectory in both arms.
+- Full ree-v3 suite from a throwaway tree holding only this change: 7015 passed, 2 failed -- the
+  substrate-index check (fixed in `1d66991`) and `test_runner_merge_peer_status_source` (passes 8/8
+  locally with and without this change; worker-environment dependent, not touched here).
+- **Validation experiment: not yet queued** -- owed via `/queue-experiment` with the section 6 / 7
+  configuration requirements (live z_goal, relative trigger, episodes long enough for several slow
+  segments, rate-matched shuffled-label baseline).
