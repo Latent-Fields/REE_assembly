@@ -1,5 +1,5 @@
-Status: unprocessed
-Intake: pending. The audit is scheduled for after the coupled-loop falsification sequence reaches a clean stop (N3 reset-confound recheck, gate re-read under the 09:33Z decisions, branch rebase + W3 disc4 contract).
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-26_dynamic_control_coordination_hole.md (no new claims; covered by ARC-155, ARC-156, Q-111 from the sibling intake). The 9-step audit remains deferred to the coupled-loop orchestrator.
 
 # REE may have the machinery for several cognitive regimes but no endogenous mechanism that decides when the organism should become what
 

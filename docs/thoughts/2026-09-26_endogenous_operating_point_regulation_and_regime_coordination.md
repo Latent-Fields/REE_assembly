@@ -1,3 +1,7 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+Claims registered: ARC-155, ARC-156, Q-111
+
 # Endogenous Operating-Point Regulation and Regime Coordination
 
 **Date:** 2026-09-26  

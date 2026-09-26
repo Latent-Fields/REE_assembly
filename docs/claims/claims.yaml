@@ -117450,3 +117450,466 @@
     branch. The discriminating readout (composition) probably needs a regime A1 does not have. Flag for
     a /governance routing decision. DO NOT build INT-BOTH ahead of the W1 codec passing its gates. DO
     NOT queue an experiment from this registration. Registration is not build authorisation.
+- id: ARC-155
+  title: 'A control operating point (threshold, cap, saturation constant, or cost weight) that reads a LEARNED
+    quantity -- a latent magnitude, prediction error, salience, effort, confidence or threat signal whose
+    distribution moves across training, seeds, developmental stage and state -- must be denominated on an
+    endogenous estimate of that quantity''s own scale (or on a producer whose scale is anchored), not on an
+    absolute raw constant; otherwise the regime it gates is determined by arbitrary numerical scale rather
+    than information content, and degenerates to permanent crossing, permanent silence, saturation (a graded
+    transform collapsing to a gain change), or scale-determined dominance between controllers. The
+    denomination must preserve the condition-relevant discrimination of the signal: an operating point that
+    stabilises regime occupancy by habituating to a chronically high signal (normalising real danger into
+    ''baseline'') violates this claim rather than satisfying it, and no denomination can restore information
+    the producer has already lost.'
+  claim_type: architectural_commitment
+  subject: control_plane.scale_relative_operating_points
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  location: docs/architecture/endogenous_operating_point_regulation.md#arc-155
+  depends_on:
+  - ARC-131
+  - ARC-130
+  - Q-041
+  - ARC-016
+  - MECH-279
+  - MECH-046
+  - SD-032a
+  - MECH-266
+  - SD-032b
+  - SD-011
+  - SD-099
+  - MECH-449
+  related_claims:
+  - GOV-CRITBAR-1
+  - SD-106
+  - MECH-459
+  - MECH-404
+  - INV-022
+  - MECH-043
+  source:
+  - docs/thoughts/2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  - evidence/planning/thought_intake_2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  notes: |
+    Registered from the 2026-09-26 thought (hypothesis H1, "adaptive control normalization"). The thought's
+    evidence, re-measured: V3-EXQ-1107 (post-training ||z_harm_a|| 2.8-4.2 vs theta_freeze 0.8 -> freeze from
+    tick 1); V3-EXQ-1067 (dacc_pe above the cap on 100% of ticks, abs max 11.2; the "graded" squash equals the
+    clamp at effective cap c*v/(c+v), a pure gain cut); V3-EXQ-1104 (effort term 0.005-0.031 vs payoff range
+    15.8-161); mode_switch_cea_mechanism_trace_20260925.md (CeA 0.5 threshold vs low_freq 0.14-0.20 untrained,
+    12-17 after the SD-011 harm_accum aux). All four autopsies are confirmed 2026-09-26. V3-EXQ-1108 adds that
+    the test-set norm rises x10.5-12 within a lifetime as the encoder trains.
+    EXTENDS the piecemeal precedents REE already has: ARC-016 (E3 precision = running variance of its own PE),
+    SD-099 (excess-over-baseline onset), MECH-449 (running-z veto), SD-106 (scale-normalised reconstruction),
+    MECH-459 (return-scale invariance). It states them as one requirement that the shipped PAG (MECH-279), CeA
+    (MECH-046), dACC cap (SD-032a/MECH-266) and SD-032b effort-cost constants currently violate.
+    EXPLICITLY DISTINCT FROM Q-041: Q-041 asks whether cross-substrate adaptive thresholds need a SUPERVISOR
+    for coherence under chronic load. ARC-155 is per-channel and supervisor-free: each operating point is
+    denominated on its own signal's endogenous scale. ARC-155 is compatible with either Q-041 answer, and ARC-155's
+    corrected channels supply the adaptive dacc_pe_cap that Q-041's own non-degeneracy precondition asks for.
+    DISTINCT FROM ARC-131, which lists "scale/variance of competing signals" as a condition under which an
+    installed mechanism fails to express itself (audit side). ARC-155 is the constructive requirement.
+    DISTINCT FROM GOV-CRITBAR-1, the governance-side analogue (a criterion bar must be denominated on the
+    run's own control arm, not on an absolute from rationale). ARC-155 is the organism-side form.
+    COMPETING ACCOUNT, carried in the claim, not resolved: anchor the PRODUCER's scale (e.g. a
+    magnitude-anchored encoder objective) rather than normalise at each CONSUMER. The mode-trace sec 0.3 finding
+    that the switching alarm (dacc_pe fallback) and the CeA gate read the SAME unanchored z_harm_a encoder makes
+    producer anchoring a live alternative for three of the four instances. A live producer-side instance is in design now:
+    IGW-20260925-219 dacc-pe-scale-normalisation (docs/architecture/dacc_pe_scale_normalisation.md,
+    MECH-268; 2026-09-26). If producer anchoring alone suffices,
+    ARC-155 narrows to an encoder-anchoring claim; that is a narrowing, not a refutation.
+    SIGNAL-VALIDITY BOUNDARY (built into the title): cea_onset_input_reprobe_20260925.md (GFLAG-0557) shows
+    relative gates on z_harm_a fail below their own floor in both env configs, because the onset information
+    is absent from the stream. V3-EXQ-1107's z_harm_a is identical on all 90 eval ticks. Scale-relative
+    denomination cannot rescue a channel with no condition-relevant content, so a null on such a channel is
+    uninterpretable, not evidence against ARC-155 (see the digestion draft, precondition P1). The 1067 autopsy's
+    warning also stands: a normaliser does not by itself make a register graded. It moves the transition.
+    Literature anchor: divisive normalisation (Carandini & Heeger 2012) is already on file via
+    targeted_review_salience_gain_normalisation (cited in the 1067 autopsy). NOT yet verified against ARC-155's
+    specific claim, which is scale-relative denomination with preserved discrimination. Biology normalises by
+    pooled/contextual activity, not by pure self-z. The adaptation-vs-habituation tension needs a /lit-pull
+    before hardening.
+    VERSION ROUTING (flag for /governance, not decided here): registered v3 / v3_v4 because the failing
+    instances are live V3 substrate and the cheapest test site (the PAG freeze gate, MECH-279) exists. It is
+    sequenced behind chip-20260926-pag-freeze-lock-confirmer and behind a P1 information-content measurement on
+    the channel under test. If P1 fails for z_harm_a, the test site moves to a channel with validated content
+    (the raw hazard-proximity scalar GFLAG-0557 names is not yet exposed to the agent).
+    DO NOT build a general normaliser or "operating-point regulator" module from this claim. DO NOT queue an
+    experiment from it without a /governance routing decision. Any build is a default-OFF,
+    single-operating-point change via /implement-substrate.
+- id: ARC-156
+  title: 'A strong regime that suppresses the organism''s normal interaction or information gathering (freeze,
+    defensive mode, exploit-only or monostrategic policy, habitual dominance, attentional fixation, frozen
+    plasticity, strong commitment, a high-confidence attractor) must have at least one endogenous termination
+    input that continues to change DURING the regime -- time- or interoception-integrating accumulators,
+    exogenous change the organism can sense without acting, or internally generated probes -- because a regime
+    whose exit condition is a function only of evidence produced by the behaviour it suppresses is absorbing
+    in any environment that does not change on its own. This evidence-STARVATION route to termination failure
+    is distinct from evidence CORRUPTION (a process degrading its own gating variable, MECH-497); the two can
+    co-occur, and a fix for one does not fix the other.'
+  claim_type: architectural_commitment
+  subject: control_plane.regime_surviving_termination_evidence
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  location: docs/architecture/endogenous_operating_point_regulation.md#arc-156
+  depends_on:
+  - ARC-131
+  - MECH-279
+  - MECH-280
+  - MECH-287
+  - SD-036
+  - MECH-356
+  - MECH-527
+  - MECH-482
+  - MECH-354
+  - MECH-266
+  related_claims:
+  - MECH-497
+  - ARC-128
+  - MECH-433
+  - MECH-398
+  - MECH-207
+  - Q-108
+  source:
+  - docs/thoughts/2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  - evidence/planning/thought_intake_2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  notes: |
+    Registered from the 2026-09-26 thought (hypothesis H2). MEASURED INSTANCE: V3-EXQ-1106 (MECH-287 option-B
+    release path: 0 drive-steps-while-frozen on 3/3 seeds; the path's sources, new event boundaries and
+    staleness H, cannot accrue while the agent does not move, and the build doc predicted the 0 in writing).
+    The autopsy's own learning is "the path needs a movement-independent source". V3-EXQ-1107 supplies the
+    lock (exit requires ||z_harm_a|| < 0.8, and ||z_harm_a|| is pinned while frozen next to a hazard). A SECOND
+    live instance, not cited by the thought: n5_ach_gated_unfreeze_probe_20260926.md -- the on-policy stream of
+    a concentrated (42-94% modal class), wall-pressing policy carries little information about an action-map
+    shift, so surprise-based detection fires at base rate. The probe's proposed remedy, periodic active
+    probing, is a regime-surviving evidence source in exactly ARC-156's sense (the wall-pressing mechanism is the
+    probe's stated, unmeasured hypothesis, sec 4.2).
+    DERIVATIONAL CORE: if the environment state relevant to the exit condition does not change without the
+    agent's action, and the exit condition reads only observations whose change requires actions the regime
+    removes, the regime is an absorbing state. The empirical content is (i) which REE regimes have that
+    structure today and (ii) whether a surviving source terminates them APPROPRIATELY (condition-sensitive),
+    not merely eventually (a timer).
+    UNIFIES existing instances that already integrate time or interoception and therefore survive their
+    regime: MECH-280 (LH-PAG hunger override of freeze; substrate_ceiling -- the SD-037 override is unbuilt,
+    per GFLAG-0506); MECH-482 -> MECH-527 (the epistemic_deficit accumulator grows with persistence and
+    triggers escape from a false-bottom attractor); MECH-354 (the fatigue accumulator emits STOP); MECH-433
+    (LC tonic shift on waning utility; v4); SD-036 (decay). COUNTER-INSTANCES: MECH-356 (fires on a NEGATIVE
+    z_harm_a derivative, which cannot occur while z_harm_a is pinned) and MECH-287 option B (above).
+    EXPLICITLY DISTINCT FROM MECH-497, which is evidence CORRUPTION: checking degrades the confidence that
+    gates stopping. ARC-156 is evidence STARVATION: the regime prevents the evidence from being generated at all.
+    Both are self-referential termination failures reached by different causal routes, just as MECH-497 is
+    itself distinguished from MECH-080's attractor-depth route.
+    DISTINCT FROM ARC-128, which says every persistent process needs a termination taxonomy recording WHY it
+    ended. ARC-156 constrains WHERE the terminating evidence may come from.
+    DISTINCT FROM ARC-131, which describes the failure (the agent cannot enter the states in which a
+    mechanism operates). ARC-156 is the constructive requirement for the special case where the regime itself
+    blocks those states.
+    DISTINCT FROM MECH-266 (asymmetric enter/exit thresholds): hysteresis on an exit threshold does not help
+    if the exit input cannot move.
+    NOT a licence for condition-blind termination: a fixed max-duration timer (pag_max_freeze_duration)
+    guarantees exit but carries no evidence. The digestion draft uses it as the control arm ARC-156 must beat on
+    appropriateness.
+    Literature anchor (NOT verified for this claim): the MECH-280 anchors (de Araujo Salgado 2023, sustained
+    hunger overrides predator avoidance; Marino 2020) cover the freeze instance. The cross-regime principle
+    needs its own /lit-pull (tonic immobility termination; LC-mediated disengagement, Aston-Jones & Cohen
+    2005; exploration under stuckness).
+    VERSION ROUTING (flag for /governance): v3 / v3_v4 because both measured instances (1106 freeze, N5
+    detection) are live V3/campaign substrate. The general cross-regime form is compass. DO NOT build a
+    generic "escape evidence" module. DO NOT queue an experiment from ARC-156. The freeze leg's build question
+    belongs to MECH-280 / SD-037 and the 1107 substrate-queue amendment. The N5 leg belongs to the coupled-loop
+    campaign (N5b). Respect the MECH-287 option-A decision (rec-20260926-78ecb89a): ARC-156 does not reopen
+    MECH-287b.
+- id: Q-111
+  title: 'Once each simultaneously active REE controller is individually validated, operating-point corrected
+    (ARC-155) and given regime-surviving exit evidence (ARC-156), do the existing controllers compose without one
+    removing the behavioural or informational substrate another needs (freeze removing the action freedom a
+    safety veto acts over; threat mode suppressing the plasticity or exploration that model repair needs;
+    commitment suppressing needed exploration and vice versa) -- or does destructive interference persist, so
+    that REE needs an explicit DISTRIBUTED authority-regulation principle (reciprocal inhibition, precision or
+    gain weighting keyed on the other controller''s state, basal-ganglia-like lawful access, state-dependent
+    routing) that is not a central executive?'
+  claim_type: open_question
+  subject: control_plane.controller_composition_substrate_interference
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  location: docs/architecture/endogenous_operating_point_regulation.md#q-111
+  depends_on:
+  - ARC-155
+  - ARC-156
+  - ARC-131
+  - ARC-130
+  - Q-041
+  - Q-016
+  - ARC-107
+  - MECH-449
+  - MECH-279
+  - SD-032a
+  - MECH-312
+  - MECH-163
+  related_claims:
+  - MECH-534
+  - ARC-145
+  - Q-106
+  - MECH-589
+  - ARC-154
+  - ARC-088
+  - INV-022
+  source:
+  - docs/thoughts/2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  - evidence/planning/thought_intake_2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md
+  notes: |
+    Registered from the 2026-09-26 thought (hypothesis H3). Registered as an OPEN QUESTION, not an
+    architectural commitment, because the thought's own falsifier is question-shaped: "If the existing
+    controllers compose appropriately once their individual scales and inputs are corrected, then no
+    additional arbitration principle is required." MEASURED MOTIVATING CASE: V3-EXQ-1090. The MECH-449 veto
+    fires (3/3), is calibrated, and is silent on its control, yet the executed action is 0 on 3,000/3,000
+    ticks (freeze on), and on all-fired ticks the strongest-F vetoed candidate executes anyway. The veto is
+    "coupled but inert by STARVED UPSTREAM". SECOND CASE: mode_switch_cea_mechanism_trace_20260925.md sec 1. The
+    coordinator's only salience source (dacc_pe) is also the dominant internal_planning affinity source, so the
+    ticks that could fire a switch push the argmax away; one switch per life, then lock (0/0/0 reversals);
+    reversals return only with an independent external-task input (0/0/0 -> 2/16/25). This is a shared-source
+    coupling defect between two controller roles. It straddles ARC-156 (the exit evidence is not independent of
+    the entry cause) and Q-111.
+    EXPLICITLY NOT A MONOLITHIC EXECUTIVE (a constraint set by both the thought and its companion
+    2026-09-26_dynamic_control_coordination_hole.md). The "principle", if needed, is asked to be distributed.
+    Candidate loci are ALREADY registered and are answers to test, not new claims: ARC-107/MECH-449 (lawful
+    access at the selection gate), MECH-312a-d/MECH-235/MECH-163 (habit vs deliberative arbitration weights),
+    Q-016 (tri-loop gate arbitration), MECH-534/ARC-145 (authority field / jurisdiction, v4), ARC-154 (DA-ACh
+    coordination, v4).
+    DISTINCT FROM Q-041, which asks whether adaptive THRESHOLDS stay coherent across substrates without a
+    supervisor (DV: co-movement of threshold series). Q-111 asks whether controllers destroy each other's
+    action or information SUBSTRATE (DV: each controller's retained behavioural consequence in composition).
+    The two can come apart in either direction.
+    DISTINCT FROM ARC-131, which asserts that composition CAN defeat an installed mechanism (audit). Q-111 asks
+    whether that defeat is removable by per-controller correction alone.
+    DISTINCT FROM Q-016, which is scoped to tri-loop gate conflict and coupling collapse inside E3 commitment.
+    Q-111 is cross-system (PAG, selection, mode register, plasticity gating).
+    DISTINCT FROM MECH-589 (Type C consensus over-stabilisation): that is one attractor pulling alternatives
+    back. Q-111 is about one controller removing another's operating substrate.
+    VERSION ROUTING (flag for /governance): v3 / v3_v4. Its first leg (does the veto regain behavioural
+    consequence once freeze no longer collapses the action space?) is a re-read of the already-routed 1090a
+    (the action-diversity precondition) after the freeze-lock confirmer, so it needs no new substrate. DO NOT
+    build an arbitration module. DO NOT queue an experiment from Q-111 until ARC-155/ARC-156 corrections exist for the
+    controllers under test.
+- id: Q-112
+  title: "What is the minimal set of inherited, environment-general structures an REE organism needs in order to become learnable -- to generate experience from which action-consequence, self/world and value distinctions can be learned -- and which of the current candidates (a valued, vulnerable self-state; a small general basis for structured endogenous action; sensitivity to self-action contingency; persistent but revisable developmental memory) are necessities, which are accelerators, which can emerge from the others, and which are environment-specific scaffolds, as determined by reduction and ablation from a deliberately over-provisioned general set in which each removal must produce its own predicted developmental failure and each restoration must repair development without encoding the environment's solution?"
+  claim_type: open_question
+  subject: development.minimal_developmental_prior_set
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-25_minimal_developmental_prior_problem.md
+  location: docs/architecture/minimal_developmental_prior.md#q-112
+  depends_on:
+  - INV-073
+  - INV-055
+  - ARC-074
+  - MECH-461
+  - MECH-277
+  - SD-031
+  - ARC-138
+  - INV-095
+  - INV-030
+  - SD-012
+  - ARC-059
+  - INV-064
+  - Q-108
+  - SD-090
+  - GOV-ECOL-1
+  - GOV-INSERT-1
+  - ARC-157
+  - MECH-597
+  source:
+  - docs/thoughts/2026-09-25_minimal_developmental_prior_problem.md
+  - evidence/planning/thought_intake_2026-09-25_minimal_developmental_prior_problem.md
+  - evidence/planning/babbling_e2_action_coverage_probe_20260925.md
+  notes: >-
+    Registered from secs 13, 14, 19 and 20 of the source thought, which is explicit: "this is explicitly
+    a candidate minimum, not the minimum" and "the minimum should be discovered by reduction and
+    ablation". An open_question keeps the candidate set discoverable without asserting it. WHAT IT ASKS,
+    THREE LEGS: (a) NECESSITY -- which candidates, when removed from a set that develops, produce a
+    specific predicted developmental failure (the thought's ablation menu: remove structured endogenous
+    action / contingency bias / viability grounding / developmental retention / explicit orienting /
+    chunking / splitting), and whether restoring the element repairs development without environment
+    content; (b) GENERALITY -- whether the same small set bootstraps development across at least two
+    predeclared world families (GOV-ECOL-1), and where an environment-specific scaffold becomes
+    unavoidable (classified under ARC-157); (c) AXIOM MAPPING -- sec 11 observes that asking what an
+    ignorant organism needs regenerates structures resembling A1 (a locus for contingency attribution),
+    A2 (valued self-state), A4 (causal power + vulnerability), D1 (primitive preservation + learned
+    anticipation) and D2 (act to obtain informative consequences). Leg (c) asks whether a developmental
+    ablation of the implementation of A2/D1 (remove viability grounding) produces the predicted failure,
+    or whether preservation/goal behaviour arises from another source. The thought says the convergence
+    is "not proof" and "REE should be permitted to show one is unnecessary". EXTENDS: INV-073 (one
+    element's necessity -- the exploration epoch), INV-055 (the infant stage), ARC-074 (Phase 0),
+    MECH-461 (innate primitive basis + engagement drive), MECH-277 / SD-031 (contingency), ARC-138 /
+    INV-095 / SD-012 (valued self-state). DISTINCT FROM Q-108: that asks what one minimal-working-
+    intelligence EVENT (adaptive recovery from being wrong) must contain; this asks what inherited
+    structure development needs BEFORE any competence exists. DISTINCT FROM MECH-557: a 3 + 2 reduction
+    over the cognitive-contract ledger, a different candidate set. DISTINCT FROM GOV-INSERT-1: that
+    records insertion-dependence as evidence AGAINST a derivation; leg (c) is the complementary
+    ABLATION route (remove the axiom's developmental implementation and see whether development needs
+    it). If /governance prefers, leg (c) can be split into its own Q owned by the derivational layer.
+    ENABLING ARCHITECTURE (plasticity, memory, temporal ordering, self/world state, an action interface,
+    a route from learned models to action selection) is excluded from the minimality question by
+    construction (ARC-157). CURRENT V3 STATE, re-measured 2026-09-26: the structured-action leg is
+    expressible (ree_core/developmental/structured_babbling.py StructuredBabbler, ree-v3 main 2ea0e3c,
+    default-OFF) and already has D1 evidence (babbling_e2_action_coverage_probe_20260925.md: the native
+    Phase-0 policy S FAIL 1/5, the L2 structured source sufficient 5/5 pre-post). The retention leg is
+    MECH-597. There is NO separable contingency-bias lever: E2's world head is action-conditioned by
+    construction (e2_fast.py world_action_encoder), so ablating "contingency bias" today would remove
+    enabling architecture. The viability leg has SD-012 drive + the harm streams, but no clean
+    "remove viability grounding while keeping exploration and modelling" arm. Literature: Garcia-Guzman
+    2026 (corpus-verified, tagged INV-073/ARC-065), Keramati & Gutkin 2014 (corpus, SD-012),
+    Keren-Portnoy 2021 (corpus, INV-073). NOT yet in the corpus / NOT verified: Hinnekens et al. 2023
+    eLife, Kanazawa 2026 (PMID 42252157 as given), Sen & Gredeback 2021, Diedrichsen & Kornysheva 2015,
+    Giszter 2015, Exton-McGuinness et al. 2015, Marjaninejad et al. 2019 (NMI). DO NOT build in V3 on the
+    strength of this entry; DO NOT queue an experiment from it. Registration is not build
+    authorisation.
+- id: ARC-157
+  title: "Every candidate developmental prior in REE is classified on two INDEPENDENT axes -- candidate-necessary vs developmental accelerator (improves speed, stability or robustness but is dispensable or derivable in principle), and environment-general vs environment-specific -- with enabling architecture (plasticity, memory, temporal representation, an action interface, self/world state, a route from learned models to action selection) held out as a separate class that is not a prior; and when development fails, interventions are admitted in order of increasing environment-specificity (structured endogenous exploration, then general contingency / information-seeking mechanisms, then memory / plasticity mechanisms, and only then environment-specific priors), so that a required environment-specific prior is recorded as an ecological finding about that environment ('this world could not be reliably developed into under the current general set without additional ecological information') rather than as an innate requirement. Inherited structure is preferentially PROCEDURAL (how to discover a world: vary action enough to see its consequences, credit changes that follow one's own action, preserve regularities, reopen them when they stop predicting) rather than ONTOLOGICAL (what the world contains)."
+  claim_type: architectural_commitment
+  subject: development.developmental_prior_classification
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-25_minimal_developmental_prior_problem.md
+  location: docs/architecture/minimal_developmental_prior.md#arc-157
+  depends_on:
+  - SD-090
+  - GOV-ECOL-1
+  - GOV-INSERT-1
+  - GOV-MATCHAUX-1
+  - INV-101
+  - MECH-461
+  - ARC-046
+  - SD-032c
+  - MECH-104
+  - INV-030
+  source:
+  - docs/thoughts/2026-09-25_minimal_developmental_prior_problem.md
+  - evidence/planning/thought_intake_2026-09-25_minimal_developmental_prior_problem.md
+  notes: >-
+    Registered from secs 4, 6, 12, 13 and 17 of the source thought. WHAT IS NEW: SD-090 classifies a
+    mechanism's functional ROLE in viability (constitutive / developmental-scaffold / robustness-reserve /
+    historical-contingency / true-redundancy) and supplies a removal-justification vocabulary. It has no
+    ENVIRONMENT-GENERALITY axis and no NECESSITY-vs-ACCELERATOR split for developmental priors, and it
+    says nothing about the ORDER in which to admit rescue interventions. SD-090's developmental-scaffold
+    class (needed during development, removable later) is NOT the same as this claim's accelerator class
+    (improves development but is dispensable in principle). A mechanism can be a scaffold AND necessary,
+    or an accelerator AND never removable. WORKED EXAMPLE OF THE GENERALITY AXIS (sec 6): a primitive
+    survival interrupt is admissible as GENERAL only when it is keyed to deterioration of the valued
+    self-state ("extreme deterioration ... interrupts the current behavioural trajectory"). The same
+    function keyed to an environment feature ("hazard tile -> move LEFT") is an environment-specific
+    scaffold. The mechanism is already owned (SD-032c urgency interrupt, MECH-104 harm-spike
+    de-commitment, ARC-046 infant hazard protection); this claim adds only the content-generality
+    constraint and the preservation-vs-learned-avoidance distinction. DISTINCT FROM GOV-INSERT-1: that
+    rule is the derivational-layer sibling (inserting the desired ethical OUTCOME counts against a
+    derivation). This is the developmental-layer analogue: inserting the environment's SOLUTION counts
+    as ecological information, not as an innate requirement. Both are "what had to be inserted is a
+    finding". DISTINCT FROM GOV-MATCHAUX-1: that is admissibility for representation-objective results
+    (matched arbitrary auxiliary + removal); this is admission ORDER and classification for developmental
+    priors. DISTINCT FROM GOV-ECOL-1: that separates seed replication from world-family replication.
+    This claim NEEDS it, because the general/specific axis is only measurable by world-family
+    replication. DISTINCT FROM INV-101: that makes the crystallisation TARGET environment-conditional;
+    this makes the PRIOR's generality a classified, testable property. The existing DEV-NEED register
+    (docs/architecture/developmental_needs_register.md) is the natural host for the two new columns
+    (necessity/accelerator; general/specific), plus the thought's per-entry fields (predicted
+    contribution, mechanisms it might emerge from, earliest operating stage, cost, what would show it
+    unnecessary, what would show it merely accelerating, transfer expectation, ablation consequence,
+    current evidence). That is a doc task, not done here. ALTERNATIVE FOR THE ORCHESTRATOR: fold this
+    into SD-090 as an amendment (needs a user steer), or split the admission-order discipline out as a
+    governance_rule. Registering it as one architectural_commitment keeps the classification and the
+    discipline together, as the thought states them. DO NOT build in V3; DO NOT queue an experiment.
+    The environment-specific-scaffold class is deliberately EMPTY at registration, as the thought
+    requires: "left deliberately empty until an environment demonstrates their necessity".
+- id: MECH-597
+  title: "Developmental action-consequence knowledge acquired by the E2 world head from a structured, action-diverse developmental source is NOT durable under subsequent on-policy training that is narrower than the developmental distribution: a one-off developmental exposure is progressively overwritten, and durability requires that a retained, overwrite-protected fraction of the developmental experience continue to enter the head's training stream (developmental rehearsal) -- a replay-based protection on the world-model plane, distinct from plasticity reduction (critical-period closure) on the scoring/policy plane."
+  claim_type: mechanism_hypothesis
+  subject: development.retained_developmental_replay_durability
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-25_minimal_developmental_prior_problem.md
+  location: docs/architecture/minimal_developmental_prior.md#mech-597
+  depends_on:
+  - ARC-074
+  - INV-073
+  - MECH-334
+  - MECH-165
+  - MECH-277
+  - MECH-588
+  - SD-031
+  related_claims:
+  - MECH-207
+  - MECH-398
+  - MECH-083
+  - MECH-496
+  - MECH-401
+  source:
+  - docs/thoughts/2026-09-25_minimal_developmental_prior_problem.md
+  - evidence/planning/thought_intake_2026-09-25_minimal_developmental_prior_problem.md
+  - evidence/planning/babbling_e2_action_coverage_probe_20260925.md
+  - evidence/planning/coupled_loop_repair_campaign_plan.md
+  notes: >-
+    Registered from secs 1, 7 and 18 of the source thought ("a one-off developmental exposure was
+    insufficiently durable ... retaining a minority of structured developmental replay preserved the
+    advantage"). Scope is narrowed to what has been measured.
+    EVIDENCE ON FILE (D1 only; none of it tagged to this id, and none is claimed here as a scoring
+    entry): (1) babbling_e2_action_coverage_probe_20260925.md (FINAL). A SECONDARY, pre-registered,
+    descriptive readout, not a verdict: over 9,000 on-policy updates (3x the developmental update
+    exposure), one-off L2 kept >= 50% of its gain over the on-policy baseline on 2/5 seeds, while L2R
+    (25% retained replay) kept it on 5/5 (ratios 1.31-1.53), with fidelity k = 10 on 5/5. It was
+    stratum-independent (1 benign + 4 hazard-trapped seeds). Three of the L2R seeds came from a trailing
+    block run after a resource-only reschedule; the L2_pre heads were reproduced exactly. (2) Campaign
+    W3 member gate (coupled_loop_repair_campaign_plan.md row W3; record
+    w3_e2_world_member_build_20260925.md). This is gated and D1: retention (b) was 5/5 (0.96-1.71) with
+    a FROZEN encoder, and the label-shuffled replay twin failed (a) 0/5. (3) V3-EXQ-1108 (N2 at full post dose; failure_autopsy_V3-EXQ-1108_2026-09-26.md CONFIRMED
+    2026-09-26, verdict NEITHER as computed, claim-free, non_contributory): the frozen-encoder control kept
+    the bar ((a) 4/5, retention 5/5); with the encoder trained through the read path, stored-latent replay
+    lost the bar on 5/5 seeds, and re-encoded replay matched the control on disc4 (paired mean -0.005) with
+    retention 5/5 but failed (a) 3/5 and (e) 1/5 as registered; (e) is not yet separated from the
+    reset-transient growth artefact. So this claim is asserted for the FROZEN-READ-PATH regime. Whether
+    rehearsal keeps developmental knowledge while the encoder itself moves is OPEN (campaign N2 / P8).
+    WHAT IS NEW: ARC-074 asserts a one-off Phase-0 epoch. INV-073 asserts that early DEFICITS are
+    permanent, which is the opposite direction to this claim (early GAINS are fragile without
+    rehearsal). Both can hold, and neither weakens the other. MECH-334 protects crystallised diversity
+    by PLASTICITY REDUCTION (EWC anchor) on the SCORING/POLICY plane. MECH-496 moves that schedule onto
+    representational structure. MECH-165 requires diverse SLEEP replay for multi-strategy viability.
+    None of them states the non-durability of developmental WORLD-MODEL knowledge, or REHEARSAL of
+    developmental experience as its remedy. DELIBERATELY EXCLUDED, the unfreeze half of the thought's
+    sec 8 (reopen retained knowledge under persistent PE, ACh-gated). That is MECH-207 / MECH-398 (v4;
+    related_claims, not depends_on, to avoid a v3 -> v4 prerequisite edge) and campaign row W2b, which
+    is BLOCKED: probe N5 (n5_ach_gated_unfreeze_probe_20260926.md) was CANNOT_DETERMINE; the gate did
+    not separate a shift from no shift; and even an oracle FIFO unfreeze re-learned only 0.25-0.39
+    against a 0.47 bar in 1200 steps. The thought's "freeze" is this claim; its "unfreeze" is not
+    asserted here. SUBSTRATE: the generator is on ree-v3 main (StructuredBabbler, 2ea0e3c, default-OFF);
+    the E2WorldMember with its retained buffer is on integration/coupled-loop-repair (042895a ->
+    4070b0efa4), not main. V3-testable today through the committed probe harness. FLAG FOR /governance
+    ROUTING: implementation_phase v3 and epistemic_category standard are proposed because the claim is
+    cleanly testable on existing V3 substrate and already has D1 evidence. /governance decides the
+    routing, and whether any of the three evidence items should be tagged to this id (claim_ids accuracy
+    rule: none are tagged by this registration). NOT a V3 build authorisation. The campaign already
+    owns the build.

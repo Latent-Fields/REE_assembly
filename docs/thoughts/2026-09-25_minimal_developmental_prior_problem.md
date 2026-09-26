@@ -1,4 +1,6 @@
-Status: raw / unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-25_minimal_developmental_prior_problem.md
+Claims registered: Q-112, ARC-157, MECH-597
 
 # The Minimal Developmental Prior Problem: What Must an Organism Know Before It Can Learn?
 

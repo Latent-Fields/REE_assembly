@@ -1,18 +1,18 @@
 # Thought Sweep Report
 
-Generated: `2026-09-25T11:05:37.656394Z`
+Generated: `2026-09-26T11:23:02.802772Z`
 
 | metric | count |
 |---|---|
-| total thought files | 272 |
-| processed | 272 |
+| total thought files | 276 |
+| processed | 276 |
 | unprocessed | 0 |
 | processed missing back-links | 0 |
 
 Back-link forms among processed thoughts:
 
 - `legacy`: 179
-- `intake_header`: 90
+- `intake_header`: 94
 - `frontmatter`: 1
 - `superseded`: 2
 - `none`: 0
@@ -295,7 +295,11 @@ Back-link forms among processed thoughts:
 - `2026-09-24_experimental_learning_beyond_literature.md` (1 link(s), form=`intake_header`)
 - `2026-09-24_from_components_to_functional_organism.md` (1 link(s), form=`intake_header`)
 - `2026-09-24_ree_assembly_as_continuous_scientific_assurance.md` (1 link(s), form=`intake_header`)
+- `2026-09-25_dual_route_habit_vs_deliberative_proposals.md` (1 link(s), form=`intake_header`)
 - `2026-09-25_error_as_information_error_as_threat.md` (1 link(s), form=`intake_header`)
+- `2026-09-25_minimal_developmental_prior_problem.md` (1 link(s), form=`intake_header`)
+- `2026-09-26_dynamic_control_coordination_hole.md` (1 link(s), form=`intake_header`)
+- `2026-09-26_endogenous_operating_point_regulation_and_regime_coordination.md` (1 link(s), form=`intake_header`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (1 link(s), form=`superseded`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s), form=`legacy`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s), form=`legacy`)
