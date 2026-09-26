@@ -7953,9 +7953,9 @@
       "summary": "SP-CEM floor token construction-loses-to-E3 finding (GFLAG-0555, F2/F3/F5) reproduces at deployed dims (self_dim=world_dim=32): native token rank 31/32, a majority-class token built the same way also rank 31, on-manifold class-c candidate rank 0 (n=1 firing observed). But the SP-CEM injector's firing RATE collapses from 71% of probed states at dim 16 (first probe) to 0.8% (1/120) at dim 32 across 3 seeds, independent of warmup depth (seed 11: 0/40 token states at both 20 and 150 warmup episodes). GFLAG-0555's fix priority should be weighed against this lower deployed-scale incidence, not the dim-16 numbers. See REE_assembly/evidence/planning/spcem_wd32_trained_repeat_20260925.md.",
       "raised_by_session": "bt0925-spcem2",
       "raised_at": "2026-09-25T21:29:10Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:23:23Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652), resolved jointly with GFLAG-0555: deployed-dim incidence 0.8% recorded on ARC-065 and in the monostrategy correction; it set the fix priority (spcem-onmanifold-floor-token priority 3, severity cosmetic)."
     },
     {
       "flag_id": "GFLAG-0559",
