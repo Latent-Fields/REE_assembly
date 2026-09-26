@@ -6402,9 +6402,9 @@
       "summary": "DESIGN GATE on ready substrate_queue item sd032b-candidate-effort-proxy (IGW-222, user-HELD until 2026-09-25T18:00Z re-raise): its implementation_hint names 'a harm-forward rollout cost per candidate' as the replacement for the constant c.actions.shape[1] effort (ree-v3/ree_core/agent.py:7788). That producer (a) is a HARM quantity, so wiring it as effort double-counts harm already charged by E3's harm channels and contradicts MECH-354 (effort axis decoupled from harm) while pre-empting open question Q-080 (is effort a harm or a foregone value); and (b) depends on the SD-PP-B9 harm-forward head that the confirmed V3-EXQ-1062a autopsy found worse than persistence in 6/6 cells, with V3-EXQ-1077 cannot_determine. Before the IGW-222 build is re-raised, the decision should state what 'effort' means in the test, name a producer not already charged elsewhere, and require within-tick candidate spread plus a correct-sign trade-off, not merely argmin non-invariance. Source: thought docs/thoughts/2026-09-24_from_components_to_functional_organism.md sec 5.2.",
       "raised_by_session": "thought-organism-path-20260924",
       "raised_at": "2026-09-24T07:19:55Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:22:35Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652): user decision rec-20260926-9251624c 'settle Q-080 first'. substrate_queue sd032b-candidate-effort-proxy now blocked_on Q-080 and node_class complex (probe-gated); no effort-producer build/validation/cost sweep until Q-080.a runs (V3-EXQ-730 never ran; re-queue must cap dacc_bias_max_abs). harm_a producer 4cce9b8 stays unvalidated (V3-EXQ-1104). Notes on SD-032b and Q-080."
     },
     {
       "flag_id": "GFLAG-0448",
