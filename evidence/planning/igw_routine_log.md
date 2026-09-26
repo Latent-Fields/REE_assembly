@@ -3767,3 +3767,8 @@ One line per hourly tick. ASCII only.
 2026-09-26T13:16:11Z skip: paused (.igw_routine_pause present)
 2026-09-26T14:56:14Z auto-defer igw-219-substrate-ready-dacc-pe-scale-no hash=559b19d5bc2c for 48h (complete)
 2026-09-26T14:56:14Z complete igw-219-substrate-ready-dacc-pe-scale-no launched_manual->completed outcome=USEFUL_LANDED: Built MECH-268 dacc_pe scale normalisation (design-first, red-teamed): ree-v3 c4
+2026-09-26T15:02:09Z workset published (regen -- 256 items, 32 ready, 0 in flight)
+2026-09-26T15:02:10Z workset committed (regen -- 256 items, 32 ready, 0 in flight)
+2026-09-26T14:20:37Z STAGE IGW-20260926-214 skill=/implement-substrate prio=25 worktree=igw-214-substrate-ready-mech-279 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-09-26T15:12:43Z auto-defer igw-220-substrate-ready-mech288-slow-sca hash=05d4c828bb98 for 48h (complete)
+2026-09-26T15:12:43Z complete igw-220-substrate-ready-mech288-slow-sca launched_manual->completed outcome=USEFUL_LANDED: MECH-288 slow-scale rail: magnitude-relative BOCPD trigger built default-off (re
