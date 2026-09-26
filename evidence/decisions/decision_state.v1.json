@@ -200,12 +200,12 @@
     },
     "ARC-054": {
       "actor": "user",
-      "decision_needed": "Whether the 2026-09-11 hold_pending_v3_substrate (gov-20260911-1612) still applies now that D-001 (ecd247a2db, 2026-09-16) relabelled this claim implementation_phase v4 with v3_pending removed (GFLAG-0303 item 1).",
+      "decision_needed": "Literature conflict noted; claim stays gated pending upstream probe/substrate",
       "decision_status": "applied",
-      "rationale": "Claim is v4-deferred, not v3-pending; the 09-11 hold rationale predates the relabel. Hold superseded as moot, not reversed -- no promotion/demotion, no status change. Governance cycle governance-flags-20260923, rec-20260923-1fee5e56.",
-      "recommendation": "supersede_stale_hold_no_status_change",
-      "selected_option": "Supersede hold, accept advisory (Recommended)",
-      "timestamp_utc": "2026-09-23T17:51:48.864696Z"
+      "rationale": "Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Acknowledge conflict, no status change",
+      "timestamp_utc": "2026-09-26T12:45:44.886708Z"
     },
     "ARC-057": {
       "actor": "failure-autopsy-h-mode-755",
@@ -459,6 +459,15 @@
       "selected_option": "Accept all holds",
       "timestamp_utc": "2026-06-18T05:15:00.986605Z"
     },
+    "ARC-095": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-09-26T12:45:44.919936Z"
+    },
     "ARC-096": {
       "actor": "user",
       "decision_needed": "Held by V5 architectural commitment (no V3-substrate decision required)",
@@ -530,6 +539,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Record the hold",
       "timestamp_utc": "2026-09-03T07:21:20.372348Z"
+    },
+    "ARC-116": {
+      "actor": "user",
+      "decision_needed": "Literature conflict noted; claim stays gated pending upstream probe/substrate",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Acknowledge conflict, no status change",
+      "timestamp_utc": "2026-09-26T12:45:44.952175Z"
     },
     "ARC-120": {
       "actor": "governance-cycle-2026-09-03 (user-approved)",
@@ -1322,6 +1340,24 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "Promote now",
       "timestamp_utc": "2026-04-05T11:48:38.245Z"
+    },
+    "MECH-109": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-09-26T12:45:44.984518Z"
+    },
+    "MECH-110": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-09-26T12:45:45.020522Z"
     },
     "MECH-111": {
       "actor": "user",
@@ -3466,13 +3502,13 @@
       "timestamp_utc": "2026-05-07T04:14:02Z"
     },
     "SD-050": {
-      "actor": "governance-20260925-0548",
-      "decision_needed": "Demotion review: provisional -> candidate",
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "exp_conf 0 after 517c superseded + 517d non_contributory (GFLAG-0452 D1, governance 2026-09-24); 2026-08-29 promotion's 2 supporting runs no longer score. User-approved /governance 2026-09-25 (rec-20260925-f8ad93ef). Re-gates on agent-trajectory descent test covering both reuse sites.",
-      "recommendation": "demote_to_candidate",
-      "selected_option": "Demote now",
-      "timestamp_utc": "2026-09-25T06:05:22.173208Z"
+      "rationale": "Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-09-26T12:45:45.053930Z"
     },
     "SD-054": {
       "actor": "user",
@@ -3628,7 +3664,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-25T12:03:18.533199Z",
+  "generated_at_utc": "2026-09-26T12:46:58.390430Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

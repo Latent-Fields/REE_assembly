@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-26T12:25:07.017808Z`
+Generated: `2026-09-26T12:46:58.390430Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -16,7 +16,7 @@ Use this as the human-in-the-loop review queue.
 | `ARC-042` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-045` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-051` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-054` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `pending_user` |
+| `ARC-054` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-058` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-059` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-060` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -45,7 +45,7 @@ Use this as the human-in-the-loop review queue.
 | `ARC-092` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-093` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-094` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
-| `ARC-095` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `ARC-095` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-096` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-097` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-098` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
@@ -60,7 +60,7 @@ Use this as the human-in-the-loop review queue.
 | `ARC-111` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-112` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-113` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-116` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `pending_user` |
+| `ARC-116` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-120` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-121` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-130` | `provisional` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -106,8 +106,8 @@ Use this as the human-in-the-loop review queue.
 | `MECH-095` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-099` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-109` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-110` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-109` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-110` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-111` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-112` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-116` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -294,7 +294,7 @@ Use this as the human-in-the-loop review queue.
 | `SD-047` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-048` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-049` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `SD-050` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `SD-050` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-054` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-055` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-056` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -433,11 +433,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-09-23T17:51:48.864696Z`
-- Last selected option: Supersede hold, accept advisory (Recommended)
-- Last rationale: Claim is v4-deferred, not v3-pending; the 09-11 hold rationale predates the relabel. Hold superseded as moot, not reversed -- no promotion/demotion, no status change. Governance cycle governance-flags-20260923, rec-20260923-1fee5e56.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-09-26T12:45:44.886708Z`
+- Last selected option: Acknowledge conflict, no status change
+- Last rationale: Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.
 
 ### ARC-058
 - Current status: `candidate`
@@ -941,7 +940,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-09-26T12:45:44.919936Z`
+- Last selected option: Wait for V3 substrate implementation (correct path).
+- Last rationale: Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.
 
 ### ARC-096
 - Current status: `candidate`
@@ -1178,7 +1180,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-09-26T12:45:44.952175Z`
+- Last selected option: Acknowledge conflict, no status change
+- Last rationale: Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.
 
 ### ARC-120
 - Current status: `candidate`
@@ -2011,7 +2016,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-09-26T12:45:44.984518Z`
+- Last selected option: Wait for V3 substrate implementation (correct path).
+- Last rationale: Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.
 
 ### MECH-110
 - Current status: `candidate`
@@ -2026,7 +2034,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-09-26T12:45:45.020522Z`
+- Last selected option: Wait for V3 substrate implementation (correct path).
+- Last rationale: Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.
 
 ### MECH-111
 - Current status: `candidate`
@@ -5303,11 +5314,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `governance-20260925-0548` at `2026-09-25T06:05:22.173208Z`
-- Last selected option: Demote now
-- Last rationale: exp_conf 0 after 517c superseded + 517d non_contributory (GFLAG-0452 D1, governance 2026-09-24); 2026-08-29 promotion's 2 supporting runs no longer score. User-approved /governance 2026-09-25 (rec-20260925-f8ad93ef). Re-gates on agent-trajectory descent test covering both reuse sites.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-09-26T12:45:45.053930Z`
+- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
+- Last rationale: Governance cycle governance-20260926: user accepted all 6 pending_user hold recommendations as recommended (rec-20260926 agenda). No claim status moves; the gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.
 
 ### SD-054
 - Current status: `candidate`

@@ -14219,6 +14219,17 @@
     [2026-09-23 governance, GFLAG-0304 option A (annotate now; the option-B prevalence probe is chipped separately)] CONTAMINATION-FOOTGUN EXPOSURE: 1/1 of this claim's indexer-scored experimental entries (1/1 under the chip definition; exposed runs: 231a_mech106_bg_hysteresis_redesign) ran CausalGridWorld hazard-free (num_hazards=0) WITHOUT the contamination opt-out (contamination_spread=0.0 or hazard_free_contamination_gate=True), so a self-poisoning agent could have truncated the measurement window -- the V3-EXQ-874b/940 mechanism (evidence/planning/corpus_audit_contamination_footgun_20260916.md). This is exposure by configuration, NOT confirmed truncation: actual contamination-driven truncation is confirmed in only 1 of 92 exposed runs (V3-EXQ-940), and almost no manifest records a termination reason. No status/confidence change. Decide per-claim re-measurement after the prevalence probe (re-run 3-4 representative exposed runs with the opt-out plus termination logging, the 940 pattern; complex (probe-gated)) reads out.
 
     [2026-09-24 governance, V3-EXQ-1080, autopsy failure_autopsy_V3-EXQ-1080_2026-09-24] ADDENDUM to the 2026-09-23 GFLAG-0304 paragraph: its premise that contamination-driven truncation is 'confirmed in only 1 of 92 exposed runs' is superseded -- V3-EXQ-1080 confirms material truncation in 2 more on today's substrate (669c, 888) and contamination harm intrusion without window loss in a third (939a). This claim's exposed runs were NOT covered by the probe; the re-run decision remains open.
+
+    [2026-09-26 failure_autopsy_V3-EXQ-1099, audited claim] 231a's design is contamination-sensitive
+    on today's substrate (seed-paired stock FAIL/weakens vs gated PASS/supports), and its probe/hard
+    envs carry contamination deaths the gate cannot reach. This does not add admissible evidence
+    either way: MECH-106 already has none (GFLAG-0163 degenerate C2; GFLAG-0164 sign inversion;
+    valence bias in the driver). Under the corrected sign, today's OPTOUT PASS is the wrong
+    direction. OVERRIDES the manifest's per_claim_disposition verdict_sensitive_rerun_owed: no 231a
+    re-run is owed. Any re-measurement is a redesign (substrate-resident valence bias, corrected
+    sign, non-degenerate criteria) with contamination_spread = 0.0 on EVERY env, not only the gate
+    on hazard-free ones. Governance 2026-09-26: annotation applied; this closes the open re-run
+    decision above (no 231a re-run owed).
   claim_level: mechanistic
   functional_restatement: >
     The threshold governing entry into and exit from committed states is asymmetric,
@@ -28840,6 +28851,15 @@
     EXQ-435 reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the graded recovery pattern is recognised as a substrate expressivity issue, not evidence against INV-054. ree-v3 currently has no bistable / discrete-mode primitive; all drive and commitment dynamics use smooth updates, so graded recovery is the only output the substrate can produce. The phase-transition INV-054 predicts requires discrete operating_mode state. Missing substrate: SD-032a (salience-network coordinator outputting discrete operating_mode variable) + MECH-259 (salience-network switch threshold, discrete vs graded). pending_retest_after_substrate once SD-032a + MECH-259 implemented. Manifest evidence_direction updated to non_contributory.
     EXQ-435 04-20 manifest also updated to non_contributory (governance 2026-04-22): same substrate-gap reasoning as 04-19 reclassification. SD-032a + MECH-259 v3_pending lift confirmed this session (V3-EXQ-446/455 substrate PASSes). Discrete operating_mode primitive now exists; INV-054 phase-transition retest can proceed once SD-032b dACC implementation lands and unlocks alternative behavioural modes (currently V_s-monostrategy-blocked).
 
+    [2026-09-26 failure_autopsy_V3-EXQ-1099, audited claim] V3-EXQ-1099 (2026-09-25): phase-2
+    recovery windows of 278/435 were 100% contamination-truncated at stock settings (window loss
+    68%) and 0% gated; both verdicts stayed FAIL/does_not_support and recovery got FASTER when gated
+    (278 latency 1.67 -> 1.0, 435 onset 2.0 -> 1.0), so the footgun cannot have produced the
+    negative verdict. 278's criterion is non-discriminating under this manipulation (already at
+    floor); 435 carries the reading. Phase 1 (where depression is established; 150/150 episodes died
+    in both arms) is outside the gate's reach and unmeasured. No contamination re-run owed for phase
+    2; not a clearance. Governance 2026-09-26: annotation applied; no status/direction change.
+
 - id: Q-034
   title: "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?"
   claim_type: question
@@ -38133,6 +38153,21 @@
     already flagged as scoring_excluded degenerate; it is now autopsied and stamped.
     epistemic_category set to standard. Status stays candidate on absent experimental
     evidence.
+  governance_override:
+    - supersedes_autopsy: failure_autopsy_ext-claim-probe-cluster_2026-09-03
+      decided_utc: "2026-09-25"
+      field: epistemic_category
+      ratified_by: "REE_assembly d95f7e37be4 -- user-approved registry-backlog thought-digestion (5 approved category changes)"
+      reason: >
+        The ext-claim-probe-cluster autopsy recommendation 'set epistemic_category: standard' WAS
+        applied (standard from 2026-09-07 onward; the note above records it).
+        substrate_conditional was then set DELIBERATELY on 2026-09-25 by the user-approved
+        registry-backlog thought-digestion pass (REE_assembly d95f7e37be4; staging file
+        thought_digestion_staged_2026-09-25_registry_backlog.md item 2, explicit list
+        'EXT-003/004/007 standard -> substrate_conditional', needs-your-yes), which supersedes it.
+        The autopsy's evidence_direction for its run STANDS. Do not re-apply standard -- it would
+        silently revert a user-approved decision. Recorded by governance-20260926 (GOV-APPLY-1
+        overridden_disposition).
   epistemic_category: substrate_conditional
   registered: "2026-04-13"
   source:
@@ -38257,6 +38292,21 @@
     commit-boundary content was the intended referent, the fix is to re-map those list entries to
     ARC-003 / MECH-061 in a later pass, not to restore the old glosses. The same INV-008 gloss was
     corrected on EXT-002.
+  governance_override:
+    - supersedes_autopsy: failure_autopsy_ext-claim-probe-cluster_2026-09-03
+      decided_utc: "2026-09-25"
+      field: epistemic_category
+      ratified_by: "REE_assembly d95f7e37be4 -- user-approved registry-backlog thought-digestion (5 approved category changes)"
+      reason: >
+        The ext-claim-probe-cluster autopsy recommendation 'set epistemic_category: standard' WAS
+        applied (standard from 2026-09-07 onward; the note above records it).
+        substrate_conditional was then set DELIBERATELY on 2026-09-25 by the user-approved
+        registry-backlog thought-digestion pass (REE_assembly d95f7e37be4; staging file
+        thought_digestion_staged_2026-09-25_registry_backlog.md item 2, explicit list
+        'EXT-003/004/007 standard -> substrate_conditional', needs-your-yes), which supersedes it.
+        The autopsy's evidence_direction for its run STANDS. Do not re-apply standard -- it would
+        silently revert a user-approved decision. Recorded by governance-20260926 (GOV-APPLY-1
+        overridden_disposition).
   epistemic_category: substrate_conditional
   registered: "2026-04-13"
   source:
@@ -38438,6 +38488,21 @@
     mech092-replay-consumer-missing was WITHDRAWN at red-team (the consolidation arm
     demonstrably moved ContextMemory). epistemic_category set to standard;
     pending_retest_after_substrate true; status stays candidate.
+  governance_override:
+    - supersedes_autopsy: failure_autopsy_ext-claim-probe-cluster_2026-09-03
+      decided_utc: "2026-09-25"
+      field: epistemic_category
+      ratified_by: "REE_assembly d95f7e37be4 -- user-approved registry-backlog thought-digestion (5 approved category changes)"
+      reason: >
+        The ext-claim-probe-cluster autopsy recommendation 'set epistemic_category: standard' WAS
+        applied (standard from 2026-09-07 onward; the note above records it).
+        substrate_conditional was then set DELIBERATELY on 2026-09-25 by the user-approved
+        registry-backlog thought-digestion pass (REE_assembly d95f7e37be4; staging file
+        thought_digestion_staged_2026-09-25_registry_backlog.md item 2, explicit list
+        'EXT-003/004/007 standard -> substrate_conditional', needs-your-yes), which supersedes it.
+        The autopsy's evidence_direction for its run STANDS. Do not re-apply standard -- it would
+        silently revert a user-approved decision. Recorded by governance-20260926 (GOV-APPLY-1
+        overridden_disposition).
   epistemic_category: substrate_conditional
   pending_retest_after_substrate: true
   registered: "2026-04-13"
@@ -82886,6 +82951,10 @@
     [2026-09-23 governance, GFLAG-0304 option A (annotate now; the option-B prevalence probe is chipped separately)] CONTAMINATION-FOOTGUN EXPOSURE: 1/1 of this claim's indexer-scored experimental entries (1/1 under the chip definition; exposed runs: 883_mech427_cross_level_subgoal_credit) ran CausalGridWorld hazard-free (num_hazards=0) WITHOUT the contamination opt-out (contamination_spread=0.0 or hazard_free_contamination_gate=True), so a self-poisoning agent could have truncated the measurement window -- the V3-EXQ-874b/940 mechanism (evidence/planning/corpus_audit_contamination_footgun_20260916.md). This is exposure by configuration, NOT confirmed truncation: actual contamination-driven truncation is confirmed in only 1 of 92 exposed runs (V3-EXQ-940), and almost no manifest records a termination reason. No status/confidence change. Decide per-claim re-measurement after the prevalence probe (re-run 3-4 representative exposed runs with the opt-out plus termination logging, the 940 pattern; complex (probe-gated)) reads out.
 
     [2026-09-24 governance, V3-EXQ-1080, autopsy failure_autopsy_V3-EXQ-1080_2026-09-24] ADDENDUM to the 2026-09-23 GFLAG-0304 paragraph: its premise that contamination-driven truncation is 'confirmed in only 1 of 92 exposed runs' is superseded -- V3-EXQ-1080 confirms material truncation in 2 more on today's substrate (669c, 888) and contamination harm intrusion without window loss in a third (939a). This claim's exposed runs were NOT covered by the probe; the re-run decision remains open.
+
+    [2026-09-26 failure_autopsy_V3-EXQ-1099, audited claim] 883 is insensitive_by_construction to
+    contamination; the pre-existing R4 disposition stands. Governance 2026-09-26: annotation
+    applied; this closes the open re-run decision above for 883.
   implementation_note: >
     SD-092 (2026-08-02): the up-level credit PRIMITIVE this claim needs now exists
     (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent /
@@ -85090,6 +85159,16 @@
     defect for /queue-experiment Step 2.5c to protect other experiments from). Re-derive
     brake NOT fired (MECH-449=0). Routed /queue-experiment V3-EXQ-937b, recording-only.
     Status stays provisional.
+
+    [2026-09-26 failure_autopsy_V3-EXQ-1090] Endogenous safety producer validation FAIL
+    endogenous_veto_fires_candidate_specificity_unmeasured: fires on 3/3 scored seeds (C1),
+    calibrated (fire rate <=0.052, C2), silent on the untrained-head control (0.0 on 5/5, C4).
+    Specificity (C3) unmeasured AND behaviourally moot: the ON-arm executed action is 0 on
+    3,000/3,000 recorded ticks (freeze gate on, pre-STAY-fix code) so the veto cannot change
+    behaviour; on all-fired ticks the strongest-F vetoed candidate executes anyway. EVB-1409 release
+    condition (b) NOT met. Diagnostic, non_contributory; status unchanged. Governance 2026-09-26
+    (governance-20260926): applied; diagnostic_evidence_adjudicated set true.
+  diagnostic_evidence_adjudicated: true
   depends_on:
     - ARC-107    # the BG-constitution umbrella this is the core eligibility-governance leg of (the unbuilt substrate it is conditional on)
     - MECH-439   # the F-dominance ceiling it is proposed to resolve

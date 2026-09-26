@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-25T06:06:12Z",
+  "last_review_utc": "2026-09-26T12:43:56Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1356,7 +1356,15 @@
     "v3_exq_1085_mech365_provenance_gate_boundary_lesion",
     "v3_exq_1087_mech321_perleaf_harm_discriminability",
     "v3_exq_1093_mech428_parent_stat_ess_sweep",
-    "v3_exq_1095_mech439_operator_on_conversion_falsifier"
+    "v3_exq_1095_mech439_operator_on_conversion_falsifier",
+    "v3_exq_1105a_grounded_valuation_null_detector_v4",
+    "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep",
+    "v3_exq_1106_mech287b_stage0_lock_precondition",
+    "v3_exq_1107_sd032a_trained_mode_reversal_drive",
+    "v3_exq_1099_contamination_truncation_extension_probe",
+    "v3_exq_1104_sd032b_effort_proxy_validation",
+    "v3_exq_1090_mech449_endogenous_safety_veto_validation",
+    "v3_exq_1108_n2_replay_encoder_full_dose_pinned"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4374,7 +4382,15 @@
     "v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3",
     "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
     "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3",
-    "v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3"
+    "v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3",
+    "v3_exq_1105a_grounded_valuation_null_detector_v4a_20260925T154155Z_v3",
+    "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep_20260925T161024Z_v3",
+    "v3_exq_1106_mech287b_stage0_lock_precondition_20260925T164510Z_v3",
+    "v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3",
+    "v3_exq_1099_contamination_truncation_extension_probe_20260925T182543Z_v3",
+    "v3_exq_1104_sd032b_effort_proxy_validation_20260925T202059Z_v3",
+    "v3_exq_1090_mech449_endogenous_safety_veto_validation_20260925T221242Z_v3",
+    "v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7303,6 +7319,36 @@
       },
       "commits": [
         "REE_assembly d0c144e89a (regen)"
+      ],
+      "still_pending": []
+    },
+    {
+      "utc": "2026-09-26T12:44:15Z",
+      "session": "governance-20260926",
+      "cycle": "governance 2026-09-26 (8 FAILs, all with confirmed 2026-09-26 autopsies)",
+      "runs_reviewed": [
+        "v3_exq_1105a_grounded_valuation_null_detector_v4a_20260925T154155Z_v3",
+        "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep_20260925T161024Z_v3",
+        "v3_exq_1106_mech287b_stage0_lock_precondition_20260925T164510Z_v3",
+        "v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3",
+        "v3_exq_1099_contamination_truncation_extension_probe_20260925T182543Z_v3",
+        "v3_exq_1104_sd032b_effort_proxy_validation_20260925T202059Z_v3",
+        "v3_exq_1090_mech449_endogenous_safety_veto_validation_20260925T221242Z_v3",
+        "v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3"
+      ],
+      "skim_outcome": "No evidence-purpose PASS this cycle, so no driver skim owed. All 8 are FAILs covered by confirmed, dry_run_checked autopsies (check_dry_run_citations: 8 clean).",
+      "dispositions": {
+        "V3-EXQ-1105a": "non_contributory/standard (INV-054, MECH-523); STANDS; 1105b re-validation per rec-20260926-862b9110; GFLAG-0487 gate stays closed",
+        "V3-EXQ-1067": "non_contributory/standard (MECH-266, SD-032a); driver SD-032a per-claim 'weakens' OVERRIDDEN -> non_contributory on flat + pack manifests; mode-governance-engagement failure_record amend",
+        "V3-EXQ-1106": "non_contributory/standard (MECH-287); STANDS; option A per rec-20260926-78ecb89a, do not queue Stage 1",
+        "V3-EXQ-1107": "non_contributory/standard (SD-032a, MECH-157); PAG-freeze lock -> MECH-279 amend REOPENED amend_pending_implementation, severity degrading (user override of autopsy 'corrupting'), GFLAG-0508; confirmer chip already spawned",
+        "V3-EXQ-1099": "claim-free diagnostic, non_contributory; 3 audited-claim annotations applied (INV-054, MECH-106, MECH-427)",
+        "V3-EXQ-1104": "claim-free diagnostic, non_contributory; sd032b-candidate-effort-proxy failure_record amend, stays implemented_pending_validation; next is GFLAG-0447 design decision, no cost re-sweep",
+        "V3-EXQ-1090": "non_contributory/standard (MECH-449); EQN appended, diagnostic_evidence_adjudicated true; 1090a blocked on freeze lock",
+        "V3-EXQ-1108": "claim-free N2 design probe, non_contributory; LIVE decision: W6 preset buffer = raw-obs re-encode (stored-z replay ruled out)"
+      },
+      "commits": [
+        "REE_assembly 49c2c47539 (regen)"
       ],
       "still_pending": []
     }

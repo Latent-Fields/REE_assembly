@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "gov-20260925-orch1707",
-  "last_updated_utc": "2026-09-25T11:51:11Z",
+  "last_updated_utc": "2026-09-26T12:43:30Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -2256,12 +2256,20 @@
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_036_gabaergic_decay_regulator.md",
-      "failure_record": [],
-      "implementation_hint": "PAGFreezeGate emits committed-freeze: duration_above_threshold counter on z_harm_a; freeze_commit when (z_harm_a * duration) > theta_freeze (default 2.0); exit_threshold = theta_freeze * gaba_tone (SD-036 GABAergic decay gates BOTH entry and exit). Action constraint: select_action() replaces emitted action with no-op one-hot when freeze_active. Module: ree_core/pag/freeze_gate.py. Master flag use_pag_freeze_gate (default False). Architectural prediction: GABA agonists treat freeze catatonia (clinical observation as architectural consequence).",
-      "implementation_status": "implemented",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3",
+          "experiment_type": "v3_exq_1107_sd032a_trained_mode_reversal_drive",
+          "metric": "every life from p0 onward exactly 6 steps (3/3 seeds, both arms); P2 contact 0.0 vs 935a 0.09-0.32; ||z_harm_a|| constant across 90 eval ticks",
+          "target": "P2 contact rate > 0 with z_goal peak > 0.4 on >=2/3 seeds in the 935a harness on current main",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "PAGFreezeGate emits committed-freeze: duration_above_threshold counter on z_harm_a; freeze_commit when (z_harm_a * duration) > theta_freeze (default 2.0); exit_threshold = theta_freeze * gaba_tone (SD-036 GABAergic decay gates BOTH entry and exit). Action constraint: select_action() replaces emitted action with no-op one-hot when freeze_active. Module: ree_core/pag/freeze_gate.py. Master flag use_pag_freeze_gate (default False). Architectural prediction: GABA agonists treat freeze catatonia (clinical observation as architectural consequence). || AMEND 2026-09-26 (failure_autopsy_V3-EXQ-1107): The lock is provable from the gate rule vs the trained ||z_harm_a|| (2.8-4.2 vs theta 0.8, no exit, max duration 0). Levers: pag_max_freeze_duration (existing config, default 0 = never) is the cheapest; otherwise scale pag_theta_freeze to the post-training ||z_harm_a|| distribution, or supply a release (the MECH-287 question). Record MECH-357 suppression counts. Confirmer before relying on it: one seed, current main, 935a config, init/p0/final probes, recording freeze_active fraction, n_commits, n_releases, _n_freeze_suppressed, per-tick ||z_harm_a|| -- with use_pag_freeze_gate False as the counterfactual. If the freeze-off arm ALSO dies in 6 steps with a saturated latent, harm-encoder saturation is the root and this entry is the wrong target. The per-run supersession audit is GFLAG-0508's, not this entry's.",
+      "implementation_status": "amend_pending_implementation",
       "implemented_session": "implement-sd036-mech279-2026-04-22",
       "implemented_utc": "2026-04-22T00:00:00Z",
-      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "governance-20260926",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",
@@ -2280,17 +2288,34 @@
         "primary_metric_description": "Freeze gate fires on z_harm_a*duration > theta; exit when z_harm_a < theta*gaba_tone; SD-037 broadcast_override scales exit_threshold via alpha_override (orexin escape-from-freeze).",
         "target": "V3-EXQ-475 (combined SD-036 + MECH-279 substrate-readiness)"
       },
-      "priority": 2,
+      "priority": 1,
       "ready": true,
       "sd_id": "MECH-279",
-      "status": "implemented",
-      "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit",
+      "status": "amend_pending_implementation",
+      "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit -- AMEND 2026-09-26: After 1fc881692d (freeze no-op = STAY), freeze-gated trained-harm harnesses produce a catatonic agent: recalibrate pag_theta_freeze to the trained ||z_harm_a|| scale, or give the freeze a release",
       "unblocks_claims": [
+        "MECH-157",
+        "MECH-266",
+        "MECH-279",
+        "MECH-287",
+        "SD-032a",
         "SD-036",
         "catatonic lock-in pharmacology prediction"
       ],
       "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-036 freeze coupling.",
-      "validation_experiment": "V3-EXQ-475"
+      "validation_experiment": "V3-EXQ-475",
+      "severity": "degrading",
+      "severity_note": "governance-20260926 user decision (walk, rec-20260926): the V3-EXQ-1107 autopsy recommended 'corrupting'; recorded as 'degrading' so /queue-experiment Step 2.5c WARNS rather than BLOCKS agent.py-touching runs. The defect bites only when use_pag_freeze_gate=True; check that flag on any queued run (GFLAG-0508 lists 475a, 600, 603v, 1068, 1097). substrate_paths normalised from the autopsy's parenthetical form to module::function form.",
+      "substrate_paths": [
+        "ree_core/agent.py::REEAgent.select_action",
+        "ree_core/utils/config.py",
+        "experiments/_lib"
+      ],
+      "depends_on_resolved_note": "The autopsy listed 'the MECH-287 decision conflict (B vs A)' as unresolved; it was resolved at the V3-EXQ-1106 autopsy gate (rec-20260926-78ecb89a: option A stands). governance-20260926.",
+      "attach_to_flag": "GFLAG-0508",
+      "confidence_note": "lock is derived from the gate predicate applied to recorded values (not merely inferred); the ilPFC (MECH-357) escape is unrecorded, and the freeze-off counterfactual is what separates 'freeze lock' from 'harm-encoder saturation'",
+      "autopsy_ref": "failure_autopsy_V3-EXQ-1107_2026-09-26",
+      "node_class": "complicated (buildable)"
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
@@ -5659,7 +5684,8 @@
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [
-        "V3-EXQ-935 (claimed 2026-08-16T13:01Z) -- whether a margin-normalised cap rule generalises out-of-sample; determines whether item (3) is a rule or a documented opt-in"
+        "V3-EXQ-935 (claimed 2026-08-16T13:01Z) -- whether a margin-normalised cap rule generalises out-of-sample; determines whether item (3) is a rule or a documented opt-in",
+        "V3-EXQ-1067 (2026-09-25, failure_autopsy_V3-EXQ-1067_2026-09-26): squash = gain cut at effective cap c*v/(c+v); transition unresolved at this grid -- a finer CLAMP-only sweep (cap 0.70-1.00, step 0.05, or a continuous occupancy-vs-margin readout; NEW EXQ number) on post-STAY-fix code is owed, after the GFLAG-0508 freeze-gate question is settled. NOT an H4 normaliser build."
       ],
       "unblocks_claims": [
         "MECH-266",
@@ -5724,6 +5750,13 @@
           "metric": "Margin-normalised cap rule on 5 fully fresh seeds (47-51): C1 graded 3/5 at the pre-registered R_STAR=2.45 against a >= 4-of-5 bar (MIN_FRACTION 2/3 on n=5). r=2.65 clears at 4/5 -- and also cleared 4/5 on 935's seeds 42-46, so a single r replicates out of sample -- but the adjacent-value reproducibility bar this entry's own failure_record specifies returns graded=false with longest_adjacent_run=1 on the fresh seeds, and the criterion clears with probability 0.53-0.74 at the rates observed. Separately: on the seeds whose external_task probability is near-constant (935a 48/50/51, 935 45/46) ext_margin_mean is linear in cap at R^2 0.9996-0.9999, i.e. the affinity input is clipped at every tested cap -- quantitative support for this entry's own titled work (replace the box clamp with a saturating/normalising operator).",
           "target": "A cap rule whose graded window is >= 2 adjacent swept values on >= 2/3 of fresh seeds at a POWERED seed count, with per-cell alternation above the n_switches == n_episodes vacuity floor.",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep_20260925T161024Z_v3",
+          "experiment_type": "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep",
+          "metric": "squash longest adjacent graded run 1/5 caps; squash margin == clamp margin at effective cap c*v/(c+v) (+-0.002 on 2/3 seeds), i.e. a gain cut; gain-matched control inert (targets drive, et_drive_mean 0.0005); transition ~0.2 effective-cap wide vs 0.25 grid",
+          "target": ">=2 adjacent graded caps on >=2/3 seeds on a grid finer than the transition, on post-STAY-fix code",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "Three coupled items. (1) BOUNDING OPERATOR: replace max(-cap, min(cap, value)) in SalienceCoordinator.tick() with a saturating transform (e.g. cap * tanh(value / cap)) or divisive normalization across the affinity-input set, grounded in canonical normalization / graded lateral inhibition. A box clamp's discontinuous derivative is what produces the observed <= 1-grid-step crossing; a saturating operator widens it, which is the precondition MECH-266's hysteresis needs to express. Keep the existing clamp reachable behind a mode selector so the V3-EXQ-934 baseline stays reproducible. (2) COMMITMENT TERM: ree_core/agent.py:6944 _et_commit = commit_w * float(beta_gate.is_elevated) is a boolean latch and a cap-INDEPENDENT discreteness source that entangles H1 and H2; replace with a graded commitment strength (vigour / eligibility). (3) PRODUCTION DEFAULT: salience_affinity_input_cap = None and use_external_task_drive = False mean this whole lineage is inert in production. Unlike the sibling MECH-267 case this is not a simple default flip, because no single cap value works across seeds -- the deliverable is either a normalised rule (pending V3-EXQ-935) or an explicit documented decision that the facet stays opt-in, with the reason recorded on the claim.",
@@ -5731,7 +5764,7 @@
       "priority_note": "Bumped to priority 1 per user (governance 2026-06-13); autopsy suggested 2 -- blocks 2 provisional claims (MECH-266/SD-032a) with fresh failure records + holds the MECH-266 demotion.",
       "autopsy_ref": "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
       "added_session": "governance-cycle-20260613T0858Z",
-      "last_seen_session": "governance-20260917",
+      "last_seen_session": "governance-20260926",
       "implementation_log": {
         "landed_utc": "2026-06-13T09:45:43Z",
         "session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
@@ -13166,6 +13199,13 @@
           "target": "candidate_effort spread > 0 within a tick on most ticks, and the E3 argmin responsive to control_req / f_sat on a non-trivial fraction of ticks",
           "resolved": "partial",
           "resolved_note": "Structural half resolved by ree-v3 4cce9b8: candidate_effort now varies within a tick (80/80 ticks) under dacc_candidate_effort_source='harm_a_forward'. Argmin-responsiveness half OPEN: not yet measured on a trained agent at a cost scale where the effort term can compete with the payoff."
+        },
+        {
+          "run_id": "v3_exq_1104_sd032b_effort_proxy_validation_20260925T202059Z_v3",
+          "experiment_type": "v3_exq_1104_sd032b_effort_proxy_validation",
+          "metric": "argmin flip fraction across 7 forced f_sat values: 0.0024/0.0/0.0 at best cost (need >=0.05 on 2/3 seeds); 0.0 at default cost 0.1, where reach never exceeds the top-2 gap; effort_term_range 0.005-0.031 vs payoff_range 15.8-161; E2_harm_a skill_vs_persistence -41..-80",
+          "target": "argmin responsive (>=0.05 flip fraction) on a VALIDATED effort producer that is not a harm quantity, per GFLAG-0447",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "ree_core/agent.py builds effort = torch.tensor([float(c.actions.shape[1]) for c in candidates]) (~line 7537); the adjacent comment already names the intended refinement: a harm-forward rollout cost per candidate. Blast radius is SD-032b as a whole (every Shenhav-EVC consumer), not MECH-268. Do not scale the scoring window -- MECH-267 deliberately leaves config.horizon fixed.",
@@ -13176,13 +13216,14 @@
       ],
       "added_session": "governance-flags-20260923b",
       "added_utc": "2026-09-23T18:57:30Z",
-      "last_seen_session": "governance-flags-20260923b",
+      "last_seen_session": "governance-20260926",
       "provenance": "GFLAG-0330 residual (D half 1), user decision 2026-09-23 in governance-flags-20260923b; owed per docs/architecture/mech_268_dacc_saturation_form.md 'Two substrate_queue entries are owed' item 4.",
       "implemented_utc": "2026-09-25T07:34:03Z",
       "implemented_commit": "ree-v3 4cce9b8",
       "implemented_session": "igw-222-substrate-ready-sd032b-candidate",
       "implementation_note": "Landed ree-v3 main 4cce9b8 (IGW-20260923-222). REEConfig.dacc_candidate_effort_source 'horizon' (default, bit-identical) | 'harm_a_forward' (E2_harm_a rolled over each candidate's own actions, effort_k = mean_t ||z_harm_a_pred_t||); dacc_effort_rollout_steps (0 = full horizon). Contract tests/contracts/test_sd032b_candidate_effort_proxy.py; record docs/substrate/SD-032b-amendment-candidate-effort-proxy.md. Liveness (untrained agent, 8x8/8 hazards, dacc_weight=1.0, 600 env steps, latch cleared): effort spread >0 on 61/61 FRESH dACC evaluations (legacy 0/61; the dACC runs only on E3 ticks). INERT-BY-SCALE at default dacc_effort_cost=0.1: effort-term range ~0.02 vs E3 payoff range ~25 -> committed actions differ on 0/600 steps; at dacc_effort_cost=10, 40/600 (horizon source: 0/600 at any cost). [Corrected 2026-09-25: first version said 80/80 and 10/60, counting latched re-reads.] Caveat: SD-PP-B9 (E2_harm_a below persistence) means the spread may be model error -- liveness is not validity. Validation owed: trained E2_harm_a (P0) + a dacc_effort_cost / dacc_bias_max_abs setting that puts the effort term on the payoff's scale; acceptance = failure_record target. VALIDATION QUEUED 2026-09-25: V3-EXQ-1104 (ree-v3 289aaee; diagnostic, claim-free; within-tick counterfactuals at dacc_weight 0.5 because at 1.0 the dACC payoff self-feedback integrates -- see sd032b-payoff-self-feedback-integrator / GFLAG-0507; the scale numbers above were measured at dacc_weight 1.0 and are an upper bound on the gap, not a measurement).",
-      "validation_exq": "V3-EXQ-1104"
+      "validation_exq": "V3-EXQ-1104",
+      "status_note": "stays implemented_pending_validation -- do NOT mark validated (Closes the OPEN argmin-responsiveness half of the pre-build failure_record item with a negative. The next step is the GFLAG-0447 design decision, not a cost re-sweep. Refuse a same-question cost re-sweep: it would hand selection to E2_harm_a model error -- overrides this entry's implementation_note. governance-20260926)"
     },
     {
       "sd_id": "commit-readiness-gate-no-behavioural-consumer",
