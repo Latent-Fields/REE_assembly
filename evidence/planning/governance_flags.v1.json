@@ -7967,9 +7967,9 @@
       "summary": "Defect: LatentStack.init_state() zeroes z_world and SD-007 is skipped at t=0, so the z_world EMA ramps ||z||/||raw|| = 1-(1-alpha)^(t+1) over ~8 ticks after every reset (0.30 at t0 at deployed alpha 0.3); fixed default-OFF on ree-v3 main 298cb8ffd3 (use_zworld_ema_reset_init), record REE_assembly evidence/planning/zworld_ema_reset_init_build_20260926.md (3969d212ba). Matched scripted-action comparison: ON lifts per-seed z_world PR 1.15-1.40 -> 3.31-4.32 at alpha 0.3, contradicting U4 (1294f6edf5c) sec 4's 'mostly separate general-smoothing' weighting of the observation->z_world low-PR finding; default-ON (and z_self/shared-latent siblings) is pending the user, and first-tick comparisons across the fix are confounded.",
       "raised_by_session": "bt0926-emainit",
       "raised_at": "2026-09-26T04:16:15Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-26T13:23:26Z",
+      "resolution_note": "governance-gflags-20260926 (REE_assembly af8f11c652): user decision rec-20260926-a561d3d4 -- keep use_zworld_ema_reset_init (and siblings) default OFF on main; campaign preset stays ON and is revisited before A1 (coupled_loop_repair_campaign_plan decision (4)). SD-008 evidence_quality_note records the ramp defect, the PR 1.15-1.40 -> 3.31-4.32 contradiction of U4 sec 4, and the cross-fix first-tick confound. U4 doc correction not made here (campaign-owned)."
     },
     {
       "flag_id": "GFLAG-0560",
