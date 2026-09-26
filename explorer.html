@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-26.1 -->
+<!-- EXPLORER_VERSION: 2026-09-26.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2982,7 +2982,7 @@ END CONFLICT RESOLUTION`;
       }
     }
 
-    const SUBSYSTEM_MAP_URL = './subsystem_map.yaml';
+    const SUBSYSTEM_MAP_URL = 'docs/claims/subsystem_map.yaml';
     let subsystemRules = [];
     const ATLAS_ORDER = [
       'INV',
@@ -3348,7 +3348,7 @@ END CONFLICT RESOLUTION`;
           + `<b>${u.weakest_parent}</b> is contradicted (${fmt(u.weakest_parent_mean)})</div>`;
       }
       if (al && al.untested_foundation) {
-        const parents = al.untested_foundation.parents.map(p => p.parent).join(', ');
+        const parents = (al.untested_foundation.parents || []).map(p => p.parent).join(', ');
         html += `<div class="meta" style="color:#c98a1e">&#9651; Untested foundation: believed (${fmt(al.child_mean)}) but ${parents} has no evidence</div>`;
       }
       if (html) {
@@ -3837,7 +3837,7 @@ END CONFLICT RESOLUTION`;
           if (cur) entries.push(cur);
           cur = { patterns: [] };
           inPatterns = false;
-          const keyMatch = trimmed.match(/^-\\s+key:\\s*(.+)$/);
+          const keyMatch = trimmed.match(/^-\s+key:\s*(.+)$/);
           if (keyMatch) cur.key = keyMatch[1].trim();
           return;
         }
@@ -3852,7 +3852,7 @@ END CONFLICT RESOLUTION`;
           return;
         }
         if (inPatterns) {
-          const patMatch = trimmed.match(/^-\\s+(.+)$/);
+          const patMatch = trimmed.match(/^-\s+(.+)$/);
           if (patMatch) {
             cur.patterns.push(patMatch[1].trim());
           }
@@ -7912,12 +7912,16 @@ END CONFLICT RESOLUTION`;
       // back to the last-good snapshot. Otherwise a legitimately drained queue keeps
       // showing a phantom item forever behind the stale-snapshot banner.
       let readOk = false;
+      // serve.py flags a missing/unparseable queue file with `unreadable`; such
+      // a response is a FAILED read, never an authoritative empty queue.
+      let unreadableDetail = '';
 
       try {
         const lr = await fetch('/api/queue/live?t=' + Date.now());
         if (lr.ok) {
-          readOk = true;
           const live = await lr.json();
+          if (live.unreadable) unreadableDetail = live.unreadable_detail || 'unreadable';
+          else readOk = true;
           const liveItems = (live.items || []).filter(qi => isActive(qi.status));
           if (liveItems.length) {
             items = liveItems;
@@ -7931,8 +7935,9 @@ END CONFLICT RESOLUTION`;
           try {
             const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
             if (qr.ok) {
-              readOk = true;
               const qd = await qr.json();
+              if (qd.unreadable) unreadableDetail = qd.unreadable_detail || 'unreadable';
+              else readOk = true;
               (qd.items || []).forEach(qi => {
                 if (isActive(qi.status)) items.push(qi);
               });
@@ -7954,6 +7959,14 @@ END CONFLICT RESOLUTION`;
           + `<div class="exp-desc" style="font-size:12px;color:#7c5a1f">`
           + `Queue read failed -- showing last successful snapshot (${items.length} item`
           + `${items.length === 1 ? '' : 's'}, ${ago}s ago, source ${escapeHtml(expQueueCache.source)}).`
+          + `</div></div>`;
+      } else if (!readOk) {
+        // Nothing responded usably and there is no snapshot to fall back on:
+        // say so, rather than rendering a failed read as an empty queue.
+        mirrorStaleBanner = `<div class="exp-card" style="margin-bottom:8px;border-color:#d8b36d;background:#fffaf0">`
+          + `<div class="exp-desc" style="font-size:12px;color:#7c5a1f">`
+          + `Queue could not be read${unreadableDetail ? ` (${escapeHtml(unreadableDetail)})` : ''}`
+          + ` -- this is NOT an empty queue.`
           + `</div></div>`;
       } else {
         // Authoritative empty read -- the queue is genuinely empty. Drop any stale
@@ -8962,7 +8975,9 @@ END CONFLICT RESOLUTION`;
             badge.innerHTML = `Preflight: <span style="color:var(--error);font-weight:600">! error</span>${ageLabel}`;
             badge.title = String(j.error).slice(0, 400);
           } else {
-            const tail = (j.tail || '').split('\n').slice(-6).join('\n');
+            const tailLines = Array.isArray(j.tail) ? j.tail : String(j.tail || '').split('\n');
+            const tail = tailLines.filter(l => /FAILED|ERROR/.test(l)).slice(-6).join('\n')
+              || tailLines.slice(-6).join('\n');
             badge.innerHTML = `Preflight: <span style="color:var(--error);font-weight:600">&times; ${j.failed || 0} failed</span> / ${j.passed || 0} passed${ageLabel}`;
             badge.title = tail || 'ree-v3/tests/preflight -- failures present';
           }

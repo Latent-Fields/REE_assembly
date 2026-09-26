@@ -330,13 +330,31 @@ def run_phase3_preflight_summary() -> dict:
                 "phase3_preflight", script)
             mod = importlib.util.module_from_spec(spec)
             assert spec.loader is not None
-            spec.loader.exec_module(mod)
-            summary = mod.run_preflight(
-                env_file=env_file,
-                dry_run=True,
-                mock=False,
-                quiet=True,
-            )
+            # Register before exec: phase3_preflight defines @dataclass
+            # classes, and dataclasses resolves the class's module through
+            # sys.modules -- unregistered, every call died with
+            # "AttributeError: 'NoneType' object has no attribute '__dict__'".
+            sys.modules[spec.name] = mod
+            # Run as a script, the preflight has its own directory at
+            # sys.path[0], which is how its phase3_writer_ready check imports
+            # sync_daemon (and sync_daemon imports db / manifest_spool). Give
+            # it the same view for the call, or that check FAILs spuriously
+            # with "No module named 'sync_daemon'".
+            coord_dir = str(script.parent)
+            added = coord_dir not in sys.path
+            if added:
+                sys.path.insert(0, coord_dir)
+            try:
+                spec.loader.exec_module(mod)
+                summary = mod.run_preflight(
+                    env_file=env_file,
+                    dry_run=True,
+                    mock=False,
+                    quiet=True,
+                )
+            finally:
+                if added and coord_dir in sys.path:
+                    sys.path.remove(coord_dir)
             summary["cached_at"] = (
                 _utc_now_iso_z())
             summary["dry_run"] = True
@@ -824,7 +842,12 @@ def run_preflight_suite() -> dict:
                 "duration_s": round(duration, 3),
                 "cached_at": _utc_now_iso_z(),
                 "tail": tail,
-                "error": None if proc.returncode == 0 else f"exit {proc.returncode}",
+                # pytest exit 1 = tests ran and some failed: that is a result
+                # (ok=False, failed>0), not a harness error. Anything else
+                # non-zero (interrupted, internal error, usage, no tests) is.
+                "error": (None if proc.returncode == 0
+                          or (proc.returncode == 1 and failed > 0)
+                          else f"exit {proc.returncode}"),
             }
         except subprocess.TimeoutExpired:
             result = {
@@ -5054,16 +5077,25 @@ def read_chips() -> dict:
     from status, which only ever reflects resolution, not in-progress work.
     """
     empty = {"schema_version": "task_chips/v1", "chips": [],
-             "empty_note": "No TASK_CHIPS.json yet, or it is unreadable. "
-                           "See scripts/chip_ledger.py."}
+             "empty_note": "No TASK_CHIPS.json yet. See scripts/chip_ledger.py."}
     if not TASK_CHIPS_FILE.exists():
         return empty
     try:
         data = json.loads(TASK_CHIPS_FILE.read_text(encoding="utf-8"))
         if isinstance(data, dict) and isinstance(data.get("chips"), list):
             return data
-    except Exception:
-        pass
+        detail = "unexpected shape (no chips list)"
+    except Exception as exc:  # noqa: BLE001
+        detail = "%s: %s" % (type(exc).__name__, exc)
+    # Present-but-unreadable is flagged structurally (as read_workset does),
+    # so an empty chip list is never mistaken for "no open chips".
+    empty["unreadable"] = True
+    empty["unreadable_detail"] = detail
+    empty["empty_note"] = ("TASK_CHIPS.json is unreadable (%s) -- the empty "
+                           "list reflects a failed read, not zero chips."
+                           % detail)
+    print("read_chips: %s unreadable: %s" % (TASK_CHIPS_FILE.name, detail),
+          file=sys.stderr, flush=True)
     return empty
 
 
@@ -6861,18 +6893,27 @@ def read_queue(ver: str) -> dict:
     if ver not in RUNNERS:
         return {"error": f"Unknown substrate: {ver}"}
     qf = RUNNERS[ver]["queue_file"]
+    # A missing or unparseable queue file must NOT read as an empty queue:
+    # "nothing queued" and "could not read the queue" authorise opposite
+    # conclusions. Same structural flag as read_workset(): `unreadable` +
+    # `unreadable_detail`, with items [] kept for shape compatibility.
     if not qf.exists():
-        return {"items": [], "ver": ver, "source": "file"}
-    try:
-        data = json.loads(qf.read_text())
-    except Exception:
-        return {"items": [], "ver": ver, "source": "file"}
-
-    return {
-        "items": _queue_items_from_raw(data, ver),
-        "ver": ver,
-        "source": "file",
-    }
+        detail = "%s missing" % qf
+    else:
+        try:
+            data = json.loads(qf.read_text())
+        except Exception as exc:  # noqa: BLE001
+            detail = "%s: %s" % (type(exc).__name__, exc)
+        else:
+            return {
+                "items": _queue_items_from_raw(data, ver),
+                "ver": ver,
+                "source": "file",
+            }
+    print("read_queue: %s unreadable: %s" % (qf.name, detail),
+          file=sys.stderr, flush=True)
+    return {"items": [], "ver": ver, "source": "file",
+            "unreadable": True, "unreadable_detail": detail}
 
 
 _COORD_QUEUE_CACHE: dict = {
@@ -7533,6 +7574,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             summary = {"ok": True}
             try:
                 q = read_queue("v3") or {}
+                if q.get("unreadable"):
+                    raise RuntimeError("queue unreadable: %s"
+                                       % q.get("unreadable_detail"))
                 items = q.get("items") or []
                 by_status = {}
                 for it in items:
@@ -7546,7 +7590,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             except Exception as exc:  # noqa: BLE001
                 summary["queue"] = {"error": str(exc)}
             try:
-                chips = (read_chips() or {}).get("chips") or []
+                chips_doc = read_chips() or {}
+                if chips_doc.get("unreadable"):
+                    raise RuntimeError("chips unreadable: %s"
+                                       % chips_doc.get("unreadable_detail"))
+                chips = chips_doc.get("chips") or []
                 open_chips = [c for c in chips if c.get("status") == "open"]
                 summary["chips"] = {
                     "open": len(open_chips),
