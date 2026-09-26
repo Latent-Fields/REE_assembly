@@ -1,6 +1,6 @@
-# Failure autopsy -- V3-EXQ-1109 (DCD2 probe F: freeze / veto earliest edge) -- STAGED
+# Failure autopsy -- V3-EXQ-1109 (DCD2 probe F: freeze / veto earliest edge) -- CONFIRMED
 
-- **Status:** `awaiting_human_confirmation` (staging mode, headless). The Step 8 gate is held by orchestrator `orchestrate-20260924-breakthrough-c2`. No registry, `claims.yaml`, `substrate_queue.json` or hypothesis-ledger write was made.
+- **Status:** `confirmed` 2026-09-26T18:01:31Z. The user answered the Step 8 gate live (AskUserQuestion via orchestrator `orchestrate-20260924-breakthrough-c2`): **route B** was confirmed and the category was accepted as proposed (sec 11). The artifact was first staged at `498d4c094a`. No registry, `claims.yaml` or `substrate_queue.json` write was made by this skill; `/governance` applies the amend and chips the follow-on.
 - **Generated:** 2026-09-26T17:35:48Z by `bt0926-ap1109` (chip `chip-20260926-autopsy-v3-exq-1109`).
 - **Target:** `v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3`. Outcome FAIL, `experiment_purpose: diagnostic`, `claim_ids: []`, `evidence_direction: non_contributory`, ree-cloud-2, 4406 s, seeds 47/48/49.
 - **Code read:** driver `experiments/v3_exq_1109_pag_freeze_veto_earliest_edge.py` (queued at ree-v3 `89976eb7ec`, byte-identical at the run's substrate commit `22aadc0c9d`). Every `file:line` below is against a detached worktree at `22aadc0c9d`.
@@ -232,3 +232,20 @@ The pass ran on **fable** (Claude Fable 5.1), a different model from the drafter
   - that LPB `external_magnitude` exists, is wired, and derives from proximity `harm_obs`.
 
 Findings file: `.scratch/breakthrough-20260924/ap1109/redteam/redteam_findings.md` (not committed).
+
+## 11. Confirmed routing (Step 8, user decision)
+
+- **Decision source:** the user, via a live AskUserQuestion put by orchestrator `orchestrate-20260924-breakthrough-c2` on 2026-09-26.
+- **Route: B, a MECH-279 consumer-rewiring test.**
+  - Rewire the freeze ENTRY input to `z_harm_s`, LPB interoceptive routing (`use_lpb_interoceptive_routing` -> `external_magnitude`), or E3 predicted harm.
+  - `z_harm_a` is kept for recuperation and valence.
+  - The freeze stays OFF in training curricula meanwhile.
+  - This unblocks MECH-280.
+  - Hand-off: `recommended_substrate_queue_entry` (action `amend`, target MECH-279, severity unchanged at `degrading`).
+- **Category: accepted as proposed.** `standard`; `non_contributory`; failure location MIXED; severity `degrading`.
+- **Not chosen:**
+  - option A (V3-EXQ-1109a);
+  - the MECH-598/599 build route.
+- **Step 9b:** not applied. The ledger blocks were conditional on option A, so this autopsy owes no hypothesis-space registration.
+- **`per_claim_recommendation`:** empty. The target is claim-free.
+- **Follow-on:** not spawned here. `/governance` chips the MECH-279 rewiring build once it applies the amend.

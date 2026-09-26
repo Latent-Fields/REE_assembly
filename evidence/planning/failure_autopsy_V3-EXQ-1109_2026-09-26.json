@@ -2,9 +2,9 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-09-26T17:35:48Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
-  "staging_mode": true,
-  "staged_by": "bt0926-ap1109 (headless worker of orchestrate-20260924-breakthrough-c2; Step 8 gate held by the orchestrator)",
+  "status": "confirmed",
+  "staging_mode": false,
+  "staged_by": "bt0926-ap1109 (headless worker of orchestrate-20260924-breakthrough-c2; Step 8 gate held by the orchestrator) ; confirmed by bt0926-ap1109-confirm on the user's live Step 8 decision",
   "dry_run_checked": true,
   "dry_run_check_note": "scripts/check_dry_run_citations.py run over the target run_id and V3-EXQ-1109/1107/1106/1090: 0 dry.",
   "excluded_dry_run_ids": [],
@@ -164,7 +164,9 @@
         "MECH-598/599": "NOT indicated by this data. Name as the build route only if (i) a z_harm_s-fed freeze still cannot act before harm recurs, or (ii) 1109a shows the veto producer's per-candidate harm does not track oracle harm (H-sv) -- i.e. Q-113 answer 3. This run shows a stream-choice problem, which the plan and the harm-to-threat page both rank as the cheaper first route. If that conditional fires, MECH-599 (cue-specific conditioned threat predictor) ALONE is the smaller first build step -- the lit-pull (REE_assembly 3f354b10ec, GFLAG-0563) finds it testable without MECH-598; the depends_on edge is a /governance call.",
         "recommendation": "B first (decisive at D1 for the stream: z_harm_s carries what z_harm_a lacks; D3 for the lock: freeze ON == STAY-only policy, half the life). Run A scoped to F3 + trained z_harm_s only if Q-111 leg-1 data is still wanted, after probe C reports. Do not route MECH-598/599 builds on this evidence.",
         "design_constraints_for_follow_on_arms": "From the same lit-pull: log orienting separately from learning rate; any threat store must subtract its own prediction from its teaching signal (Ozawa 2017)."
-      }
+      },
+      "routing_confirmed": "B (user-confirmed): MECH-279 amend -- consumer-rewiring test of the freeze entry input; follow-on to be chipped by /governance, not by this session",
+      "per_claim_recommendation_note": "claim-free target (claim_ids []): no claims.yaml row to change; the disposition reaches governance via recommended_substrate_queue_entry (amend MECH-279)"
     }
   ],
   "read_across_not_adjudicated": {
@@ -278,7 +280,8 @@
       },
       "axis_family_note": "axes process / representation / world are expected to be in axis_families.map already; confirm at apply time"
     },
-    "apply_only_if": "the user confirms routing option A (the 1109a portfolio). If A is declined, register nothing."
+    "apply_only_if": "the user confirms routing option A (the 1109a portfolio). If A is declined, register nothing.",
+    "disposition": "NOT APPLIED -- apply_only_if option A was confirmed; the user chose B. No hypothesis-space registration owed by this autopsy (Step 9b: no fanout adopted, no leg adjudicated)."
   },
   "step7b_pre_routing_checks": {
     "fire_count": 0,
@@ -310,5 +313,16 @@
       "learning_extracted rewritten per F1"
     ]
   },
-  "orchestrator_input_adjudicated": "Orchestrator relayed the harm_to_threat_causal_credit.md candidate routing (consumer rewiring to z_harm_s / E3 predicted harm; MECH-598/599 only if the Q-113 question fails). Adjudicated against 1109 data by probe ap1109_zharms_vs_zharma_probe.py: z_harm_s is present in this harness (use_harm_stream true) and carries proximity where z_harm_a does not (at init; trained unmeasured). The consumer-rewiring route HOLDS as option B; MECH-598/599 are not indicated."
+  "orchestrator_input_adjudicated": "Orchestrator relayed the harm_to_threat_causal_credit.md candidate routing (consumer rewiring to z_harm_s / E3 predicted harm; MECH-598/599 only if the Q-113 question fails). Adjudicated against 1109 data by probe ap1109_zharms_vs_zharma_probe.py: z_harm_s is present in this harness (use_harm_stream true) and carries proximity where z_harm_a does not (at init; trained unmeasured). The consumer-rewiring route HOLDS as option B; MECH-598/599 are not indicated.",
+  "confirmed_utc": "2026-09-26T18:01:31Z",
+  "user_decision": {
+    "source": "user, live AskUserQuestion via orchestrator orchestrate-20260924-breakthrough-c2",
+    "decided_utc": "2026-09-26 (relayed 2026-09-26T18:01Z)",
+    "route": "B -- MECH-279 consumer-rewiring test: rewire freeze ENTRY input to z_harm_s / LPB interoceptive routing (use_lpb_interoceptive_routing -> external_magnitude) / E3 predicted harm; z_harm_a kept for recuperation/valence; use_pag_freeze_gate OFF in training curricula meanwhile; unblocks MECH-280",
+    "category": "accepted as proposed: epistemic_category standard, evidence_direction non_contributory, failure location MIXED, severity degrading (unchanged)",
+    "not_chosen": [
+      "A (V3-EXQ-1109a recording-extended re-run) -- not confirmed at this gate",
+      "MECH-598/599 build route -- not indicated"
+    ]
+  }
 }
