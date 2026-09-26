@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_mech_599_neural_computations_of_threat_levy2021",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598",
+    "MECH-599"
+  ],
+  "source": {
+    "title": "Neural Computations of Threat",
+    "authors": [
+      "Levy I",
+      "Schiller D"
+    ],
+    "year": 2021,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2020.11.007",
+    "pmid": "33384214",
+    "pmc": "PMC8084636",
+    "volume": "25",
+    "issue": "2",
+    "pages": "151-171"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Integrative review of threat computations from first encounter, through learning, storing and updating cues that predict danger, to action selection, arguing these stages share neural and computational mechanisms and should be studied together. Supports the separation of injury from learned threat prediction (MECH-599) and the treatment of associability as part of threat learning (MECH-598). A framing review, not a test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Threat stages share computational mechanisms; an architecture that implements cue-prediction learning, updating and action selection as fully isolated modules is inconsistent with the integrative account."
+  ],
+  "tags": [
+    "mech_598",
+    "mech_599",
+    "threat_computation",
+    "review",
+    "associability",
+    "threat_learning",
+    "psychopathology"
+  ],
+  "mapping": {
+    "source_claim_statement": "Threat responses arise from interconnected learning, memory and decision processes -- first encounter, learning and storing cues that predict danger, updating them, and choosing actions -- which rely on shared neural and computational mechanisms and should be studied across stages rather than in isolation.",
+    "ree_translation": "Supports the architectural distinction the V3-EXQ-1109 observation forced: 'damage now' and 'this cue predicts damage' are different computational objects at different stages. The review's coverage of associability-based threat learning (the Schiller lab's own reversal work) supports MECH-598 as part of the same pipeline.",
+    "mapping_caveat": "A framing review; it supports the decomposition but provides no decisive test. Its 'shared mechanisms' emphasis argues against a too-modular V3 build.",
+    "source_context": "Review of human and animal threat learning, computational modelling and psychopathology"
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.35,
+    "notes": "Good venue and authors; low specificity."
+  }
+}

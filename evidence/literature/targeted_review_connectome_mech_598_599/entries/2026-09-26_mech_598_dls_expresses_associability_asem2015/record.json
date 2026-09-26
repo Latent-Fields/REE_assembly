@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_dls_expresses_associability_asem2015",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Dorsolateral striatum is critical for the expression of surprise-induced enhancements in cue associability",
+    "authors": [
+      "Asem JS",
+      "Schiffino FL",
+      "Holland PC"
+    ],
+    "year": 2015,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.13001",
+    "pmid": "26108257",
+    "pmc": "PMC4562800",
+    "volume": "42",
+    "issue": "5",
+    "pages": "2203-2213"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Shows that the EXPRESSION of enhanced cue associability depends on dorsolateral striatum within an amygdalo-nigro-striatal circuit that also supports conditioned orienting. Supports a separable write/read structure but weakens any reading of MECH-598 as an amygdala-local mechanism, and ties associability to orienting responses (SD-099 territory).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Associability enhancement is established without DLS but cannot be expressed without it, so associability is a distributed circuit property, not a variable held in one amygdala-like module.",
+    "The same circuit supports learned orienting responses to cues, so an associability effect in REE may be inseparable from orienting (SD-099) unless the orienting read-out is controlled for."
+  ],
+  "tags": [
+    "mech_598",
+    "associability",
+    "dorsolateral_striatum",
+    "orienting_response",
+    "sd_099",
+    "amygdalo_nigro_striatal"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a three-stage serial prediction task, DLS is critical for expressing, but not establishing, the enhanced cue associability produced by surprise; this extends the amygdalo-nigro-striatal circuit underlying learned orienting responses to associability.",
+    "ree_translation": "MECH-598's subject is labelled amygdala.aversive_pe_cue_associability. This paper places the read-out in striatum and links associability to conditioned orienting. For REE this is a design warning: SD-099 orienting and MECH-598 associability may share circuitry, so a Q-113 test must separate 'the agent orients to A' from 'the agent learns about A faster'.",
+    "mapping_caveat": "Appetitive, rodent. The orienting link is the authors' circuit framing rather than a direct demonstration that associability equals orienting. Recorded mixed because it supports structure and weakens locus.",
+    "source_context": "Rat, three-stage serial prediction task, DLS lesions/inactivation"
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.45,
+    "notes": "Useful mainly as a design constraint on the V3 test, not as support or refutation."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_599_cea_pag_feedback_calibrates_memory_ozawa2017",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-599"
+  ],
+  "source": {
+    "title": "A feedback neural circuit for calibrating aversive memory strength",
+    "authors": [
+      "Ozawa T",
+      "Ycu EA",
+      "Kumar A",
+      "Yeh LF",
+      "Ahmed T",
+      "Koivumaa J",
+      "Johansen JP"
+    ],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4439",
+    "pmid": "27842071",
+    "volume": "20",
+    "issue": "1",
+    "pages": "90-97"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Predictive cues recruit a descending CeA -> vlPAG feedback circuit that inhibits aversive teaching signals to LA; optogenetic inhibition of this pathway disinhibits predicted aversive responses in LA and resets fear learning. Causal evidence that the conditioned threat predictor itself gates its own teaching signal (a closed-loop PE), supporting MECH-599's event-taught store and its extinction/saturation behaviour.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the predictive cue's feedback to PAG is blocked, predicted shocks teach again and learning resets; a threat store without a prediction-driven suppression of its own teaching signal would never saturate and would over-learn."
+  ],
+  "tags": [
+    "mech_599",
+    "aversive_teaching_signal",
+    "central_amygdala",
+    "vlpag",
+    "prediction_error",
+    "memory_strength",
+    "closed_loop"
+  ],
+  "mapping": {
+    "source_claim_statement": "Predictive sensory cues recruit a descending feedback circuit from the central amygdala that activates a population of vlPAG pain-modulatory neurons to control aversive memory strength; inhibiting this pathway disinhibits predicted aversive responses in LA neurons and resets fear learning levels.",
+    "ree_translation": "MECH-599's store should be taught by aversive-PE events; this paper shows how biology computes that PE: the store's own prediction feeds back to suppress the teaching signal. For a V3 build this argues the store's output should also be what subtracts from its teacher (a closed loop), rather than a separate PE computed elsewhere.",
+    "mapping_caveat": "Rat, footshock, optogenetics. Concerns memory strength and saturation, not cue specificity. The CeA->PAG route is an output of the threat system being used for teaching-signal control, which REE has no analogue of yet.",
+    "source_context": "Rat; single-unit LA recording; optogenetic inhibition of CeA->vlPAG projections during fear conditioning"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "High-quality causal circuit work from the Johansen lab, follows 2010 paper. Mapping moderate."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_pe_attention_review_holland2016",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Mini-review: Prediction errors, attention and associative learning",
+    "authors": [
+      "Holland PC",
+      "Schiffino FL"
+    ],
+    "year": 2016,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2016.02.014",
+    "pmid": "26948122",
+    "pmc": "PMC4862921",
+    "volume": "131",
+    "pages": "207-215"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Authoritative review of the Pearce-Hall associability literature by the lab that produced most of the CeA circuit data. Directly states the Rescorla-Wagner vs Pearce-Hall split that MECH-598 rests on (PE changes US effectiveness vs PE changes CS associability). Confidence held at 0.60 because the reviewed evidence is overwhelmingly APPETITIVE and OMISSION-driven, while MECH-598 is triggered by an unexpected aversive DELIVERY.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reviewed associability enhancements are induced almost entirely by the surprising OMISSION of an expected food outcome; an aversive-delivery trigger is not what this literature measured.",
+    "The review describes associability changes for USs as well as CSs, so a per-CANDIDATE-CAUSE learning-rate state is only one of the loci at which PE can alter event processing."
+  ],
+  "tags": [
+    "mech_598",
+    "pearce_hall",
+    "associability",
+    "prediction_error",
+    "central_amygdala",
+    "attention_in_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Prediction error acts in two ways: as the Rescorla-Wagner effectiveness of the reinforcer, and as the Pearce-Hall associability of the conditioned stimuli present when PE occurred, so that those cues enter new learning faster later. PE-induced associability changes involve widespread brain systems for coding, storage and retrieval.",
+    "ree_translation": "MECH-598 is the Pearce-Hall half: an aversive PE raises the future learning rate of candidate causes present in a retrospective window, as a persistent per-candidate state. The review is the canonical statement that this is a behaviourally separable operation from a delta rule, which is the half an E3 harm regression readout already implements.",
+    "mapping_caveat": "Valence and sign mismatch: the lab's paradigms are appetitive (food) and mostly omission-induced. The review supports the computational form of MECH-598, not its aversive trigger. It is also a single-lab synthesis.",
+    "source_context": "Rat Pavlovian serial-prediction and unblocking paradigms; lesion and inactivation; review"
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Source quality good (focused review, primary data behind it are replicated within-lab). Mapping to the computational form is high, to the aversive trigger low; averaged 0.62. Transfer risk moderate: rodent appetitive to an abstract agent's aversive channel."
+  }
+}

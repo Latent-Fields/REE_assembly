@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_mech_599_pag_expectation_modulated_teaching_johansen2010",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598",
+    "MECH-599"
+  ],
+  "source": {
+    "title": "Neural substrates for expectation-modulated fear learning in the amygdala and periaqueductal gray",
+    "authors": [
+      "Johansen JP",
+      "Tarpley JW",
+      "LeDoux JE",
+      "Blair HT"
+    ],
+    "year": 2010,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2594",
+    "pmid": "20601946",
+    "pmc": "PMC2910797",
+    "volume": "13",
+    "issue": "8",
+    "pages": "979-986"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Single-unit recording in LA and PAG during fear conditioning: US-evoked responses in both are inhibited by expectation; PAG inactivation attenuates amygdala US responses and impairs fear acquisition. Causal evidence that an expectation-modulated aversive teaching signal from PAG instructs amygdala plasticity -- the event-taught character MECH-599 needs, and the PE trigger MECH-598 assumes. It is a Rescorla-Wagner-type signal, not associability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Instructive US signals to the amygdala are suppressed when the US is expected; a threat store taught by raw harm magnitude rather than by harm prediction error would keep strengthening on fully predicted harm, which this contradicts.",
+    "The teaching signal arrives via PAG; the amygdala does not generate its own aversive teaching signal, so a threat store must have an upstream PE source."
+  ],
+  "tags": [
+    "mech_598",
+    "mech_599",
+    "aversive_teaching_signal",
+    "periaqueductal_gray",
+    "lateral_amygdala",
+    "prediction_error",
+    "fear_conditioning",
+    "mech_258"
+  ],
+  "mapping": {
+    "source_claim_statement": "US-evoked responses of LA and PAG neurons are inhibited when the US is expected; pharmacological PAG inactivation attenuates US-evoked amygdala responses and impairs acquisition of fear conditioning, indicating PAG relays expectation-modulated instructive signals to the amygdala.",
+    "ree_translation": "MECH-599's store is 'taught by aversive-PE events'; this is the canonical causal evidence that the biological threat store's teacher is an expectation-modulated signal, not raw damage. That supports SD-020 / MECH-258 (harm enters as PE) and the claim's V3-EXQ-1109 motivation. For MECH-598 it supplies the trigger but not the associability.",
+    "mapping_caveat": "The expectation modulation is Rescorla-Wagner: it modulates the teaching strength of the US, not the learning rate of the CS. Rat; auditory fear conditioning with footshock; the teaching signal's source in REE is undefined.",
+    "source_context": "Rat, single-unit LA and PAG recording during auditory fear conditioning; PAG muscimol inactivation"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "High quality: single units plus causal inactivation, Nature Neuroscience, replicated later by the same group (Ozawa 2017). Mapping stronger for MECH-599 than MECH-598."
+  }
+}

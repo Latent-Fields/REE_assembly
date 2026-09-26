@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_cea_encode_si_express_holland2006",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Different roles for amygdala central nucleus and substantia innominata in the surprise-induced enhancement of learning",
+    "authors": [
+      "Holland PC",
+      "Gallagher M"
+    ],
+    "year": 2006,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0390-06.2006",
+    "pmid": "16597732",
+    "pmc": "PMC6674125",
+    "volume": "26",
+    "issue": "14",
+    "pages": "3791-3797"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Transient-inactivation dissociation: CeA is needed at the time of surprise, not when faster learning is later expressed; SI/nBM (cholinergic) is needed at expression, not at surprise. Supports MECH-598's separation of an event-time associability WRITE from a later-trial associability READ, i.e. a persistent state. Appetitive, omission-induced paradigm, so the aversive trigger is not tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CeA inactivation at the time of surprise abolishes the later learning advantage, so a mechanism whose associability write happens at a different time from the PE event would not match this dissociation.",
+    "The expression side depends on cholinergic basal forebrain, i.e. a neuromodulatory gain at read-out time -- a claim that locates all of the effect in the per-cue state and none in a read-out gain overstates what the data show."
+  ],
+  "tags": [
+    "mech_598",
+    "pearce_hall",
+    "associability",
+    "central_amygdala",
+    "substantia_innominata",
+    "cholinergic",
+    "encode_vs_express"
+  ],
+  "mapping": {
+    "source_claim_statement": "Surprise-induced enhancement of later learning about a stimulus requires intact CeA function when surprise occurs but not when the faster learning is expressed; SI/nBM function is required at expression but not at the time of surprise.",
+    "ree_translation": "Maps onto MECH-598's two-stage structure: an aversive PE event WRITES raised associability onto candidates present, and a later encounter READS it as a faster learning rate. The dissociation argues these are separate operations with separate substrates, which is the difference between a persistent associability state and a one-shot boost (the claim's frozen-associability falsifier).",
+    "mapping_caveat": "Appetitive food paradigm; surprise produced by omitting an expected event. The SI/nBM expression role is cholinergic, which puts part of the effect in a read-out gain, closer to MECH-398 (ACh plasticity gain) than to a pure per-cue state. REE's control arm is a matched broadcast gain; this paper suggests biology uses both.",
+    "source_context": "Rat, serial-prediction task, transient pharmacological inactivation of CeA or SI/nBM at surprise vs test"
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Clean four-experiment inactivation design, one lab. Mapping good for the encode/express structure, weak for the valence."
+  }
+}

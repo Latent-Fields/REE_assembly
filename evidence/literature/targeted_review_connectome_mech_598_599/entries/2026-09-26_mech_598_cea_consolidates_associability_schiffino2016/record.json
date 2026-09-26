@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_cea_consolidates_associability_schiffino2016",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Consolidation of altered associability information by amygdala central nucleus",
+    "authors": [
+      "Schiffino FL",
+      "Holland PC"
+    ],
+    "year": 2016,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2016.07.016",
+    "pmid": "27427328",
+    "pmc": "PMC4987260",
+    "volume": "133",
+    "pages": "204-213"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Post-session CeA inactivation or protein-synthesis block prevents later display of surprise-enhanced associability. Supports associability as a CONSOLIDATED, persistent state rather than a transient online boost -- the half of MECH-598 the claim says to drop if reversal is not faster. Appetitive/omission paradigm; also shows the state is stored outside CeA, so the claim's amygdala subject label is a simplification.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If post-event consolidation is blocked, the associability enhancement is lost; a mechanism that stores associability instantly at the PE event with no offline consolidation step would not reproduce this.",
+    "The stored associability memory is attributed to regions other than CeA (e.g. posterior parietal cortex); a single amygdala-local per-cue state is not what the data show."
+  ],
+  "tags": [
+    "mech_598",
+    "associability",
+    "consolidation",
+    "surprise_replay",
+    "central_amygdala",
+    "mech_431",
+    "mech_074b"
+  ],
+  "mapping": {
+    "source_claim_statement": "Post-surprise CeA activity (anisomycin, lidocaine or muscimol infused after sessions containing a surprising omission) is necessary for consolidating the surprise-enhanced associability memory, interpreted as 'surprise replay' supporting storage elsewhere such as posterior parietal cortex.",
+    "ree_translation": "Supports the persistence clause of MECH-598: associability is a stored state that must survive between encounters. It also touches MECH-431 (tag-and-capture) and MECH-074b (replay priority): the associability write appears to need an offline consolidation step. A V3 per-candidate associability vector updated instantly would skip this, which is a simplification the governance routing should note.",
+    "mapping_caveat": "Appetitive and omission-induced, as for all this lab's CeA work. The 'surprise replay' interpretation is the authors' inference from timing, not a recorded replay event. The storage locus is elsewhere in cortex, not CeA.",
+    "source_context": "Rat serial-prediction task; post-session intra-CeA anisomycin, lidocaine or muscimol"
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Three converging manipulations in one design gives some robustness. Mapping moderate: persistence maps, locus and valence do not."
+  }
+}

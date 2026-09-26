@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_ptsd_associability_threat_reversal_homan2019",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Neural computations of threat in the aftermath of combat trauma",
+    "authors": [
+      "Homan P",
+      "Levy I",
+      "Feltham E",
+      "Gordon C",
+      "Hu J",
+      "Li J",
+      "Pietrzak RH",
+      "Southwick S",
+      "Krystal JH",
+      "Harpaz-Rotem I",
+      "Schiller D"
+    ],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0315-x",
+    "pmid": "30664770",
+    "pmc": "PMC6829910",
+    "volume": "22",
+    "issue": "3",
+    "pages": "470-476"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Combat veterans on threat reversal learning: PTSD symptoms scale with prediction-error weighting for negative outcomes, which shapes associability; striatal (not amygdala) tracking of associability partially mediates the effect, and amygdala tracks value. Supports aversive associability as a computational variable with clinical consequence; mixed on locus relative to Li 2011.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Exaggerated weighting of aversive prediction errors produced higher associability and more PTSD symptoms, so an associability mechanism without a bound on PE weighting predicts a trauma-like over-learning phenotype.",
+    "Here striatum tracked associability and amygdala tracked value -- the reverse of Li et al. 2011 -- so the anatomical locus of aversive associability is not settled."
+  ],
+  "tags": [
+    "mech_598",
+    "associability",
+    "ptsd",
+    "threat_reversal",
+    "clinical",
+    "prediction_error_weighting",
+    "psychiatric_phenotype"
+  ],
+  "mapping": {
+    "source_claim_statement": "In combat veterans, symptomatic individuals showed greater physiological adjustment to unexpected negative outcomes (larger PE weights), which shaped cue associability and value; striatal tracking of associability partly mediated the PE-weight/PTSD correlation, and reduced amygdala value tracking and smaller amygdala volume independently predicted severity.",
+    "ree_translation": "Gives MECH-598 a psychiatric failure mode: if the aversive PE gain on associability is too high, candidate causes stay highly learnable and threat predictions over-update -- a PTSD-like phenotype. That is a useful pre-registered sign for a V3 arm (over-generalisation is already one of the claim's falsifiers).",
+    "mapping_caveat": "Clinical correlational sample; the locus finding conflicts with Li 2011, so neither should be cited for anatomy. Associability is fitted, not manipulated.",
+    "source_context": "Human fMRI and structural MRI, combat veterans, Pavlovian threat reversal with shock, hybrid PH/RW modelling"
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Good venue, moderate clinical N, correlational. Mapping moderate: supports associability as a variable and adds a phenotype, not a mechanism."
+  }
+}

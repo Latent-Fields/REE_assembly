@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_appetitive_aversive_pe_substrates_review_iordanova2021",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Neural substrates of appetitive and aversive prediction error",
+    "authors": [
+      "Iordanova MD",
+      "Yau JO",
+      "McDannald MA",
+      "Corbit LH"
+    ],
+    "year": 2021,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2020.10.029",
+    "pmid": "33453307",
+    "pmc": "PMC7933120",
+    "volume": "123",
+    "pages": "337-351"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Review of causal and recording evidence that prediction error both up/down-regulates associations and allocates attention to stimuli, across dopamine, amygdala, vlPAG, hippocampus, cortex and LC-NA, for both appetitive and aversive outcomes. Supports the two-role framing (RW and attention) and the distributed aversive PE system; not specific to per-cue associability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Aversive PE is distributed across several systems (vlPAG, amygdala, LC-NA, dopamine); an architecture that routes all aversive credit through one module misrepresents the biology."
+  ],
+  "tags": [
+    "mech_598",
+    "prediction_error",
+    "aversive_prediction_error",
+    "attention_in_learning",
+    "review",
+    "locus_coeruleus",
+    "vlpag"
+  ],
+  "mapping": {
+    "source_claim_statement": "Prediction error up- and down-regulates associative relationships and allocates attention to stimuli; its neural substrates for both appetitive and aversive outcomes span mesolimbic dopamine, amygdala, vlPAG, hippocampus, cortex and locus coeruleus noradrenaline.",
+    "ree_translation": "Supports the claim's premise that aversive PE does two jobs (update and attention allocation). The LC-NA component is close to MECH-074a's arousal gain, i.e. MECH-598's broadcast control, so the review also reminds us that biology has both the broadcast and the selective route.",
+    "mapping_caveat": "Broad review; does not adjudicate Pearce-Hall vs Mackintosh or per-cue associability specifically. Named in the intake; low mapping fidelity for the specific mechanism.",
+    "source_context": "Review of rodent and human causal and recording studies"
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Useful orientation; low specificity to MECH-598's distinctive content."
+  }
+}

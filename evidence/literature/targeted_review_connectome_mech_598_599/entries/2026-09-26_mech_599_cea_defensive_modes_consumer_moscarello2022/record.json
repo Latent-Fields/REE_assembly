@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_599_cea_defensive_modes_consumer_moscarello2022",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-599"
+  ],
+  "source": {
+    "title": "The central nucleus of the amygdala and the construction of defensive modes across the threat-imminence continuum",
+    "authors": [
+      "Moscarello JM",
+      "Penzo MA"
+    ],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-022-01130-5",
+    "pmid": "35915178",
+    "volume": "25",
+    "issue": "8",
+    "pages": "999-1008"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Review proposing that CeA's mutually inhibitory circuits select among defensive modes by threat imminence, executing defensive behaviours to PREVIOUSLY FORMED threat associations. Supports MECH-599's consumer contract: defensive mode selection is driven by learned threat predictions (and their imminence), not by accumulated injury. Already recorded for MECH-489 (2026-08-15 entry); this entry records the MECH-599-specific mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Defensive modes are selected against learned threat associations organised by imminence; a defensive consumer that reads only accumulated injury has no imminence variable and cannot reproduce the mode ordering."
+  ],
+  "tags": [
+    "mech_599",
+    "central_amygdala",
+    "defensive_modes",
+    "threat_imminence",
+    "defensive_consumer",
+    "mech_279",
+    "mech_489"
+  ],
+  "mapping": {
+    "source_claim_statement": "CeA's mutually inhibitory circuits use a winner-takes-all strategy to transition across defensive modes and execute specific defensive behaviours to previously formed threat associations, organised along a threat-imminence continuum.",
+    "ree_translation": "For MECH-599 the point is the input to the consumer: CeA builds defensive modes from previously formed threat associations and their imminence -- i.e. from a threat predictor's output. That is the MECH-599 consumer contract (SD-099 release, MECH-279 freeze entry and E3 harm scoring should read predicted threat). Imminence is a variable REE lacks; a cue-specific predictor is a prerequisite for it.",
+    "mapping_caveat": "Review/perspective. Imminence has no REE analogue; the mapping is to the input type of the consumer, not to mode selection itself. See the MECH-489 entry for the selection-architecture mapping.",
+    "source_context": "Review of rodent defensive-behaviour paradigms and CeA circuitry"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Separate entry from the MECH-489 one because the mapping is different; same source."
+  }
+}

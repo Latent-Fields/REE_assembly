@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_cea_signals_omission_only_calu2010",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Neural correlates of variations in event processing during learning in central nucleus of amygdala",
+    "authors": [
+      "Calu DJ",
+      "Roesch MR",
+      "Haney RZ",
+      "Holland PC",
+      "Schoenbaum G"
+    ],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.11.019",
+    "pmid": "21145010",
+    "pmc": "PMC3033562",
+    "volume": "68",
+    "issue": "5",
+    "pages": "991-1001"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Single-unit CeA recording: firing rises selectively at unexpected reward OMISSION, declines with learning, and correlates with inactivation-sensitive attention measures -- but CeA neurons do not fire to cues or to unexpected rewards. Supports a surprise signal driving attention, but it is omission-specific, not a general |PE| signal, which constrains MECH-598's 'driven by |PE|' wording.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CeA neurons did not respond to unexpected reward delivery, only to omission; a mechanism whose associability update is driven by unsigned |PE| of any sign is not what CeA encodes.",
+    "CeA neurons did not fire to the cues themselves, so CeA does not hold the per-cue associability value; it signals the event that updates it."
+  ],
+  "tags": [
+    "mech_598",
+    "central_amygdala",
+    "single_unit",
+    "reward_omission",
+    "unsigned_prediction_error",
+    "attention_in_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "CeA neurons increase firing selectively at the time of unexpected reward omission, declining with learning; this correlates with CeA-dependent attention measures. CeA neurons did not fire to cues or to unexpected rewards, indicating a specific omission signal rather than a general expectancy, error or value signal.",
+    "ree_translation": "MECH-598 says each candidate's associability is driven by the |PE| of outcomes it was present for. In the appetitive CeA data the updating signal is sign-specific (omission) and the per-cue value is not held in CeA. For REE: the trigger should be defined as a specific event class (phasic adverse change), as the claim already says, and the associability store is separate from the event detector.",
+    "mapping_caveat": "Appetitive; the aversive analogue of 'omission of reward' is not obviously 'delivery of harm'. It could equally be argued that reward omission is itself an aversive event, which would make this more supportive than it looks. Rodent single-unit data.",
+    "source_context": "Rat, single-unit CeA recording in a task with unexpected reward delivery and omission"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Neuron, single units, links recording to lesion-sensitive behaviour). The valence ambiguity caps mapping."
+  }
+}

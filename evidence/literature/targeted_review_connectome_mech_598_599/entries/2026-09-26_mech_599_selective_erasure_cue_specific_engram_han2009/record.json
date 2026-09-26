@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_599_selective_erasure_cue_specific_engram_han2009",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-599"
+  ],
+  "source": {
+    "title": "Selective erasure of a fear memory",
+    "authors": [
+      "Han JH",
+      "Kushner SA",
+      "Yiu AP",
+      "Hsiang HL",
+      "Buch T",
+      "Waisman A",
+      "Bontempi B",
+      "Neve RL",
+      "Frankland PW",
+      "Josselyn SA"
+    ],
+    "year": 2009,
+    "venue": "Science",
+    "doi": "10.1126/science.1164139",
+    "pmid": "19286560",
+    "volume": "323",
+    "issue": "5920",
+    "pages": "1492-1496"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Ablating the sparse LA neurons allocated to a fear memory (high-CREB) after learning erases that memory, while ablating a matched random fraction does not. Supports MECH-599's claim that a conditioned threat prediction lives in a discrete, removable, cue-specific structure. Also disconfirming-direction for the MECH-598 dependency: allocation here is by neuronal excitability, not by surprise-driven associability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A specific fear memory is held by a sparse, identifiable neuronal subpopulation whose removal erases it; a purely contextual, distributed harm field (residue / harm_eval) would not show this selective erasure.",
+    "Which neurons join the memory trace is set by CREB-linked excitability at encoding, not by surprise-driven associability -- cue-specific threat memory can form without the MECH-598 mechanism, which weakens MECH-599's depends_on edge to MECH-598."
+  ],
+  "tags": [
+    "mech_599",
+    "engram",
+    "lateral_amygdala",
+    "creb",
+    "memory_allocation",
+    "cue_specific_memory",
+    "disconfirming_mech_598_dependency"
+  ],
+  "mapping": {
+    "source_claim_statement": "LA neurons with increased CREB are preferentially recruited into a fear memory trace; selectively ablating them after learning (but not a similar portion of random LA neurons) robustly and persistently blocks expression of that fear memory.",
+    "ree_translation": "Supports the existence of a discrete, cue-specific threat store as distinct from REE's contextual threat machinery -- the same kind of object SD-051 is on the safety side. It also bears on MECH-599's dependency on MECH-598: in biology a cue-specific threat store forms under a competition-by-excitability allocation rule, with no associability state required.",
+    "mapping_caveat": "Tests a single conditioned memory (tone-shock) and shows removal, not cue competition among candidates. Allocation-by-excitability is a different credit rule from MECH-598's; it does not refute associability, but it shows cue specificity does not need it.",
+    "source_context": "Mouse; CREB overexpression in LA with inducible diphtheria-toxin ablation after auditory fear conditioning"
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Science, clean control (random-ablation arm). Mapping moderate: discrete store supported; the credit rule differs from REE's proposal."
+  }
+}

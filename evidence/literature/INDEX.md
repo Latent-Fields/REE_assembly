@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-26T06:15:16.835021Z`
+Generated: `2026-09-26T17:54:36.159822Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -255,6 +255,7 @@ Generated: `2026-09-26T06:15:16.835021Z`
 | `targeted_review_connectome_mech_501` | [`2026-09-24_mech_501_unexpected_events_global_motor_suppression_wessel2017`](targeted_review_connectome_mech_501/entries/2026-09-24_mech_501_unexpected_events_global_motor_suppression_wessel2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_501/entries/2026-09-24_mech_501_unexpected_events_global_motor_suppression_wessel2017/summary.md) |
 | `targeted_review_connectome_mech_527` | [`2026-09-01_mech_527_variable_neighborhood_search_mladenovic1997`](targeted_review_connectome_mech_527/entries/2026-09-01_mech_527_variable_neighborhood_search_mladenovic1997/record.json) | 3 | [`summary`](targeted_review_connectome_mech_527/entries/2026-09-01_mech_527_variable_neighborhood_search_mladenovic1997/summary.md) |
 | `targeted_review_connectome_mech_585` | [`2026-09-24_mech_585_uncertainty_increases_pain_yoshida2013`](targeted_review_connectome_mech_585/entries/2026-09-24_mech_585_uncertainty_increases_pain_yoshida2013/record.json) | 5 | [`summary`](targeted_review_connectome_mech_585/entries/2026-09-24_mech_585_uncertainty_increases_pain_yoshida2013/summary.md) |
+| `targeted_review_connectome_mech_598_599` | [`2026-09-26_mech_599_selective_erasure_cue_specific_engram_han2009`](targeted_review_connectome_mech_598_599/entries/2026-09-26_mech_599_selective_erasure_cue_specific_engram_han2009/record.json) | 18 | [`summary`](targeted_review_connectome_mech_598_599/entries/2026-09-26_mech_599_selective_erasure_cue_specific_engram_han2009/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
 | `targeted_review_connectome_sd_005` | [`2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026`](targeted_review_connectome_sd_005/entries/2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026/record.json) | 5 | [`summary`](targeted_review_connectome_sd_005/entries/2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026/summary.md) |

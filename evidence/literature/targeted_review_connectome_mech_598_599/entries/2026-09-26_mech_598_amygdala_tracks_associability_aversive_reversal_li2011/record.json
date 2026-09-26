@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_amygdala_tracks_associability_aversive_reversal_li2011",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598"
+  ],
+  "source": {
+    "title": "Differential roles of human striatum and amygdala in associative learning",
+    "authors": [
+      "Li J",
+      "Schiller D",
+      "Schoenbaum G",
+      "Phelps EA",
+      "Daw ND"
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2904",
+    "pmid": "21909088",
+    "pmc": "PMC3268261",
+    "volume": "14",
+    "issue": "10",
+    "pages": "1250-1252"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Human aversive (shock) reversal learning: amygdala BOLD tracks model-derived Pearce-Hall associability, dissociated from striatal prediction error. The most direct support in the set for MECH-598 in the AVERSIVE domain and for its reversal signature. Model-based fMRI correlation rather than causal manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Amygdala tracked associability while striatum tracked prediction error; a single system computing both the delta-rule update and the associability would not reproduce the dissociation.",
+    "The evidence is correlational model-based fMRI; associability being represented in amygdala does not show that it controls the learning rate causally."
+  ],
+  "tags": [
+    "mech_598",
+    "pearce_hall",
+    "associability",
+    "reversal_learning",
+    "human_fmri",
+    "aversive_conditioning",
+    "amygdala",
+    "striatum"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a human reversal learning task with aversive reinforcement, amygdala BOLD activity tracked associability as estimated by a hybrid Pearce-Hall/Rescorla-Wagner model, dissociated from the striatal representation of reinforcement prediction error.",
+    "ree_translation": "Supports MECH-598 on the two points where the animal work is weakest: valence (aversive) and reversal (the claim's confirming criterion (ii) is faster re-learning after an A/B swap, the Pearce-Hall signature). It also supports the claim's separation of associability from the delta-rule update REE already has in harm regression readouts.",
+    "mapping_caveat": "Associability here is a trial-wise scalar per cue in a simple two-cue design, fitted from skin conductance; it is not a retrospective eligibility window over many candidate causes. BOLD correlation, not causation. Human task with instructed-free shocks, far from an agent's self-state.",
+    "source_context": "Human fMRI, Pavlovian reversal with mild shock, hybrid Pearce-Hall model fitted to SCR"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.3,
+    "notes": "Nature Neuroscience brief communication, model-based, human, aversive. Mapping good for the associability-as-state-in-aversive-learning core; lower for the multi-candidate retrospective window."
+  }
+}

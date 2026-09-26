@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_599_cgrp_pb_cea_threat_memory_han2015",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-599"
+  ],
+  "source": {
+    "title": "Elucidating an Affective Pain Circuit that Creates a Threat Memory",
+    "authors": [
+      "Han S",
+      "Soleiman MT",
+      "Soden ME",
+      "Zweifel LS",
+      "Palmiter RD"
+    ],
+    "year": 2015,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2015.05.057",
+    "pmid": "26186190",
+    "pmc": "PMC4512641",
+    "volume": "162",
+    "issue": "2",
+    "pages": "363-374"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Causal circuit paper: CGRP parabrachial neurons project to CeA and carry affective pain; silencing them blocks pain responses and threat-memory formation, stimulating them produces defensive responses and a threat memory, and CGRP-receptor CeA neurons are needed to establish the memory. Supports MECH-599's structure of a dedicated affective-harm teaching pathway into a store that creates a threat memory. Does not address cue specificity or the injury/threat consumer split.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optogenetic stimulation of the affective pain pathway alone, without tissue damage, was sufficient to create a threat memory; a threat store whose teaching depends on accumulated injury rather than an affective harm event would not reproduce this.",
+    "Silencing the pathway blocked both pain responses and memory formation, so in this circuit the acute nocifensive response and the teaching signal are not cleanly separable at the input stage."
+  ],
+  "tags": [
+    "mech_599",
+    "threat_memory",
+    "cgrp",
+    "parabrachial",
+    "central_amygdala",
+    "affective_pain",
+    "teaching_signal",
+    "sd_011"
+  ],
+  "mapping": {
+    "source_claim_statement": "CGRP-expressing parabrachial neurons project to the CeA and may transduce the affective-motivational aspect of pain; genetic silencing blocks pain responses and threat-memory formation, optogenetic stimulation produces defensive responses and a threat memory, and CeA neurons expressing CGRP receptors are critical for establishing the memory.",
+    "ree_translation": "Supports MECH-599's claim that a dedicated teaching pathway writes into a threat store: an affective harm event (not tissue damage per se) is sufficient to create a threat memory. The affective-pain identity of the pathway lines up with SD-011's z_harm_a stream -- but as a TEACHER of the store, not as the variable consumers should read, which is exactly the MECH-599 consumer contract.",
+    "mapping_caveat": "Mouse, footshock. Shows a pathway that creates threat memory, not that the resulting memory is cue-specific or held in a discrete store. The same silencing blocks acute pain responses, so the teaching/response separation MECH-599 draws is not demonstrated at the input.",
+    "source_context": "Mouse; genetic silencing and optogenetic stimulation of CGRP PB neurons and CeA CGRPR neurons; fear conditioning"
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "Cell, causal gain- and loss-of-function. Mapping moderate: supports the teaching pathway, not cue specificity or the consumer contract."
+  }
+}

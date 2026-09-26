@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_598_599",
+  "entry_id": "2026-09-26_mech_598_mech_599_bla_aversive_td_error_mchugh2014",
+  "timestamp_utc": "2026-09-26T17:48:29Z",
+  "claim_ids_tested": [
+    "MECH-598",
+    "MECH-599"
+  ],
+  "source": {
+    "title": "Aversive prediction error signals in the amygdala",
+    "authors": [
+      "McHugh SB",
+      "Barkus C",
+      "Huber A",
+      "Capitao L",
+      "Lima J",
+      "Lowry JP",
+      "Bannerman DM"
+    ],
+    "year": 2014,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4465-13.2014",
+    "pmid": "24990922",
+    "pmc": "PMC4078079",
+    "volume": "34",
+    "issue": "27",
+    "pages": "9024-9033"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Mouse BLA hemodynamic and theta responses follow a signed temporal-difference aversive PE: shock responses shrink as the cue comes to predict shock, cue responses grow, unexpected shock evokes more than expected shock, omission drops below baseline, and the shock response predicts next-day behaviour. Supports the existence of the aversive PE TRIGGER both claims assume and the transfer of prediction from US to CS (MECH-599). It is the Rescorla-Wagner/TD half, not associability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The amygdala signal is SIGNED (omission goes below baseline), so it is a TD error, not an unsigned |PE| associability signal; it cannot by itself be the MECH-598 associability drive.",
+    "Response migrates from the shock to the predictive cue over conditioning; a threat predictor that does not show this transfer is not learning a cue-specific prediction."
+  ],
+  "tags": [
+    "mech_598",
+    "mech_599",
+    "aversive_prediction_error",
+    "basolateral_amygdala",
+    "temporal_difference",
+    "theta",
+    "fear_conditioning"
+  ],
+  "mapping": {
+    "source_claim_statement": "In mice, BLA hemodynamic and theta responses to footshock decrease over fear conditioning while responses to the predictive tone increase; unexpected footshock evokes larger responses than expected footshock, the size of the shock response predicts next-day behaviour, and omission of an expected shock drops the response below baseline, consistent with temporal-difference models of aversive learning.",
+    "ree_translation": "For MECH-598: confirms that an aversive PE event exists as a distinct signal (the trigger), and that it is signed. For MECH-599: the transfer of response from US to CS is the signature of a cue-specific conditioned threat prediction forming. It also bears on the V3-EXQ-1109 injury/threat point -- the prediction signal is not a readout of accumulated damage.",
+    "mapping_caveat": "Hemodynamic and LFP signals, not single units; the TD fit is qualitative. BLA rather than CeA. Mouse. It supplies the delta-rule half that REE's harm regression already approximates, not the new associability half.",
+    "source_context": "Mouse, in vivo amperometric tissue-oxygen and theta LFP in BLA during auditory fear conditioning"
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Solid J Neurosci study; indirect signals. Split mapping: moderate for MECH-599 (prediction transfer), lower for MECH-598 (trigger only)."
+  }
+}
