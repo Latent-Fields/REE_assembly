@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-26T03:34:59Z`
+Generated: `2026-09-26T06:48:21Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -5786,7 +5786,7 @@ Instructions:
 
 </details>
 
-### IGW-20260926-251 -- Confirm evidence: MECH-282 (lit 0.82, exp ~0)
+### IGW-20260926-251 -- Confirm evidence: MECH-282 (lit 0.81, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1326 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun.
@@ -5796,7 +5796,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260926-251
-Title: Confirm evidence: MECH-282 (lit 0.82, exp ~0)
+Title: Confirm evidence: MECH-282 (lit 0.81, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-282
