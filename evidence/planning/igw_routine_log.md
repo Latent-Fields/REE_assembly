@@ -3781,3 +3781,8 @@ One line per hourly tick. ASCII only.
 2026-09-26T17:18:15Z auto-defer igw-224-substrate-ready-suffering-deriva hash=ae0f2a18fb33 for 48h (complete)
 2026-09-26T17:18:15Z complete igw-224-substrate-ready-suffering-deriva launched_manual->completed outcome=USEFUL_LANDED: SD-050 comparator event latch landed ree-v3 5d308b3 (default OFF, 16 contracts,
 2026-09-26T17:19:39Z complete igw-216-substrate-ready-suffering-deriva staged->completed outcome=DUPLICATE: no action: duplicate of IGW-20260924-224, which landed the SD-050 comparator eve
+2026-09-26T17:25:49Z GC removed worktree igw-216-substrate-ready-suffering-deriva (removed; branch deleted)
+2026-09-26T17:26:06Z GC removed worktree igw-224-substrate-ready-suffering-deriva (removed; branch deleted)
+2026-09-26T17:25:28Z GC sweep removed 2 orphan worktree(s), kept 21
+2026-09-26T17:27:47Z workset published (regen -- 255 items, 30 ready, 0 in flight)
+2026-09-26T17:27:48Z workset committed (regen -- 255 items, 30 ready, 0 in flight)
