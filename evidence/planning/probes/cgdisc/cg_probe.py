@@ -49,7 +49,7 @@ p.add_argument("--own-q", type=float, default=0.90)
 p.add_argument("--own-window", type=int, default=60)
 p.add_argument("--lives-s1", default="RND-perm,RND-none,FS-perm,FS-none,NAT-perm,NAT-none,CP-perm,CP-none,OWN-perm,OWN-none")
 p.add_argument("--lives-s2", default="RND-perm,RND-none,NAT-perm,NAT-none")
-p.add_argument("--max-hold", type=float, default=720.0)
+p.add_argument("--max-hold", type=float, default=600.0)
 p.add_argument("--no-lock", action="store_true")
 p.add_argument("--smoke", action="store_true")
 a = p.parse_args()
@@ -437,6 +437,7 @@ rv_first = []
 def native_dose(n_steps, k0):
     n_eps = max(1, n_steps // BB.EP_STEPS)
     for ep in range(n_eps):
+        maybe_rehold("seed%d-dose-%d" % (S, k0 + ep))     # lock hygiene only (<= 15 min holds)
         env = BB.make_env(S, k0 + ep)
         hh = StepHarness(agent, env, train_mode=False, seed=S * 1000 + k0 + ep)
         _f, od = env.reset(); agent.reset(); hh.reset()

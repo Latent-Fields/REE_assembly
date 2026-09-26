@@ -73,3 +73,10 @@ Seed 790 (not registered) was run twice before registering: (i) a timing smoke w
 - **Death.** The scripted-random lives hit health depletion twice in 60 ticks -> health pinned (above).
 - **FC == NAT.** In the smoke the FC and NAT lives were byte-identical in raw_mix, rv, raw_real, executed actions and committed state.
 - Also confirmed in the smoke: premise d (the lever raises with the default q = -1.0) and premise c (rv 0.475, 0.451, 0.429, 0.407, 0.387 on the first five native ticks of a fresh agent: first below 0.40 at index 4).
+
+### 1b. Addendum (budget cut, registered 2026-09-26T15:10:17Z, while seed 761 was mid-run; no result had been read)
+
+- **Measured cost on seed 761:** the S1 dose (1200 native steps x 8 updates) took **975 s** (0.81 s per step; N5 measured ~0.07 s per step for the same protocol on a quiet machine). At that rate each seed's development alone is ~17 min and one S2 dose another ~16 min, so the registered plan (5 seeds at S1 + S2 on 3) needs well over the 2.5 h cap, before counting the lock time shared with `bt0926-h0`.
+- **Cut, taken now:** **S2 is dropped on all seeds** (the brief's first cut, taken to its end). Consequence, stated in advance: C1's stage transfer is untested; C1 is decided on the HO-S1 set only, so the best C1 verdict available is about **seed** transfer at S1 (e.g. "H1 WEAKENED (HO-S1 only)"), and "stage transfer" is reported CANNOT_DETERMINE. No control, arm, window, margin or rule changes.
+- **Stop rule:** seeds run in registration order (761 -> 765). If the cap is reached first, the verdicts are reported over the seeds completed, labelled **INTERIM**, with the seed-count rules applied to the completed n (>= 4/5 becomes >= ceil(0.8 n); >= 3/5 becomes >= ceil(0.6 n)), never silently.
+- **Lock hygiene (no effect on results):** from seed 762 the process also rotates the lock between dose episodes (max hold 600 s + one episode), because seed 761's development phase held it ~18 min in one piece, over the 15 min limit.
