@@ -1,6 +1,6 @@
 # Probe C: commit-gate discrimination -- signal validity (C0), operating point (C1), escape evidence (C2)
 
-- **Status: PRE-REGISTERED, registered seeds not yet run.** Sections 0-2 are committed before any registered seed runs. Results are appended below them in a later commit; nothing in sections 1-2 is changed after that point except by a dated, labelled addendum.
+- **Status: DONE (S1, 5/5 seeds; S2 cut, addendum 1b).** Verdicts: **C0 `neither = H-SV` (registered rule; STOP)**, **C1 `CANNOT_DETERMINE` (C0 stop)**, **C2 `CANNOT_DETERMINE`** (no exposure reference separates on >= 4/5). Domain reached **D1** (C2 clamp contrasts are D2 on what evidence arrives, descriptive only). Sections 0-1 were committed before any registered seed (`4d9980b439`), addendum 1b before any DV was read (`e8edf4c68a`); results are sec 2-4.
 - **Session:** `bt0926-cgdisc` (orchestrator `orchestrate-20260924-breakthrough-c2`), chip_ref `chip-20260926-dcd2-commit-gate-disc`. Written 2026-09-26T14:47:15Z (pre-registration).
 - **Spec:** `dynamic_control_discrimination_plan_20260926.md` (41cfe94841) sec 2 Family C, sec 3 rows C0/C1/C2, sec 4.1. Inputs read in full: `commit_gate_read_int_vs_native_20260926.md` (a417b6f578), `dynamic_control_audit_20260926.md` sec H1 (e3cafebab3), `n5_ach_gated_unfreeze_probe_20260926.md` (b26d8e8d9d).
 - **Code under test:** `ree-v3` `4070b0efa4` (tag `archive/coupled-loop-repair-4070b0e`, the `integration/coupled-loop-repair` line: W3 E2WorldMember + W6a + W4), private detached worktree `.scratch/wt-cgdisc`. **No `ree_core` edits and no commits to ree-v3.** The realised-error signal, every alternative bar, the policy clamps, the probe actions and both world changes are probe-side (`StepHarness` hooks and an env proxy). Every file:line below is on this sha.
@@ -80,3 +80,112 @@ Seed 790 (not registered) was run twice before registering: (i) a timing smoke w
 - **Cut, taken now:** **S2 is dropped on all seeds** (the brief's first cut, taken to its end). Consequence, stated in advance: C1's stage transfer is untested; C1 is decided on the HO-S1 set only, so the best C1 verdict available is about **seed** transfer at S1 (e.g. "H1 WEAKENED (HO-S1 only)"), and "stage transfer" is reported CANNOT_DETERMINE. No control, arm, window, margin or rule changes.
 - **Stop rule:** seeds run in registration order (761 -> 765). If the cap is reached first, the verdicts are reported over the seeds completed, labelled **INTERIM**, with the seed-count rules applied to the completed n (>= 4/5 becomes >= ceil(0.8 n); >= 3/5 becomes >= ceil(0.6 n)), never silently.
 - **Lock hygiene (no effect on results):** from seed 762 the process also rotates the lock between dose episodes (max hold 600 s + one episode), because seed 761's development phase held it ~18 min in one piece, over the 15 min limit.
+
+## 2. Results (seeds 761-765, stage S1; `probes/cgdisc/cg_probe.py` + `cg_analyze.py`; raw per-seed JSON and logs in `.scratch/breakthrough-20260924/cgdisc/results/`, not committed)
+
+**Plain summary.** A hidden mid-life re-mapping of the agent's four move actions is **not reliably visible** in either error signal, even when the agent's actions are made uniformly random: it separates on 2/5 seeds in the primary cell, by either input. Where the change is visible, the current mixed input (rv's raw input and rv itself) and the realised one-step error see it **together** -- the realised input adds nothing the mixed one lacks. The E2 world head that both signals read predicts the next latent barely better than "nothing changes" (error/persistence 0.97-1.02 at h1 on every seed), which is the likely reason. By the registered rule this is **H-SV: stop here, route to E2/W3.** H1 (bar scale) and H2 (escape evidence) are not testable at this site until the upstream signal carries the change.
+
+### 2.1 Development readouts (pre-screen recorded, not used to drop seeds)
+
+| seed | S1 disc4_h1 (bar 0.47) | k | E2 err / persistence, h1 | rv at snapshot | FS executed-action histogram (perm life, classes 0-4) |
+|---|---|---|---|---|---|
+| 761 | 0.523 (pass) | 10 | 0.974 | 1.7e-05 | [33, 110, 0, 15, 172] |
+| 762 | 0.490 (pass) | 0 | 1.006 | 7.2e-06 | [9, 3, 268, 0, 50] |
+| 763 | 0.433 (fail) | 2 | 0.996 | 1.9e-05 | [0, 167, 151, 0, 12] |
+| 764 | 0.423 (fail) | 0 | 1.017 | 5.2e-06 | [328, 0, 0, 2, 0] |
+| 765 | 0.440 (fail) | 1 | 0.988 | 1.4e-05 | [0, 0, 1, 288, 41] |
+
+2/5 pass the W3 disc4 bar (N5 found 2/5 too). The screen-passing subset (761, 762) gives the same verdicts (sec 3).
+
+### 2.2 Premises, D1 (sec 0 table)
+
+- **(a) Corrected.** rv's raw input is **not** the realised one-step error of the executed action at k = 1, or at any k. Median ratio raw input / realised error in the NAT no-change life, by k = ticks since the last E3 tick (k0 / k1 / k2 / k3 / k4 / k5+): 761: 3.04 / 1.94 / 3.40 / 4.76 / 7.55 / 9.34; 762: 1.94 / 4.59 / 7.08 / 8.92 / 11.17 / 11.94; 763: 1.06 / 1.09 / 1.10 / 1.12 / 1.14 / 1.22; 764: 1.08 / 1.04 / 1.07 / 1.12 / 1.09 / 1.12; 765: 1.12 / 1.23 / 1.33 / 1.45 / 1.52 / 1.61. Agreement within 1% on at most 15% of ticks in any bucket. The growth with k (staleness) is confirmed. The k = 1 mismatch has a D0 reason not in the brief: E3 candidates carry **continuous** action vectors (`generate_random_actions` returns `torch.randn`, `e2_fast.py:858-864`; `hippocampal/module.py:947` "continuous action vectors ... downstream argmax class"), `world_states` are rolled out by `world_forward` under those vectors (`e2_fast.py:830-831`), and the body executes only the vector's class. So `world_states[1]` is E2's prediction for an action vector that is never executed, even one tick after selection.
+- **(b) Holds.** `agent.reset()` leaves `_running_variance` unchanged on all 5 seeds (logged before/after).
+- **(c) Holds.** A fresh agent's rv on its first native ticks is 0.475, 0.451, 0.429, 0.407, 0.387 on every seed: first below 0.40 at index 4, fully set by `precision_init` 0.5, alpha 0.05 and the bar. After development rv is 5e-6 to 2e-5, so the 0.40 bar sits **4.3-4.9 orders of magnitude** above it (the commit-gate read measured 1-2 orders at a different config: 8x8 env, `alpha_world` 0.05, no W3). The native gate was committed on 100% of ticks in every NAT life.
+- **(d) Holds.** Arming the lever on a default config raises `ValueError` ("commit_threshold_quantile is -1.0; it must be set explicitly").
+- **FC == NAT** verified on seed 761: byte-identical raw input, rv, realised error, executed actions and gate state in both lives. NAT's committed fraction was exactly 1.0 on every seed, so NAT stands in for FC throughout.
+
+### 2.3 C0: separation (K = 50). Cell entries: A / A_null / D (A_pair); * = separates (A >= 0.70 and D >= 0.15)
+
+| seed | cell | RAW_MIX | EMA_MIX (= rv) | RAW_REAL | EMA_REAL |
+|---|---|---|---|---|---|
+| 761 | RND | 0.75 / 0.39 / 0.36 (0.82) * | 0.92 / 0.63 / 0.29 (0.94) * | 0.73 / 0.43 / 0.30 (0.81) * | 0.83 / 0.47 / 0.35 (0.98) * |
+| 761 | NAT | 0.33 / 0.11 / 0.22 (0.85) | 0.04 / 0.00 / 0.04 (0.95) | 0.37 / 0.08 / 0.30 (0.95) | 0.06 / 0.00 / 0.06 (1.00) |
+| 761 | FS | 0.50 / 0.43 / 0.07 (0.52) | 0.63 / 0.78 / -0.16 (0.27) | 0.38 / 0.25 / 0.12 (0.59) | 0.19 / 0.05 / 0.14 (0.62) |
+| 761 | CP | 0.74 / 0.29 / 0.45 (0.87) * | 0.75 / 0.15 / 0.60 (0.97) * | 0.67 / 0.33 / 0.34 (0.85) | 0.50 / 0.06 / 0.45 (0.86) |
+| 762 | RND | 0.54 / 0.59 / -0.05 (0.44) | 0.40 / 0.52 / -0.11 (0.39) | 0.74 / 0.80 / -0.06 (0.37) | 0.73 / 0.74 / -0.01 (0.41) |
+| 762 | NAT | 0.32 / 0.32 / -0.00 (0.47) | 0.14 / 0.12 / 0.01 (0.67) | 0.39 / 0.53 / -0.15 (0.26) | 0.43 / 0.35 / 0.07 (0.63) |
+| 762 | FS | 0.59 / 0.62 / -0.02 (0.50) | 0.62 / 0.35 / 0.26 (0.95) | 0.43 / 0.89 / -0.46 (0.14) | 0.88 / 0.83 / 0.06 (0.67) |
+| 762 | CP | 0.32 / 0.26 / 0.05 (0.59) | 0.35 / 0.24 / 0.12 (0.73) | 0.40 / 0.38 / 0.01 (0.61) | 0.43 / 0.22 / 0.21 (0.82) |
+| 763 | RND | 0.83 / 0.62 / 0.21 (0.80) * | 0.97 / 0.82 / 0.14 (0.96) | 0.82 / 0.59 / 0.23 (0.77) * | 0.99 / 0.87 / 0.12 (0.95) |
+| 763 | NAT | 0.87 / 0.29 / 0.58 (1.00) * | 0.87 / 0.00 / 0.87 (1.00) * | 0.89 / 0.17 / 0.72 (1.00) * | 0.91 / 0.00 / 0.91 (1.00) * |
+| 763 | FS | 0.99 / 0.80 / 0.20 (0.97) * | 0.93 / 0.33 / 0.60 (1.00) * | 1.00 / 0.95 / 0.05 (1.00) | 0.99 / 0.55 / 0.44 (1.00) * |
+| 763 | CP | 0.63 / 0.11 / 0.52 (0.82) | 0.58 / 0.00 / 0.58 (0.96) | 0.71 / 0.20 / 0.51 (0.83) * | 0.62 / 0.04 / 0.58 (0.92) |
+| 764 | RND | 0.57 / 0.70 / -0.13 (0.35) | 0.90 / 0.99 / -0.09 (0.07) | 0.57 / 0.63 / -0.06 (0.44) | 0.88 / 0.95 / -0.07 (0.22) |
+| 764 | NAT | 0.99 / 0.55 / 0.44 (1.00) * | 0.97 / 0.16 / 0.81 (1.00) * | 1.00 / 0.50 / 0.50 (1.00) * | 1.00 / 0.04 / 0.96 (1.00) * |
+| 764 | FS | 0.82 / 0.05 / 0.78 (0.99) * | 0.95 / 0.58 / 0.37 (1.00) * | 0.82 / 0.02 / 0.80 (1.00) * | 0.97 / 0.00 / 0.97 (1.00) * |
+| 764 | CP | 0.96 / 0.83 / 0.14 (0.83) | 1.00 / 0.94 / 0.06 (0.91) | 0.98 / 0.70 / 0.28 (0.91) * | 1.00 / 0.90 / 0.10 (0.99) |
+| 765 | RND | 0.53 / 0.71 / -0.18 (0.30) | 0.80 / 0.98 / -0.17 (0.13) | 0.69 / 0.72 / -0.03 (0.44) | 0.76 / 0.82 / -0.05 (0.39) |
+| 765 | NAT | 0.90 / 0.90 / 0.00 (0.50) | 0.64 / 0.64 / 0.00 (0.50) | 1.00 / 1.00 / 0.00 (0.50) | 0.93 / 0.93 / 0.00 (0.50) |
+| 765 | FS | 0.97 / 0.97 / 0.00 (0.50) | 0.99 / 0.99 / 0.00 (0.50) | 0.99 / 0.99 / 0.00 (0.50) | 0.99 / 0.99 / 0.00 (0.50) |
+| 765 | CP | 0.76 / 0.86 / -0.11 (0.38) | 0.94 / 0.95 / -0.01 (0.69) | 0.89 / 0.97 / -0.08 (0.11) | 0.99 / 0.99 / 0.00 (0.22) |
+
+Tally, primary cell RND: mix separates 2/5 (761, 763), realised 2/5 (761, 763); need 4/5. **C0 = `neither = H-SV`.** Every other cell is also 2/5 or less for each input (NAT 2/5 each; FS 2/5 each; CP mix 1/5, realised 2/5).
+
+### 2.4 What the pattern says (D1 readings; not verdict-bearing)
+
+1. **No provenance effect.** The realised input never separates where the mixed input fails in the primary cell, and in every cell the two inputs rise and fall together (A_pair for both is high on the same seeds). Swapping rv's raw input for a realised error would not, on this evidence, make the gate information-bearing. The earliest break sits upstream of provenance.
+2. **E2 is at persistence.** E2's h1 error is 0.97-1.02 of the "nothing changes" error on every seed, and disc4 is 0.42-0.52 (chance 0.25). A permutation of action labels can only raise the error by as much as E2's prediction depends on the action. Under uniform random actions it did so on 761 (the lowest ratio, 0.974) and 763 (0.996), but not on 765 (0.988), so the ratio alone does not order the seeds; on 762, 764 and 765 the change did not even raise the error at the same ticks of the paired no-change life (A_pair 0.07-0.44). This is the N5 finding (surprise blind to the same shift, 5/5 seeds) reproduced on the E3-side signal.
+3. **Where the native loop "sees" the change, it is content-free.** NAT separates strongly on 763 and 764 (rv itself: A 0.87 / 0.97, D 0.87 / 0.81). Both are seeds where the committed loop repeats one move class (NAT entropy 1.0 and 0.34 bits) and the re-mapping turns it into a different displacement, e.g. a blocked move into movement. Any model at persistence level would flag that. On 765 the repeated class stays blocked under both maps and the change and no-change lives are **identical** after the change (A_pair 0.50 on every signal).
+4. **Even where rv carries the change, the absolute gate cannot read it.** On 763 and 764 rv rises relative to its own recent past, at a scale of 1e-6 to 1e-5 against a bar of 0.40. That is a scale observation (H1-shaped), recorded but not interpreted as C1 evidence, because C1 is gated on C0 by the registered stop rule.
+5. **Forced sampling does not diversify behaviour.** FS executed one class on 81-99% of ticks on 4/5 seeds (histograms, sec 2.1; entropy 0.06-1.53 bits against RND's 2.0). Setting the gate to "uncommitted" changes selection from argmin to softmax over a candidate set whose first actions are nearly all the same class. The action-diversity precondition (Q-111) therefore fails in the **candidate repertoire**, not at the commit gate.
+
+### 2.5 C1: not run (registered stop)
+
+Not interpreted: C0 found no input that separates on >= 4/5 seeds. Descriptive only (from the analysis output, `results/analysis_n5.txt`): the absolute 0.40 bar had appropriateness 0.00 and occupancy 1.00 in every life, because no signal comes within four orders of magnitude of it.
+
+### 2.6 C2: CANNOT_DETERMINE (registered rule), with a descriptive table
+
+RAW_REAL, K2 = 120: A / A_null / D; executed-action entropy pre -> post (bits); * = separates.
+
+| seed | RND | NAT (= FC) | FS | CP, all ticks | CP, probe-evidence ticks (n pre/post) | FC at the same ticks |
+|---|---|---|---|---|---|---|
+| 761 | 0.79 / 0.56 / 0.23 *; 1.99 -> 1.99 | 0.45 / 0.36 / 0.09; 1.81 -> 0.63 | 0.54 / 0.24 / 0.31; 1.53 -> 1.49 | 0.73 / 0.40 / 0.33 *; 2.00 -> 1.70 | 0.90 / 0.50 / 0.40 * (8/6) | 0.35 / 0.23 / 0.13 |
+| 762 | 0.82 / 0.84 / -0.02; 2.00 -> 1.99 | 0.27 / 0.60 / -0.33; 1.14 -> 0.97 | 0.41 / 0.93 / -0.52; 0.88 -> 0.98 | 0.35 / 0.53 / -0.18; 1.17 -> 1.12 | 0.28 / 0.50 / -0.22 (9/2) | 0.17 / 0.39 / -0.22 |
+| 763 | 0.73 / 0.56 / 0.17 *; 1.97 -> 1.99 | 0.91 / 0.13 / 0.78 *; 1.02 -> 1.03 | 1.00 / 0.98 / 0.02; 1.10 -> 1.10 | 0.80 / 0.34 / 0.46 *; 1.00 -> 0.98 | 0.64 / 0.45 / 0.19 (7/6) | 0.95 / 0.26 / 0.69 |
+| 764 | 0.59 / 0.61 / -0.02; 1.98 -> 2.00 | 1.00 / 0.51 / 0.49 *; 0.34 -> 0.00 | 0.88 / 0.02 / 0.86 *; 0.06 -> 0.00 | 0.98 / 0.53 / 0.45 *; 0.43 -> 0.73 | 0.93 / 0.75 / 0.18 * (4/7) | 1.00 / 0.82 / 0.18 |
+| 765 | 0.80 / 0.81 / -0.02; 1.99 -> 1.99 | 1.00 / 1.00 / 0.00; 0.37 -> 0.79 | 0.99 / 0.99 / 0.00; 0.51 -> 0.59 | 0.89 / 0.98 / -0.09; 1.10 -> 0.89 | 0.94 / 0.96 / -0.01 (9/8) | 1.00 / 1.00 / 0.00 |
+
+Tally: exposure reference RND separates on 2/5 (FS 1/5), so the registered rule returns **CANNOT_DETERMINE**: the evidence the escape question needs does not exist on most seeds, even under uniform random actions. Pooled probe-tick AUROC (report only): 0.83 in the change lives against 0.70 in the no-change lives (29 post / 37 pre ticks).
+
+One seed shows the H2 shape cleanly, and it is recorded as an instance, not a verdict. On 761 the committed loop hides a change that random actions expose (NAT D 0.09 against RND D 0.23). Sparse probes at 5% restore detection on the probe-evidence ticks (A 0.90 against a null 0.50) while the forced-committed loop, scored at the same tick positions, does not (0.35). On 761 the native loop's executed-action entropy also fell from 1.81 to 0.63 bits after the change.
+
+## 3. Verdicts
+
+| leg | verdict (all 5 seeds, registered) | screen-passing subset (761, 762) |
+|---|---|---|
+| **C0** | **`neither = H-SV`** (RND: mix 2/5, realised 2/5; need 4/5). STOP | `neither = H-SV` (1/2 each) |
+| **C1** | **`CANNOT_DETERMINE`**: registered stop after C0. Stage transfer was also cut (addendum 1b) | same |
+| **C2** | **`CANNOT_DETERMINE`**: the exposure reference separates on only 2/5, so there is no evidence for commitment to hide or surface on most seeds. One seed (761) is an H2-shaped instance | same |
+
+**Domain reached:** D1 (the signals were measured and the change's effect on them scored). The C2 clamps are interventions on the gate that change what is executed and what evidence arrives (D2 for "commitment changes the evidence stream"). They are descriptive here because the registered rule did not reach them.
+
+## 4. Routing and limits
+
+- **Route (per the plan's C0 row): E2/W3, not the commit gate.** At the W3 standard dose the one-step E2 head that rv reads is at persistence level (0.97-1.02) and weakly action-conditioned. No choice of bar, input provenance or escape probe can make the gate appropriate to a change that its input does not register. This agrees with N5 (b26d8e8d9d) and extends it from the member's own surprise to E3's rv.
+- **Two corrections for the plan's Family C table** (for the orchestrator; the plan is not edited here):
+  - (i) rv's raw input is not a realised error of the executed action even at k = 1, because E3 rolls out continuous action vectors and the body executes only their class (sec 2.2 a);
+  - (ii) in the W3-trained `build_B` agent the rv-to-bar gap is 4-5 orders of magnitude, not two.
+- **Separate finding worth an owner:** forced sampling does not produce action diversity: 1-2 classes on 4/5 seeds. The diversity precondition (Q-111) fails in the candidate repertoire. A gate or H1 fix at the commit site would not restore diversity.
+- **Limits:**
+  - S1 only; stage transfer untested (addendum 1b).
+  - Lives are 330 ticks with a 140-tick pre-window and a 50-tick post-window.
+  - The trainer is frozen during lives (upper bound on separability).
+  - Health is pinned (no deaths).
+  - The layout-redraw kind and the OWN closed-loop arm were cut before registration.
+  - 3/5 seeds miss the W3 disc4 bar, but the two passing seeds give the same verdicts.
+  - The per-seed CP probe test uses 4-9 ticks per window.
+- **Cost disclosure:**
+  - The Mac load average reached 33-72 during seed 761 (other workers' processes, some outside the lock). Seed 761's development took 975 s; the same step took 91-188 s later in the run.
+  - Seed 761's first development hold ran ~18 min, over the 15 min limit, before in-dose rotation was added (addendum 1b).
+  - Probe processes stayed alive while waiting to re-acquire the lock (sleeping in kqueue, no compute). The only compute outside a held lock was the first timing smoke's reference build (~seconds), which was killed and fixed before any registered seed.

@@ -232,7 +232,8 @@ verd = {}
 PRIMARY = "RND-perm"
 mix_n, n = tally("S1", PRIMARY, "mix")
 real_n, _ = tally("S1", PRIMARY, "real")
-mix_ok, real_ok = mix_n >= 4, real_n >= 4
+NEED_C0 = max(1, math.ceil(0.8 * n))   # >= 4/5 at n = 5; scaled to the completed n (addendum 1b)
+mix_ok, real_ok = mix_n >= NEED_C0, real_n >= NEED_C0
 if real_ok and not mix_ok:
     verd["C0"] = "SEPARATES-realised-only"
 elif real_ok and mix_ok:
