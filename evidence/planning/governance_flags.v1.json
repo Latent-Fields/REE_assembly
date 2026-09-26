@@ -8017,6 +8017,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0563",
+      "claim_ids": [
+        "MECH-598",
+        "MECH-599"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Both claims' notes say their literature is unverified; REE_assembly 3f354b10ec now verifies it (18 entries in evidence/literature/targeted_review_connectome_mech_598_599, all named PMIDs confirmed). Three note-level corrections for /governance to rule on, with no status or confidence change: (1) MECH-598's CeA substrate citation (Holland & Schiffino 2016) covers appetitive OMISSION surprise; Holland 2006 (PMID 16102981) and Calu 2010 (PMID 21145010) show the CeA route is not engaged by unexpected presentations, so the aversive-delivery trigger should cite human aversive associability (Li 2011 PMID 21909088, Zhang 2016 PMID 26711494). (2) Johansen 2010 and McHugh 2014 support MECH-598's PE trigger, not associability, because both are Rescorla-Wagner/TD signals. (3) Han 2009 (PMID 19286560) shows a cue-specific fear engram forms by excitability allocation with no associability state, so MECH-599's depends_on MECH-598 edge may belong in related_claims, and MECH-599 should be testable with MECH-598 off.",
+      "raised_by_session": "suspicious-jackson-2d8021",
+      "raised_at": "2026-09-26T17:57:59Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
