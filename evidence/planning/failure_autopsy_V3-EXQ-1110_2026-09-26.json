@@ -1,0 +1,180 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-26T18:26:46Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staged_by_session": "bt0926-ap1110 (orchestrate-20260924-breakthrough-c2 worker)",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over V3-EXQ-1110 + the run_id + --family v3_exq_1110: 0 dry / 1 real. No dry manifest exists in the family; real-run denominator = 1 run, 3 seeds x 2 arms = 6 cells.",
+  "premise_corrections": [
+    "Brief/handoff said 'SD-050 stays implemented_pending_validation'. Re-measured: SD-050 in claims.yaml is status=candidate (demoted provisional->candidate 2026-09-25, governance-20260925-0548). implemented_pending_validation is the status of the substrate_queue entry 'suffering-derivative-comparator-refractory' (the latch build this run validates), not of SD-050.",
+    "GFLAG-0562 names only the MECH-094 VALENCE_LIKING tag-write half as unexercised. Re-measured: the MECH-057a beta-gate RELEASE reuse site was ALSO never exercised -- beta_releases_at_event = 0 in all 6 cells (100 shadow bursts across both arms; 1,035 per-tick events). Red-team probe (driver's own make_config/make_env/step_agent, seed 45, latch ON, 10 episodes, Mac torch 2.10) found beta elevated on 0 of 3,000 ticks with 0 commit transitions: the 1110 harness forms NO commitment at all (config.heartbeat.beta_gate_bistable=False, no closure coupling), so 'never elevated at an event tick' is trivially true. The third native consumer, SD-051 ConditionedSafetyStore (MECH-304), was not enabled. NO native consumer of the relief-completion event moved in 1110."
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_1110_sd050_comparator_event_latch_validation_20260926T172044Z_v3",
+      "queue_id": "V3-EXQ-1110",
+      "experiment_purpose": "diagnostic",
+      "claim_ids": [
+        "SD-050"
+      ],
+      "bears_on": [
+        "substrate_queue:suffering-derivative-comparator-refractory",
+        "GFLAG-0562",
+        "MECH-302",
+        "MECH-304"
+      ],
+      "outcome": "PASS",
+      "self_route_label": "latch_one_event_per_shadow_burst_validated",
+      "failed_criterion": "none (diagnostic PASS; all of P0, C1-C5 met, criteria_non_degenerate all true)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the run tests the LATCH AMENDMENT to SD-050's comparator (event count per descent), not SD-050's own CONFIRMING test (non-scheduled, agent-produced descent + BOTH reuse-site effects per fire). SD-050 claim neither strengthened nor weakened at claim level.",
+        "biological_reference": "clear for the latch half -- phasic relief-offset signalling is one event per offset (Tanimoto 2004 opponent-timing relief; Navratilova 2012 relief-evoked phasic NAc DA); a per-tick train was the formal artefact. Partial for the tag-write half: SD-050 routes relief to a VALENCE_LIKING write at the NEAREST ACTIVE residue center, i.e. the tag lands on an existing harm-residue center, not a relief-location memory.",
+        "prerequisites": "present for event emission (limb-damage harm_obs_a stream, SD-022 scheduled curriculum, num_hazards=1 so heal descents exist); MISSING for the consumer half -- no active RBF residue center (loop never calls agent.update_residue) and NO commitment forms anywhere in this harness (red-team probe: beta elevated 0/3,000 ticks; beta_gate_bistable=False), so there is nothing for a relief event to release.",
+        "implementation": "complete for the latch (ree-v3 5d308b3 present in substrate commit 559dd6bc, dirty=false; strict-subset and legacy-identity tripwires 0 violations). The consumer pipeline is wired (agent.py:8479-8497 on origin/main 8e41454) but was coupled-but-inert in this loop -- inert by STARVED UPSTREAM, not by defect (see integration).",
+        "environment": "adequate for event COUNT (P0 shadow train ratio worst seed 14.9 vs floor 2.0; bursts 13 vs 5); inadequate for event CAUSE (relief is passive heal_rate decay of scheduled damage, not agent-produced -- the action-contingent-relief-provider gap, registration-only).",
+        "measurement": "adequate for the latch (within-arm paired shadow comparator on the identical norm stream; C1 max 1.0, C2 min 0.83; ON arm 46 fires vs 989 shadow fires, 21.5x compression; suppressed_count == shadow_fires - fires in every ON cell, recomputed). Under-instrumented for the consumer half by design: C5 counts relief-block CALLS, which equal fires trivially; inner writes and residue activity are recorded (both 0) but not criteria.",
+        "integration": "coupled but inert (inert by STARVED UPSTREAM): the event reaches the relief block once per event (C5), but the VALENCE_LIKING write is a silent no-op (ResidueField.update_valence returns at _nearest_active_center None; residue/field.py:944-946, 973-974) and the beta release branch is never entered because no commitment ever forms in this harness. Missing links: (i) no active residue center -- the loop never calls agent.update_residue; (ii) no commitment driver -- beta_gate_bistable=False and no commit/closure coupling, 0 elevated ticks. Neither is a latch defect.",
+        "scale": "adequate -- 3 held-out seeds x 40 episodes x 2 arms, ~10.6-11.0k steps per cell; 50 shadow bursts per arm."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "not a failure -- a validated PASS at the comparator-output (event-emission) edge; the downstream consumer edges (beta release, VALENCE_LIKING tag write, conditioned-safety store) were not exercised, so no claim about them follows in either direction."
+      },
+      "evidence_domain_reached": "D2 on the comparator-output edge (intervening on the latch flag changes the event flag the native consumers read, tick-for-tick against a paired shadow); D0-D1 on every consumer edge (code-read only: consumers wired, none moved). D3 on THIS harness is a measured NULL by construction: cross-arm trajectories bit-identical, as expected when neither arm has any event side effect.",
+      "biological_reference": {
+        "closest_mechanism": "phasic relief-offset signal (pain/threat offset -> VTA/NAc-shell DA burst; opponent-process relief) gating a one-shot tag + commitment release",
+        "dependencies": [
+          "a harm-state stream with genuine offsets (SD-011 z_harm_a)",
+          "an existing memory trace to tag (residue center / context)",
+          "a commitment actually in force to release (MECH-057a beta) -- absent at every tick in this harness"
+        ],
+        "is_formal_import": false,
+        "divergence": "The pre-latch per-tick train was a divergence from the one-event-per-offset biology; the latch removes it. Remaining divergence (not tested here): relief tag writes to the nearest HARM residue center rather than a relief/safety-location trace.",
+        "lit_status": "present (targeted_review_relief_completion_mechanism; MECH-302 lit anchors Andreatta 2012, Navratilova 2012, Tanimoto 2004)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Substrate-readiness diagnostic PASS; test_design scope validates the latch amendment (event count per descent) and does not instantiate SD-050's CONFIRMING test (agent-produced descent + both reuse-site effects per fire). No ceiling asserted; no build owed by THIS run.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-26 V3-EXQ-1110 (diagnostic PASS, failure_autopsy_V3-EXQ-1110_2026-09-26): the opt-in event latch (suffering_event_latch_enabled, ree-v3 5d308b3) is VALIDATED AT THE COMPARATOR-OUTPUT LEVEL ONLY -- about one relief-completion event per detected z_harm_a norm-descent (shadow burst: shadow fires delimited by >=30-tick gaps; e.g. seed 45: 89 damage onsets with a norm rise -> 18 bursts -> 15 events) on the real agent loop (worst-seed 1.00 events/burst vs <=1.5; min 0.83 vs >=0.5, i.e. 3/18 bursts on seed 45 produced no event; 46 latched vs 989 unlatched fires, 21.5x compression; strict-subset and latch-OFF legacy-identity tripwires 0 violations; 3 held-out seeds). SCOPE: no native consumer of the event moved -- 0 MECH-057a beta releases (the harness forms no commitment at any tick) and 0 MECH-094 VALENCE_LIKING writes landed (no active residue center; the loop never calls update_residue); the SD-051 conditioned-safety store was off (GFLAG-0562). Relief was passive heal of scheduled damage, not agent-produced. Non_contributory to SD-050 at claim level; SD-050's CONFIRMING test (agent-produced descent exercising BOTH reuse sites per fire) remains unrun.",
+      "per_claim_recommendation": {
+        "SD-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": true,
+          "change": "status stays candidate; append the 1110 scoped-latch note to evidence_quality_note and stamp this artifact -> diagnostic_evidence_adjudicated: true",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No build owed by this run. The substrate_queue status move for 'suffering-derivative-comparator-refractory' is a governance Step 6a validation write, carried below in recommended_substrate_status_change (not an implement-substrate routing)."
+      },
+      "recommended_substrate_status_change": {
+        "sd_id": "suffering-derivative-comparator-refractory",
+        "from": "implemented_pending_validation",
+        "to": "validated_scoped_event_emission",
+        "failure_record_update": {
+          "run_id": "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
+          "resolved": "resolved",
+          "resolved_note": "V3-EXQ-1110 (2026-09-26) PASS: about one event per detected norm-descent (shadow burst) with the latch ON (worst seed 1.00 events/burst; 46 vs 989 fires). Resolves the EVENT-COUNT failure mode only; the downstream reuse sites remain unexercised (GFLAG-0562)."
+        },
+        "validation_scope_note": "Validated at comparator output. Consumer-side (beta release, VALENCE_LIKING write, SD-051 store update) NOT exercised -- see GFLAG-0562 and the routing options in this artifact."
+      },
+      "gflag_disposition": {
+        "GFLAG-0562": "Keep OPEN (do not resolve on 1110). 1110 CONFIRMS the flag's finding and widens it: the MECH-057a beta-release half was also unexercised (0/1,035). Resolve only when a run exercises the consumer half (option B) or governance explicitly folds it into SD-050's CONFIRMING-test gate (option A)."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_note": "R1-R3 recipe run 2026-09-26 for SD-050: 0 hits before this artifact. This target is a PASS validation, category standard with a test_design note and no owed build, so it does not count either.",
+        "refused_requeue": false,
+        "route_to": "none"
+      },
+      "learning_extracted": [
+        "The latch works at its output: the comparator now emits about one relief-completion event per detected norm-descent (shadow burst) on the real agent loop -- note a 'descent' is a >=30-tick-gap shadow burst, NOT a damage event (seed 45: 89 onsets-with-rise -> 18 bursts -> 15 events), as the driver pre-registered (docstring lines 29-35).",
+        "Cross-arm trajectories are bit-identical in all 3 seeds (steps, episode lengths, norm range, injections): flipping the latch changed the event count 21x and changed nothing the agent did. Expected once neither arm has any event side effect -- it measures THIS harness, not the latch's reach in general (step 7b C7).",
+        "Integration gap discovered (inert by STARVED UPSTREAM): in the 517/1110 harness shape the relief event reaches NO native consumer -- VALENCE_LIKING writes are silent no-ops without an active residue center, and no commitment ever forms (beta_gate_bistable=False; 0/3,000 elevated ticks in the red-team probe), so there is nothing to release. The superseded 517c 'writes' metric and 1110's C5 both measured CALLS, not effects.",
+        "Instrument lesson (recording/measurement gap, forward-only): any future SD-050/MECH-302/MECH-304 test must count consumer EFFECTS (inner rbf valence writes, LIKING mass delta at the target center, beta releases with beta elevated, store prototype updates), not relief-block calls.",
+        "Design note surfaced (not adjudicated): the relief tag lands on the nearest ACTIVE harm-residue center with no valence bounding by default; under the pre-latch train that would have been ~9-24 x +1.0 LIKING writes per descent onto a harm center -- the latch matters most exactly at the half 1110 did not exercise."
+      ],
+      "routing": "governance-scope-and-queue-experiment-option",
+      "routing_options": {
+        "A": "SCOPE-AND-FOLD: governance applies the scoped latch validation (refractory entry -> validated for event emission only), SD-050 stays candidate, and the consumer half is folded into SD-050's existing CONFIRMING-test gate (agent-produced descent + BOTH reuse sites per fire), which is itself gated on the registration-only action-contingent-relief-provider (priority 4, design doc owed). No new experiment now. Cost: the consumer-half question waits on an unscheduled env design.",
+        "B": "SCOPE-AND-PROBE (recommended): as A, PLUS /queue-experiment one new-number diagnostic that exercises the unexercised native consumers with latch ON vs OFF on a bed that HAS both prerequisites -- natural candidate is V3-EXQ-916a's bed (ree-v3/experiments/v3_exq_916a_relief_safety_fishtank_showcase.py: comparator ON :378, config.heartbeat.beta_gate_bistable=True :389, agent.update_residue in-loop :688/:874; 60 relief fires in its 2026-08-11 run, but seed-1 gave 0 -> seed-risk for the precondition). 1110's own bed CANNOT serve the beta half: it forms no commitment at any tick, so a precondition of >=N beta-elevated relief ticks would fail deterministically there; if 1110's bed is kept, B must add an explicit commitment lever (bistable latch + commit driver, or a scripted beta_gate.elevate() arm) or drop the beta half. DVs: inner VALENCE_LIKING writes per event and LIKING mass delta at the written center; beta releases at events with beta elevated (plus the elevated-tick denominator, which 1110 did not record); optional arm SD-051 prototype updates per descent. Precondition per seed: >=1 active residue center AND >=N beta-elevated relief ticks, else substrate_not_ready. D2 on the consumer edges, decoupled from action-contingency (which stays SD-050's CONFIRMING test). Not a duplicate: 916a scored no consumer effects and no queue item or driver tests them (red-team F10). Owner: /queue-experiment, chipped by governance after ratification."
+      },
+      "recommended_routing_option": "B",
+      "recommended_routing_rationale": "Per the breakthrough pass's native-causal-reach rule the latch is only worth its keep if changing it changes a native consumer; 1110 shows it changes the event flag but its harness gives the event no consumer to reach. B answers the consumer question at D2 on an existing bed that already has residue accumulation and a commitment latch (916a), instead of parking it behind the unscheduled action-contingent env design; A leaves GFLAG-0562 outstanding indefinitely.",
+      "granularity_debt_trigger": {
+        "fires": false,
+        "basis": "granularity_debt_cluster.py SD-050: 1 prior tagging target (gflag0452-D1-cluster #517d, alignment 'other' -- read: strengthened at implementation level) + this one; no target reads weakened. Not granularity debt.",
+        "routing": null
+      },
+      "hypothesis_space_ledger_pending": {
+        "applies": false,
+        "reason": "No fanout_recommendation emitted and the latch question was never a registered hypothesis-space question; the leg adjudicated here opens no rival set. Nothing to pre-register or resolve (checked in staging mode; registry NOT written)."
+      },
+      "read_across_not_adjudicated": [
+        "MECH-302 (not tagged): 1110 is relevant read-across -- the relief pipeline's reuse of MECH-057a + MECH-094 remains untested (as gflag0452-D1 already recorded: 'reuse-of-completion-machinery is written into the code, not tested'). No MECH-302 disposition proposed here.",
+        "MECH-304 (not tagged): SD-051 ConditionedSafetyStore.update keys its EMA prototype on event_fired (agent.py:6996-7002). Historical MECH-304 runs with the comparator ON ran on per-tick trains (latch did not exist), so their prototype update count per descent was inflated ~9-24x. 1110 did not enable the store, so it says nothing about whether that mattered; flag for the MECH-304 owner, not adjudicated."
+      ],
+      "step7b_dispositions": {
+        "C7": "ACTED ON, not dismissed -- and it is informative. shadow_fires (and steps, episode lengths, norm_min/max, max_window_drop, curriculum_injections) are bit-identical across ARM_LATCH_OFF and ARM_LATCH_ON in every seed (recomputed from arm_results). The shadow is an instrument on the agent's own norm stream, so identity is expected only if trajectories never diverged -- and they did not, despite the driver's warning that they MAY diverge after the first event. Reading: the latch changed the event flag (46 vs 989 fires) but changed NOTHING downstream of it in this loop -- a direct measurement that the event is behaviourally inert here (no beta release, no landed tag). It strengthens the scoping; it does not undermine C1/C2 (which are within-ON-arm latched-vs-shadow comparisons, not cross-arm)."
+      },
+      "cross_arm_trajectory_identity": {
+        "seeds_identical": [
+          45,
+          46,
+          47
+        ],
+        "fields": [
+          "steps",
+          "per-episode len",
+          "shadow_fires",
+          "shadow_bursts",
+          "norm_min",
+          "norm_max",
+          "max_window_drop",
+          "curriculum_injections"
+        ],
+        "meaning": "latch flag moved the event count 989 -> 46 and moved no downstream quantity (D3 null by construction in this harness)"
+      },
+      "step7b_rerun": {
+        "run_utc": "2026-09-26T18:42:46Z",
+        "fire_count": 1,
+        "fires": [
+          "C7"
+        ],
+        "inapplicable": [],
+        "note": "C5 became applicable once the sibling .md existed and did not fire; C7 disposition unchanged (see step7b_dispositions)."
+      },
+      "red_team": {
+        "model": "fable (cross-model; drafting session on Opus)",
+        "verdict": "CONTESTED",
+        "findings_file": ".scratch/breakthrough-20260924/ap1110/redteam_findings.md (not committed; summarised here)",
+        "verdict_moving": [
+          "F1: option B's beta-half change ('run the full select_action commitment path') was a no-op -- 1110 already calls select_action every tick (driver :252); probe shows 0/3,000 beta-elevated ticks, 0 commit transitions. B as drafted would hit substrate_not_ready deterministically on 1110's bed. INCORPORATED: B rewritten to require a bed with a commitment driver (916a) or an explicit commitment lever.",
+          "F2: diagnosis said 'no commitment at relief ticks'; accurate is 'no commitment at any tick'. INCORPORATED (premise_corrections, prerequisites, integration, dependencies).",
+          "F3: V3-EXQ-916a's bed already has comparator ON + beta_gate_bistable=True + update_residue in-loop and was uncited. INCORPORATED as B's natural bed; not a duplicate (916a scored no consumer effects)."
+        ],
+        "hygiene": [
+          "F4: 'one event per damage->heal descent' overstated; a descent is a >=30-tick-gap shadow burst (seed 45: 89 onsets-with-rise -> 18 bursts -> 15 events); C2 0.83 = 3/18 bursts missed. INCORPORATED in note, learning and .md.",
+          "F5-F7: C1 not circular (latch re-arm rule != burst-gap rule); C5 tripwire only; driver's beta sample point is a valid upper bound; cross-arm identity holds but is expected given zero side effects, so '.md: no reach in any harness' over-generalised. INCORPORATED (wording narrowed to this harness).",
+          "F8: all load-bearing numbers reproduce from cells. F9: SD-050 diagnostic_evidence_adjudicated currently null so the change tail is real; moving the refractory entry to validated-scoped is correct (its target is an event-COUNT target); MECH-304 read-across premise holds (763 had comparator ON). F10: B not queued/built anywhere.",
+          "F11: .md pointed at JSON blocks that did not exist. FIXED (step7b_rerun, red_team added). F12: minor absolutes ('exactly that'; 1,035 per-tick events vs 100 bursts as the real chance count). FIXED."
+        ],
+        "post_incorporation_status": "all three verdict-moving findings concern routing option B's specification and the beta-half wording; the PASS, the scoping, the SD-050 disposition, the substrate status move and GFLAG-0562 handling were CONFIRMED by the red-team. No re-run of the red-team after incorporation."
+      }
+    }
+  ]
+}
