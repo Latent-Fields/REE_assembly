@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-26T12:43:56Z",
+  "last_review_utc": "2026-09-26T18:20:28Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1364,7 +1364,9 @@
     "v3_exq_1099_contamination_truncation_extension_probe",
     "v3_exq_1104_sd032b_effort_proxy_validation",
     "v3_exq_1090_mech449_endogenous_safety_veto_validation",
-    "v3_exq_1108_n2_replay_encoder_full_dose_pinned"
+    "v3_exq_1108_n2_replay_encoder_full_dose_pinned",
+    "v3_exq_1109_pag_freeze_veto_earliest_edge",
+    "V3-EXQ-1109"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4390,7 +4392,8 @@
     "v3_exq_1099_contamination_truncation_extension_probe_20260925T182543Z_v3",
     "v3_exq_1104_sd032b_effort_proxy_validation_20260925T202059Z_v3",
     "v3_exq_1090_mech449_endogenous_safety_veto_validation_20260925T221242Z_v3",
-    "v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3"
+    "v3_exq_1108_n2_replay_encoder_full_dose_pinned_20260926T100252Z_v3",
+    "v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7349,6 +7352,22 @@
       },
       "commits": [
         "REE_assembly 49c2c47539 (regen)"
+      ],
+      "still_pending": []
+    },
+    {
+      "utc": "2026-09-26T18:20:28Z",
+      "session": "governance-20260926 (PM, claimed_at 2026-09-26T18:02:06Z)",
+      "cycle": "governance 2026-09-26 PM",
+      "runs_reviewed": [
+        "v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3"
+      ],
+      "skim_outcome": "n/a -- only item is a diagnostic FAIL with a confirmed autopsy (no evidence PASS to skim)",
+      "dispositions": {
+        "V3-EXQ-1109": "claim-free diagnostic, non_contributory/standard per confirmed failure_autopsy_V3-EXQ-1109_2026-09-26 (route B, user rec-20260926-91862543); substrate_queue MECH-279 amended (freeze ENTRY input rewiring; owner IGW-20260926-214 staged). PASS-skim: n/a (diagnostic FAIL, autopsied)."
+      },
+      "commits": [
+        "REE_assembly 4418b06f5f (regen)"
       ],
       "still_pending": []
     }

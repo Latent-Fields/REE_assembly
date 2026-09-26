@@ -1,15 +1,17 @@
 # Pending Experiment Review
 
-Generated: `2026-09-26T18:08:09Z`  
-Last review: `2026-09-26T12:43:56Z`  
-Scanned: 3003 claim_evidence entries considered (3024 already reviewed), 4907 manifest file(s) on disk.  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-09-26T18:21:09Z`  
+Last review: `2026-09-26T18:20:28Z`  
+Scanned: 3003 claim_evidence entries considered (3025 already reviewed), 4909 manifest file(s) on disk.  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
+## Unclaimed manifests (PASS/FAIL with no claim tags)
 
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3` | 2026-09-26T16:19 | (no claim tags) | — |
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| PASS | `v3_exq_1110_sd050_comparator_event_latch_validation_20260926T172044Z_v3` | v3_exq_1110_sd050_comparator_event_latch_validation | V3-EXQ-1110 | non_contributory |
 
 ---
 

@@ -85129,8 +85129,8 @@
     as_of: 2026-08-16
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-937b_2026-08-20
-      as_of: 2026-08-20
+      from: failure_autopsy_V3-EXQ-1090_2026-09-26
+      as_of: 2026-09-26
       verdict: non_contributory/standard
   epistemic_category: standard
   # Assembly-state companion fields (MOVE-4 claims-layer follow-on). Worked
@@ -118576,6 +118576,15 @@
     z_world cue differentiation (MECH-153; the 894-series MECH-074d failure). FLAG FOR /governance
     ROUTING: a V3 analogue would be cheap (a per-code associability vector alongside BLAAttributionHead),
     so v4 is a default, not a finding.
+    GOVERNANCE 2026-09-26 (GFLAG-0563, user decision rec-20260926-d4d478b9; literature now VERIFIED by
+    lit-pull REE_assembly 3f354b10ec, 18 entries in evidence/literature/targeted_review_connectome_mech_598_599):
+    (1) the aversive-DELIVERY trigger is cited to human aversive associability -- Li et al 2011 (PMID
+    21909088) and Zhang et al 2016 (PMID 26711494). Holland & Schiffino 2016 covers CeA-dependent
+    associability after appetitive OMISSION surprise, and Holland 2006 (PMID 16102981) / Calu et al 2010
+    (PMID 21145010) show the CeA route is not engaged by unexpected presentations, so it does not support
+    the delivery trigger. (2) Johansen et al 2010 and McHugh et al 2014 support the aversive PE TRIGGER,
+    not the associability STATE -- both are Rescorla-Wagner / TD teaching signals. The 'NOT yet verified'
+    wording above is superseded by this note. No status or confidence change.
 - id: MECH-599
   title: "Cue-specific conditioned threat predictor: a discrete predictive structure encodes 'this z_world prototype predicts that harm will follow', is taught by aversive-PE events with credit distributed over candidate causes, and is read by defensive consumers (SD-099 release, MECH-279 freeze entry, E3 harm scoring) as PREDICTED near-term threat -- so that defence can precede fresh damage and can fall when the predicted threat falls even while accumulated injury (z_harm_a) remains high. Threat-side mirror of MECH-304 / SD-051."
   claim_type: mechanism_hypothesis
@@ -118592,7 +118601,6 @@
   - SD-011
   - SD-020
   - MECH-258
-  - MECH-598
   - SD-035
   - SD-099
   - MECH-279
@@ -118605,6 +118613,7 @@
   - ARC-155
   - ARC-156
   - Q-113
+  - MECH-598
   source:
   - evidence/planning/thought_intake_2026-09-26_harm_to_threat_causal_attention_and_credit.md
   - evidence/planning/thought_intake_2026-09-26_harm_source_attention_and_aversive_credit_assignment.md
@@ -118665,6 +118674,12 @@
     threat imminence); Roelofs & Dayan 2022 (Nat Rev Neurosci; freezing as information gathering). DO NOT
     build in V3 and DO NOT queue an experiment until Q-113 is answered; a V3 build would be a cheap
     SD-051 mirror, which is a /governance routing call, not this registration's.
+    GOVERNANCE 2026-09-26 (GFLAG-0563, user decision rec-20260926-d4d478b9): the depends_on MECH-598
+    edge is moved to related_claims. Han et al 2009 (PMID 19286560) shows a cue-specific fear engram forms
+    by excitability-based allocation with no associability state, so MECH-599 does not require MECH-598
+    and is testable with MECH-598 off. The V3-EXQ-1109 autopsy independently names MECH-599 alone as the
+    smaller first build step if a z_harm_s-fed freeze proves insufficient (Q-113 answer 3). No status or
+    confidence change.
 - id: Q-113
   title: "After an unexpected harm event, does the current V3 stack (SD-099 orienting + MECH-074d attribution + E1 / residue memory + E3 harm scoring) selectively strengthen the representation of the thing, action or context that caused it, such that that representation later changes prediction and action BEFORE harm recurs -- and if not, is the missing edge integration, an injury-vs-threat consumer split, a new credit mechanism (MECH-598 / MECH-599), or z_world cue identity itself?"
   claim_type: open_question

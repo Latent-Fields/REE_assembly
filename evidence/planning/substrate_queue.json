@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "igw-224-substrate-ready-suffering-deriva",
-  "last_updated_utc": "2026-09-26T17:13:12Z",
+  "last_updated_utc": "2026-09-26T18:19:33Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -2263,13 +2263,20 @@
           "metric": "every life from p0 onward exactly 6 steps (3/3 seeds, both arms); P2 contact 0.0 vs 935a 0.09-0.32; ||z_harm_a|| constant across 90 eval ticks",
           "target": "P2 contact rate > 0 with z_goal peak > 0.4 on >=2/3 seeds in the 935a harness on current main",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3",
+          "experiment_type": "v3_exq_1109_pag_freeze_veto_earliest_edge",
+          "metric": "freeze gate input ||z_harm_a||: R^2(norm -> nearest-hazard distance) -0.04/-0.04/+0.02 at final (and ~0 at init/p0); min walk norm / theta 2.68-4.96; within-life rel SD 0.009-0.049; FZ_ON life 5.917 (= STAY-only 5.92) vs FZ_OFF 11.6 (= random walk 11.7-13.1)",
+          "target": "gate input with held-out R^2 to hazard proximity >= 0.25 and a freeze_active fraction that varies with proximity under a moving policy",
+          "resolved": "open"
         }
       ],
-      "implementation_hint": "PAGFreezeGate emits committed-freeze: duration_above_threshold counter on z_harm_a; freeze_commit when (z_harm_a * duration) > theta_freeze (default 2.0); exit_threshold = theta_freeze * gaba_tone (SD-036 GABAergic decay gates BOTH entry and exit). Action constraint: select_action() replaces emitted action with no-op one-hot when freeze_active. Module: ree_core/pag/freeze_gate.py. Master flag use_pag_freeze_gate (default False). Architectural prediction: GABA agonists treat freeze catatonia (clinical observation as architectural consequence). || AMEND 2026-09-26 (failure_autopsy_V3-EXQ-1107): The lock is provable from the gate rule vs the trained ||z_harm_a|| (2.8-4.2 vs theta 0.8, no exit, max duration 0). Levers: pag_max_freeze_duration (existing config, default 0 = never) is the cheapest; otherwise scale pag_theta_freeze to the post-training ||z_harm_a|| distribution, or supply a release (the MECH-287 question). Record MECH-357 suppression counts. Confirmer before relying on it: one seed, current main, 935a config, init/p0/final probes, recording freeze_active fraction, n_commits, n_releases, _n_freeze_suppressed, per-tick ||z_harm_a|| -- with use_pag_freeze_gate False as the counterfactual. If the freeze-off arm ALSO dies in 6 steps with a saturated latent, harm-encoder saturation is the root and this entry is the wrong target. The per-run supersession audit is GFLAG-0508's, not this entry's.",
+      "implementation_hint": "PAGFreezeGate emits committed-freeze: duration_above_threshold counter on z_harm_a; freeze_commit when (z_harm_a * duration) > theta_freeze (default 2.0); exit_threshold = theta_freeze * gaba_tone (SD-036 GABAergic decay gates BOTH entry and exit). Action constraint: select_action() replaces emitted action with no-op one-hot when freeze_active. Module: ree_core/pag/freeze_gate.py. Master flag use_pag_freeze_gate (default False). Architectural prediction: GABA agonists treat freeze catatonia (clinical observation as architectural consequence). || AMEND 2026-09-26 (failure_autopsy_V3-EXQ-1107): The lock is provable from the gate rule vs the trained ||z_harm_a|| (2.8-4.2 vs theta 0.8, no exit, max duration 0). Levers: pag_max_freeze_duration (existing config, default 0 = never) is the cheapest; otherwise scale pag_theta_freeze to the post-training ||z_harm_a|| distribution, or supply a release (the MECH-287 question). Record MECH-357 suppression counts. Confirmer before relying on it: one seed, current main, 935a config, init/p0/final probes, recording freeze_active fraction, n_commits, n_releases, _n_freeze_suppressed, per-tick ||z_harm_a|| -- with use_pag_freeze_gate False as the counterfactual. If the freeze-off arm ALSO dies in 6 steps with a saturated latent, harm-encoder saturation is the root and this entry is the wrong target. The per-run supersession audit is GFLAG-0508's, not this entry's. || AMEND 2026-09-26 (failure_autopsy_V3-EXQ-1109, route B user-confirmed; governance rec-20260926-91862543): First route is a CONSUMER-REWIRING TEST, not a build: (a) the existing use_lpb_interoceptive_routing path feeds _lpb_last_output.external_magnitude (derived from proximity harm_obs) to the gate (agent.py:11473-11477) -- enable it on the 1107/1109 harness; (b) failing that, a flag-gated z_harm_s-norm (or E3 predicted-harm) entry input. Score: freeze_active varies with proximity under a moving policy; FZ_ON life vs FZ_OFF on paired env seeds. Keep use_pag_freeze_gate OFF in training curricula until then. Escalate to MECH-598/599 (cue-specific conditioned threat predictor) only if a z_harm_s-fed freeze cannot act before harm recurs (Q-113 answer 3) -- this run does not test that.",
       "implementation_status": "amend_pending_implementation",
       "implemented_session": "implement-sd036-mech279-2026-04-22",
       "implemented_utc": "2026-04-22T00:00:00Z",
-      "last_seen_session": "governance-20260926",
+      "last_seen_session": "governance-20260926 (PM cycle, claimed_at 2026-09-26T18:02:06Z)",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",
@@ -2292,7 +2299,7 @@
       "ready": true,
       "sd_id": "MECH-279",
       "status": "amend_pending_implementation",
-      "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit -- AMEND 2026-09-26: After 1fc881692d (freeze no-op = STAY), freeze-gated trained-harm harnesses produce a catatonic agent: recalibrate pag_theta_freeze to the trained ||z_harm_a|| scale, or give the freeze a release",
+      "title": "PAG freeze gate -- committed behavioural freeze with GABAergic-gated entry+exit -- AMEND 2026-09-26: After 1fc881692d (freeze no-op = STAY), freeze-gated trained-harm harnesses produce a catatonic agent: recalibrate pag_theta_freeze to the trained ||z_harm_a|| scale, or give the freeze a release -- AMEND 2026-09-26 (failure_autopsy_V3-EXQ-1109): recalibrating pag_theta_freeze is NOT sufficient -- the gate's input ||z_harm_a|| carries no hazard proximity at any checkpoint (R^2 ~0; 0.4-5% within-life SD), so any fixed theta is all-or-nothing. Rewire freeze ENTRY to an imminence-bearing input (z_harm_s proximity, whose norm carries R^2 0.42-0.66 at init; or E3 predicted harm), keeping z_harm_a for recuperation/guarding/valence (SD-011 / SD-020 / MECH-258 contract)",
       "unblocks_claims": [
         "MECH-157",
         "MECH-266",
@@ -2300,7 +2307,11 @@
         "MECH-287",
         "SD-032a",
         "SD-036",
-        "catatonic lock-in pharmacology prediction"
+        "catatonic lock-in pharmacology prediction",
+        "ARC-155",
+        "ARC-156",
+        "Q-111",
+        "MECH-280"
       ],
       "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-036 freeze coupling.",
       "validation_experiment": "V3-EXQ-475",
@@ -2308,14 +2319,16 @@
       "severity_note": "governance-20260926 user decision (walk, rec-20260926): the V3-EXQ-1107 autopsy recommended 'corrupting'; recorded as 'degrading' so /queue-experiment Step 2.5c WARNS rather than BLOCKS agent.py-touching runs. The defect bites only when use_pag_freeze_gate=True; check that flag on any queued run (GFLAG-0508 lists 475a, 600, 603v, 1068, 1097). substrate_paths normalised from the autopsy's parenthetical form to module::function form.",
       "substrate_paths": [
         "ree_core/agent.py::REEAgent.select_action",
-        "ree_core/utils/config.py",
-        "experiments/_lib"
+        "ree_core/pag/freeze_gate.py",
+        "ree_core/latent/stack.py"
       ],
       "depends_on_resolved_note": "The autopsy listed 'the MECH-287 decision conflict (B vs A)' as unresolved; it was resolved at the V3-EXQ-1106 autopsy gate (rec-20260926-78ecb89a: option A stands). governance-20260926.",
       "attach_to_flag": "GFLAG-0508",
       "confidence_note": "lock is derived from the gate predicate applied to recorded values (not merely inferred); the ilPFC (MECH-357) escape is unrecorded, and the freeze-off counterfactual is what separates 'freeze lock' from 'harm-encoder saturation'",
-      "autopsy_ref": "failure_autopsy_V3-EXQ-1107_2026-09-26",
-      "node_class": "complicated (buildable)"
+      "autopsy_ref": "failure_autopsy_V3-EXQ-1107_2026-09-26; failure_autopsy_V3-EXQ-1109_2026-09-26",
+      "node_class": "complicated (buildable)",
+      "depends_on_unresolved_note_1109": "The V3-EXQ-1109 autopsy lists as unresolved: SD-011 z_harm_s stream (trained-state proximity content unmeasured); GFLAG-0557 lineage (harm-stream / CeA onset input choice). Recorded as a note, not in depends_on_unresolved: they are measurement gaps the route-B consumer-rewiring TEST itself reads, not builds that must land first.",
+      "substrate_paths_note_2026_09_26_1109": "Replaced by the V3-EXQ-1109 autopsy's footprint per governance Step 6a-iv (a later autopsy's classification supersedes). Previous (1107, theta-recalibration route): [\"ree_core/agent.py::REEAgent.select_action\", \"ree_core/utils/config.py\", \"experiments/_lib\"]"
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
