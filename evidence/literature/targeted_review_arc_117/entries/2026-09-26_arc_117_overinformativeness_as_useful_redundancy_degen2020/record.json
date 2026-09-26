@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_117",
+  "entry_id": "2026-09-26_arc_117_overinformativeness_as_useful_redundancy_degen2020",
+  "timestamp_utc": "2026-09-26T06:11:52Z",
+  "claim_ids_tested": [
+    "ARC-117"
+  ],
+  "source": {
+    "title": "When redundancy is useful: A Bayesian approach to \"overinformative\" referring expressions",
+    "authors": [
+      "Degen, Judith",
+      "Hawkins, Robert D.",
+      "Graf, Caroline",
+      "Kreiss, Elisa",
+      "Goodman, Noah D."
+    ],
+    "year": 2020,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000186",
+    "pmid": "32237876",
+    "arxiv_id": "1903.08237",
+    "volume": "127",
+    "issue": "4",
+    "pages": "591-621"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Overinformative reference, e.g. naming colour when it is not needed to disambiguate, has long been the standard argument that speakers select by their own salience rather than by the listener's needs. Degen et al. show that an RSA speaker trading cost against informativeness under noisy, continuous semantics reproduces the colour/size asymmetry, scene-complexity, and typicality effects. So the apparent salience-driven redundancy is usefully informative to a listener, which rescues ARC-117 from its most obvious counterexample. Discounted because the rescue works partly by building perceptual reliability (a salience-like quantity) into the receiver's semantics, which blurs the dichotomy ARC-117's falsifier relies on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In the model, colour is overmodified more than size because colour terms apply more reliably, a perceptual reliability that is also what makes colour salient. Receiver-informativeness and sender-salience are therefore correlated by construction in natural scenes.",
+    "A receiver-objective vs sender-salience comparison run on naturalistic features would likely be confounded; the two arms must be dissociated by design (features whose salience and receiver-informativeness are decorrelated) or a tie is uninterpretable."
+  ],
+  "tags": [
+    "arc_117",
+    "rational_speech_act",
+    "overinformativeness",
+    "referring_expressions",
+    "salience",
+    "continuous_semantics"
+  ],
+  "mapping": {
+    "source_claim_statement": "A Rational Speech Act production model in which speakers trade off utterance cost and informativeness, with informativeness computed under a nondeterministic continuous (noisy) semantics rather than Boolean semantics, captures the colour-over-size overmodification asymmetry, increased overmodification in complex scenes and with atypical features, and increased nominal specificity with typicality.",
+    "ree_translation": "ARC-117's FAIL condition is that selection can be explained sender-locally. The canonical sender-local phenomenon, overinformative mention of salient features, turns out to be predicted by a receiver-uncertainty objective once the receiver's interpretation is modelled as noisy. So receiver-objective selection explains more than it first appears to, and the strongest known counterexample is absorbed.",
+    "mapping_caveat": "The absorption partly works by letting perceptual reliability (a salience-correlated property) enter the receiver's semantics, so this paper shows the two accounts are hard to separate in natural scenes rather than that one wins outright. Reference to objects, not communication of the sender's internal state.",
+    "source_context": "Adult speakers producing referring expressions in interactive reference games varying scene complexity, feature type (colour/size) and typicality; model comparison within the RSA framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Psychological Review, multiple datasets. Its main contribution to ARC-117 is to sharpen the falsifier's design requirement (decorrelate salience from informativeness)."
+  }
+}

@@ -1,0 +1,11 @@
+# Kiani & Shadlen (2009) -- Representation of confidence associated with a decision by neurons in the parietal cortex
+
+**What they did.** Monkeys judged the direction of noisy moving dots across a range of difficulties. On some trials, after the stimulus, a third "sure" target appeared that paid a small but certain reward. Choosing it amounts to saying "I'm not confident enough to bet on my answer." Kiani and Shadlen recorded from lateral intraparietal (LIP) neurons, the classic accumulator of motion evidence, while the animals decided.
+
+**What they found.** The monkeys took the sure option more on hard trials and on trials where they would otherwise have erred, which is behavioural confidence. And the same LIP neurons that represent the forming decision also carried the graded certainty that governed the opt-out. Confidence was, in effect, read off the state of the accumulation: how far the decision variable had got, and in how long.
+
+**What it means for ARC-116.** The claim has three stages: nonverbal generation, a felt-confidence readout, and verbal reconstruction. It insists the readout must not be derived from the reconstruction. This paper is about as clean an existence proof as one could want that a real, graded, behaviour-steering confidence readout does not need a reconstruction at all. The monkey has nothing to reconstruct into. Its confidence is a readout of the generating dynamics themselves. So the architecture ARC-116 wants, readout-from-generation, is the biological default, and the one it fears, readout-from-narrative, is not the only way confidence can arise.
+
+**What it does not show, and a mild pressure.** It cannot test the falsifier. Nothing in the preparation can be degraded on the reconstruction side, so we learn that the readout *can* exist without stage 3, not that it *stays* independent of stage 3 once stage 3 exists. And the shared neurons push against reading "non-collapsible" anatomically: generation and readout sit on one substrate here. If ARC-116 survives, it survives as a claim about distinct computations, not distinct places. That is probably what it meant anyway, but the wording should say so.
+
+**Confidence.** 0.55. Excellent source, moderate mapping: strong on one leg of the claim, silent on the dissociation-under-degradation test that the claim stakes itself on.

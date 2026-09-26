@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_116",
+  "entry_id": "2026-09-26_arc_116_dlpfc_tms_metacognition_dissociates_from_performance_rounis2010",
+  "timestamp_utc": "2026-09-26T06:11:52Z",
+  "claim_ids_tested": [
+    "ARC-116"
+  ],
+  "source": {
+    "title": "Theta-burst transcranial magnetic stimulation to the prefrontal cortex impairs metacognitive visual awareness",
+    "authors": [
+      "Rounis, Elisabeth",
+      "Maniscalco, Brian",
+      "Rothwell, John C.",
+      "Passingham, Richard E.",
+      "Lau, Hakwan"
+    ],
+    "year": 2010,
+    "venue": "Cognitive Neuroscience",
+    "doi": "10.1080/17588921003632529",
+    "pmid": "24168333",
+    "volume": "1",
+    "issue": "3",
+    "pages": "165-175"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "A causal dissociation in the right direction: bilateral DLPFC theta-burst TMS lowered metacognitive sensitivity (the fit between visibility ratings and correctness) while leaving first-order discrimination unchanged, i.e. the readout degraded while generation was preserved. That is evidence that stages 1 and 2 are separable computations. Heavily discounted because a rigorous replication (Bor et al. 2017, entered alongside) failed to find the effect and attributed it to inclusion of data unsuitable for SDT analysis.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A preregistered-style replication with an active control site found no metacognitive impairment after DLPFC cTBS (Bor et al. 2017), so this dissociation should not be treated as established.",
+    "The dissociation is readout-vs-generation (stage 2 vs 1); it does not test readout-vs-reconstruction (stage 2 vs 3), which is ARC-116's falsifier."
+  ],
+  "tags": [
+    "arc_116",
+    "metacognition",
+    "dlpfc",
+    "tms",
+    "meta_d_prime",
+    "dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Continuous theta-burst TMS to bilateral dorsolateral prefrontal cortex reduced subjects' ability to discriminate correct from incorrect perceptual judgments via visibility ratings (a change in metacognitive sensitivity, not response bias) without changing stimulus discrimination performance.",
+    "ree_translation": "If a lesion-like manipulation can degrade the readout while sparing the generating process, then the readout is not simply the generating process restated -- supporting ARC-116's claim that stages 1 and 2 are non-collapsible. It is the mirror image of the falsifier ARC-116 names (degrade reconstruction, spare readout), and methodologically the template for it.",
+    "mapping_caveat": "Visibility ratings are themselves verbal/categorical reports, so the 'readout' measured is partly a stage-3 output; the manipulation does not separate the felt readout from its report. Effect not replicated (see Bor 2017). Visual awareness task, not open-ended cognition.",
+    "source_context": "Healthy adults, masked visual discrimination with visibility ratings; bilateral DLPFC cTBS vs sham; signal detection (meta-d') analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Influential, but small sample and a failed rigorous replication pull source_quality down to 0.5. Valuable mainly as a methodological template for the degradation dissociation."
+  }
+}

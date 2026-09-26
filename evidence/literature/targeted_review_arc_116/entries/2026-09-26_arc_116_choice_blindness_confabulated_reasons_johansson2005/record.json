@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_116",
+  "entry_id": "2026-09-26_arc_116_choice_blindness_confabulated_reasons_johansson2005",
+  "timestamp_utc": "2026-09-26T06:11:52Z",
+  "claim_ids_tested": [
+    "ARC-116"
+  ],
+  "source": {
+    "title": "Failure to detect mismatches between intention and outcome in a simple decision task",
+    "authors": [
+      "Johansson, Petter",
+      "Hall, Lars",
+      "Sikstrom, Sverker",
+      "Olsson, Andreas"
+    ],
+    "year": 2005,
+    "venue": "Science",
+    "doi": "10.1126/science.1111709",
+    "pmid": "16210542",
+    "volume": "310",
+    "issue": "5745",
+    "pages": "116-119"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Choice blindness shows the verbal reconstruction stage producing fluent, introspectively framed reasons for a choice the generating process did not make. So stage 3 is not a transparent report of stage 1, and it cannot substitute for it. This is the 'neither may substitute for the generating dynamics' leg of ARC-116. Discounted because no independent nonverbal confidence readout was measured alongside the reports, so the paper shows the reconstruction/generation gap but not the readout/reconstruction dissociation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Participants gave introspectively derived reasons for choices they had not made, and most manipulations went undetected, so the verbal reconstruction is generated after the fact and can be fully decoupled from the generating process.",
+    "The verbal reports on manipulated trials were not obviously marked as less grounded, which is the collapsed-system hazard ARC-116 names: a readout built on the reconstruction would inherit its unfounded certainty."
+  ],
+  "tags": [
+    "arc_116",
+    "choice_blindness",
+    "confabulation",
+    "introspection",
+    "verbal_reconstruction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants chose the more attractive of two faces; on covertly manipulated trials they were handed the face they had NOT chosen and asked to explain their choice. Most manipulations went undetected, and participants nevertheless offered introspectively derived reasons for why they had chosen the way they did.",
+    "ree_translation": "Stage 3 (verbal reconstruction) is a generative process in its own right that builds a plausible account from the outcome it is shown, not from privileged access to stage 1. ARC-116's demand that the reconstruction not stand in for the generating dynamics is exactly the lesson: an agent that treated its reconstruction as ground truth about its own generation would be wrong in a systematic, undetectable way.",
+    "mapping_caveat": "No separate confidence readout was measured, so the paper does not show a readout preserved while reconstruction fails; it shows only that reconstruction and generation come apart. Aesthetic preference between faces is a weak-evidence, low-stakes domain where the generating signal may be faint, which inflates blindness relative to domains with strong internal evidence.",
+    "source_context": "Healthy adults, face-attractiveness choice task with covert card-swap manipulation by sleight of hand; verbal reports recorded and coded."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Science, widely replicated paradigm (choice blindness across domains). Mapping moderate: bears on stage 1 vs stage 3, not on the stage 2 readout."
+  }
+}

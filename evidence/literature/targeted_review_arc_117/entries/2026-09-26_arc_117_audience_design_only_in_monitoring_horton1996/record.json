@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_117",
+  "entry_id": "2026-09-26_arc_117_audience_design_only_in_monitoring_horton1996",
+  "timestamp_utc": "2026-09-26T06:11:52Z",
+  "claim_ids_tested": [
+    "ARC-117"
+  ],
+  "source": {
+    "title": "When do speakers take into account common ground?",
+    "authors": [
+      "Horton, William S.",
+      "Keysar, Boaz"
+    ],
+    "year": 1996,
+    "venue": "Cognition",
+    "doi": "10.1016/0010-0277(96)81418-1",
+    "pmid": "8857472",
+    "volume": "59",
+    "issue": "1",
+    "pages": "91-117"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Speakers' descriptions incorporated common ground with the listener when unhurried, but not under time pressure, leading the authors to conclude that audience design is not part of initial utterance planning and enters only as later monitoring. That is mixed for ARC-117: receiver-sensitive selection is real, but the first-pass selector looks sender-local, with the receiver model acting as a slower corrective. Discounted for age, a narrow common-ground manipulation, and later work showing earlier partner sensitivity in some conditions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Under time pressure speakers did not use common ground with the listener, so first-pass message selection can be sender-local, which is ARC-117's FAIL pattern at the level of initial planning.",
+    "Receiver-sensitive content appeared when time allowed, so the receiver model does work -- but as a monitoring/repair stage, which ARC-117 as worded (a single selection objective) does not distinguish."
+  ],
+  "tags": [
+    "arc_117",
+    "audience_design",
+    "common_ground",
+    "egocentrism",
+    "referential_communication",
+    "monitoring"
+  ],
+  "mapping": {
+    "source_claim_statement": "Speakers described objects for listeners in a referential communication task manipulating physical co-presence; descriptions without time constraints incorporated common ground, but under time pressure they did not, suggesting audience design is not used in initial utterance planning but only in monitoring plans for violations of common ground.",
+    "ree_translation": "ARC-117 predicts selection by receiver-uncertainty reduction. This paper suggests a two-stage process instead. A cheap sender-local proposal comes first, then a receiver-model check that edits it when resources allow. For ARC-117's falsifier, that means the receiver-objective advantage should depend on the compute/time budget. Under a tight budget the two arms may be indistinguishable without refuting the claim's asymptotic form.",
+    "mapping_caveat": "Common ground via physical co-presence is only one component of the receiver's uncertainty. Later studies (e.g. partner-specific effects in the Brennan/Hanna line) found earlier audience design under some conditions, so 'monitoring only' is contested. Laboratory speakers under explicit deadlines.",
+    "source_context": "Adult speakers describing objects to a listener in a modified referential communication task; common ground manipulated by physical co-presence; with and without time pressure."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Canonical Cognition paper that started the egocentric-first debate; older and contested, hence moderate source_quality. Its main value is the budget-dependence it implies for the falsifier."
+  }
+}

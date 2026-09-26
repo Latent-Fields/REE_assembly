@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_116",
+  "entry_id": "2026-09-26_arc_116_failed_replication_dlpfc_metacognition_bor2017",
+  "timestamp_utc": "2026-09-26T06:11:52Z",
+  "claim_ids_tested": [
+    "ARC-116"
+  ],
+  "source": {
+    "title": "Theta-burst transcranial magnetic stimulation to the prefrontal or parietal cortex does not impair metacognitive visual awareness",
+    "authors": [
+      "Bor, Daniel",
+      "Schwartzman, David J.",
+      "Barrett, Adam B.",
+      "Seth, Anil K."
+    ],
+    "year": 2017,
+    "venue": "PLoS One",
+    "doi": "10.1371/journal.pone.0171793",
+    "pmid": "28192502",
+    "pmc": "PMC5305100",
+    "volume": "12",
+    "issue": "2",
+    "pages": "e0171793"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.4,
+  "confidence_rationale": "Weakens ARC-116 only indirectly: it removes the best-known causal demonstration that a metacognitive readout can be degraded independently of first-order performance, by failing to replicate Rounis et al. 2010 in two experiments (between- and within-subjects, with an active control site). It does not show collapse -- a null on one stimulation target is not evidence that readout and generation are one computation -- so confidence in the weakening is modest.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No cTBS-induced metacognitive impairment was found after DLPFC or posterior parietal stimulation in a between-subjects design, nor after DLPFC in a rigorous within-subjects design.",
+    "Including data unsuitable for signal detection analysis reproduced a significant but invalid metacognitive impairment, showing how a spurious readout/generation dissociation can be manufactured by analysis choices -- a direct hazard for any REE falsifier using a meta-d'-style readout measure."
+  ],
+  "tags": [
+    "arc_116",
+    "metacognition",
+    "replication",
+    "dlpfc",
+    "tms",
+    "null_result"
+  ],
+  "mapping": {
+    "source_claim_statement": "In two experiments, continuous theta-burst TMS to DLPFC (and, in one, posterior parietal cortex) produced no metacognitive impairment relative to an active control site; a significant but invalid impairment appeared only when data unsuitable for SDT analysis were included.",
+    "ree_translation": "The empirical case that stage 2 (readout) can be selectively degraded while stage 1 (generation) is spared is weaker than the TMS literature once suggested. ARC-116's separation therefore leans more on existence arguments (readout without reconstruction, reconstruction without generation) than on clean causal dissociations -- which is exactly why the claim's own falsifier (a built dissociation under degradation) matters.",
+    "mapping_caveat": "A null at one cortical site under one stimulation protocol does not show that readout and generation are the same computation; it shows this manipulation does not separate them. The paper addresses stage 1 vs 2, not stage 2 vs 3.",
+    "source_context": "Healthy adults, visual discrimination with visibility/confidence ratings; cTBS to DLPFC or PPC vs active control site; between- and within-subjects designs; SDT analysis with strict exclusion."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.35,
+    "notes": "Careful replication, open access. The SDT-exclusion point is the most transferable lesson for REE instrument design."
+  }
+}

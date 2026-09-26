@@ -1,0 +1,11 @@
+# Degen, Hawkins, Graf, Kreiss & Goodman (2020) -- When redundancy is useful
+
+**What they did.** For decades the standing objection to rational, listener-oriented theories of reference has been overinformativeness. People say "the blue cup" when "the cup" would do, and they add colour far more often than size. The natural reading is that speakers mention what grabs *them*, which is sender salience, not what the listener needs. Degen and colleagues built an RSA speaker that trades utterance cost against informativeness to a listener, with one change. Word meanings are noisy and continuous rather than crisp and true/false.
+
+**What they found.** That one change reproduces the main patterns. It explains why colour is overmodified more than size, why overmodification rises in cluttered scenes and with atypical features ("the blue banana"), and why typicality shapes how specific nouns get. On this account, redundancy is useful: under noisy interpretation, an extra reliable feature raises the listener's chance of getting it right.
+
+**What it means for ARC-117.** It absorbs the strongest counterexample to the claim. The phenomenon that most looked like sender-salience selection is what a receiver-uncertainty objective predicts once the receiver is modelled realistically. That extends the reach of ARC-117's selection principle.
+
+**The sting in the tail.** Look at *how* it absorbs it. Colour wins because colour terms apply more reliably, and that reliability is also much of what makes colour salient. In natural scenes, "what most reduces the receiver's uncertainty" and "what is most salient to the sender" are correlated almost by construction. So the planned falsifier, receiver-objective against sender-salience at a matched budget, is at risk of an uninterpretable tie if it uses naturalistic features. The design must include features whose salience and receiver-informativeness are deliberately decorrelated. A salient feature that tells the receiver nothing, and an unremarkable one that tells them everything, are the discriminating cells. I'd put that into the claim's non-degeneracy precondition.
+
+**Confidence.** 0.55. Supports the claim's reach, and exposes a confound the experiment has to design around.
