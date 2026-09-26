@@ -3752,3 +3752,5 @@ One line per hourly tick. ASCII only.
 2026-09-26T11:01:02Z auto-defer igw-225-substrate-ready-sd-epistemic-def hash=dc2b467448e0 for 48h (complete)
 2026-09-26T11:01:26Z complete igw-225-substrate-ready-sd-epistemic-def staged->completed outcome=DUPLICATE: Not launched: already built on ree-v3 main bd58ab6 (2026-09-01, sd_epistemic_def
 2026-09-26T11:01:27Z auto-defer igw-222-substrate-ready-sd-zself-trainin hash=cc9b781d9a56 for 48h (complete)
+2026-09-26T11:01:47Z complete igw-222-substrate-ready-sd-zself-trainin staged->completed outcome=DUPLICATE: Not launched: already built on ree-v3 main 863d23d (2026-09-24, sd_zself_trainin
+2026-09-26T11:02:29Z GC removed worktree igw-225-substrate-ready-sd-epistemic-def (removed; branch deleted)
