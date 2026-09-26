@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-26T12:26:48Z",
+  "generated_at": "2026-09-26T18:08:41Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -9,8 +9,8 @@
     "docs/roadmap.md"
   ],
   "frontier": {
-    "headline": "The live front is the native learning loop itself: at REEConfig defaults ree_core does no waking gradient learning, so the closed loop is not closed inside ree_core",
-    "gate": "The gate is a ree_core-owned native waking trainer with a grad-reach guard, the root that the other broken edges hang off, and its architecture and sequencing (Q4a-d) are held for the user and /governance",
+    "headline": "The live front is still the native learning loop: ree_core now carries a default-OFF WakingTrainer, and the coupled-loop repair campaign is gating its members before the integrated acceptance run",
+    "gate": "The gate is the coupled-loop repair campaign's integrated acceptance run A1, held until the member gates pass and the W5 null detector re-validates (V3-EXQ-1105b, queued)",
     "questions": [
       {
         "id": "conversion_ceiling_root",
@@ -846,7 +846,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "166 / 265",
+      "value": "168 / 269",
       "detail": "modules recorded as built"
     },
     {
@@ -1766,7 +1766,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 275,
+      "total": 276,
       "buckets": [
         {
           "key": "active",
@@ -1885,6 +1885,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "SD-020",
+              "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
+              "status": "provisional",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 10,
+              "depends_on": [
+                "SD-011",
+                "SD-019",
+                "ARC-016"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "SD-007",
               "title": "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change.",
               "status": "implemented",
@@ -1895,22 +1911,6 @@
               "incoming_dependencies": 9,
               "depends_on": [
                 "SD-005"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "SD-020",
-              "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
-              "status": "provisional",
-              "phase": "substrate_unspecified",
-              "claim_class": "substrate_or_design",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 8,
-              "depends_on": [
-                "SD-011",
-                "SD-019",
-                "ARC-016"
               ],
               "additional_dependencies": 0
             },
@@ -2017,8 +2017,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 242,
-          "more_count": 232,
+          "count": 243,
+          "more_count": 233,
           "nodes": [
             {
               "id": "INV-049",
@@ -2260,7 +2260,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 13,
+              "incoming_dependencies": 15,
               "depends_on": [
                 "SD-036",
                 "SD-011",
@@ -2389,7 +2389,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 78,
+              "incoming_dependencies": 81,
               "depends_on": [
                 "SD-010",
                 "ARC-027"
@@ -2499,7 +2499,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 10,
+              "incoming_dependencies": 12,
               "depends_on": [
                 "SD-011",
                 "SD-032a",
@@ -2727,7 +2727,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 305,
+      "total": 307,
       "buckets": [
         {
           "key": "active",
@@ -2816,8 +2816,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 301,
-          "more_count": 291,
+          "count": 303,
+          "more_count": 293,
           "nodes": [
             {
               "id": "ARC-053",
@@ -2920,6 +2920,24 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-368",
+              "title": "Event-level write-authority gate: an explicit per-event transition from observed/represented to write-eligible over the DURABLE MODEL-UPDATE path (E1/E2 world-model and policy weights, not only episodic memory), conditioned on f(prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility). The gate decides which individual events within an already-open write channel are licensed to durably deform the model; an event may be salient, real-provenance, and in a write-permitted mode yet still fail the gate. Without it, every prediction error in an open channel writes -- the undifferentiated-global-update / catastrophic-interference failure mode.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-261",
+                "MECH-094",
+                "INV-074",
+                "SD-032a",
+                "INV-034"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "SD-040",
               "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
               "status": "candidate",
@@ -2970,27 +2988,6 @@
                 "INV-060"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-145",
-              "title": "Dynamic information governance: a complete inter-engine interface in REE requires THREE properties, not two -- (1) the decision-relevant content survives the sender's encoding, (2) sender and receiver are mutually legible so a constrained transformation between frozen endpoints exists (ARC-139 / MECH-537 / MECH-538), and (3) the exchange occurs under a routing state that grants the sender causal privilege over that receiver AT THAT MOMENT. Property (3) -- jurisdiction, or temporal/state ACCESS -- is a separate organisational level from content and from legibility, so a representation can be present, decodable, structurally connected to a downstream system, and still unable to affect it; and the corresponding repair is different in kind from an encoder fix or a bridge. The architectural consequence is that REE's effective interface graph is CONSTRUCTED rather than possessed: G_eff(t) is a function of wiring, representational geometry, control state and history, so the same computational substrate can belong to different effective networks at different times. SEPARABILITY FALSIFIER, which is the whole content of the commitment: if a static bridge between frozen endpoints restores the full behavioural phenotype irrespective of when the message is made available, level (3) is unnecessary and this commitment should be withdrawn in favour of ARC-139 plus MECH-539 alone.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "ARC-139",
-                "MECH-537",
-                "MECH-538",
-                "MECH-539",
-                "MECH-534",
-                "MECH-547",
-                "SD-091",
-                "MECH-481"
-              ],
-              "additional_dependencies": 3
             }
           ]
         }
@@ -3000,7 +2997,7 @@
   "record_counts": {
     "active": 175,
     "closed": 51,
-    "planned": 989
+    "planned": 992
   },
   "archive": {
     "snapshot_count": 117,

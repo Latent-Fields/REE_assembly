@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-26T12:33:27Z
+Generated: 2026-09-26T18:13:00Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 111
+Docs resolved to a claim: 112
 
 ## Frontmatter drift -- HARD (0)
 
@@ -55,7 +55,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `control_vector_logging.md` -- "IMPLEMENTED"
 - `corrigibility_positioning.md` -- "first pass (WS-7 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `critical_period_crystallization.md` -- "IMPLEMENTED 2026-05-17"
-- `dacc_pe_scale_normalisation.md` -- "DESIGN (design-first build, per user decision `dec-20260923T185804-MECH-268`, option 2,"
+- `dacc_pe_scale_normalisation.md` -- "IMPLEMENTED 2026-09-26, ree-v3 `c41f9d1` (design-first build, per user decision"
 - `default_mode.md` -- "stable"
 - `developmental_bootstrapping_hippo_retrieval.md` -- "Draft -- claims INV-073, MECH-325, MECH-326, ARC-072 registered (candidate)"
 - `developmental_curriculum.md` -- "provisional"

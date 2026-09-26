@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-26T12:26:44Z
+Generated: 2026-09-26T18:08:39Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -30,7 +30,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 50% | partial:1 | 2026-08-29 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-09-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-25 |
-| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-25 |
+| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-26 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-16 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
@@ -64,7 +64,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | global_workspace_jlens_plan.md | `global_workspace_jlens:A` | Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space | blocked |  | load-bearing |  | ext: observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_ | 2026-07-10 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
 | policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | blocked |  | load-bearing | V3-EXQ-938 | 2026-08-21 governance applied confirmed failure_autopsy_V3-EXQ-938_2026-08-20: non_contrib | 2026-09-25 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | [RECONCILED 2026-09-08: V3-EXQ-460k RAN 2026-06-22T19:17Z, terminal FAIL / non_contributor | 2026-09-25 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | [RECONCILED 2026-09-08: V3-EXQ-460k RAN 2026-06-22T19:17Z, terminal FAIL / non_contributor | 2026-09-26 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 RAN 2026-07-09 terminal FAIL / non_contributory ( | 2026-09-08 |
 | mech357_avoidance_efficacy_plan.md | `mech357_avoidance_efficacy:BUILD` | Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the d | partial |  | high |  |  | 2026-08-29 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-13 |
@@ -72,7 +72,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-318 absorption check done; MECH-3 | blocked_pending_substrate |  | medium |  | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-23 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress |  | medium |  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-19 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress |  | medium |  | REFRESHED 2026-06-27 (the stale '603q is QUEUED / AWAITING RUN+REVIEW' framing below is SU | 2026-07-10 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | in_progress |  | medium |  | 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery  | 2026-09-25 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | in_progress |  | medium |  | 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery  | 2026-09-26 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | in_progress |  | medium |  | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-07-20 |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate |  | medium |  | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-09-16 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I-absorption` | ARC-064 absorption checks for MECH-316 (cross-episode regularities) + MECH-317 ( | blocked_pending_substrate |  | low |  | depends_on: arc_062_rule_apprehension:GAP-I | 2026-09-01 |

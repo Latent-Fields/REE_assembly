@@ -12,6 +12,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-2`
 
@@ -21,6 +22,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-3`
 
@@ -30,6 +32,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-4`
 
@@ -39,6 +42,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-5`
 
@@ -48,6 +52,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-6`
 
@@ -57,6 +62,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-7`
 
@@ -66,6 +72,7 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `ethics_as_coherence_v5:ETH-8`
 
@@ -75,4 +82,5 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 - `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
 - `2026-09-23T18:20Z` [manifest] `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` -> [`evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json`](../../../../evidence/experiments/v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied)
 

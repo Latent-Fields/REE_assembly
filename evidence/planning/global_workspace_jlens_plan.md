@@ -15,13 +15,13 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-26"
-        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1109_2026-09-26"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "dynamic_control_discrimination_plan_20260926:family_F", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, MECH-191]
       depends_on: []
@@ -36,13 +36,13 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-09-26"
-        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1109_2026-09-26"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "dynamic_control_discrimination_plan_20260926:family_F", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, SD-027, MECH-254]
       depends_on: ["global_workspace_jlens:A"]
@@ -58,13 +58,13 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-26"
-        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1109_2026-09-26"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "dynamic_control_discrimination_plan_20260926:family_F", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, SD-027, MECH-254]
       depends_on: ["global_workspace_jlens:GATE-B"]
@@ -78,13 +78,13 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-26"
-        from: "failure_autopsy_V3-EXQ-1107_2026-09-26"
+        from: "failure_autopsy_V3-EXQ-1109_2026-09-26"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
+        bears_on: ["EVB-1409", "GFLAG-0506", "GFLAG-0508", "chip-20260925-mech287-lock-dv-path-decision", "dynamic_control_discrimination_plan_20260926:family_F", "substrate_queue:MECH-279", "substrate_queue:f_dominance_conversion_ceiling", "substrate_queue:staleness_within_episode_peak_tracker"]
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [MECH-191]
       depends_on: ["global_workspace_jlens:A"]

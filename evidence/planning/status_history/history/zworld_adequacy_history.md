@@ -149,6 +149,7 @@ Source plan: `evidence/planning/zworld_adequacy_plan.md`
 - `2026-09-08T19:50Z` [decision] `decision:INV-088@2026-09-08T19:50:33Z` -> [`evidence/decisions/decision_log.v1.jsonl#L480`](../../../../evidence/decisions/decision_log.v1.jsonl#L480) :: decision same_start_denominator (applied)
 - `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands)
 - `2026-09-24T09:11Z` [autopsy] `failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615` -> [`evidence/planning/failure_autopsy_gflag0452-D2-cluster_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_gflag0452-D2-cluster_2026-09-24.json) :: autopsy non_contributory/standard routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615 **<- live head**
+- `2026-09-26T16:22Z` [decision] `decision:INV-088@2026-09-26T16:22:29.678100Z` -> [`evidence/decisions/decision_log.v1.jsonl#L607`](../../../../evidence/decisions/decision_log.v1.jsonl#L607) :: decision accept_locus_answer_close_question (applied)
 
 ## `zworld_adequacy:ZW-2`
 
@@ -295,4 +296,5 @@ Source plan: `evidence/planning/zworld_adequacy_plan.md`
 - `2026-09-08T19:50Z` [decision] `decision:INV-088@2026-09-08T19:50:33Z` -> [`evidence/decisions/decision_log.v1.jsonl#L480`](../../../../evidence/decisions/decision_log.v1.jsonl#L480) :: decision same_start_denominator (applied)
 - `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands)
 - `2026-09-24T09:11Z` [autopsy] `failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615` -> [`evidence/planning/failure_autopsy_gflag0452-D2-cluster_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_gflag0452-D2-cluster_2026-09-24.json) :: autopsy non_contributory/standard routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615 **<- live head**
+- `2026-09-26T16:22Z` [decision] `decision:INV-088@2026-09-26T16:22:29.678100Z` -> [`evidence/decisions/decision_log.v1.jsonl#L607`](../../../../evidence/decisions/decision_log.v1.jsonl#L607) :: decision accept_locus_answer_close_question (applied)
 

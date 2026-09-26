@@ -33,7 +33,8 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-09-24T10:24Z` [decision] `decision:MECH-287@2026-09-24T10:24:41.254084Z` -> [`evidence/decisions/decision_log.v1.jsonl#L583`](../../../../evidence/decisions/decision_log.v1.jsonl#L583) :: decision demote_to_candidate (applied)
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `global_workspace_jlens:GATE-B`
 
@@ -64,7 +65,8 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-09-24T10:24Z` [decision] `decision:MECH-287@2026-09-24T10:24:41.254084Z` -> [`evidence/decisions/decision_log.v1.jsonl#L583`](../../../../evidence/decisions/decision_log.v1.jsonl#L583) :: decision demote_to_candidate (applied)
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `global_workspace_jlens:B`
 
@@ -95,7 +97,8 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-09-24T10:24Z` [decision] `decision:MECH-287@2026-09-24T10:24:41.254084Z` -> [`evidence/decisions/decision_log.v1.jsonl#L583`](../../../../evidence/decisions/decision_log.v1.jsonl#L583) :: decision demote_to_candidate (applied)
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `global_workspace_jlens:MECH-191`
 
@@ -126,5 +129,6 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-09-24T10:24Z` [decision] `decision:MECH-287@2026-09-24T10:24:41.254084Z` -> [`evidence/decisions/decision_log.v1.jsonl#L583`](../../../../evidence/decisions/decision_log.v1.jsonl#L583) :: decision demote_to_candidate (applied)
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 

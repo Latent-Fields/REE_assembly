@@ -128,7 +128,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `conversion_ceiling_campaign:P-comp`
 
@@ -254,7 +255,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `conversion_ceiling_campaign:P2-rootC`
 
@@ -380,7 +382,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `conversion_ceiling_campaign:P3-ofc`
 
@@ -506,7 +509,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `conversion_ceiling_campaign:FULLSTACK`
 
@@ -632,7 +636,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `conversion_ceiling_campaign:P4-learned-gating`
 
@@ -758,7 +763,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 
 ## `conversion_ceiling_campaign:GENERATION`
 
@@ -884,5 +890,6 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1090_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1090_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1106_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1106_2026-09-26.json) :: autopsy non_contributory/standard routing=governance
-- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-26T10:19Z` [autopsy] `failure_autopsy_V3-EXQ-1107_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1107_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate
+- `2026-09-26T17:35Z` [autopsy] `failure_autopsy_V3-EXQ-1109_2026-09-26` -> [`evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1109_2026-09-26.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
 

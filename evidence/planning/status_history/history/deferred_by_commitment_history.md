@@ -11,7 +11,8 @@ Source plan: `evidence/planning/deferred_by_commitment_plan.md`
 - `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-09-23T17:51Z` [decision] `decision:ARC-053@2026-09-23T17:51:48.806814Z` -> [`evidence/decisions/decision_log.v1.jsonl#L578`](../../../../evidence/decisions/decision_log.v1.jsonl#L578) :: decision supersede_stale_hold_no_status_change (applied)
-- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied) **<- live head**
+- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `deferred_by_commitment:DEF-2`
 
@@ -20,7 +21,8 @@ Source plan: `evidence/planning/deferred_by_commitment_plan.md`
 - `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-09-23T17:51Z` [decision] `decision:ARC-053@2026-09-23T17:51:48.806814Z` -> [`evidence/decisions/decision_log.v1.jsonl#L578`](../../../../evidence/decisions/decision_log.v1.jsonl#L578) :: decision supersede_stale_hold_no_status_change (applied)
-- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied) **<- live head**
+- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `deferred_by_commitment:DEF-3`
 
@@ -29,7 +31,8 @@ Source plan: `evidence/planning/deferred_by_commitment_plan.md`
 - `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-09-23T17:51Z` [decision] `decision:ARC-053@2026-09-23T17:51:48.806814Z` -> [`evidence/decisions/decision_log.v1.jsonl#L578`](../../../../evidence/decisions/decision_log.v1.jsonl#L578) :: decision supersede_stale_hold_no_status_change (applied)
-- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied) **<- live head**
+- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `deferred_by_commitment:DEF-4`
 
@@ -38,5 +41,6 @@ Source plan: `evidence/planning/deferred_by_commitment_plan.md`
 - `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-09-23T17:51Z` [decision] `decision:ARC-053@2026-09-23T17:51:48.806814Z` -> [`evidence/decisions/decision_log.v1.jsonl#L578`](../../../../evidence/decisions/decision_log.v1.jsonl#L578) :: decision supersede_stale_hold_no_status_change (applied)
-- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied) **<- live head**
+- `2026-09-23T17:51Z` [decision] `decision:ARC-054@2026-09-23T17:51:48.864696Z` -> [`evidence/decisions/decision_log.v1.jsonl#L579`](../../../../evidence/decisions/decision_log.v1.jsonl#L579) :: decision supersede_stale_hold_no_status_change (applied)
+- `2026-09-26T12:45Z` [decision] `decision:ARC-054@2026-09-26T12:45:44.886708Z` -> [`evidence/decisions/decision_log.v1.jsonl#L601`](../../../../evidence/decisions/decision_log.v1.jsonl#L601) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
