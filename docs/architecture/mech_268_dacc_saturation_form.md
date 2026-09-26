@@ -462,6 +462,10 @@ Any future MECH-268 experiment must satisfy all four:
      decision of whether to raise `dacc_saturation_strength` to >= 0.5, normalise `dacc_pe`,
      or make the floor track `external_task_bias`. That decision is governance's; the spike it
      was gated on has been run.
+     **Update 2026-09-26: decided (option 2, normalise `dacc_pe`) and BUILT** (ree-v3 `c41f9d1`,
+     default-off `dacc_pe_norm_enabled`; design
+     [`dacc_pe_scale_normalisation.md`](dacc_pe_scale_normalisation.md)). `dacc_saturation_strength`
+     stays 0.3; validation is V3-EXQ-1089a.
 
 None of the four is a change to f_sat.
 

@@ -46329,6 +46329,19 @@
     OUTSTANDING is closed. See failure_autopsy_V3-EXQ-729_2026-09-14 for what specifically was and
     was not established (live wiring: yes; graded/adapter behaviour in the live loop: no, still
     untested).
+
+    DACC_PE SCALE NORMALISATION (2026-09-26, ree-v3 main c41f9d1,
+    IGW-20260925-219; user decision dec-20260923T185804-MECH-268 option
+    2). Default-off dacc_pe_norm_enabled: the raw affective quantity pe_u
+    is divided by a slow per-statistic running mean (alpha 0.001, floor
+    0.1, target 0.5) BEFORE the MECH-258 precision gain, cap and f_sat,
+    so the fixed f_sat floor (s=0.3 unchanged) is in register with the
+    SD-032a mode register across trained seeds (1089 red-team sim:
+    normalised unsaturated pe p50 1.98-2.21, s=0.3 floor-release 0.99-1.00
+    on all 5 seeds vs raw 2.12-5.61 / 0-1.00). f_sat itself unchanged.
+    Design + red-team: docs/architecture/dacc_pe_scale_normalisation.md.
+    Validation V3-EXQ-1089a (normaliser ON at s=0.3, scale frozen at eval)
+    not yet queued.
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:

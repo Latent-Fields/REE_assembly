@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-gflags-20260926",
-  "last_updated_utc": "2026-09-26T13:20:44Z",
+  "last_updated_utc": "2026-09-26T14:50:45Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -13689,8 +13689,8 @@
       "sd_id": "dacc-pe-scale-normalisation",
       "title": "Normalise dacc_pe at source so MECH-268's fixed saturation floor (default strength 0.3) stops drifting against the training-dependent dacc_pe scale",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "design_first",
+      "status": "implemented",
+      "status_phase": "implemented_awaiting_validation",
       "ready": true,
       "ready_note": "ready true per the user's decision (rec-20260925-02281b11): the build is DESIGN-FIRST -- an /implement-substrate session must write and red-team the normalisation design (what statistic normalises dacc_pe, where, default-off lever, contract tests) BEFORE any ree_core edit. The default dacc_saturation_strength STAYS 0.3 (no fleet-wide default change).",
       "priority": 2,
@@ -13698,7 +13698,7 @@
         "MECH-268"
       ],
       "depends_on_unresolved": [],
-      "design_doc": null,
+      "design_doc": "docs/architecture/dacc_pe_scale_normalisation.md",
       "design_context": "docs/architecture/mech_268_dacc_saturation_form.md (floor analysis; dacc_pe consumed at salience_coordinator.py:426 on the affinity and salience paths)",
       "failure_record": [
         {
@@ -13715,8 +13715,18 @@
       "authority": "User decision 2026-09-25, rec-20260925-02281b11 (option B/2), applied by governance pass gov2-20260925-answers. Registration of an authorised, design-first build.",
       "added_session": "gov2-20260925-answers",
       "added_utc": "2026-09-25T06:22:44Z",
-      "last_seen_session": "gov2-20260925-answers",
-      "version_scope": "V3-native"
+      "last_seen_session": "igw-219-substrate-ready-dacc-pe-scale-no",
+      "version_scope": "V3-native",
+      "implementation_status": "implemented",
+      "substrate_paths": [
+        "ree-v3/ree_core/cingulate/dacc.py",
+        "ree-v3/ree_core/utils/config.py",
+        "ree-v3/ree_core/agent.py"
+      ],
+      "implemented_session": "igw-219-substrate-ready-dacc-pe-scale-no",
+      "implemented_utc": "2026-09-26T14:50:45Z",
+      "implementation_note": "IMPLEMENTED 2026-09-26, ree-v3 main c41f9d1 (IGW-20260925-219). Design-first: design + cross-model red-team in docs/architecture/dacc_pe_scale_normalisation.md (red-team caught 2 blocking defects in the first draft, both fixed: estimator starved on no-prediction configs like 1089; conditional buffers could not host a normaliser-OFF arm). Default-off dacc_pe_norm_enabled (target 0.5, alpha 0.001, floor 0.1), pre-precision divisive normalisation by a per-statistic running mean; freeze_pe_norm() for eval arms. 19 contracts + PROBED registration; full suite 7024 passed on hub. dacc_saturation_strength default stays 0.3.",
+      "validation_note": "V3-EXQ-1089a chipped to /queue-experiment (not yet queued): run normaliser ON at s=0.3, freeze scale at eval start, log pe_norm_scale per arm, gate readiness on pe_norm_updates>0, keep a normaliser-OFF arm, plus the 1089 autopsy's fresh-tick eval / per-seed headroom / >=8 seeds / disjoint 3-seed pilot."
     },
     {
       "sd_id": "sd032b-payoff-self-feedback-integrator",
