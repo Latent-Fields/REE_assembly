@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- START_PAGE_VERSION: 2026-09-26.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10,9 +11,9 @@
       --ink: #1f2328;
       --muted: #5b5f66;
       --accent: #2b6f72;
-      --accent-2: #b45a2a;
       --card: #ffffff;
       --border: #d8d0c3;
+      --code-bg: #f7f4ee;
     }
     * { box-sizing: border-box; }
     body {
@@ -22,23 +23,23 @@
       background: var(--bg);
       display: flex;
       justify-content: center;
-      padding: 48px 20px;
+      padding: 48px 16px;
     }
-    .container {
-      max-width: 640px;
-      width: 100%;
-    }
+    .container { max-width: 680px; width: 100%; }
     h1 {
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
       font-size: 26px;
       margin: 0 0 6px 0;
       letter-spacing: 0.4px;
     }
-    .subtitle {
+    h2 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 28px;
+      margin: 28px 0 10px 0;
     }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
     .step {
       background: var(--card);
       border: 1px solid var(--border);
@@ -46,12 +47,7 @@
       padding: 18px 20px;
       margin-bottom: 16px;
     }
-    .step-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+    .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
     .step-num {
       background: var(--accent);
       color: #fff;
@@ -65,32 +61,29 @@
       font-weight: 600;
       flex-shrink: 0;
     }
-    .step-title {
-      font-weight: 600;
-      font-size: 15px;
+    .step-title { font-weight: 600; font-size: 15px; }
+    .step-desc { color: var(--muted); font-size: 13px; margin-bottom: 10px; line-height: 1.55; }
+    .step-desc:last-child { margin-bottom: 0; }
+    code {
+      font-family: "SF Mono", "Fira Code", "Menlo", monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      padding: 1px 4px;
+      border-radius: 3px;
+      overflow-wrap: anywhere;
     }
-    .step-desc {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    .cmd-block {
-      position: relative;
-      margin: 6px 0;
-    }
+    .cmd-block { position: relative; margin: 6px 0 10px 0; }
     .cmd-block pre {
-      background: #f7f4ee;
+      background: var(--code-bg);
       border: 1px solid var(--border);
       border-radius: 5px;
-      padding: 10px 40px 10px 12px;
+      padding: 10px 64px 10px 12px;
       margin: 0;
       font-family: "SF Mono", "Fira Code", "Menlo", monospace;
       font-size: 12.5px;
       line-height: 1.5;
       white-space: pre-wrap;
       word-break: break-all;
-      cursor: pointer;
       user-select: all;
     }
     .copy-btn {
@@ -103,27 +96,12 @@
       padding: 3px 8px;
       font-size: 12px;
       cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.15s;
+      opacity: 0.85;
     }
     .copy-btn:hover { opacity: 1; }
-    .copy-btn.copied {
-      background: #e8f5e9;
-      border-color: #a5d6a7;
-    }
-    .label {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 3px;
-      margin-bottom: 4px;
-    }
-    .label-v3 { background: #e0f2f1; color: var(--accent); }
-    .label-v2 { background: #fbe9e7; color: var(--accent-2); }
+    .copy-btn.copied { background: #e8f5e9; border-color: #a5d6a7; }
     .open-link {
       display: inline-block;
-      margin-top: 20px;
       padding: 10px 22px;
       background: var(--accent);
       color: #fff;
@@ -131,23 +109,9 @@
       border-radius: 6px;
       font-weight: 600;
       font-size: 15px;
-      transition: background 0.15s;
     }
     .open-link:hover { background: #1e5456; }
-    .open-link-note {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 8px;
-    }
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 24px 0;
-    }
-    .status-check {
-      margin-top: 8px;
-      font-size: 13px;
-    }
+    .status-check { margin-top: 10px; font-size: 13px; }
     .status-dot {
       display: inline-block;
       width: 8px;
@@ -158,6 +122,15 @@
     .dot-ok { background: #2e7d32; }
     .dot-err { background: #c62828; }
     .dot-wait { background: #f9a825; }
+    .pages { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .pages td { padding: 7px 0; border-top: 1px solid var(--border); vertical-align: top; }
+    .pages tr:first-child td { border-top: none; }
+    .pages td:first-child { width: 120px; font-weight: 600; padding-right: 12px; }
+    .pages td:last-child { color: var(--muted); line-height: 1.45; }
+    a { color: var(--accent); }
+    .ref { color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .ref div { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ref span:first-child { min-width: 150px; }
   </style>
   <!-- Shared narrow-viewport hardening. Loaded AFTER the inline <style> above so
        its rules win specificity ties. Inert above 760px. -->
@@ -166,7 +139,7 @@
 <body>
   <div class="container">
     <h1>REE Claims Explorer</h1>
-    <div class="subtitle">Start the server, then open the explorer.</div>
+    <div class="subtitle">Start the local server, then open the explorer.</div>
 
     <!-- Step 1: Server -->
     <div class="step">
@@ -175,11 +148,21 @@
         <div class="step-title">Start the explorer server</div>
       </div>
       <div class="step-desc">
-        Open Terminal and paste this command. Keep the terminal open.
+        Easiest: double-click <code>Start Explorer.command</code> in
+        <code>/Users/dgolden/REE_Working/REE_assembly</code>. It pulls the latest
+        <code>REE_assembly</code> and <code>ree-v3</code>, stops any server already on
+        port 8000, starts a fresh one and opens the explorer. Keep its Terminal window open.
       </div>
+      <div class="step-desc">Or start it by hand in Terminal:</div>
       <div class="cmd-block">
-        <pre id="cmdServer">cd ~/Documents/GitHub/REE_Working/REE_assembly && caffeinate -i python3 serve.py</pre>
+        <pre id="cmdServer">cd /Users/dgolden/REE_Working/REE_assembly && caffeinate -i python3 serve.py --port 8000</pre>
         <button class="copy-btn" data-target="cmdServer">Copy</button>
+      </div>
+      <div class="step-desc">
+        Use this tree only. The old <code>~/Documents/GitHub/REE_Working</code> copy is
+        retired. To listen on WireGuard and localhost only, add
+        <code>--bind &lt;address&gt;</code> once per address (see
+        <code>docs/mobile_access.md</code>).
       </div>
     </div>
 
@@ -190,26 +173,59 @@
         <div class="step-title">Open the explorer</div>
       </div>
       <div class="step-desc">
-        Once the server is running (you'll see <code>[serve] REE Explorer → http://localhost:8000/explorer</code> in Terminal):
+        When Terminal prints <code>[serve] Serving:</code> the server is up.
       </div>
       <a class="open-link" href="http://localhost:8000/explorer" id="openLink">Open Explorer</a>
-      <div id="serverStatus" class="status-check"></div>
-      <div class="open-link-note">
-        This link only works after step 1. Start experiment runners from the
-        <strong>Experiments</strong> tab using the V3/V2 Start buttons.
+      <div id="serverStatus" class="status-check">
+        <span class="status-dot dot-wait"></span> Checking for the server...
       </div>
     </div>
 
-    <hr class="divider" />
+    <h2>Pages</h2>
+    <div class="step">
+      <table class="pages">
+        <tr><td><a href="http://localhost:8000/explorer">Explorer</a></td>
+            <td>Claims, governance, experiments, architecture and docs. The corner panels show workload, coordination and workspace health.</td></tr>
+        <tr><td><a href="http://localhost:8000/machines">Machines</a></td>
+            <td>Fleet status and live experiment progress, read from the coordinator.</td></tr>
+        <tr><td><a href="http://localhost:8000/workset.html">Workset</a></td>
+            <td>The inter-governance workset: what is in flight between governance cycles (chips, claims, session starts).</td></tr>
+        <tr><td><a href="http://localhost:8000/closure.html">Closure</a></td>
+            <td>The V3 closure map: closure-plan progress and the assembly frontier.</td></tr>
+        <tr><td><a href="http://localhost:8000/igw.html">IGW</a></td>
+            <td>The IGW routine ledger: automated inter-governance work items and their assignments.</td></tr>
+        <tr><td><a href="http://localhost:8000/progress">Progress</a></td>
+            <td>Scientific progress dashboard: how much closer we are to understanding REE, on four dimensions.</td></tr>
+      </table>
+    </div>
 
-    <div style="color:var(--muted);font-size:12px;line-height:1.6">
-      <strong>Quick reference</strong><br>
-      Server serves from: <code>~/Documents/GitHub/REE_Working/REE_assembly</code><br>
-      V3 queue: <code>ree-v3/experiment_queue.json</code><br>
-      V2 queue: <code>ree-v2/experiment_queue.json</code><br>
-      Runner status: <code>REE_assembly/evidence/experiments/runner_status.json</code><br>
-      Runner log: <code>REE_assembly/runner.log</code><br>
-      Python (V3): <code>/opt/local/bin/python3</code> (torch 2.10.0)
+    <h2>Running experiments</h2>
+    <div class="step">
+      <div class="step-desc">
+        Experiments run on the cloud workers. The scaler powers workers on when the
+        queue (<code>ree-v3/experiment_queue.json</code>) has work, so queueing an
+        experiment with <code>/queue-experiment</code> is normally all that is needed.
+      </div>
+      <div class="step-desc">
+        The Mac's own V3 runner is <strong>off by default</strong>. The file
+        <code>~/.ree_runner_disabled</code> keeps it down; pressing Start in the
+        explorer's <strong>Experiments</strong> tab clears that file and starts the runner.
+      </div>
+      <div class="step-desc">
+        ree-v2 is closed. Its past results stay visible in the Experiments tab, but it
+        has no runner or queue controls.
+      </div>
+    </div>
+
+    <h2>Quick reference</h2>
+    <div class="ref">
+      <div><span>Server root</span><code>/Users/dgolden/REE_Working/REE_assembly</code></div>
+      <div><span>V3 queue</span><code>ree-v3/experiment_queue.json</code></div>
+      <div><span>Results</span><code>REE_assembly/evidence/experiments/</code></div>
+      <div><span>Mac runner log</span><code>REE_assembly/runner.log</code></div>
+      <div><span>Coordinator config</span><code>REE_assembly/coordinator.env</code> (gitignored; powers the Coordination panel)</div>
+      <div><span>Live fleet snapshot</span><a href="https://github.com/Latent-Fields/REE_assembly/blob/live-status/FLEET_STATUS.md">FLEET_STATUS.md on the live-status branch</a></div>
+      <div><span>Python</span><code>/opt/local/bin/python3</code> (has torch)</div>
     </div>
   </div>
 
@@ -217,15 +233,14 @@
     // Copy buttons
     document.querySelectorAll('.copy-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const targetId = btn.getAttribute('data-target');
-        const pre = document.getElementById(targetId);
+        const pre = document.getElementById(btn.getAttribute('data-target'));
         if (!pre) return;
         const text = pre.textContent.trim();
         try {
           if (navigator.clipboard && navigator.clipboard.writeText) {
             await navigator.clipboard.writeText(text);
           } else {
-            // Fallback for file:// protocol where clipboard API is blocked
+            // Fallback for file:// where the clipboard API is blocked
             const ta = document.createElement('textarea');
             ta.value = text;
             ta.style.position = 'fixed';
@@ -245,17 +260,17 @@
       });
     });
 
-    // Check if server is reachable
+    // Is the server reachable? A no-cors fetch rejects only when nothing is
+    // listening, which is the one thing this check needs to tell apart.
     async function checkServer() {
       const el = document.getElementById('serverStatus');
       try {
-        const resp = await fetch('http://localhost:8000/explorer.html', { method: 'HEAD', mode: 'no-cors' });
-        el.innerHTML = '<span class="status-dot dot-ok"></span> Server appears to be running';
+        await fetch('http://localhost:8000/explorer.html', { method: 'HEAD', mode: 'no-cors', cache: 'no-store' });
+        el.innerHTML = '<span class="status-dot dot-ok"></span> Server is running';
       } catch {
-        el.innerHTML = '<span class="status-dot dot-err"></span> Server not detected — run step 1 first';
+        el.innerHTML = '<span class="status-dot dot-err"></span> Server not detected -- do step 1 first';
       }
     }
-    // Check on load and periodically
     checkServer();
     setInterval(checkServer, 5000);
   </script>

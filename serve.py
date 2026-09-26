@@ -17,10 +17,7 @@ API (POST, called by the Experiments tab in the explorer):
     /api/runner/v3/start          -- start V3 runner
     /api/runner/v3/stop           -- graceful drain V3 runner
     /api/runner/v3/force_stop     -- force-kill V3 runner immediately
-    /api/runner/v2/start          -- start V2 runner
-    /api/runner/v2/stop           -- graceful drain V2 runner
-    /api/runner/v2/force_stop     -- force-kill V2 runner immediately
-    /api/runner/status            -- JSON status of both runners (includes draining flag)
+    /api/runner/status            -- JSON status of the V3 runner (includes draining flag)
     /api/review/tracker        -- GET: reviewed/discussed state from review_tracker.json
     /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
     /api/experiment/detail     -- GET ?script=&queue_id=: curated manifest detail for a Completed card
@@ -229,7 +226,6 @@ def _default_python() -> str:
 
 _DEFAULT_PYTHON = _default_python()
 V3_PYTHON = _DEFAULT_PYTHON
-V2_PYTHON = _DEFAULT_PYTHON
 
 
 def _utc_now_iso_z() -> str:
@@ -257,17 +253,23 @@ RUNNERS = {
         "auto_sync": True,
         "remote_control": True,
     },
+}
+
+# Closed substrates: their evidence stays READABLE (run history, manifest
+# lookup) but they have no runner, no queue and no controls. ree-v2 closed with
+# all experiments complete, so its Start/Stop/queue surface was removed
+# 2026-09-26. Only readers that scan evidence should use _evidence_sources().
+CLOSED_SUBSTRATE_EVIDENCE = {
     "v2": {
-        "script": SERVE_DIR.parent / "ree-v2" / "experiment_runner.py",
-        "pid_file": SERVE_DIR.parent / "ree-v2" / "runner.pid",
-        "queue_file": SERVE_DIR.parent / "ree-v2" / "experiment_queue.json",
         "evidence_dir": SERVE_DIR.parent / "ree-v2" / "evidence" / "experiments",
-        "python": V2_PYTHON,
-        "label": "V2 (ree-v2)",
-        "auto_sync": True,
-        "remote_control": False,
+        "label": "V2 (ree-v2, closed)",
     },
 }
+
+
+def _evidence_sources() -> dict:
+    """Runnable substrates plus closed ones, for read-only evidence scans."""
+    return {**RUNNERS, **CLOSED_SUBSTRATE_EVIDENCE}
 
 DEFAULT_PORT = 8000
 
@@ -650,9 +652,8 @@ def run_phase3_writers_summary() -> dict:
             "|| echo 'journalctl unavailable')"
         )
         cached_at = _utc_now_iso_z()
-        # _ssh() truncates stdout to 300 chars -- not enough for the journal
-        # tail, so call subprocess directly. Same hardening as _ssh
-        # (BatchMode, ConnectTimeout, accept-new).
+        # Needs the full journal tail, so call subprocess directly. BatchMode + ConnectTimeout keep it
+        # bounded (accept-new for first contact).
         try:
             cp = subprocess.run(
                 ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5",
@@ -1134,14 +1135,14 @@ def _ensure_explorer() -> dict | None:
 
 # ── Process state (module-level, single-threaded server) ─────────────────────
 
-# Track launched processes per substrate: {"v3": Popen, "v2": Popen}
-_runner_procs: dict[str, subprocess.Popen | None] = {"v3": None, "v2": None}
+# Track launched processes per substrate: {"v3": Popen}
+_runner_procs: dict[str, subprocess.Popen | None] = {v: None for v in RUNNERS}
 # Track externally-detected PIDs per substrate
-_runner_ext_pids: dict[str, int | None] = {"v3": None, "v2": None}
+_runner_ext_pids: dict[str, int | None] = {v: None for v in RUNNERS}
 # PID of a runner THIS serve.py session asked to drain (SIGTERM / launchd
 # bootout), per substrate. See _runner_draining() for why this -- and not a
 # telemetry file or the coordinator -- is the source of truth for the flag.
-_runner_drain_pids: dict[str, int | None] = {"v3": None, "v2": None}
+_runner_drain_pids: dict[str, int | None] = {v: None for v in RUNNERS}
 
 
 def _runner_draining(ver: str, pid: int | None) -> bool:
@@ -1244,8 +1245,8 @@ _LAUNCHD_LABEL = "com.ree.runner"
 #     launchd job out, which is what actually defeats a KeepAlive respawn (the
 #     LOADED job keeps whatever KeepAlive it had when launchd read the plist,
 #     so editing the plist alone does not stop the respawn of a live job);
-#   - start_runner() below checks it, which covers the Popen paths that never
-#     touch launchd at all (start_shadow / start_coordinator).
+#   - start_runner() below checks it, which covers any Popen path that never
+#     touches launchd (a caller passing extra_env).
 # An explicit Start from the explorer clears it -- that IS the user starting
 # the runner. Nothing else clears it; `rm ~/.ree_runner_disabled` by hand is
 # the other way.
@@ -1459,7 +1460,7 @@ def _runner_pid(ver: str) -> int | None:
 
 def _any_runner_pid() -> int | None:
     """Return PID of any running runner (for legacy /api/runner/stop)."""
-    for ver in ["v3", "v2"]:
+    for ver in RUNNERS:
         pid = _runner_pid(ver)
         if pid:
             return pid
@@ -1481,7 +1482,6 @@ ALLOWED_SCRIPTS: dict[str, tuple[list[str], int]] = {
     'governance':        ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/run_governance_cycle.py')], 120),
     'governance_strict': ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/run_governance_cycle.py'), '--strict-thoughts'], 120),
     'build_indexes':     ([sys.executable, str(SERVE_DIR / 'evidence/experiments/scripts/build_experiment_indexes.py')], 60),
-    'cutover_check':     ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/check_ree_v2_cutover_readiness.py')], 30),
     'sync_task_inbox':   ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/sync_task_inbox.py')], 30),
     'thought_sweep':     ([sys.executable, str(SERVE_DIR / 'docs/thoughts/scripts/thought_sweep.py')], 60),
 }
@@ -5928,7 +5928,7 @@ def compute_claude_usage() -> dict:
 def scan_evidence_runs() -> dict:
     """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
-    for ver, cfg in RUNNERS.items():
+    for ver, cfg in _evidence_sources().items():
         ev_dir = cfg["evidence_dir"]
         if not ev_dir.exists():
             continue
@@ -6027,7 +6027,7 @@ def _find_manifest_file(script_name: str = "", queue_id: str = ""):
         # manifest.json (a lean schema that drops those bulky fields).
         flat = []
         runpack = []
-        for cfg in RUNNERS.values():
+        for cfg in _evidence_sources().values():
             ev_dir = cfg["evidence_dir"]
             if not ev_dir.exists():
                 continue
@@ -6058,7 +6058,7 @@ def _find_manifest_file(script_name: str = "", queue_id: str = ""):
                 hint = hint[len(pfx):]
                 break
         hint = hint.replace("-", "_")
-        for cfg in RUNNERS.values():
+        for cfg in _evidence_sources().values():
             ev_dir = cfg["evidence_dir"]
             if not ev_dir.exists():
                 continue
@@ -6346,15 +6346,14 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
 
 
 # -- Shadow Coordination -----------------------------------------------------
-# Backs the explorer "Shadow Coordination" panel. All shadow-only: this never
-# triggers a Phase-2 cutover. The local runner start reuses the proven
-# start_runner() path (only adding env); remote actions are bounded,
-# best-effort SSH that can never hang or crash the request.
+# Backs the explorer Coordination panel (read-only status). The former
+# /api/shadow/start and /api/coordinator/start actions (start_shadow /
+# start_coordinator) were removed 2026-09-26: they SSH-restarted `ree-runner`
+# on ree-cloud-1, and the hub runner is retired (2026-08-30, user decision --
+# CLAUDE.md "Closed on measurement" item 8). Phase 3 has been live since
+# 2026-05-29, so neither soak nor cutover action has a remaining use.
 
 _COORDINATOR_ENV_FILE = SERVE_DIR / "coordinator.env"
-_SHADOW_CLOUD_HOSTS = ["ree-cloud-1", "ree-cloud-2", "ree-cloud-3",
-                       "ree-cloud-4"]
-_SHADOW_MANUAL_HOSTS = ["Daniel-PC", "EWIN-PC"]
 
 
 def _load_coordinator_cfg() -> dict:
@@ -6677,167 +6676,8 @@ def read_shadow_status() -> dict:
             "guide": guide}
 
 
-def _ssh(host: str, user: str, remote_cmd: str,
-         timeout: int = 20) -> dict:
-    """Bounded, password-less SSH. BatchMode + ConnectTimeout guarantee it
-    fails fast instead of hanging the HTTP request. Never raises."""
-    try:
-        cp = subprocess.run(
-            ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5",
-             "-o", "StrictHostKeyChecking=accept-new",
-             f"{user}@{host}", remote_cmd],
-            capture_output=True, text=True, timeout=timeout)
-        ok = cp.returncode == 0
-        detail = (cp.stdout or cp.stderr or "").strip()[-300:]
-        return {"ok": ok, "detail": detail or ("rc=%d" % cp.returncode)}
-    except subprocess.TimeoutExpired:
-        return {"ok": False, "detail": "ssh timed out (host unreachable?)"}
-    except Exception as exc:  # noqa: BLE001
-        return {"ok": False, "detail": repr(exc)}
-
-
-def start_shadow() -> dict:
-    """Start the shadow soak: local Mac runner in shadow mode + bounded
-    best-effort SSH to bring the coordinator (ree-cloud-1) and cloud
-    runners up in shadow. Daniel-PC / EWIN-PC are reported as manual."""
-    cfg = _load_coordinator_cfg()
-    url = cfg.get("COORDINATOR_URL")
-    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
-    if not url or not tok:
-        return {"status": "error",
-                "message": "coordinator.env not configured "
-                           "(COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN). "
-                           "See coordinator.env.example."}
-    ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
-
-    local = start_runner("v3", extra_env={
-        "COORDINATION_MODE": "shadow",
-        "COORDINATOR_URL": url,
-        "COORDINATOR_TOKEN": tok,
-        "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
-        "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
-        "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
-        "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
-        # Suppress the LOCAL heartbeat + commands file writes too. The
-        # writer used to publish the canonical runner_heartbeats/<host>.json
-        # from the coordinator DB (git render retired 2026-09-06); this flag is kept
-        # so a locally-started runner never re-introduces the retired dir.
-        # Historically, without this flag, the runner's local
-        # write conflicts with the writer-pulled version on every
-        # auto-sync `git pull REE_assembly` and leaves UU markers that
-        # block subsequent pulls until a human clears them. The flag's
-        # docstring frames it as hub-only, but the same UU happens on any
-        # worker's local checkout -- the "hub-only" guidance was scoped
-        # to *writer-side* corruption, not worker-local conflicts.
-        "PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE": "1",
-    })
-
-    hosts = {}
-    for h in _SHADOW_CLOUD_HOSTS:
-        if h == "ree-cloud-1":
-            rc = ("sudo systemctl start ree-coordinator ree-sync-daemon "
-                  "&& sudo systemctl restart ree-runner")
-        else:
-            rc = "sudo systemctl restart ree-runner"
-        # Bare names like 'ree-cloud-1' do not resolve on the Mac. Let
-        # coordinator.env map each to a reachable target (WireGuard tunnel
-        # IP, ssh-config alias, ...). Default = the name (unchanged).
-        target = cfg.get("SHADOW_SSH_HOST_" + h, h)
-        hosts[h] = _ssh(target, ssh_user, rc)
-
-    manual = {h: {"status": "manual",
-                  "note": "start manually with COORDINATION_MODE=shadow"}
-              for h in _SHADOW_MANUAL_HOSTS}
-
-    return {"status": "ok", "coordinator_url": url,
-            "local_mac_runner": local, "cloud_hosts": hosts,
-            "manual_hosts": manual}
-
-
-def start_coordinator() -> dict:
-    """Phase-2 claim cutover: hub coordinator+sync modes, workers in
-    coordinator mode, Mac runner via start_runner(extra_env). Caller must
-    have drained the fleet first (no mixed git/shadow/coordinator claims)."""
-    cfg = _load_coordinator_cfg()
-    url = cfg.get("COORDINATOR_URL")
-    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
-    if not url or not tok:
-        return {"status": "error",
-                "message": "coordinator.env not configured "
-                           "(COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN). "
-                           "See coordinator.env.example."}
-    ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
-    coord_health_url = url.rstrip("/") + "/health"
-
-    hub_flip = (
-        "sudo sed -i 's/^COORDINATOR_MODE=.*/COORDINATOR_MODE=coordinator/' "
-        "/etc/ree-coordinator.env && "
-        "sudo sed -i 's/^SYNC_MODE=.*/SYNC_MODE=coordinator/' "
-        "/etc/ree-coordinator.env && "
-        "sudo systemctl restart ree-coordinator ree-sync-daemon && "
-        "sleep 2 && curl -sf " + shlex.quote(coord_health_url)
-    )
-    worker_flip = (
-        "sudo sed -i 's/COORDINATION_MODE=shadow/COORDINATION_MODE=coordinator/' "
-        "/etc/systemd/system/ree-runner.service.d/shadow.conf && "
-        "sudo systemctl daemon-reload && sudo systemctl restart ree-runner"
-    )
-
-    local = start_runner("v3", extra_env={
-        "COORDINATION_MODE": "coordinator",
-        "COORDINATOR_URL": url,
-        "COORDINATOR_TOKEN": tok,
-        "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
-        "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
-        "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
-        "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
-        # Claim-push gate (2026-06-03): coordinator /claim (db.try_claim,
-        # atomic BEGIN IMMEDIATE) is the authoritative claim mutex in
-        # coordinator mode, so the legacy attempt_claim / release_claim
-        # `claim:` commits to ree-v3/main are noise. Local queue claimed_by
-        # write is preserved; only the commit/push is skipped.
-        "PHASE3_DISABLE_RUNNER_CLAIM_PUSH": "1",
-        # Suppress the LOCAL heartbeat + commands file writes too. The
-        # writer used to publish the canonical runner_heartbeats/<host>.json
-        # from the coordinator DB (git render retired 2026-09-06); this flag is kept
-        # so a locally-started runner never re-introduces the retired dir.
-        # Historically, without this flag, the runner's local
-        # write conflicts with the writer-pulled version on every
-        # auto-sync `git pull REE_assembly` and leaves UU markers that
-        # block subsequent pulls until a human clears them. The flag's
-        # docstring frames it as hub-only, but the same UU happens on any
-        # worker's local checkout -- the "hub-only" guidance was scoped
-        # to *writer-side* corruption, not worker-local conflicts.
-        "PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE": "1",
-    })
-
-    hosts = {}
-    for h in _SHADOW_CLOUD_HOSTS:
-        target = cfg.get("SHADOW_SSH_HOST_" + h, h)
-        if h == "ree-cloud-1":
-            hosts[h] = _ssh(target, ssh_user, hub_flip + " && " + worker_flip)
-        else:
-            hosts[h] = _ssh(target, ssh_user, worker_flip)
-
-    manual = {h: {"status": "manual",
-                  "note": "flip shadow.conf to COORDINATION_MODE=coordinator "
-                           "and restart runner"}
-              for h in _SHADOW_MANUAL_HOSTS}
-
-    health = None
-    try:
-        with urllib.request.urlopen(url.rstrip("/") + "/health", timeout=8) as resp:
-            health = json.loads(resp.read().decode())
-    except Exception:
-        pass
-
-    return {"status": "ok", "phase": 2, "coordinator_url": url,
-            "hub_health": health, "local_mac_runner": local,
-            "cloud_hosts": hosts, "manual_hosts": manual}
-
-
 def stop_runner(ver: str | None = None) -> dict:
-    """Request graceful drain of a runner (ver='v3'/'v2') or any running runner.
+    """Request graceful drain of a runner (ver='v3') or any running runner.
 
     Sends SIGTERM and NOTHING ELSE, on every path including the launchd one:
     that triggers the runner's drain mode, in which it finishes the current
@@ -6848,7 +6688,7 @@ def stop_runner(ver: str | None = None) -> dict:
     Use force_stop_runner() for an immediate SIGKILL when data loss is
     acceptable.  That is the ONLY entry point permitted to end a run early.
     """
-    versions_to_try = [ver] if ver else ["v3", "v2"]
+    versions_to_try = [ver] if ver else list(RUNNERS)
 
     for v in versions_to_try:
         if v not in RUNNERS:
@@ -6914,7 +6754,7 @@ def force_stop_runner(ver: str | None = None) -> dict:
 
     Data from any in-progress experiment will be lost.
     """
-    versions_to_try = [ver] if ver else ["v3", "v2"]
+    versions_to_try = [ver] if ver else list(RUNNERS)
 
     for v in versions_to_try:
         if v not in RUNNERS:
@@ -7920,10 +7760,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(read_queue_live("v3")).encode()
             self._json_response(body)
             return
-        if path == "/api/queue/v2":
-            body = json.dumps(read_queue("v2")).encode()
-            self._json_response(body)
-            return
         if path == "/api/contributions":
             if CONTRIBUTIONS_FILE.exists():
                 body = CONTRIBUTIONS_FILE.read_bytes()
@@ -8098,15 +7934,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = stop_runner("v3")
         elif path == "/api/runner/v3/force_stop":
             result = force_stop_runner("v3")
-        elif path == "/api/runner/v2/start":
-            # An explicit Start IS the user starting the runner,
-            # so it releases the stay-down flag.
-            clear_runner_disabled_flag()
-            result = start_runner("v2")
-        elif path == "/api/runner/v2/stop":
-            result = stop_runner("v2")
-        elif path == "/api/runner/v2/force_stop":
-            result = force_stop_runner("v2")
         # Legacy endpoints (default to V3)
         elif path == "/api/runner/start":
             # An explicit Start IS the user starting the runner,
@@ -8117,10 +7944,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = stop_runner()  # stop any
         elif path == "/api/runner/force_stop":
             result = force_stop_runner()  # force-stop any
-        elif path == "/api/shadow/start":
-            result = start_shadow()
-        elif path == "/api/coordinator/start":
-            result = start_coordinator()
         elif path == "/api/run":
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length) or b'{}')
@@ -8675,7 +8498,7 @@ def main():
     print(f"[serve] Listening on:  {', '.join(a + ':' + str(args.port) for a in bind_addrs)}", flush=True)
     print(f"[serve] Serving:       {SERVE_DIR}", flush=True)
     for ver, cfg in RUNNERS.items():
-        exists = "✓" if cfg["script"].exists() else "✗"
+        exists = "ok" if cfg["script"].exists() else "MISSING"
         print(f"[serve] {cfg['label']} runner: {cfg['script']} [{exists}]", flush=True)
         print(f"[serve] {cfg['label']} python:  {cfg['python']}", flush=True)
     print(f"[serve] Runner log:    {RUNNER_LOG}", flush=True)

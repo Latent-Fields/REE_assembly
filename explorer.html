@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-20.2 -->
+<!-- EXPLORER_VERSION: 2026-09-26.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -5113,7 +5113,6 @@ END CONFLICT RESOLUTION`;
     function quickActionsHtml() {
       const actions = [
         { label: 'Build Experiment Indexes', key: 'build_indexes' },
-        { label: 'Check V2 Cutover Readiness', key: 'cutover_check' },
         { label: 'Sync Task Inbox', key: 'sync_task_inbox' },
         { label: 'Thought Sweep', key: 'thought_sweep' },
       ];
@@ -7928,7 +7927,7 @@ END CONFLICT RESOLUTION`;
       } catch (_) {}
 
       if (!items.length) {
-        for (const ver of ['v3', 'v2']) {
+        for (const ver of ['v3']) {
           try {
             const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
             if (qr.ok) {
@@ -8558,22 +8557,6 @@ END CONFLICT RESOLUTION`;
                 <div id="v3PreflightBadge" style="font-size:11px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);color:var(--muted)" title="ree-v3/tests/preflight contract layer">Preflight: checking&hellip;</div>
               </div>
 
-              <!-- V2 Runner -->
-              <div style="flex:1;min-width:220px;padding:10px 14px;background:#fdf8f5;border:1px solid #e0cfc4;border-radius:6px">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-                  <span style="font-weight:600;font-size:13px;color:var(--accent-2)">V2 Runner</span>
-                  <span id="v2StatusDot" style="font-size:12px"></span>
-                </div>
-                <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
-                  ree-v2 &bull; reads <code>ree-v2/experiment_queue.json</code>
-                </div>
-                <div style="display:flex;gap:6px">
-                  <button id="v2StartBtn" style="flex:1;font-size:12px;padding:6px 0">&#9654; Start</button>
-                  <button id="v2StopBtn" class="ghost" style="flex:1;font-size:12px;padding:6px 0">&#9632; Stop</button>
-                </div>
-                <div id="v2CtrlMsg" style="font-size:11px;color:var(--muted);min-height:16px;margin-top:4px"></div>
-              </div>
-
             </div>
             <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5">
               Runners execute experiments sequentially. Log: <code>REE_assembly/runner.log</code>.
@@ -9072,7 +9055,6 @@ END CONFLICT RESOLUTION`;
       }
 
       wireRunnerButtons('v3');
-      wireRunnerButtons('v2');
     }
 
     // ── End Experiment Runner dashboard ─────────────────────────────────────
@@ -9924,7 +9906,7 @@ END CONFLICT RESOLUTION`;
 
   <!-- Coordination panel: backs serve.py /api/shadow/status (verdict +
        machines) + /api/coordinator/phase3/writers (sync_daemon writer health,
-       Phase 3 live as of 2026-05-29) + /api/shadow/start. Element ids retain
+       Phase 3 live as of 2026-05-29). Read-only. Element ids retain
        'shadow' prefix as a single rename pass would only churn -- the JS
        above is the only consumer. -->
   <div id="coordCard" class="dock-card">
@@ -9951,9 +9933,9 @@ END CONFLICT RESOLUTION`;
       <!-- Pre-Phase-3 soak buttons removed 2026-05-31: Phase 3 cutover
            is live (sync_daemon sole git writer); the soak harness +
            manual refresh are obsolete. The auto-poll loop below
-           (setInterval 15s) keeps the panel current. Backend
-           /api/shadow/start endpoint is preserved for now in case a
-           future re-soak is needed; chip-worthy to retire if not. -->
+           (setInterval 15s) keeps the panel current. The backend
+           /api/shadow/start + /api/coordinator/start actions were
+           removed 2026-09-26 (they restarted the retired hub runner). -->
     </div>
   </div>
 

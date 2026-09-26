@@ -53,11 +53,11 @@ echo "REE Explorer launcher"
 echo "  assembly: $ROOT"
 echo ""
 
-# coordinator.env powers Shadow Coordination panel (gitignored; not on GitHub)
+# coordinator.env powers the Coordination panel (gitignored; not on GitHub)
 COORD_ENV="$ROOT/coordinator.env"
 COORD_OK=1
 if [ ! -f "$COORD_ENV" ]; then
-    echo "WARN: coordinator.env missing -- Shadow Coordination panel will show NOT_CONFIGURED."
+    echo "WARN: coordinator.env missing -- Coordination panel will show NOT_CONFIGURED."
     echo "  cp coordinator.env.example coordinator.env"
     echo "  set COORDINATOR_URL and COORDINATOR_LOCAL_TOKEN (gen_token.py on hub)"
     COORD_OK=0
@@ -66,7 +66,7 @@ else
     coord_tok="$(grep '^COORDINATOR_LOCAL_TOKEN=' "$COORD_ENV" 2>/dev/null | head -1 | cut -d= -f2- | tr -d '[:space:]')"
     if [ -z "$coord_url" ] || [ -z "$coord_tok" ]; then
         echo "WARN: coordinator.env needs non-empty COORDINATOR_URL and COORDINATOR_LOCAL_TOKEN."
-        echo "  Shadow / coordinator start buttons will fail until fixed."
+        echo "  The Coordination panel will show NOT_CONFIGURED until fixed."
         COORD_OK=0
     else
         echo "coordinator.env: OK (WireGuard hub + token set)"
@@ -146,7 +146,7 @@ echo ""
 
 if [ "$COORD_OK" -eq 1 ]; then
     verdict="$(curl -s "http://localhost:$PORT/api/shadow/status" 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('verdict','?'))" 2>/dev/null || echo "?")"
-    echo "Shadow Coordination panel: $verdict"
+    echo "Coordination panel: $verdict"
     echo ""
 fi
 
@@ -155,7 +155,7 @@ open "http://localhost:$PORT/explorer"
 
 echo ""
 echo "Explorer opened in browser."
-echo "Start experiment runners from the Experiments tab (V3/V2 Start buttons)."
+echo "The Mac V3 runner is off by default; start it from the Experiments tab if needed."
 echo ""
 echo "-- Server log below (Ctrl+C to stop) --"
 echo ""
