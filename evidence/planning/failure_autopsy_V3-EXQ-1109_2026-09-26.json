@@ -1,0 +1,314 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-26T17:35:48Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staged_by": "bt0926-ap1109 (headless worker of orchestrate-20260924-breakthrough-c2; Step 8 gate held by the orchestrator)",
+  "dry_run_checked": true,
+  "dry_run_check_note": "scripts/check_dry_run_citations.py run over the target run_id and V3-EXQ-1109/1107/1106/1090: 0 dry.",
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3",
+      "queue_id": "V3-EXQ-1109",
+      "experiment_purpose": "diagnostic",
+      "claim_ids": [],
+      "bears_on": [
+        "GFLAG-0508",
+        "substrate_queue:MECH-279",
+        "substrate_queue:f_dominance_conversion_ceiling",
+        "dynamic_control_discrimination_plan_20260926:family_F"
+      ],
+      "bears_on_note": "First three tokens carried VERBATIM from the V3-EXQ-1107 / 1090 autopsies. The fourth is new: the DCD2 plan-of-record node this probe was built for. The manifest's own bears_on (MECH-279, SD-011, MECH-449, ARC-155, ARC-156, Q-111) is read-across, not scored.",
+      "self_route_label": "f0_indeterminate",
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "Outcome FAIL because the load-bearing F0 leg returned F0_INDETERMINATE (2/3 seeds in the 0.10-0.25 R^2 band; the 0.25 bar exceeds the input ceiling on seed 48). F1 returned BOTH on 3/3 -- a VALID readout (red-team F1: LOCK was reachable via tax-free wall-pressing). F3 returned H3_LIVE by fall-through (EFFECTIVE unreachable: 0/1/0 OFF true-hazard contacts). The self-route is a hypothesis this autopsy replaces with a site-level reading (.md sec 3-4).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids []); read-across to ARC-155/ARC-156/Q-111/MECH-279 in the .md",
+        "biological_reference": "partial -- the vlPAG freeze is driven by threat IMMINENCE (CeA -> vlPAG; predatory-imminence continuum), not by accumulated tissue damage. In this harness the gate reads ||z_harm_a|| where harm_obs_a is SD-022 body damage. That is a stream mismatch with the reference, and it is load-bearing",
+        "prerequisites": "immature / unmeasured -- the freeze is ON in the training config (driver:428) and locked in EVAL by p0 (freeze_active 1.0, 3/3), but the TRAINING-time lock was not recorded; the MECH-357 scaffold suppresses the freeze during Stage-H by design (scheduler ~2635-2648), so 'trained STAY-locked throughout' is NOT established (red-team R2). Trained freeze-OFF policies are commitment-latched (beta_elevated 1.0, e3_committed 1.0 at p0/final) and move into taxed cells",
+        "implementation": "partial -- inert by DEFECT at the freeze consumer: the PAG gate reads the NORM of z_harm_a (agent.py:11478-11479), a quantity whose within-life relative SD is 0.4-5% and whose R^2 to hazard distance is ~0 at EVERY checkpoint incl. untrained; after a ~13x P0 offset it sits 2.7-5x above theta at every sampled input. Missing link: neutralising input (stream choice). The sensory stream z_harm_s (LatentState.z_harm) carries R^2 0.57-0.76 to distance and its NORM 0.42-0.66 at init (probe) -- the information exists one stream over",
+        "environment": "wrong pressures for MOVING policies -- the hazard field is 0.44-2.33 on every cell (approach threshold 0.15), so every SUCCESSFUL move costs 0.1 x field of health; hazard_approach is 88-97% of health loss for every moving scripted policy; moving-policy life ceilings ~16 (oracle). A blocked (wall-press) move pays nothing (causal_grid_world.py:2563-2564), so wall-pressing lives to the 200-step cap (red-team probe). True hazard contacts ~0 in every own-policy arm",
+        "measurement": "partly misleading -- (i) F0's R2_TRACK 0.25 is not normalised by the input ceiling (seed 48 best_in 0.188, HOLDS unreachable there) and the init-vs-final comparison is UNPAIRED (driver:941-943); (ii) F3's EFFECTIVE needs >= 5 OFF true-hazard contacts, observed 0/1/0, so NO_ORGANISM_EFFECT -> H3_LIVE is fall-through; (iii) the veto readouts do not record the commit latch (beta state, committed step index, committed-trajectory identity), which is what decides whether a No-Go reaches execution. F1 is NOT a construction defect (withdrawn, red-team F1)",
+        "integration": "coupled but inert (by defect) at freeze-gate input; coupled but inert at veto -> executed action, most likely STARVED by the commit latch (Family C), flavour to be confirmed",
+        "scale": "adequate for the questions asked (3 seeds, 600-tick walks, 12 own-policy episodes); budget is not the limit"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM partial + MEASURES + ENVIRONMENT) -- not chargeable to REE. F0/F3 verdicts are bounded by rule construction (MEASURES) in an env whose moving-policy life is set by an ambient field tax (ENVIRONMENT); the surviving mechanism findings are a consumer-side stream-choice defect at the freeze and a commit-latch route that keeps the veto out of execution -- wiring/composition, not an REE competence failure"
+      },
+      "biological_reference": {
+        "closest_mechanism": "vlPAG freeze (defensive immobility) under CeA drive, graded by threat imminence (Fanselow & Lester predatory-imminence continuum). Tissue-damage / nociceptive input drives recuperative quiescence, a different behaviour class",
+        "dependencies": [
+          "CeA threat-imminence / proximity input",
+          "a release route (vlPAG -> dlPAG switch as imminence changes; ilPFC suppression)",
+          "movement-independent exit evidence"
+        ],
+        "is_formal_import": false,
+        "divergence": "The gate input is ||encoding of accumulated body damage||. Damage is an imminence proxy only through history (R^2(input -> distance) 0.07-0.45 by sample), and its norm carries none of it. The reference mechanism reads imminence directly",
+        "lit_status": "partial -- the CeA re-probe (GFLAG-0557 lineage) and the MECH-279 build doc cover the freeze circuit. No targeted_review for 'freeze input = imminence vs damage' was checked by this autopsy; a /lit-pull is an OPTION, not the primary route"
+      },
+      "headline_readouts_explained": {
+        "F0_trained_vs_untrained": "0.139 vs 0.341 is ~70% a SAMPLE artefact. The init and final walks used different env seeds and walker RNG (driver 1109:941-943; walk_seeds = _env_seeds(seed, ck+10, ...), rng_base = seed*100000 + ck*1000). The INPUT ceiling itself fell over the same samples (R2_in 0.336 -> 0.194). The z-minus-input gap moved only +0.005 (init) -> +0.012 (p0) -> -0.055 (final). That is a modest real transmission loss at final, not 'training destroys hazard information'",
+        "F0_fidelity_0992": "the encoder follows its own input on every seed and checkpoint (R2_fid 0.98-0.9998). It transmits 67-87% (distance) or 55-99% (hazard field) of the proximity its input carries at final. The weak link is the stream: body damage carries R^2 0.07-0.45 of proximity, by sample",
+        "F0_input_R2_0194": "input ceiling at final; below R2_TRACK on 1/3 seeds (48: 0.188), so the HOLDS bar was unreachable there by construction",
+        "F0_dead_units_47pct": "NOT a training effect. The dead fraction is already 0.375/0.484/0.516 at the untrained init (mean 0.458 vs final 0.474). This reads as an input-scale property: harm_obs_a entries are ~0-0.05, so hidden pre-activations are bias-dominated (D1 inference; not probed)",
+        "F0_resting_norm_268x_theta": "||z_harm_a|| inflates ~13x during P0 (walk mean 0.28-0.34 at init -> 3.1-4.3 at p0; final 2.6-4.0) as an OFFSET: within-life relative SD 0.2-5%, R^2(norm -> distance) ~0 at every checkpoint. min walk norm / theta = 2.68-4.96, so the freeze exit (z < theta x tone) is unreachable at every sampled input (manifest gate_input_independent: true)",
+        "F1_what_kills_freeze_OFF_lives": "For the TRAINED freeze-OFF policies: the ambient hazard-field tax on successful moves, plus self-contamination on STAYs -- not hazards and not the freeze. FZ_OFF true-hazard contacts 0/6/0, resource contacts 0/3/0; seed 49's own policy STAYs 79% (contamination share ~0.48). Env-only probe on the driver's final eval env seeds: hazard_approach is 88-97% of health loss for every MOVING scripted policy (38-42% for STAY-only). FZ_OFF life 15.0/11.75/8.17 (mean 11.6) ~= the run's own ARM_WALK life 11.7/12.1/13.1. The UNTRAINED freeze-OFF agent lived 68.0 / 74.7 / 6.0 (init) by wall-pressing (blocked_move_fraction 0.87/0.86), which is tax-free; training REDUCED freeze-OFF life on 2/3 seeds (68 -> 15, 74.7 -> 11.75) as blocked moves fell to 0.34/0.33/0.07. FZ_ON life 5.917 on 3/3 = the scripted STAY-only life 5.92: the freeze-ON arm is a STAY-only policy",
+        "F3_veto": "entropy 1.45 bits (diversity precondition met 3/3). Veto fire 3.6% is PER CANDIDATE (n_signal_fired / n_candidates_scored, ~32 trajectories/tick). Attributable divergence 0.11; all four divergences are at episode steps 0-2. In every freeze-OFF own-policy arm at p0/final, beta_elevated_fraction = e3_committed_fraction = 1.0 (0.0 at init): the executed action is traj.actions[:, committed_step_idx] of the latched committed trajectory (agent.py:11444-11455), so a per-candidate No-Go reaches execution only when a new commitment forms -- the plan's own Family-C starvation row, with diversity not collapsed. Per seed: 48 = 24 No-Go applications, 0/12 episodes diverged; 49 = producer within-tick spread p50 0.0039 vs env-oracle ~0.021, 5/5 fired ticks all-fired (last-resort fallback, e3_selector.py:2439-2447); 47 = 194/222 applications in the 3 divergent episodes. Where the veto changed behaviour, veto-ON life was equal or SHORTER (17=17, 13->12, 21->17, 9->8)",
+        "F0_zharm_s_vs_zharm_a": "Stream-choice probe (untrained agent, driver's own final walk seeds and walker RNG; reproduces the run's R2_in exactly, 0.07532/0.1883/0.3184): harm_obs (z_harm_s input) R^2 to distance 0.69-0.80 and its NORM 0.50-0.66; z_harm_s (32-d) 0.57-0.76, NORM 0.42-0.66, within-life relSD 0.15-0.19; harm_obs_a (7-d body damage) 0.07-0.32, NORM ~0; z_harm_a 0.07-0.32, NORM ~0, relSD 0.004-0.010. Trained z_harm_s is UNMEASURED (weights not saved)"
+      },
+      "per_leg_reread": {
+        "F0": "Pre-registered verdict F0_INDETERMINATE stands as the rule's output. The site reading is: encoder faithful; stream weak (partial STREAM_CHOICE, above the pre-registered 0.10 cut); the consumer reads a statistic (the norm) that carries no proximity. Neither of the plan's two F0 rows (H-SV at the representation / representation holds) is the right description. The break sits one edge later, at representation -> operating point (the read statistic), together with the stream choice",
+        "F1": "BOTH stands as a valid readout (LOCK was reachable: wall-pressing is exempt from collapse by the rule, driver:114-116/1027-1031, and lives to the cap tax-free). In substance the freeze LOCK is confirmed (freeze_active 1.0 on 3/3; FZ_ON == STAY-only policy). The substantive F1 finding is that the TRAINED freeze-OFF policy lives no longer than a random walk and shorter than the untrained wall-presser on 2/3 seeds. WITHDRAWN (kept for the record): the draft's 'BOTH forced by construction' claim -- its oracle policies were forced to move every tick and omitted the tax-free wall-press policy the untrained agent actually used",
+        "F3": "F3_H3_LIVE is NOT established (EFFECTIVE unreachable). The strongest reading is the plan's third F3 row in a form the rule's entropy test could not see: action diversity is present, but execution is read from a 100%-occupied commit latch, so the veto is STARVED BY FAMILY C (repair order C then F). Secondary live legs: composition proper (seed 48), producer signal validity (seed 49), environment-limited contrast. WITHDRAWN: the draft's 'first-action aliasing' leg rested on a false premise (the executed action is not the selector's first action on latched ticks)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic, no suppression asserted. Failure mode: measurement_test_design_defect on F0 (bar above input ceiling, unpaired comparison) and F3 (unreachable EFFECTIVE; commit latch unrecorded), plus two surviving mechanism findings (freeze gate reads a content-free norm while z_harm_s carries proximity; veto starved by the commit latch) and an environment gap (ambient field tax). Not a substrate_ceiling reading.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "The manifest value stands, since there are no claims to score. The run is highly INFORMATIVE at the mechanism, measurement and environment layers (sec 7 of the .md); non_contributory here means 'scores nothing', not 'taught nothing'.",
+      "recommended_evidence_quality_note": "V3-EXQ-1109 (diagnostic, claim-free; failure_autopsy_V3-EXQ-1109_2026-09-26): F0 INDETERMINATE is bounded by a 0.25 bar above the input ceiling on 1/3 seeds and an unpaired init/final comparison; F1 BOTH is valid; F3 H3_LIVE is fall-through (EFFECTIVE unreachable: no true-hazard contacts). Surviving findings: (1) the PAG gate reads ||z_harm_a|| -- R^2 ~0 to hazard distance at every checkpoint, 0.4-5% within-life SD, 2.7-5x above theta after a ~13x P0 offset -- so no theta recalibration can make the freeze proximity-contingent, while the sensory stream z_harm_s carries R^2 0.57-0.76 (norm 0.42-0.66) at init; (2) trained freeze-OFF lives are killed by the ambient field tax on moves, at random-walk length, shorter than the untrained wall-presser on 2/3 seeds; (3) the veto is most likely starved by the 100%-occupied commit latch (Family C), with composition / signal validity secondary.",
+      "per_claim_recommendation": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "recommended_diagnostic_evidence_adjudicated": null,
+      "recommended_diagnostic_evidence_adjudicated_note": "claim-free target; no claims.yaml row to set",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-279",
+        "title_addendum": "AMEND 2026-09-26 (failure_autopsy_V3-EXQ-1109): recalibrating pag_theta_freeze is NOT sufficient -- the gate's input ||z_harm_a|| carries no hazard proximity at any checkpoint (R^2 ~0; 0.4-5% within-life SD), so any fixed theta is all-or-nothing. Rewire freeze ENTRY to an imminence-bearing input (z_harm_s proximity, whose norm carries R^2 0.42-0.66 at init; or E3 predicted harm), keeping z_harm_a for recuperation/guarding/valence (SD-011 / SD-020 / MECH-258 contract)",
+        "implementation_hint": "First route is a CONSUMER-REWIRING TEST, not a build: (a) the existing use_lpb_interoceptive_routing path feeds _lpb_last_output.external_magnitude (derived from proximity harm_obs) to the gate (agent.py:11473-11477) -- enable it on the 1107/1109 harness; (b) failing that, a flag-gated z_harm_s-norm (or E3 predicted-harm) entry input. Score: freeze_active varies with proximity under a moving policy; FZ_ON life vs FZ_OFF on paired env seeds. Keep use_pag_freeze_gate OFF in training curricula until then. Escalate to MECH-598/599 (cue-specific conditioned threat predictor) only if a z_harm_s-fed freeze cannot act before harm recurs (Q-113 answer 3) -- this run does not test that.",
+        "unblocks_claims": [
+          "MECH-279",
+          "ARC-155",
+          "ARC-156",
+          "Q-111",
+          "MECH-280"
+        ],
+        "depends_on_unresolved": [
+          "SD-011 z_harm_s stream (trained-state proximity content unmeasured)",
+          "GFLAG-0557 lineage (harm-stream / CeA onset input choice)"
+        ],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "severity_note": "UNCHANGED. The draft proposed 'corrupting'; withdrawn after red-team R1 -- the governance-20260926 walk (rec-20260926) already declined exactly this upgrade from the 1107 autopsy ('bites only when use_pag_freeze_gate=True; WARN not BLOCK'), and the 'trained STAY-locked throughout' premise the upgrade leaned on is unmeasured (R2). No new argument here engages the user's reason.",
+        "substrate_paths": [
+          "ree_core/agent.py::REEAgent.select_action",
+          "ree_core/pag/freeze_gate.py",
+          "ree_core/latent/stack.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1109_pag_freeze_veto_earliest_edge_20260926T161927Z_v3",
+          "experiment_type": "v3_exq_1109_pag_freeze_veto_earliest_edge",
+          "metric": "freeze gate input ||z_harm_a||: R^2(norm -> nearest-hazard distance) -0.04/-0.04/+0.02 at final (and ~0 at init/p0); min walk norm / theta 2.68-4.96; within-life rel SD 0.009-0.049; FZ_ON life 5.917 (= STAY-only 5.92) vs FZ_OFF 11.6 (= random walk 11.7-13.1)",
+          "target": "gate input with held-out R^2 to hazard proximity >= 0.25 and a freeze_active fraction that varies with proximity under a moving policy",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "note": "claim-free target; the claim-keyed brake does not apply. GOV-DIAG-1 keys on bears_on: check_diagnostic_chain_recurrence.py currently shows no pure-diagnostic hits on these tokens (the predecessors were claim-tagged), so this is hit 1 on GFLAG-0508 / substrate_queue:MECH-279."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "scope": "F3 only (the veto -> executed-action edge). The freeze edge routes to one named change (input rewiring), so it is not fanned out.",
+        "live_hypotheses": [
+          "H-commit: the veto is starved by the commit latch (beta elevated 100%; execution reads the committed trajectory's step, so a No-Go reaches execution only at commitment entry) -- plan sec 3 F3 row 3, Family C",
+          "H-comp: composition / authority proper (the No-Go is applied at selection but the new selection does not change the committed trajectory or its executed step)",
+          "H-sv: producer signal validity (per-candidate harm does not rank candidates by true one-step harm; seed 49 spread ~5x compressed, all-fired ticks)",
+          "H-env: environment-limited (candidate harm contrast ~ the 0.02 floor; contact-harm candidates on 3-5% of ticks)"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-commit",
+            "axis": "process",
+            "sketch": "freeze-OFF + veto ON/OFF with beta commit latch clamped open (forced sampling) vs native; plus per-tick beta state, _committed_step_idx, committed-trajectory identity before/after the No-Go, actions[:, step_idx]. Null: veto divergence unchanged when the latch is opened"
+          },
+          {
+            "hypothesis": "H-comp",
+            "axis": "measurement",
+            "sketch": "same run: on E3 ticks where a No-Go hit the would-be-selected trajectory, P(committed trajectory changes) and P(executed step changes)"
+          },
+          {
+            "hypothesis": "H-sv",
+            "axis": "representation",
+            "sketch": "same run: per-candidate producer harm vs env-oracle one-step harm of each candidate's executed step; within-tick Spearman"
+          },
+          {
+            "hypothesis": "H-env",
+            "axis": "world",
+            "sketch": "one extra env arm with the field tax below threshold away from hazards so true-contact candidates exist; null: no veto effect with >= 5 OFF true contacts"
+          }
+        ],
+        "note": "GOV-FANOUT-1. H-commit should be read against probe C (bt0926-cgdisc, Family C) first -- the plan's repair order is C then F. The other three legs can share one recording-extended run. Not a Q-111 test."
+      },
+      "learning_extracted": [
+        "A consumer that reads the NORM of a representation can be input-independent even when the vector carries the signal. Test the statistic the consumer actually reads (here R^2(norm -> distance) ~0 at every checkpoint while R^2(vector -> distance) 0.07-0.34).",
+        "Pick the stream by what it carries: the sensory harm stream z_harm_s already carries proximity (R^2 0.57-0.76, norm 0.42-0.66 at init) while the affective stream carries body damage. A threat-entry consumer wired to z_harm_a is a stream-choice defect (SD-011 / SD-020 / MECH-258 contract).",
+        "A 'life ceiling' probe must include the degenerate policies the agent actually uses. Here the tax-free wall-press policy lives to the cap, while forced-move oracles cap at ~16 (red-team F1; the draft's 'BOTH forced by construction' was wrong and is withdrawn).",
+        "An untrained-vs-trained representation comparison must be PAIRED (same env seeds and scripted actions), and a decodability bar must be normalised by the input ceiling measured on the same sample.",
+        "A dead-unit fraction is only a training finding if it moved from init: 47% was already 46% untrained.",
+        "A selection-layer veto cannot reach behaviour through a latched commitment. Record beta state, committed step index and committed-trajectory identity on every tick of any veto test (the entropy precondition alone does not detect a 100%-occupied latch).",
+        "RECORDING gaps: the commit-latch state per tick; the training-time freeze_active / MECH-357 suppression counts (the 'trained under lock' premise could not be measured); trained z_harm_s (weights not saved)."
+      ],
+      "routing": "implement-substrate",
+      "routing_options": {
+        "B": "RECOMMENDED FIRST. Consumer-rewiring TEST under MECH-279 (amend the entry's input, not theta): enable the existing use_lpb_interoceptive_routing input (external_magnitude from proximity harm_obs) or a flag-gated z_harm_s-norm / E3-predicted-harm entry input on the 1107/1109 harness; z_harm_a stays for recuperation/guarding/valence. Cheapest route; also the near-term route that would unblock the parked MECH-280 and makes ARC-155/ARC-156 PAG designs meaningful.",
+        "A": "V3-EXQ-1109a (same question, recording-extended): paired init/final walks + ceiling-normalised F0 + TRAINED z_harm_s readouts; F3 commit-latch recording (beta state, step_idx, committed-trajectory identity, executed step) + producer-vs-oracle candidate harm + optional low-tax env arm; training-time freeze/suppression counts. ~75 min cloud. Read F3's H-commit against probe C (Family C) first.",
+        "MECH-598/599": "NOT indicated by this data. Name as the build route only if (i) a z_harm_s-fed freeze still cannot act before harm recurs, or (ii) 1109a shows the veto producer's per-candidate harm does not track oracle harm (H-sv) -- i.e. Q-113 answer 3. This run shows a stream-choice problem, which the plan and the harm-to-threat page both rank as the cheaper first route. If that conditional fires, MECH-599 (cue-specific conditioned threat predictor) ALONE is the smaller first build step -- the lit-pull (REE_assembly 3f354b10ec, GFLAG-0563) finds it testable without MECH-598; the depends_on edge is a /governance call.",
+        "recommendation": "B first (decisive at D1 for the stream: z_harm_s carries what z_harm_a lacks; D3 for the lock: freeze ON == STAY-only policy, half the life). Run A scoped to F3 + trained z_harm_s only if Q-111 leg-1 data is still wanted, after probe C reports. Do not route MECH-598/599 builds on this evidence.",
+        "design_constraints_for_follow_on_arms": "From the same lit-pull: log orienting separately from learning rate; any threat store must subtract its own prediction from its teaching signal (Ozawa 2017)."
+      }
+    }
+  ],
+  "read_across_not_adjudicated": {
+    "ARC-155": "H1's shape is present at the PAG (the scale moved ~13x in P0 against a fixed theta 0.8), but ARC-155's own caveat applies: denominating a norm that carries ~0 proximity cannot restore the information. Own-scale PAG designs are NOT yet runnable. This is the plan's C1 'content-blind' outcome, arriving at the PAG site before the test.",
+    "ARC-156": "The surviving-input design needs an input that carries imminence; the current gate input does not. Blocked on the same input change as MECH-279.",
+    "Q-111": "Leg-1 precondition: action diversity with freeze OFF is present (1.2-1.6 bits), but commitment occupancy is 100% (beta_elevated 1.0), so the veto is most likely starved by Family C. H3 is neither weakened nor supported.",
+    "MECH-279 / 1107 autopsy": "1107 routed to 'recalibrate pag_theta_freeze to the trained scale, or give a release'. This run shows theta recalibration alone cannot produce proximity-contingent freezing (content-free norm). The release half (1106: a movement-independent source) still stands. Severity: unchanged at 'degrading' (user decision rec-20260926 respected).",
+    "dynamic_control_discrimination_plan_20260926 sec 6": "Neither F0 row applies cleanly. The plan's rule 'F0 H-SV -> do not amend MECH-279' assumed the break is either at the representation or absent. It sits at the consumer's read statistic, which IS MECH-279's input wiring, so an amend of MECH-279 (its INPUT, not its theta) is the right target.",
+    "Q086-zharma-calibration-vs-ecological": "Consistent with the confirmed H-calibration-pathology leg (z_harm_a pegged high, sub-floor CoV). Not re-adjudicated here; recorded as corroboration on a new substrate path (limb-damage stream).",
+    "MECH-280": "The consumer-rewiring test (option B) is the near-term route that would unblock the parked MECH-280, per the harm-to-threat causal credit page (REE_assembly/docs/architecture/harm_to_threat_causal_credit.md).",
+    "MECH-598/MECH-599/Q-113": "Candidate claims registered 2026-09-26 from this run's observation. This run supports Q-113's answer 2 at the PAG ('semantic split: injury and threat need separate consumer contracts'): z_harm_s carries proximity, z_harm_a does not, and the consumer reads the wrong one. It does not test answers 3 or 4.",
+    "lit_pull_3f354b10ec_GFLAG-0563": "Roelofs & Dayan 2022 and Moscarello & Penzo 2022: defensive consumers read PREDICTED threat. This supports option B's direction (freeze entry reads predicted/proximity threat, not raw z_harm_a), consistent with the 1109 stream-choice probe. It is supportive, not decisive."
+  },
+  "hypothesis_space_ledger_pending": {
+    "mode": "A (pre-register, new question) -- DRAFTED ONLY (staging mode; hypothesis_space_registry.v1.json NOT written)",
+    "growth_restriction_check": "not applicable -- proposes a NEW question; no existing qid is grown",
+    "question": {
+      "qid": "q111_leg1_veto_inertness_locus",
+      "title": "With the freeze removed and action diversity present, why does the MECH-449 veto change executed action in only ~11% of episodes (all at steps 0-2) and never improve survival (V3-EXQ-1109 F3)?",
+      "short_title": "veto inertness locus (Q-111 leg-1 precondition)",
+      "claims": [
+        "Q-111",
+        "MECH-449"
+      ],
+      "registered_utc": "<date -u at apply time>",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1109_2026-09-26.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "hypotheses": [
+        {
+          "hid": "H-commit",
+          "label": "starved by the commit latch (Family C)",
+          "axis": "process",
+          "basis": "beta_elevated = e3_committed = 1.0 in all freeze-OFF arms at p0/final; execution reads traj.actions[:, committed_step_idx] (agent.py:11444-11455); divergences only at steps 0-2",
+          "adjudicating_runs": [
+            "V3-EXQ-1109a (proposed) / probe C (bt0926-cgdisc) for H-commit"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-comp",
+          "label": "composition/authority proper",
+          "axis": "process",
+          "basis": "seed 48: 24 No-Go applications, 0/12 episodes diverged",
+          "adjudicating_runs": [
+            "V3-EXQ-1109a (proposed) / probe C (bt0926-cgdisc) for H-commit"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-sv",
+          "label": "producer signal validity",
+          "axis": "representation",
+          "basis": "seed 49 producer within-tick spread p50 0.0039 vs env-oracle ~0.021; all-fired 5/5",
+          "adjudicating_runs": [
+            "V3-EXQ-1109a (proposed) / probe C (bt0926-cgdisc) for H-commit"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-env",
+          "label": "environment-limited",
+          "axis": "world",
+          "basis": "oracle candidate contrast p50 0.021-0.024 (~the 0.02 floor); contact-harm candidate on 3.4-4.6% of ticks",
+          "adjudicating_runs": [
+            "V3-EXQ-1109a (proposed) / probe C (bt0926-cgdisc) for H-commit"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "decision": {
+        "decision_question": "Is the veto's inertness commit-latch starvation (repair Family C first), a selection-composition defect (arbitration fix), or an upstream/env limit (no H3 build)?",
+        "live_gate": "V3-EXQ-1109a per-tick readouts",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one recording-extended run"
+      },
+      "axis_family_note": "axes process / representation / world are expected to be in axis_families.map already; confirm at apply time"
+    },
+    "apply_only_if": "the user confirms routing option A (the 1109a portfolio). If A is declined, register nothing."
+  },
+  "step7b_pre_routing_checks": {
+    "fire_count": 0,
+    "inapplicable": [
+      "C1",
+      "C2",
+      "C3 (claim-keyed; claim_ids [])",
+      "C6 (no arm_results array)",
+      "C7 (no arm/condition array)"
+    ],
+    "note": "quiet because the checks could not look; 7c carried the load"
+  },
+  "step7c_red_team": {
+    "model": "fable (Claude Fable 5.1) -- cross-model (drafter: Opus 5.5)",
+    "verdict": "CONTESTED",
+    "findings_file": ".scratch/breakthrough-20260924/ap1109/redteam/redteam_findings.md (not committed)",
+    "verdict_moving": [
+      "F1: 'BOTH forced by construction' contradicted by the manifest's own init FZ_OFF lives (68.0/74.7) and a wall-press probe (200-step cap, tax-free, causal_grid_world.py:2563-2564). ACCEPTED -- claim withdrawn; F1 BOTH is valid; new finding: training reduced freeze-OFF life on 2/3 seeds.",
+      "F2: F3 fan-out omitted the plan's own commitment row; e3_committed = beta_elevated = 1.0 in all freeze-OFF arms; execution reads the committed step (agent.py:11444-11455). ACCEPTED -- H-commit added as the lead leg; the 'first-action aliasing' leg withdrawn."
+    ],
+    "routing_level": [
+      "R1: severity 'corrupting' re-litigated the rec-20260926 user decision. ACCEPTED -- withdrawn, severity stays 'degrading'.",
+      "R2: 'trained STAY-locked since P0' unmeasured and overstated (MECH-357 Stage-H suppression by design). ACCEPTED -- softened to unmeasured; recorded as a recording gap.",
+      "R3: norm defect could be owned by the P0 harm training (Q086 calibration pathology) rather than the consumer. NOTED -- option B stays; both are recorded."
+    ],
+    "hygiene_applied": [
+      "'every moving policy' (STAY-only is 38-42%)",
+      "'every successful move'",
+      "learning_extracted rewritten per F1"
+    ]
+  },
+  "orchestrator_input_adjudicated": "Orchestrator relayed the harm_to_threat_causal_credit.md candidate routing (consumer rewiring to z_harm_s / E3 predicted harm; MECH-598/599 only if the Q-113 question fails). Adjudicated against 1109 data by probe ap1109_zharms_vs_zharma_probe.py: z_harm_s is present in this harness (use_harm_stream true) and carries proximity where z_harm_a does not (at init; trained unmeasured). The consumer-rewiring route HOLDS as option B; MECH-598/599 are not indicated."
+}
