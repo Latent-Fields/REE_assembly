@@ -1,0 +1,130 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1110_sd050_comparator_event_latch_validation",
+  "run_id": "v3_exq_1110_sd050_comparator_event_latch_validation_20260926T172044Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-26T17:20:44Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "559dd6bca7f6e8dce66454a89c8d607dddeff538",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-050"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "latch_one_event_per_shadow_burst_validated",
+    "preconditions": [
+      {
+        "name": "on_arm_shadow_train_ratio",
+        "measured": 14.947368421052632,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true,
+        "control": "unlatched shadow comparator on the ON arm's own norm stream; worst seed",
+        "offending_cell": 46
+      },
+      {
+        "name": "on_arm_shadow_bursts",
+        "measured": 13,
+        "threshold": 5,
+        "direction": "lower",
+        "met": true,
+        "control": "descents available to latch; worst seed",
+        "offending_cell": 47
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "595d332e8337692c9e2be48af108c9a50a09909ae687535ee7426d10170dd5ff",
+  "substrate_commit": {
+    "commit": "559dd6bca7f6e8dce66454a89c8d607dddeff538",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_affective_harm_stream": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "valence_liking_enabled": true,
+    "use_suffering_derivative_comparator": true,
+    "suffering_event_latch_enabled": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3041.618786661,
+  "config": {
+    "episodes": 40,
+    "steps_per_episode": 300,
+    "grid_size": 12,
+    "num_hazards": 1,
+    "num_resources": 2,
+    "contamination_spread": 0.0,
+    "body_obs_dim": 17,
+    "world_obs_dim": 250,
+    "harm_obs_a_dim": 7,
+    "action_dim": 5,
+    "comp_window_length": 30,
+    "comp_drop_threshold": 0.005,
+    "comp_min_initial_norm": 0.01,
+    "suffering_rearm_rise": null,
+    "scheduled_limb_damage_interval": 50,
+    "scheduled_limb_damage_prob": 0.5,
+    "scheduled_limb_damage_magnitude": 0.4,
+    "scheduled_limb_damage_limb_selection": "random",
+    "heal_rate": 0.002,
+    "damage_increment": 0.15,
+    "failure_prob_scale": 0.3,
+    "alpha_world": 0.3
+  },
+  "seeds": [
+    45,
+    46,
+    47
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
