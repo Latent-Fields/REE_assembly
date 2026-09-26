@@ -7983,6 +7983,26 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0561",
+      "claim_ids": [
+        "ARC-032",
+        "SD-034",
+        "MECH-230",
+        "MECH-229",
+        "MECH-436",
+        "MECH-358",
+        "SD-059",
+        "MECH-445"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Successor to GFLAG-0508 (resolved 2026-09-26; per-run triage REE_assembly/evidence/planning/gflag0508_scoring_triage_20260926.md). Of the 118 pre-1fc881692d freeze/orienting-gated runs only 11 still score, and 9 claim edges on 8 runs need adjudication, all in the Stage-H 603-lineage harness (theta_freeze 0.8, trained harm pathway) where the PAG freeze gate fired (603q: pag_n_commits 150-190/seed) or very likely fired, so frozen ticks walked the agent UP into the wall: V3-EXQ-228b/228c/228d (ARC-032 weakens x3), 466e (SD-034 supports), 514m (MECH-230 supports), 514o (MECH-229 supports), 514u (MECH-436 supports), 603q (MECH-358 and SD-059 supports), 717 (MECH-445 weakens). Route: ONE clustered /failure-autopsy asking whether the DV phase ran through select_action with the freeze gate on and whether the DV depends on position/trajectory. Do NOT queue straight post-fix replications: on post-fix code this harness freezes from tick 1 (V3-EXQ-1107 autopsy; MECH-279 substrate_queue amend).",
+      "raised_by_session": "governance-gflags-20260926",
+      "raised_at": "2026-09-26T13:14:16Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
