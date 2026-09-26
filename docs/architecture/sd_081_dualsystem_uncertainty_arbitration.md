@@ -250,3 +250,16 @@ that lands.
 
 MECH-477 (the claim this substrate exists to falsify), MECH-163 (leg 1),
 ARC-071 (transfer -- distinct, still unbuilt), ARC-007, ARC-016, MECH-112.
+
+## MECH-596: dual-route proposal generation (proposer-side split) {#mech-596}
+
+Registered 2026-09-26 (candidate, `substrate_conditional`) from
+`evidence/planning/thought_intake_2026-09-25_dual_route_habit_vs_deliberative_proposals.md`.
+Candidates reach E3 from two concurrently active proposal routes: a HABIT route that enumerates
+or samples over the action repertoire (primitives early, practised chunks later), and a
+DELIBERATIVE route that searches the learned abstract action-object space (SD-004). Both meet in
+one arbitrated selection (MECH-234, MECH-477 / SD-081). This is a PROPOSER-side split. SD-081 on
+this page is a SCORER-side split (two depth reads of one E3 scorer over one pool). The two are
+orthogonal: proposer route x scorer read is a 2x2. Plan row: `W1-both` in
+`evidence/planning/coupled_loop_repair_campaign_plan.md` (non-blocking for A1). Registration is
+not build authorisation.

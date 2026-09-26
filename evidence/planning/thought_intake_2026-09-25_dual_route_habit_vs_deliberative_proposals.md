@@ -54,7 +54,7 @@ The two routes are arbitrated. With practice, choices migrate from the deliberat
 - **Distinguished from:** SD-081/MECH-163 (scorer-side depth split over one pool); SD-045 (retired cached-lookup habit store); the campaign's ASP-vs-codec head-to-head (rival framing).
 - **Amended:** none. No claim's status, confidence or evidence was touched. `claims.yaml` was not edited in this pass.
 
-## 6. Candidate claims -- DRAFTED, REGISTRATION DEFERRED
+## 6. Candidate claims -- REGISTERED 2026-09-26 as MECH-596 (session thought-intake-20260926)
 
 **Why not registered:** `task_claim.py open` for `REE_assembly/docs/claims/claims.yaml` exited 3 at 2026-09-25T19:24Z. The owner is `igw-auto-igw-221-substrate-ready-sd036-eval-repli-20260925T133629Z` (IGW-20260925-221, SD-036 implement-substrate STAGED). The brief's instruction for exactly this case: do not edit `claims.yaml`; complete the intake and the plan item; leave registration as a precise resume note. The user has said they will run `/governance`.
 

@@ -1,6 +1,6 @@
 Status: processed
 Intake: evidence/planning/thought_intake_2026-09-25_dual_route_habit_vs_deliberative_proposals.md
-Registration pending: one candidate MECH drafted in the intake (section 6); claims.yaml was owned by another session at intake time -- /governance registers it from the intake's paste-ready block.
+Claims registered: MECH-596
 
 # Two proposal routes: one for habits, one for more complex behavioural additions
 

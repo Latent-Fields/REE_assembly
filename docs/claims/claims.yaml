@@ -117372,3 +117372,81 @@
     targeted_review_affect_stream_relief_safety_soothing) -- adjacent (stress, not moral residue), not
     evidence for this question. DO NOT build in V3. DO NOT queue an experiment. V5 (caregiver substrate,
     same gate as the intake's candidate 1 / WS-10 minimal two-agent world).
+- id: MECH-596
+  title: "dual_route_proposal_generation. Candidate actions reach E3 selection from TWO concurrently active proposal ROUTES that differ in the representational format they search: a HABIT route that enumerates or samples directly over the agent's action repertoire (primitives early in life, practised chunks later; cheap, state-light, exact when the repertoire is small) and a DELIBERATIVE route that searches a learned abstract action-object space (SD-004 O, decoded to actions), which is state-dependent and composes novel multi-step behaviour. Both routes' candidates meet in one selection (single action channel, MECH-234) under reliability arbitration (MECH-477 / SD-081), so that the habit route supplies the committed choice in familiar states and the deliberative route when novelty or composition is required, and practised deliberative compositions migrate into the habit route's repertoire (ARC-071 / MECH-323 transfer). This is a PROPOSER-side split, distinct from SD-081's SCORER-side split (two depth reads of one E3 scorer over one candidate pool)."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.proposal.dual_route_generation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: '2026-09-26'
+  source_thought: docs/thoughts/2026-09-25_dual_route_habit_vs_deliberative_proposals.md
+  location: docs/architecture/sd_081_dualsystem_uncertainty_arbitration.md#mech-596
+  depends_on:
+  - SD-081
+  - MECH-477
+  - MECH-163
+  - SD-004
+  - SD-080
+  - ARC-071
+  - MECH-323
+  - MECH-312b
+  - Q-085
+  - MECH-234
+  source:
+  - docs/thoughts/2026-09-25_dual_route_habit_vs_deliberative_proposals.md
+  - evidence/planning/thought_intake_2026-09-25_dual_route_habit_vs_deliberative_proposals.md
+  notes: >
+    ORIGIN: user remark 2026-09-25 (orchestrate-20260924-breakthrough), verbatim "It seems a bit like
+    both exist in my mind. One for habits and one for more complex behavioural additions", on hearing
+    the coupled loop-repair campaign's two proposal mechanisms described side by side: action-space
+    proposals (ASP, plan row W1-alt, ree-v3 1a16595 on integration/coupled-loop-repair) and the
+    abstract action-object codec (plan row W1). The campaign currently runs them as RIVALS in a
+    pre-registered head-to-head (rec-20260925-6a675285, rec-20260925-38b81685); this claim asserts
+    they are better modelled as COEXISTING ROUTES. That does not change A1: the head-to-head stays as
+    registered, and the INT-BOTH arrangement is plan row W1-both, non-blocking.
+    DISTINCT FROM SD-081 / MECH-163: those split SCORING (a depth-limited and a full-horizon read of the
+    same E3 scorer over the same candidate pool; e3_selector.py _score_depth_limit). They are silent on
+    where candidates come from. This claim splits GENERATION. The two splits are orthogonal (proposer
+    route x scorer read is a 2x2), and the INT-BOTH design must decide the crossing, not assume it.
+    DISTINCT FROM ARC-071 / MECH-323: those are the TRANSFER mechanism (chunk formation). This claim
+    predicts transfer's observable at the proposer (route-of-origin share drifting to the habit route
+    with practice) and uses transfer to grow the habit route's repertoire beyond primitives.
+    DISTINCT FROM SD-045 (retired): that was a cached-lookup habit store indexed by state and outcome
+    signatures. The habit route here generates over the repertoire and caches no values.
+    LITERATURE (all already on file; no new pull made): Daw, Niv & Dayan 2005 (concurrent controllers,
+    uncertainty arbitration; both act over the SAME primitive actions and differ in valuation, so this
+    paper does not support "habit = primitives, deliberative = abstract"); Balleine & O'Doherty 2010
+    (DMS/vmPFC vs DLS concurrency and dissociation; overtraining shifts control to habit); Dezfouli &
+    Balleine 2013 and Graybiel 2008 (the CHUNK is the habitual unit). The last two invert the naive
+    "composition belongs to the deliberative route" gloss. The registered reading is: the deliberative
+    route composes, and the habit route caches the compositions practice has made routine. The
+    abstract-space-as-deliberative-proposal-substrate element is REE-specific (SD-004). Hierarchical
+    PFC action representation (Badre; Botvinick) is the right literature for it and is NOT yet pulled
+    or verified.
+    PREDICTION (registered with the claim; not a what_would_answer, which is left to /thought-digestion).
+    Non-degeneracy preconditions: both routes pass their member gates (ASP G-ASP (a)-(d); codec W1
+    (a)-(d) + containment + (f)); each committed candidate carries a route-of-origin tag; familiarity
+    separates familiar from novel contexts (AUC >= 0.7, the MECH-163 bar); and the regime contains
+    states where the deliberative pool holds options the habit pool lacks (checked with the env-Q
+    oracle diagnostic, rec-20260925-a16786f5). Without that last condition, clause (ii) is untestable.
+    With both routes present and arbitrated: (i) the combination outperforms either route alone on the
+    A1 criteria (paired mean), OR the routes' contributions differ by situation; (ii) the habit route
+    supplies the majority of committed choices in familiar states, and the deliberative route's share
+    rises in novel or composition-requiring states; (iii) with repeated exposure to a fixed layout, the
+    habit route's share of committed choices in that layout rises (migration), faster with ARC-071
+    chunk formation ON.
+    FALSIFIED IF, with the preconditions met: (a) INT-BOTH is no better than the best single route AND
+    the route-of-origin share is flat across familiar vs novel (the second route adds nothing and is not
+    situationally recruited); or (b) the familiar/novel ordering of (ii) is absent or reversed; or
+    (c) no practice drift appears under (iii). (a) falsifies the claim as a whole; (b) and (c) falsify
+    the allocation and migration clauses respectively. A null under unmet preconditions is
+    non_contributory. In A1's 5-discrete-move regime a null on (i) is EXPECTED by structure (ASP
+    enumerates the first move exactly, and there is nothing to compose) and is not evidence against.
+    ROUTING: implementation_phase v3 because both routes exist or are being built on the integration
+    branch. The discriminating readout (composition) probably needs a regime A1 does not have. Flag for
+    a /governance routing decision. DO NOT build INT-BOTH ahead of the W1 codec passing its gates. DO
+    NOT queue an experiment from this registration. Registration is not build authorisation.
