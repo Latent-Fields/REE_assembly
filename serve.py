@@ -1947,7 +1947,11 @@ def read_merged_runner_status() -> dict:
         return {
             "completed": legacy.get("completed", []),
             "queue": legacy.get("queue", []),
-            "current": [],
+            # None, not []: the live merged path returns an object or None,
+            # and the explorer treats a truthy `current` as a running
+            # experiment -- `[]` is truthy in JS, so an empty list drew a
+            # phantom "this machine (local) Running" card (2026-09-26).
+            "current": None,
             "running": False,
             "idle": True,
             "last_updated": legacy.get("last_updated", ""),

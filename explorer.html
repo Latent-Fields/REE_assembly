@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-26.4 -->
+<!-- EXPLORER_VERSION: 2026-09-26.5 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8527,6 +8527,10 @@ END CONFLICT RESOLUTION`;
 
       const isRunning = !!(status && !status.idle && status.runner_pid);
       let cur = status && status.current;
+      // Only an experiment record counts as running. The frozen-file fallback
+      // used to send `current: []`, and `[]` is truthy, which drew a phantom
+      // "this machine (local) Running ... 0.0%" card with no experiment in it.
+      if (!cur || Array.isArray(cur) || !cur.queue_id) cur = null;
       // Use queue from files (always up-to-date) rather than runner_status.json.
       // Sorted by priority desc (higher runs first) -- stable, so items without
       // a priority keep their original relative order, at the bottom.
