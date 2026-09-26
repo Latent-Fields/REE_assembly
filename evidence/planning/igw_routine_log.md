@@ -3789,3 +3789,4 @@ One line per hourly tick. ASCII only.
 2026-09-26T17:25:28Z STAGE IGW-20260926-217 skill=/implement-substrate prio=25 worktree=igw-217-substrate-ready-spcem-onmanifold (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-26T18:33:40Z workset published via the coordinator (no local commit; verified on origin/master d31d7cb6dc) (regen -- 256 items, 31 ready, 0 in flight)
 2026-09-26T18:33:40Z workset committed (regen -- 256 items, 31 ready, 0 in flight)
+2026-09-26T18:30:53Z STAGE IGW-20260926-219 skill=/implement-substrate prio=25 worktree=igw-219-substrate-ready-noop-class-defau (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
