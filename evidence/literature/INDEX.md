@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-25T22:20:19.167449Z`
+Generated: `2026-09-26T03:42:04.521517Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -171,6 +171,7 @@ Generated: `2026-09-25T22:20:19.167449Z`
 | `targeted_review_connectome_mech_101` | [`2026-03-29_mech_101_reafference_visual_mstd_cullen2019`](targeted_review_connectome_mech_101/entries/2026-03-29_mech_101_reafference_visual_mstd_cullen2019/record.json) | 3 | [`summary`](targeted_review_connectome_mech_101/entries/2026-03-29_mech_101_reafference_visual_mstd_cullen2019/summary.md) |
 | `targeted_review_connectome_mech_104` | [`2026-04-18_mech_104_lc_ne_cognition_review_sara2009`](targeted_review_connectome_mech_104/entries/2026-04-18_mech_104_lc_ne_cognition_review_sara2009/record.json) | 5 | [`summary`](targeted_review_connectome_mech_104/entries/2026-04-18_mech_104_lc_ne_cognition_review_sara2009/summary.md) |
 | `targeted_review_connectome_mech_109` | [`2026-09-25_mech_109_volitional_breathing_ieeg_herrero2018`](targeted_review_connectome_mech_109/entries/2026-09-25_mech_109_volitional_breathing_ieeg_herrero2018/record.json) | 5 | [`summary`](targeted_review_connectome_mech_109/entries/2026-09-25_mech_109_volitional_breathing_ieeg_herrero2018/summary.md) |
+| `targeted_review_connectome_mech_110` | [`2026-09-26_mech_110_social_laughter_not_humour_scott2014`](targeted_review_connectome_mech_110/entries/2026-09-26_mech_110_social_laughter_not_humour_scott2014/record.json) | 5 | [`summary`](targeted_review_connectome_mech_110/entries/2026-09-26_mech_110_social_laughter_not_humour_scott2014/summary.md) |
 | `targeted_review_connectome_mech_111` | [`2026-03-29_mech_111_novelty_seeking_circuit_zona_incerta_ogasawara2022`](targeted_review_connectome_mech_111/entries/2026-03-29_mech_111_novelty_seeking_circuit_zona_incerta_ogasawara2022/record.json) | 2 | [`summary`](targeted_review_connectome_mech_111/entries/2026-03-29_mech_111_novelty_seeking_circuit_zona_incerta_ogasawara2022/summary.md) |
 | `targeted_review_connectome_mech_112` | [`2026-04-04_mech_112_ofc_goal_value_tremblay1999`](targeted_review_connectome_mech_112/entries/2026-04-04_mech_112_ofc_goal_value_tremblay1999/record.json) | 6 | [`summary`](targeted_review_connectome_mech_112/entries/2026-04-04_mech_112_ofc_goal_value_tremblay1999/summary.md) |
 | `targeted_review_connectome_mech_113` | [`2026-03-29_mech_113_interoceptive_inference_seth2016`](targeted_review_connectome_mech_113/entries/2026-03-29_mech_113_interoceptive_inference_seth2016/record.json) | 3 | [`summary`](targeted_review_connectome_mech_113/entries/2026-03-29_mech_113_interoceptive_inference_seth2016/summary.md) |

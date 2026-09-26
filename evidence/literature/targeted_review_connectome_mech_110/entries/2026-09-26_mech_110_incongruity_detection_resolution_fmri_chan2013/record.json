@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_110",
+  "entry_id": "2026-09-26_mech_110_incongruity_detection_resolution_fmri_chan2013",
+  "timestamp_utc": "2026-09-26T03:37:48Z",
+  "claim_ids_tested": [
+    "MECH-110"
+  ],
+  "source": {
+    "title": "Towards a neural circuit model of verbal humor processing: an fMRI study of the neural substrates of incongruity detection and resolution",
+    "authors": [
+      "Chan, Yu-Chen",
+      "Chou, Tai-Li",
+      "Chen, Hsueh-Chih",
+      "Yeh, Yu-Chu",
+      "Lavallee, Joseph P.",
+      "Liang, Keng-Chen",
+      "Chang, Kuo-En"
+    ],
+    "year": 2013,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2012.10.019",
+    "pmid": "23103517",
+    "volume": "66",
+    "pages": "169-176"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.4,
+  "confidence_rationale": "An event-related fMRI design separates unfunny (no incongruity), nonsensical (irresolvable incongruity) and funny (resolvable incongruity) jokes. Incongruity detection engaged right MTG and right medial frontal gyrus, while resolution engaged left SFG and left IPL. Irresolvable incongruity did not yield humour. This is a neural dissociation of the two stages MECH-110 treats as necessary, and it directly instantiates the 'without resolution, no laughter' prediction. Weaknesses: the incongruity is semantic rather than threat-laden, the DV is funniness rather than laughter, and there is no respiratory or cycling measure. A later ERP study on the same materials (Shibata et al. 2017, PMID 28007611) places detection at P2 and resolution at P600, a single sequential pass of a few hundred milliseconds.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The incongruity here is linguistic or semantic, not a harm/threat evaluation, so the 'threat-hypothesis tag' reading of detection is an REE reinterpretation.",
+    "The nonsensical (irresolvable) condition was not reported to produce distress; it was rated unfunny, which is a weaker outcome than MECH-110's 'distress rather than laughter'.",
+    "Detection and resolution appear as a single sequential pass per joke (ERP P2 then P600 on the same materials), with no evidence of repeated cycling."
+  ],
+  "tags": [
+    "mech_110",
+    "humour",
+    "incongruity_resolution",
+    "fmri",
+    "superior_frontal_gyrus",
+    "inferior_parietal_lobule",
+    "middle_temporal_gyrus",
+    "two_stage"
+  ],
+  "mapping": {
+    "source_claim_statement": "Detection of incongruity in verbal jokes is associated with right MTG and right medial frontal gyrus activation, and resolution of incongruity with left SFG and left IPL; a three-stage model runs detection, then resolution, then amusement elaboration. Irresolvable (nonsensical) incongruities do not produce humour.",
+    "ree_translation": "Detection corresponds to MECH-110's hypothesis-tag write (an anomaly flagged for evaluation), resolution to the sweep finding a coherent non-harmful reinterpretation (tag cleared), and elaboration or amusement to the affective signature. The nonsensical condition is the claim's 'without resolution' control.",
+    "mapping_caveat": "Incongruity is not threat. Verbal-joke comprehension is a slow, single-pass semantic process, not the fast repeated cycling MECH-110 proposes. No laughter, respiration or affect-matched control was measured. The fMRI localisations are group-level contrasts in one language (Chinese) with modest N.",
+    "source_context": "Healthy adult Taiwanese participants reading Chinese verbal jokes in an event-related fMRI design with unfunny, nonsensical and funny conditions; funniness ratings."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.4,
+    "notes": "Best available neural dissociation of detection vs resolution. Shibata et al. 2017 Brain Res (ERP/sLORETA, same materials) is corroborating context for the sequential timing and is noted here rather than entered separately."
+  }
+}

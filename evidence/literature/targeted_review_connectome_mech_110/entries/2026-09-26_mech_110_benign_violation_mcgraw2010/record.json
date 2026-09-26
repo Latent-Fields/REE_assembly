@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_110",
+  "entry_id": "2026-09-26_mech_110_benign_violation_mcgraw2010",
+  "timestamp_utc": "2026-09-26T03:37:48Z",
+  "claim_ids_tested": [
+    "MECH-110"
+  ],
+  "source": {
+    "title": "Benign violations: making immoral behavior funny",
+    "authors": [
+      "McGraw, A. Peter",
+      "Warren, Caleb"
+    ],
+    "year": 2010,
+    "venue": "Psychological Science",
+    "doi": "10.1177/0956797610376073",
+    "pmid": "20587696",
+    "volume": "21",
+    "issue": "8",
+    "pages": "1141-1149"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Five experiments show that a violation (here, a moral violation that also elicits disgust) produces laughter and amusement when it is simultaneously appraised as benign (alternative norm, weak commitment, psychological distance), and that seeing it as both wrong and not wrong mediates behavioural displays of humour. This is independent experimental support for MECH-110's structural prediction -- humour needs a threat/violation component AND a safe/benign component. It says nothing about repeated cycling, exhalation timing or any plan-sweep clock, and it frames the two appraisals as SIMULTANEOUS rather than as a threat-then-resolution sequence, so it supports the necessary-structure half of the claim only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Benign-violation theory treats 'wrong' and 'not wrong' as simultaneous appraisals, not as a sequence of threat activation followed by resolution; the claim's temporal ordering is not tested.",
+    "Humour co-occurred with disgust in the benign-violation conditions, so safe resolution does not require the threat appraisal to be CLEARED -- a residue can persist alongside laughter, contrary to a clean tag-clear reading.",
+    "The DV is self-reported amusement and coded laughter/smiling to vignettes; no respiratory or laughter-bout timing was measured."
+  ],
+  "tags": [
+    "mech_110",
+    "laughter",
+    "humour",
+    "benign_violation",
+    "incongruity",
+    "threat_resolution",
+    "behavioural_human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Laughter and amusement result from violations that are simultaneously seen as benign; an alternative norm, weak commitment to the violated norm, or psychological distance each make a violation benign and thereby humorous, and holding both 'wrong' and 'not wrong' appraisals mediates humour displays.",
+    "ree_translation": "The violation appraisal corresponds to MECH-110's threat-hypothesis activation (a harm-evaluation tag written by E3); the benign appraisal corresponds to the safe-resolution step (the sweep finds no genuine harm). Both being required is the claim's 'incongruity + resolution as necessary structure'.",
+    "mapping_caveat": "'Violation' is broader than threat (moral and social norm violations), 'benign' is an appraisal not a clearing event, and the theory is explicitly simultaneous rather than sequential. Nothing here speaks to rapid repeated cycling or to the respiratory implementation, which is the distinctive part of MECH-110.",
+    "source_context": "Adult human participants (US), five vignette/scenario experiments manipulating norm, commitment and distance around moral violations; self-report amusement/disgust and coded laughter or smiling."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.35,
+    "notes": "Well-cited, multi-study Psych Sci paper, though humour-theory effects are modest and vignette-bound. Mapping fidelity capped because only the structural (violation + benign) half of MECH-110 is addressed."
+  }
+}
