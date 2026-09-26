@@ -3755,3 +3755,9 @@ One line per hourly tick. ASCII only.
 2026-09-26T11:01:47Z complete igw-222-substrate-ready-sd-zself-trainin staged->completed outcome=DUPLICATE: Not launched: already built on ree-v3 main 863d23d (2026-09-24, sd_zself_trainin
 2026-09-26T11:02:29Z GC removed worktree igw-225-substrate-ready-sd-epistemic-def (removed; branch deleted)
 2026-09-26T11:03:36Z LAUNCH (manual interactive) IGW-20260924-224 worktree=igw-224-substrate-ready-suffering-deriva
+2026-09-26T11:04:08Z LAUNCH (manual interactive) IGW-20260925-220 worktree=igw-220-substrate-ready-mech288-slow-sca
+2026-09-26T11:04:10Z LAUNCH (manual interactive) IGW-20260925-219 worktree=igw-219-substrate-ready-dacc-pe-scale-no
+2026-09-26T11:01:03Z GC sweep removed 1 orphan worktree(s), kept 24
+2026-09-26T11:05:46Z workset published (regen -- 259 items, 33 ready, 0 in flight)
+2026-09-26T11:05:46Z workset committed (regen -- 259 items, 33 ready, 0 in flight)
+2026-09-26T11:01:03Z no eligible item (skipped 259): IGW-20260926-001:skill /governance not allowed; IGW-20260926-002:skill /governance not allowed; IGW-20260926-004:skill /governance not allowed
