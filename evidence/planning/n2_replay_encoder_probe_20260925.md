@@ -1,6 +1,7 @@
 # Probe N2: does W3's retained replay keep the L2R bar while W6a trains the world encoder through the read path? (Q4c, P8)
 
 - **Status: RUN -- VERDICT CANNOT_DETERMINE** (control arm missed (a) on 4/5 at the pre-registered reduced dose; sec 3). Pre-registration (secs 1-2) committed `025fc6a5cfe` before any registered seed ran. Session `bt0925-n2` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260925-coupled-n2-replay-probe`. Written 2026-09-25T23:11:26Z.
+- **Amendment A1 (sec 4, pre-registered 2026-09-26T02:02:29Z before any amended run):** dose post 600 -> 1200, fresh seeds 811-815, run on the fleet as V3-EXQ-1108 with `ree_core` pinned to `9b322d5`; rule and thresholds unchanged.
 - **Code:** ree-v3 `9b322d5` (tag `archive/coupled-loop-repair-9b322d5`, the W6a commit on `integration/coupled-loop-repair`), throwaway detached worktree `.scratch/wt-n2`. No `ree_core` edits. All three arms are configuration only on this sha.
 - **Plan of record:** `coupled_loop_repair_campaign_plan.md` sec 4 N2 row, sec 1 P8, sec 3 W-trainer (buffer-staleness requirement) and W3 member gate (a)-(e). Upstream records: W3 `w3_e2_world_member_build_20260925.md` (f82cb986c5), W6a `w6a_world_encoder_member_build_20260925.md` (eb055574c05).
 - **Probe:** `probes/n2/n2_probe.py` (one invocation = one seed x arm x twin), runner `probes/n2/run_seed.sh`, results `probes/n2/results/`.
@@ -114,3 +115,37 @@ Re-run **the same pre-registered design at the W3 dose (post 1200, 9600 W3 updat
 
 - Pre-registration `025fc6a5cfe` (before any registered seed). This results section is appended in a separate commit, with the result JSON/logs, `summarize_n2.py` and `results/summary.txt` under `probes/n2/`.
 - Plan sec 2 N2 row updated (status + one-line result). Nothing else in the plan changed.
+
+## 4. Amendment A1: full dose on the fleet (pre-registered 2026-09-26T02:02:29Z, BEFORE any amended run; sections 1-3 unchanged)
+
+Session `bt0926-n2q` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260926-n2-full-dose-cloud-queue`, queued under the orchestrator's standing delegation rec-20260924-fb429c72.
+
+**Reason (the CANNOT_DETERMINE cause, sec 3).** The pre-registered post-phase cut to 600 steps removed the second half of W3's on-policy phase, where the frozen control banks its gain over pre. The control therefore missed (a) on 4/5 and rule 1 fired. This is a dose problem in the design, not a harness fault: the canary reproduces W3 exactly at 1200 (P3).
+
+**What changes (three things only).**
+
+| item | sec 2 (as run) | amendment A1 |
+|---|---|---|
+| post-phase dose | 600 steps (3 episodes, k = 50..52): 4800 W3 updates, 600 W6a updates | **1200 steps (6 episodes, k = 50..55)**, the W3 member-gate dose: 9600 W3 updates, 1200 W6a updates. Rate unchanged (8 W3 updates + 1 W6a update per waking step, 25% retained mix) |
+| seeds | 611-615 | **811, 812, 813, 814, 815**, fresh: not 106-110 (W3 / babbling), 531-535, 611-615 (this record), 721-725 |
+| where | Mac probe, `probes/n2/n2_probe.py`, serial under the Mac lock | **fleet: V3-EXQ-1108**, driver `ree-v3/experiments/v3_exq_1108_n2_replay_encoder_full_dose_pinned.py` on main, `machine_affinity` "any". `ree_core` is pinned to `9b322d5c8e3f4efaf1a4530ebae2e7f3ef2e3055` by `experiments/_lib/substrate_pin.py` (sec "Pin" below) |
+
+**What does not change.** Arms (frozen / reencode / stored), the `shuf` twin and its fixed permutation [1,2,3,4,0], B0's recipe (12 native episodes k = 25.., 3000 head updates), the W3 and W6a member knobs, the test set, the primary readout in the current encoder space, legs (a)-(e) and their thresholds (0.47 and k = 10; retention 0.5; twin; guard; late growth < 1.2 and t30/t0 < 5), the per-arm keep-the-bar counts (4/5, 4/5, twin <= 1/5, 5/5, 4/5), the decision rule and its order (CANNOT_DETERMINE -> HOLDS-REENCODE / HOLDS-BOTH -> HOLDS-STORED-ONLY -> NEITHER), and the secondary readouts S1-S4.
+
+**Stated additions (bookkeeping, not rule changes).**
+- A run that crashes is recorded, and the remaining runs continue. If the control alone does not decide (rule 1) and some arm has fewer than 5 seeds, real or twin, the verdict is **INCOMPLETE**. This extends the Mac summariser's own branch (`summarize_n2.py`, real runs only) to the twins (red-team F2).
+- Manifest outcome: **PASS iff the verdict is HOLDS-*** (REENCODE, BOTH or STORED-ONLY); FAIL otherwise. `experiment_purpose` is diagnostic, `claim_ids` is empty, and `evidence_direction` is non_contributory. N2 gates the campaign's W6 preset buffer policy and presses no claim.
+- Every (seed, arm, twin) run and every B0 is its own child process, as on the Mac (one invocation = one run). When the box has the cores, seeds run in parallel (`N2_JOBS`, default min(4, cpu_count // 2)). Each child uses 2 torch threads, so parallelism changes no number.
+- **Cross-machine class.** The fleet is linux / torch 2.11-2.12+cpu. `torch.multinomial` differs from darwin on the native action path, so the fleet trajectories are not bit-comparable to this record's Mac runs or to W3's published values. The vendoring check (below) is therefore a Mac-only check. The fleet run carries no canary.
+- The seed-611 descriptive result (sec 3) is not credited and not reused.
+
+**Pin.** The driver resolves the full sha locally. Workers fetch `+refs/heads/*`, and `archive/coupled-loop-repair-9b322d5` auto-follows while the branch contains the commit. Re-measured 2026-09-26: on `ree-worker-4` (runner checkout `/home/ree/REE_Working/ree-v3`) and on the hub, both the full sha and the tag resolve to `9b322d5c8e`. Workers 2 and 3 were powered off and fetch on boot. If the sha does not resolve, the driver fetches that one tag from origin into `refs/tags` and retries. If it still fails, it raises `SubstratePinError`, and the result is ERROR, never a silent run on main. `verify_pin` checks that `ree_core.__file__` is under the pin directory, and that `ree_core.utils.waking_trainer_world_encoder.WorldEncoderMember` exists. That module is absent on main. `experiments/_harness.py`, `experiments/_lib/**` and `experiments/infant_curriculum.py` are byte-identical between `9b322d5` and main `7a37d1d`. Main's `ree_core` is unchanged since the branch's merge-base `07b5fe6`. So the pinned `ree_core` plus the live `experiments/**` is the same tree the Mac probe ran. Pinned cells are reuse-ineligible.
+
+**Vendoring check (smoke, Mac, under the probe lock).** The driver vendors the probe's helpers from `babble_probe.py`, `rollout_fidelity_probe.py`, `balanced_replay_probe.py` and `n2_probe.py`, function for function. Its `--dry-run` first runs the canary: seed 106, frozen / real, post 1200. It asserts on darwin that this reproduces W3's published row. It then runs seed 811 at post 200 through all 7 runs. Result: **PASS.** The canary reproduced exactly: B0 0.3067, pre 0.4333 / k 9, post **0.5233 / k 10**, retention **1.711** (`matches_mac_reference=True`). The seed-811 smoke ran all 7 runs at post 200 (rc 0). The DV moves across arms: frozen 0.537 / k 10, reencode 0.517 / k 10, stored 0.283 / k 0. Twins: 0.173, 0.130, 0.317 (none meets (a)). Pre phase identical across arms, retained set frozen, the recording standard validates, and the pin was verified. This is smoke only, not evidence. Wall time was 940 s on the Mac under load. Log: `.scratch/breakthrough-20260924/n2q/smoke.log`.
+
+**Red-team (queue-experiment Step 4.5).** A different model (fable) returned **CONTESTED** with three findings. Each was verified against the driver:
+- **F1 (leg (e) tracks the W6a encoder, not the replay policy).** Every W6a-ON run seen so far failed (e), including the label-permuted twins: 611 at post 600, reencode 1.236 and stored 1.498; smoke 811 at post 200, reencode real 1.207 / shuf 1.263 and stored 2.059 / 1.767. Every frozen run passed (max 1.078). *Disposition:* the rule is unchanged, and (e) still gates. Added, stated here before any amended run: a **secondary, non-gating** `keeps_bar_excluding_e_secondary` per arm, plus a count of seeds where the real arm's (e) failure is shared by its twin (`e_fail_twin_also_fails_e`). **Reading rule, fixed now:** a NEITHER in which an arm fails ONLY (e), and its twin fails (e) too, is a rollout-stability finding about the W6a-trained encoder. It is not evidence that the buffer policy loses the L2R bar. The pre-registered verdict is still reported as computed.
+- **F2 (a crashed `shuf` twin counted as passing (c) and (d)).** *Fixed:* INCOMPLETE now also fires when any arm has fewer than 5 twin records. The scoring selftest carries that case.
+- **F3 ((b)'s ratio flips sign if pre < B0).** *Disposition:* the formula is unchanged. Each run records `retention_denominator(_nonpositive)`, and a `retention_denominator_positive` precondition flags the run for adjudication if any real run has pre <= B0.
+
+**Cost.** Mac-measured per seed at 1200: B0 plus frozen x2 about 5 min, reencode x2 about 26 min, stored x2 about 12 min, so about 43 min. On a 2-vCPU `cpx22` worker (1 job) that is an estimated 5-7 h for the item. On the 8-vCPU `cx43` (4 jobs) it is about 2-3 h.
