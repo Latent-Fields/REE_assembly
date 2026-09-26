@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-26.2 -->
+<!-- EXPLORER_VERSION: 2026-09-26.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7977,10 +7977,18 @@ END CONFLICT RESOLUTION`;
       return { items, source, mirrorStaleBanner };
     }
 
+    let expRefreshInFlight = false;
+
     function startExpRefresh() {
       if (expRefreshTimer) return;
       expRefreshTimer = setInterval(() => {
-        renderExperiments().catch(() => {});
+        // Skip a tick while the previous refresh is still in flight. A render
+        // can outlast EXP_REFRESH_MS when the server is slow, and stacking
+        // renders is what turned a 1.5 s /api/evidence/runs into 56 s under
+        // load (2026-09-26): each new tick added more concurrent requests.
+        if (expRefreshInFlight) return;
+        expRefreshInFlight = true;
+        renderExperiments().catch(() => {}).finally(() => { expRefreshInFlight = false; });
       }, EXP_REFRESH_MS);
     }
 

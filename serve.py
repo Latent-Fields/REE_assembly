@@ -106,19 +106,17 @@ MAX_REMOTE_COMMAND_HISTORY = 50
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
 CONTRIBUTIONS_FILE  = SERVE_DIR / "contributors" / "contributions.json"
 
-# Timeline data paths
+# Claims / evidence data paths (shared loaders below)
 _TL_CLAIMS_YAML     = SERVE_DIR / "docs" / "claims" / "claims.yaml"
 _TL_CLAIM_EVIDENCE  = SERVE_DIR / "evidence" / "experiments" / "claim_evidence.v1.json"
-_TL_EVIDENCE_DIR    = SERVE_DIR / "evidence" / "experiments"
-_TL_LITERATURE_DIR  = SERVE_DIR / "evidence" / "literature"
 _DERIVED_DB_PATH    = SERVE_DIR / "evidence" / "experiments" / ".derived" / "evidence.sqlite"
 
 # --- claim_evidence.v1.json shared loader -------------------------------------
 # The file is ~10 MB (486 claims / 4,983 entries). Two request paths used to
-# json.loads() it independently on EVERY GET: _brain_load_claim_evidence()
-# (/api/brain-map, which then reads 5 scalars per claim) and the confidence-series
-# block in _build_timeline_events() (/api/timeline/events). Both want only the
-# `claims` map; neither touches `entries`.
+# json.loads() it independently on EVERY GET. Its remaining consumer,
+# _brain_load_claim_evidence() (/api/brain-map, 5 scalars per claim), wants only
+# the `claims` map, never `entries`. (/api/timeline/events, the other original
+# consumer, was removed 2026-09-26: no page called it.)
 #
 # Keyed on (mtime_ns, size) rather than a TTL on purpose: a governance rebuild is
 # picked up on the very next request, so this cannot serve stale evidence. That
@@ -135,9 +133,8 @@ _TL_CLAIMS_CACHE: dict = {"key": None, "claims": []}
 
 
 # Derived read-model preference (derived_evidence_index:P2, plan section 7 rows
-# 2-3). Both remaining in-process consumers of the 12 MB claim_evidence.v1.json
-# -- /api/brain-map's 5 scalars per claim and /api/timeline/events' confidence
-# series -- want only the `claims` map, never the 5,735-row `entries` list that
+# 2-3). The in-process consumer of the 12 MB claim_evidence.v1.json
+# -- /api/brain-map's 5 scalars per claim -- wants only the `claims` map, never the 5,735-row `entries` list that
 # is most of the file. When the derived DB is present they read a 574-row
 # projection of it instead, so the big JSON is not parsed or held resident at
 # all. When it is absent (fresh clone, deleted file, indexer never run) the JSON
@@ -193,23 +190,6 @@ def _load_claim_evidence_claims() -> dict:
         _CLAIM_EVIDENCE_CACHE["key"] = key
     return _CLAIM_EVIDENCE_CACHE["claims"]
 
-_TL_MILESTONES = [
-    {"date": "2026-02-13T00:00:00Z", "label": "Project start / first experiments",                   "kind": "start"},
-    {"date": "2026-02-15T18:46:42Z", "label": "First governance batch (10 claims adjudicated)",       "kind": "governance"},
-    {"date": "2026-02-25T16:56:00Z", "label": "Second governance batch",                              "kind": "governance"},
-    {"date": "2026-02-26T00:00:00Z", "label": "ree-experiments-lab archived; V2 real substrate",      "kind": "architecture"},
-    {"date": "2026-02-27T00:00:00Z", "label": "Epoch start: ree_hybrid_guardrails_v1",                "kind": "architecture"},
-    {"date": "2026-03-06T00:00:00Z", "label": "SD-002 resolved: E1 prior wired into HippocampalModule","kind": "architecture"},
-    {"date": "2026-03-14T00:00:00Z", "label": "SD-005: z_self/z_world split registered",              "kind": "architecture"},
-    {"date": "2026-03-15T00:00:00Z", "label": "Control-plane heartbeat cluster registered",           "kind": "architecture"},
-    {"date": "2026-03-16T00:00:00Z", "label": "Governance pipeline fixed; contamination corrected",   "kind": "governance"},
-    {"date": "2026-03-18T00:00:00Z", "label": "V3 EXQ-013-019 root cause: SD-008/alpha_world",        "kind": "milestone"},
-    {"date": "2026-03-19T00:00:00Z", "label": "V3 experiment series begins",                          "kind": "start"},
-]
-
-_TL_DATE_RE    = re.compile(r'\b(20\d{2}-\d{2}-\d{2})\b')
-_TL_REG_RE     = re.compile(r'registered\s+(20\d{2}-\d{2}-\d{2})', re.IGNORECASE)
-_TL_THOUGHT_RE = re.compile(r'docs/thoughts/(20\d{2}-\d{2}-\d{2})')
 
 # Python executable -- prefer REE_PYTHON env var, then known torch-capable paths
 def _default_python() -> str:
@@ -273,14 +253,76 @@ def _evidence_sources() -> dict:
 
 DEFAULT_PORT = 8000
 
+# ── Stale-while-revalidate cache ─────────────────────────────────────────────
+class _SWRCache:
+    """Serve the last result at once; rebuild in the background once stale.
+
+    For builders that take seconds (a filesystem walk, a pytest run) behind
+    endpoints the explorer polls every 10-60 s. A plain TTL made one request
+    per window pay the whole rebuild in its request thread -- measured
+    2026-09-26: /api/review/tracker 17 s, /api/regression/preflight 6-16 s --
+    and concurrent pollers then queued behind it until /api/evidence/runs
+    took 56 s under the pile-up.
+
+    - fresh (age < ttl): return the cached value.
+    - stale (ttl <= age < max_stale): return the cached value AND start one
+      background rebuild (never two at once).
+    - first call, or older than max_stale: rebuild synchronously, so a server
+      that sat idle for hours does not hand out hours-old data.
+    A failed background rebuild keeps the previous value and says so on
+    stderr; it never replaces good data with nothing.
+    """
+
+    def __init__(self, name: str, ttl: float, build, max_stale: float):
+        self.name, self.ttl, self.build = name, ttl, build
+        self.max_stale = max_stale
+        self._lock = threading.Lock()        # guards the fields below
+        self._build_lock = threading.Lock()  # one build at a time
+        self._value = None
+        self._built_at = 0.0
+        self._refreshing = False
+
+    def get(self):
+        with self._lock:
+            age = time.time() - self._built_at
+            if self._built_at and age < self.ttl:
+                return self._value
+            if self._built_at and age < self.max_stale:
+                if not self._refreshing:
+                    self._refreshing = True
+                    threading.Thread(target=self._refresh, daemon=True,
+                                     name="swr-" + self.name).start()
+                return self._value
+        with self._build_lock:
+            with self._lock:  # another caller may have just built it
+                if self._built_at and time.time() - self._built_at < self.ttl:
+                    return self._value
+            value = self.build()
+            with self._lock:
+                self._value, self._built_at = value, time.time()
+            return value
+
+    def _refresh(self):
+        try:
+            with self._build_lock:
+                value = self.build()
+            with self._lock:
+                self._value, self._built_at = value, time.time()
+        except Exception as exc:  # noqa: BLE001
+            print("[serve] %s refresh failed, keeping previous value: %s: %s"
+                  % (self.name, type(exc).__name__, exc),
+                  file=sys.stderr, flush=True)
+        finally:
+            with self._lock:
+                self._refreshing = False
+
+
 # ── Preflight badge ──────────────────────────────────────────────────────────
-# Memoised result of `pytest tests/preflight` for the regression-suite badge
-# in the explorer. Cached for _PREFLIGHT_TTL seconds so a clicked refresh
-# doesn't spawn pytest on every paint.
+# Result of `pytest tests/preflight` for the regression-suite badge in the
+# explorer. Served through _PREFLIGHT_SWR (defined after the builder below):
+# a page paint never waits on pytest once a first result exists, and the
+# badge's "(Nm ago)" label shows the result's real age.
 _PREFLIGHT_TTL = 60
-_preflight_cache: dict | None = None
-_preflight_cache_at: float = 0.0
-_preflight_lock = threading.Lock()
 
 _phase3_preflight_cache: dict | None = None
 _phase3_preflight_cache_at: float = 0.0
@@ -785,93 +827,92 @@ def run_phase3_writers_summary() -> dict:
         return result
 
 
-def run_preflight_suite() -> dict:
+def _run_preflight_suite_now() -> dict:
     """Run ree-v3/tests/preflight and return a serialisable result dict.
 
     Fields: ok (bool), passed (int), failed (int), duration_s (float),
     cached_at (iso8601 Z), tail (last stdout lines, <=40), error (str|None).
-    Memoised for _PREFLIGHT_TTL seconds.
+    Uncached -- callers go through run_preflight_suite().
     """
-    global _preflight_cache, _preflight_cache_at
-    with _preflight_lock:
-        now = time.time()
-        if _preflight_cache is not None and (now - _preflight_cache_at) < _PREFLIGHT_TTL:
-            return _preflight_cache
-
-        ree_v3 = SERVE_DIR.parent / "ree-v3"
-        preflight_dir = ree_v3 / "tests" / "preflight"
-        if not preflight_dir.exists():
-            result = {
-                "ok": False,
-                "passed": 0,
-                "failed": 0,
-                "duration_s": 0.0,
-                "cached_at": _utc_now_iso_z(),
-                "tail": [],
-                "error": f"preflight directory missing: {preflight_dir}",
-            }
-            _preflight_cache = result
-            _preflight_cache_at = now
-            return result
-
-        start = time.time()
-        try:
-            proc = subprocess.run(
-                [V3_PYTHON, "-m", "pytest", "-q", "--tb=line", str(preflight_dir)],
-                cwd=str(ree_v3),
-                capture_output=True,
-                text=True,
-                timeout=120,
-            )
-            duration = time.time() - start
-            out = (proc.stdout or "") + (proc.stderr or "")
-            # Parse "N passed" / "N failed" from pytest summary.
-            passed = 0
-            failed = 0
-            m_pass = re.search(r"(\d+)\s+passed", out)
-            m_fail = re.search(r"(\d+)\s+failed", out)
-            if m_pass:
-                passed = int(m_pass.group(1))
-            if m_fail:
-                failed = int(m_fail.group(1))
-            tail = out.splitlines()[-40:]
-            result = {
-                "ok": proc.returncode == 0,
-                "passed": passed,
-                "failed": failed,
-                "duration_s": round(duration, 3),
-                "cached_at": _utc_now_iso_z(),
-                "tail": tail,
-                # pytest exit 1 = tests ran and some failed: that is a result
-                # (ok=False, failed>0), not a harness error. Anything else
-                # non-zero (interrupted, internal error, usage, no tests) is.
-                "error": (None if proc.returncode == 0
-                          or (proc.returncode == 1 and failed > 0)
-                          else f"exit {proc.returncode}"),
-            }
-        except subprocess.TimeoutExpired:
-            result = {
-                "ok": False,
-                "passed": 0,
-                "failed": 0,
-                "duration_s": round(time.time() - start, 3),
-                "cached_at": _utc_now_iso_z(),
-                "tail": [],
-                "error": "timeout",
-            }
-        except Exception as exc:
-            result = {
-                "ok": False,
-                "passed": 0,
-                "failed": 0,
-                "duration_s": round(time.time() - start, 3),
-                "cached_at": _utc_now_iso_z(),
-                "tail": [],
-                "error": f"{type(exc).__name__}: {exc}",
-            }
-        _preflight_cache = result
-        _preflight_cache_at = now
+    ree_v3 = SERVE_DIR.parent / "ree-v3"
+    preflight_dir = ree_v3 / "tests" / "preflight"
+    if not preflight_dir.exists():
+        result = {
+            "ok": False,
+            "passed": 0,
+            "failed": 0,
+            "duration_s": 0.0,
+            "cached_at": _utc_now_iso_z(),
+            "tail": [],
+            "error": f"preflight directory missing: {preflight_dir}",
+        }
         return result
+
+    start = time.time()
+    try:
+        proc = subprocess.run(
+            [V3_PYTHON, "-m", "pytest", "-q", "--tb=line", str(preflight_dir)],
+            cwd=str(ree_v3),
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        duration = time.time() - start
+        out = (proc.stdout or "") + (proc.stderr or "")
+        # Parse "N passed" / "N failed" from pytest summary.
+        passed = 0
+        failed = 0
+        m_pass = re.search(r"(\d+)\s+passed", out)
+        m_fail = re.search(r"(\d+)\s+failed", out)
+        if m_pass:
+            passed = int(m_pass.group(1))
+        if m_fail:
+            failed = int(m_fail.group(1))
+        tail = out.splitlines()[-40:]
+        result = {
+            "ok": proc.returncode == 0,
+            "passed": passed,
+            "failed": failed,
+            "duration_s": round(duration, 3),
+            "cached_at": _utc_now_iso_z(),
+            "tail": tail,
+            # pytest exit 1 = tests ran and some failed: that is a result
+            # (ok=False, failed>0), not a harness error. Anything else
+            # non-zero (interrupted, internal error, usage, no tests) is.
+            "error": (None if proc.returncode == 0
+                      or (proc.returncode == 1 and failed > 0)
+                      else f"exit {proc.returncode}"),
+        }
+    except subprocess.TimeoutExpired:
+        result = {
+            "ok": False,
+            "passed": 0,
+            "failed": 0,
+            "duration_s": round(time.time() - start, 3),
+            "cached_at": _utc_now_iso_z(),
+            "tail": [],
+            "error": "timeout",
+        }
+    except Exception as exc:
+        result = {
+            "ok": False,
+            "passed": 0,
+            "failed": 0,
+            "duration_s": round(time.time() - start, 3),
+            "cached_at": _utc_now_iso_z(),
+            "tail": [],
+            "error": f"{type(exc).__name__}: {exc}",
+        }
+    return result
+
+
+_PREFLIGHT_SWR = _SWRCache("preflight", _PREFLIGHT_TTL, _run_preflight_suite_now,
+                           max_stale=1800)
+
+
+def run_preflight_suite() -> dict:
+    """Latest preflight result, via _PREFLIGHT_SWR (see _SWRCache)."""
+    return _PREFLIGHT_SWR.get()
 
 
 # ── Workspace health (stale TASK_CLAIMS + orphaned git stashes) ─────────────
@@ -1751,10 +1792,11 @@ def update_review_tracker(mutate) -> dict:
         return data
 
 
-# Cache of experiment dir_name -> set(run_id). Rebuilt every _DIR_RUN_TTL seconds
-# so the explorer can resolve `reviewed_run_ids` back to dir_names for the
-# "discussed" badge without a startup migration. Scanning ~430 dirs takes ~2s.
-_DIR_RUN_CACHE: dict = {"built_at": 0.0, "map": {}}
+# Cache of experiment dir_name -> set(run_id), so the explorer can resolve
+# `reviewed_run_ids` back to dir_names for the "discussed" badge without a
+# startup migration. The scan took ~2 s at ~430 dirs and ~17 s at ~1500
+# (2026-09-26), so it is served stale-while-revalidate (_DIR_RUNS_SWR, below
+# _build_dir_to_runs) instead of rebuilding inside a request.
 _DIR_RUN_TTL = 60.0
 
 
@@ -1838,12 +1880,12 @@ def _build_dir_to_runs() -> dict:
     return result
 
 
+_DIR_RUNS_SWR = _SWRCache("dir-runs", _DIR_RUN_TTL, _build_dir_to_runs,
+                          max_stale=900)
+
+
 def get_dir_to_runs() -> dict:
-    now = time.time()
-    if now - _DIR_RUN_CACHE["built_at"] > _DIR_RUN_TTL:
-        _DIR_RUN_CACHE["map"] = _build_dir_to_runs()
-        _DIR_RUN_CACHE["built_at"] = now
-    return _DIR_RUN_CACHE["map"]
+    return _DIR_RUNS_SWR.get()
 
 
 def read_merged_runner_status() -> dict:
@@ -2220,7 +2262,6 @@ def _enrich_machine_from_git(entry: dict, hb: dict, st: dict) -> None:
         entry["status_current"] = st.get("current")
         entry["status_last_updated"] = st.get("last_updated")
         entry["has_status"] = True
-
 
 
 # See the ROLE-AWARE FRESHNESS note below: a metaworker box ticks every 5
@@ -4683,7 +4724,6 @@ def _enrich_closure_v2(data: dict) -> dict:
     return data
 
 
-
 def _closure_shp_head(n: dict, cp_index: dict | None = None) -> dict:
     """status_history_plane (SHP-2) head projection for a closure node, flattened
     for the map overlay. Pulls the two-plane `live:` / `join:` blocks straight from
@@ -5653,310 +5693,6 @@ def _normalize_manifest_fields(m: dict) -> tuple:
     return verdict, timestamp, claim_id
 
 
-# --- Claude Code local usage (ccusage-style) -------------------------------
-# Per-1M-token pricing (input, output). cache-write 5m = 1.25x input,
-# cache-write 1h = 2x input, cache-read = 0.1x input. Source: claude-api skill;
-# verify if stale. Unknown models default to opus-tier (5 / 25).
-_CLAUDE_PRICING = {
-    "claude-opus-4-8": (5.0, 25.0),
-    "claude-opus-4-7": (5.0, 25.0),
-    "claude-opus-4-6": (5.0, 25.0),
-    "claude-opus-4-5": (5.0, 25.0),
-    "claude-sonnet-4-6": (3.0, 15.0),
-    "claude-sonnet-4-5": (3.0, 15.0),
-    "claude-fable-5": (10.0, 50.0),
-    "claude-haiku-4-5": (1.0, 5.0),
-}
-_CLAUDE_PRICING_DEFAULT = (5.0, 25.0)
-_CLAUDE_BLOCK_SECONDS = 5 * 3600
-_CLAUDE_USAGE_MTIME_CUTOFF_DAYS = 8
-
-# Subscription context. The local transcript scrape only sees THIS device, so
-# any usage reading here is a lower bound on the account total (claude.ai, the
-# desktop app, and Claude Code on other machines are not visible). Anthropic
-# does not publish exact token caps for Max plans (limits are message/hour-based
-# and have shifted over time), and the token totals below are inflated by
-# cache-reads -- so we deliberately do NOT show a fabricated "% of plan limit".
-# Instead the 5h gauge self-calibrates against the user's own busiest recent
-# block, and the weekly section reports a real fixed-anchor window.
-_CLAUDE_PLAN_LABEL = "Max 20x"
-_CLAUDE_DEVICE_SCOPE = "this device only"
-# Weekly-window reset anchor (UTC). Matches how the Max plan weekly limit
-# resets on a fixed 7-day cycle. Calibrated 2026-06-23 to the Claude app's
-# Usage screen, which showed the weekly limit "Resets Fri 18:59" in local
-# (Ireland = IST = UTC+1 in summer), i.e. Friday 17:59 UTC. Re-check against
-# the app's Usage screen if the displayed countdown drifts.
-_CLAUDE_WEEKLY_RESET_WEEKDAY = 4  # 0=Monday .. 6=Sunday; 4=Friday
-_CLAUDE_WEEKLY_RESET_HOUR = 17
-_CLAUDE_WEEKLY_RESET_MINUTE = 59
-
-
-def _claude_price_for(model):
-    """(input, output) per-1M price for a model id.
-
-    Transcripts carry dated ids (e.g. claude-haiku-4-5-20251001) that do not
-    exact-match the undated pricing keys, so fall back to a prefix match before
-    the opus-tier default; otherwise a dated haiku/sonnet is priced as opus.
-    """
-    if model in _CLAUDE_PRICING:
-        return _CLAUDE_PRICING[model]
-    for key, price in _CLAUDE_PRICING.items():
-        if model.startswith(key):
-            return price
-    return _CLAUDE_PRICING_DEFAULT
-
-
-def _claude_parse_ts(raw):
-    """Parse an ISO-8601 timestamp (trailing 'Z') into an aware UTC datetime."""
-    from datetime import datetime, timezone
-    if not raw or not isinstance(raw, str):
-        return None
-    try:
-        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
-    except ValueError:
-        return None
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc)
-
-
-def _claude_zero_tokens():
-    return {"input": 0, "output": 0, "cache_write": 0, "cache_read": 0, "total": 0}
-
-
-def _claude_accumulate(bucket, entry):
-    """Add one parsed entry's cost/tokens/message into a running bucket dict."""
-    bucket["cost_usd"] += entry["cost"]
-    bucket["messages"] += 1
-    tk = bucket["tokens"]
-    tk["input"] += entry["input"]
-    tk["output"] += entry["output"]
-    tk["cache_write"] += entry["cache_write"]
-    tk["cache_read"] += entry["cache_read"]
-    tk["total"] += entry["total"]
-
-
-def compute_claude_usage() -> dict:
-    """Compute Claude Code token+cost usage from local transcript JSONL.
-
-    ccusage-style: walks ~/.claude/projects/**/*.jsonl, prices each assistant
-    line per-model, and reports the active 5h block, rolling 7d, today, and a
-    per-model breakdown. Percentages elsewhere are vs an estimated cap and
-    'weekly' is a rolling 7-day sum -- accepted by design.
-    """
-    from datetime import datetime, timezone, timedelta
-    import json as _json
-    try:
-        now = datetime.now(timezone.utc)
-        base = Path.home() / ".claude" / "projects"
-        mtime_cutoff = now.timestamp() - _CLAUDE_USAGE_MTIME_CUTOFF_DAYS * 86400
-        seen = set()
-        entries = []
-        if base.exists():
-            for fp in base.glob("**/*.jsonl"):
-                try:
-                    if fp.stat().st_mtime < mtime_cutoff:
-                        continue
-                except OSError:
-                    continue
-                try:
-                    with open(fp, "r", errors="replace") as fh:
-                        for line in fh:
-                            line = line.strip()
-                            if not line:
-                                continue
-                            try:
-                                obj = _json.loads(line)
-                            except Exception:
-                                continue
-                            if obj.get("type") != "assistant":
-                                continue
-                            msg = obj.get("message") or {}
-                            usage = msg.get("usage")
-                            if not isinstance(usage, dict):
-                                continue
-                            model = msg.get("model") or ""
-                            if model == "<synthetic>":
-                                continue
-                            dedup_key = (msg.get("id"), obj.get("requestId"))
-                            if dedup_key in seen:
-                                continue
-                            seen.add(dedup_key)
-                            ts = _claude_parse_ts(obj.get("timestamp"))
-                            if ts is None:
-                                continue
-                            inp = int(usage.get("input_tokens") or 0)
-                            out = int(usage.get("output_tokens") or 0)
-                            cw_total = int(usage.get("cache_creation_input_tokens") or 0)
-                            cr = int(usage.get("cache_read_input_tokens") or 0)
-                            cc = usage.get("cache_creation")
-                            if isinstance(cc, dict):
-                                cw5m = int(cc.get("ephemeral_5m_input_tokens") or 0)
-                                cw1h = int(cc.get("ephemeral_1h_input_tokens") or 0)
-                            else:
-                                cw5m, cw1h = cw_total, 0
-                            in_price, out_price = _claude_price_for(model)
-                            cost = (
-                                inp * in_price
-                                + out * out_price
-                                + cw5m * in_price * 1.25
-                                + cw1h * in_price * 2.0
-                                + cr * in_price * 0.1
-                            ) / 1e6
-                            entries.append({
-                                "ts": ts,
-                                "model": model,
-                                "cost": cost,
-                                "input": inp,
-                                "output": out,
-                                "cache_write": cw_total,
-                                "cache_read": cr,
-                                "total": inp + out + cw_total + cr,
-                            })
-                except OSError:
-                    continue
-
-        entries.sort(key=lambda e: e["ts"])
-        block_secs = timedelta(seconds=_CLAUDE_BLOCK_SECONDS)
-        cutoff_7d = now - timedelta(days=7)
-
-        # Fixed weekly window anchor (matches the Max plan weekly reset cycle).
-        def _week_start(dt):
-            days_back = (dt.weekday() - _CLAUDE_WEEKLY_RESET_WEEKDAY) % 7
-            anchor = dt.replace(hour=_CLAUDE_WEEKLY_RESET_HOUR,
-                                minute=_CLAUDE_WEEKLY_RESET_MINUTE,
-                                second=0, microsecond=0) - timedelta(days=days_back)
-            if anchor > dt:
-                anchor -= timedelta(days=7)
-            return anchor
-        week_start = _week_start(now)
-        week_reset = week_start + timedelta(days=7)
-
-        # --- 5h block (ccusage-style) ---
-        block_5h = {
-            "active": False,
-            "start": None,
-            "reset_at": None,
-            "seconds_to_reset": 0,
-            "elapsed_frac": 0.0,
-            "cost_usd": 0.0,
-            "messages": 0,
-            "tokens": _claude_zero_tokens(),
-            "peak_total_tokens": 0,
-            "peak_cost_usd": 0.0,
-        }
-        if entries:
-            blocks = []  # list of dicts: {start, entries}
-            block_start = None
-            prev_ts = None
-            cur = None
-            for e in entries:
-                ts = e["ts"]
-                new_block = (
-                    cur is None
-                    or (ts - block_start) >= block_secs
-                    or (ts - prev_ts) >= block_secs
-                )
-                if new_block:
-                    block_start = ts.replace(minute=0, second=0, microsecond=0)
-                    cur = {"start": block_start, "entries": []}
-                    blocks.append(cur)
-                cur["entries"].append(e)
-                prev_ts = ts
-            last = blocks[-1]
-            start = last["start"]
-            last_ts = last["entries"][-1]["ts"]
-            reset_at = start + block_secs
-            active = (now - last_ts) < block_secs
-            elapsed = (now - start).total_seconds() / _CLAUDE_BLOCK_SECONDS
-            elapsed_frac = max(0.0, min(1.0, elapsed))
-            secs_to_reset = max(0, int((reset_at - now).total_seconds()))
-            block_5h["active"] = bool(active)
-            block_5h["start"] = start.strftime("%Y-%m-%dT%H:%M:%SZ")
-            block_5h["reset_at"] = reset_at.strftime("%Y-%m-%dT%H:%M:%SZ")
-            block_5h["seconds_to_reset"] = secs_to_reset
-            block_5h["elapsed_frac"] = round(elapsed_frac, 4)
-            for e in last["entries"]:
-                _claude_accumulate(block_5h, e)
-            # Self-calibrating reference: heaviest 5h block in the trailing 7d,
-            # so the panel reads "this block vs your busiest recent block"
-            # without needing Anthropic's (unpublished, shifting) plan caps.
-            peak_total = 0
-            peak_cost = 0.0
-            for blk in blocks:
-                if blk["start"] < cutoff_7d:
-                    continue
-                bt = sum(e["total"] for e in blk["entries"])
-                bc = sum(e["cost"] for e in blk["entries"])
-                peak_total = max(peak_total, bt)
-                peak_cost = max(peak_cost, bc)
-            block_5h["peak_total_tokens"] = peak_total
-            block_5h["peak_cost_usd"] = round(peak_cost, 4)
-
-        # --- rolling 7d ---
-        rolling_7d = {
-            "cost_usd": 0.0,
-            "messages": 0,
-            "start": cutoff_7d.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "tokens": _claude_zero_tokens(),
-        }
-        # --- today (UTC date) ---
-        today_date = now.date()
-        today = {
-            "cost_usd": 0.0,
-            "messages": 0,
-            "tokens": _claude_zero_tokens(),
-        }
-        # --- weekly window (fixed anchor; matches the Max plan weekly reset) ---
-        week_span = (now - week_start).total_seconds() / (7 * 86400)
-        weekly_window = {
-            "cost_usd": 0.0,
-            "messages": 0,
-            "tokens": _claude_zero_tokens(),
-            "start": week_start.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "reset_at": week_reset.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "seconds_to_reset": max(0, int((week_reset - now).total_seconds())),
-            "elapsed_frac": round(max(0.0, min(1.0, week_span)), 4),
-        }
-        by_model = {}
-        for e in entries:
-            if e["ts"] >= cutoff_7d:
-                _claude_accumulate(rolling_7d, e)
-                bm = by_model.get(e["model"])
-                if bm is None:
-                    bm = {"model": e["model"], "cost_usd": 0.0,
-                          "total_tokens": 0, "messages": 0}
-                    by_model[e["model"]] = bm
-                bm["cost_usd"] += e["cost"]
-                bm["total_tokens"] += e["total"]
-                bm["messages"] += 1
-            if e["ts"] >= week_start:
-                _claude_accumulate(weekly_window, e)
-            if e["ts"].date() == today_date:
-                _claude_accumulate(today, e)
-
-        for bucket in (block_5h, rolling_7d, weekly_window, today):
-            bucket["cost_usd"] = round(bucket["cost_usd"], 4)
-        by_model_list = sorted(
-            by_model.values(), key=lambda r: r["cost_usd"], reverse=True)
-        for r in by_model_list:
-            r["cost_usd"] = round(r["cost_usd"], 4)
-
-        return {
-            "ok": True,
-            "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "plan": _CLAUDE_PLAN_LABEL,
-            "device_scope": _CLAUDE_DEVICE_SCOPE,
-            "block_5h": block_5h,
-            "weekly_window": weekly_window,
-            "rolling_7d": rolling_7d,
-            "today": today,
-            "by_model": by_model_list,
-        }
-    except Exception as e:
-        return {"ok": False, "error": str(e)}
-
-
 def scan_evidence_runs() -> dict:
     """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
@@ -6032,6 +5768,12 @@ def scan_evidence_runs() -> dict:
                 "episode_log_url": episode_log_url,
             }
     return result
+
+
+# Polled every 10 s by the Experiments tab; the walk is ~1.5 s idle and much
+# worse under concurrent polls, so serve it stale-while-revalidate.
+_EVIDENCE_RUNS_SWR = _SWRCache("evidence-runs", 20.0, scan_evidence_runs,
+                               max_stale=600)
 
 
 def _find_manifest_file(script_name: str = "", queue_id: str = ""):
@@ -6636,6 +6378,26 @@ def _coordinator_queue_active_count(url: str, tok: str) -> int | None:
         return None
 
 
+# Every open explorer tab polls /api/shadow/status every 15 s, and each call
+# was a fresh round-trip to the hub. A 10 s memo caps that at one hub request
+# per 10 s however many tabs are open, while an UNREACHABLE verdict still
+# surfaces within one poll.
+_SHADOW_STATUS_TTL = 10.0
+_SHADOW_STATUS_CACHE: dict = {"at": 0.0, "value": None}
+_SHADOW_STATUS_LOCK = threading.Lock()
+
+
+def _cached_shadow_status() -> dict:
+    with _SHADOW_STATUS_LOCK:
+        if (_SHADOW_STATUS_CACHE["value"] is not None
+                and time.time() - _SHADOW_STATUS_CACHE["at"] < _SHADOW_STATUS_TTL):
+            return _SHADOW_STATUS_CACHE["value"]
+        value = read_shadow_status()
+        _SHADOW_STATUS_CACHE["value"] = value
+        _SHADOW_STATUS_CACHE["at"] = time.time()
+        return value
+
+
 def read_shadow_status() -> dict:
     """Proxy the coordinator's /shadow/status and fold in the verdict.
     Never raises; degrades to a NOT_CONFIGURED / UNREACHABLE verdict."""
@@ -6987,37 +6749,7 @@ def read_queue_live(ver: str = "v3") -> dict:
     return file_payload
 
 
-# ── Timeline builder ─────────────────────────────────────────────────────────
-
-def _tl_utc_now() -> str:
-    return _utc_now_compact()
-
-
-def _tl_claim_date(claim: dict) -> tuple:
-    """Return (iso_date_str_or_None, confidence_str) for a claim dict.
-    Confidence: 'adjudicated' | 'inferred' | 'thought_file' | 'unknown'
-    """
-    adj = claim.get("adjudicated_at_utc")
-    if adj:
-        return str(adj), "adjudicated"
-    # Search note fields for explicit "registered YYYY-MM-DD" pattern first
-    for field in ("evidence_quality_note", "reframe_note", "notes"):
-        txt = str(claim.get(field) or "")
-        m = _TL_REG_RE.search(txt)
-        if m:
-            return m.group(1) + "T00:00:00Z", "inferred"
-    # Fallback: earliest date found in any note field
-    all_dates = []
-    for field in ("evidence_quality_note", "reframe_note", "notes"):
-        all_dates += _TL_DATE_RE.findall(str(claim.get(field) or ""))
-    if all_dates:
-        return min(all_dates) + "T00:00:00Z", "inferred"
-    # Fallback: date from thought-file in source list
-    for src in (claim.get("source") or []):
-        m = _TL_THOUGHT_RE.search(str(src))
-        if m:
-            return m.group(1) + "T00:00:00Z", "thought_file"
-    return None, "unknown"
+# ── Claims loaders (shared: brain map, claims summary) ─────────────────────
 
 
 def _tl_load_claims() -> list:
@@ -7206,137 +6938,6 @@ def build_claims_summary() -> dict:
     return payload
 
 
-def _build_timeline_events() -> dict:
-    """Build the timeline events payload from all available data sources."""
-    events = []
-    claims_map = {}
-
-    # --- Claims ---
-    for c in _tl_load_claims():
-        cid = str(c.get("id") or "")
-        if not cid:
-            continue
-        dt, conf = _tl_claim_date(c)
-        claims_map[cid] = {
-            "id": cid,
-            "title": str(c.get("title") or ""),
-            "claim_type": str(c.get("claim_type") or ""),
-            "status": str(c.get("status") or ""),
-            "lifecycle_stage": str(c.get("lifecycle_stage") or ""),
-            "confidence": c.get("confidence"),
-            "depends_on": list(c.get("depends_on") or []),
-            "v3_pending": bool(c.get("v3_pending")),
-            "estimated_at": dt,
-            "date_confidence": conf,
-        }
-        events.append({
-            "type": "claim",
-            "date": dt or "2026-02-13T00:00:00Z",
-            "date_confidence": conf,
-            "claim_id": cid,
-            "claim_type": str(c.get("claim_type") or ""),
-            "status": str(c.get("status") or ""),
-            "title": str(c.get("title") or ""),
-        })
-        if c.get("adjudicated_at_utc"):
-            events.append({
-                "type": "governance",
-                "date": str(c["adjudicated_at_utc"]),
-                "date_confidence": "exact",
-                "claim_id": cid,
-                "outcome": str(c.get("adjudication_outcome") or ""),
-            })
-
-    # --- Experiment manifests ---
-    if _TL_EVIDENCE_DIR.exists():
-        for mf in sorted(_TL_EVIDENCE_DIR.glob("**/runs/**/manifest.json")):
-            try:
-                m = json.loads(mf.read_text())
-            except Exception:
-                continue
-            ts = str(m.get("timestamp_utc") or "").strip()
-            if not ts:
-                continue
-            events.append({
-                "type": "experiment",
-                "date": ts,
-                "date_confidence": "exact",
-                "run_id": str(m.get("run_id") or ""),
-                "experiment_type": str(m.get("experiment_type") or ""),
-                "status": str(m.get("status") or "UNKNOWN").upper(),
-                "claim_ids": [str(x) for x in (
-                    m.get("claim_ids_tested") or m.get("claim_ids") or []
-                ) if x],
-                "evidence_direction": str(m.get("evidence_direction") or "unknown"),
-                "architecture_epoch": str(m.get("architecture_epoch") or ""),
-            })
-
-    # --- Literature records ---
-    if _TL_LITERATURE_DIR.exists():
-        for rf in sorted(_TL_LITERATURE_DIR.glob("**/record.json")):
-            try:
-                r = json.loads(rf.read_text())
-            except Exception:
-                continue
-            ts = str(r.get("timestamp_utc") or "").strip()
-            if not ts:
-                continue
-            events.append({
-                "type": "literature",
-                "date": ts,
-                "date_confidence": "exact",
-                "entry_id": str(r.get("entry_id") or ""),
-                "claim_ids": [str(x) for x in (r.get("claim_ids") or []) if x],
-                "evidence_direction": str(r.get("evidence_direction") or "unknown"),
-                "title": str((r.get("source") or {}).get("title") or ""),
-            })
-
-    # --- Milestones ---
-    for ms in _TL_MILESTONES:
-        events.append({**ms, "type": "milestone", "date_confidence": "exact"})
-
-    events.sort(key=lambda e: str(e.get("date") or ""))
-
-    # --- Confidence series ---
-    confidence_series = {}
-    try:
-        # Derived read-model when built, else the JSON cache. `recent_entries`
-        # is stored VERBATIM in claim_rollup, so this series is byte-identical
-        # either way -- see the column comment in derived_evidence_db.py.
-        for cid, cdata in _claim_rollup_for_serving().items():
-            entries = sorted(
-                [e for e in (cdata.get("recent_entries") or []) if e.get("timestamp_utc")],
-                key=lambda e: str(e["timestamp_utc"]),
-            )
-            pts = [
-                {
-                    "date": str(e["timestamp_utc"]),
-                    "confidence": e.get("confidence"),
-                    "source_type": e.get("source_type", "experimental"),
-                    "status": e.get("status", ""),
-                }
-                for e in entries if e.get("confidence") is not None
-            ]
-            if pts:
-                confidence_series[cid] = pts
-    except Exception:
-        pass
-
-    date_vals = [e["date"] for e in events if e.get("date")]
-    return {
-        "schema_version": "timeline/v1",
-        "generated_at": _tl_utc_now(),
-        "date_range": {
-            "start": min(date_vals) if date_vals else "2026-02-13T00:00:00Z",
-            "end":   max(date_vals) if date_vals else "2026-03-25T00:00:00Z",
-        },
-        "events": events,
-        "claims": claims_map,
-        "milestones": _TL_MILESTONES,
-        "confidence_series": confidence_series,
-    }
-
-
 # ── HTTP handler ─────────────────────────────────────────────────────────────
 
 # -- Decisions waiting on the user (morning paper answer forms) ---------------
@@ -7459,7 +7060,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(content)
             return
         if path == "/api/evidence/runs":
-            body = json.dumps(scan_evidence_runs()).encode()
+            body = json.dumps(_EVIDENCE_RUNS_SWR.get()).encode()
             self._json_response(body)
             return
         # Intercept runner_status.json requests -- return merged per-machine view
@@ -7472,7 +7073,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._json_response(body)
             return
         if path == "/api/shadow/status":
-            body = json.dumps(read_shadow_status()).encode()
+            body = json.dumps(_cached_shadow_status()).encode()
             self._json_response(body)
             return
         if path == "/api/regression/preflight":
@@ -7493,10 +7094,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/docs/index":
             body = json.dumps(read_docs_index()).encode()
-            self._json_response(body)
-            return
-        if path == "/api/usage":
-            body = json.dumps(compute_claude_usage()).encode()
             self._json_response(body)
             return
         if path == "/api/machines":
@@ -7836,10 +7433,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_response(404)
                 self.end_headers()
-            return
-        if path == "/api/timeline/events":
-            body = json.dumps(_build_timeline_events()).encode()
-            self._json_response(body)
             return
         if path == "/api/fishtank/logs":
             logs = []
@@ -8512,7 +8105,7 @@ def main():
     class _QuietThreadingHTTPServer(http.server.ThreadingHTTPServer):
         """ThreadingHTTPServer that swallows benign client-disconnect errors.
 
-        A browser tab polling an endpoint (e.g. /api/usage) that is closed,
+        A browser tab polling an endpoint (e.g. /api/shadow/status) that is closed,
         navigated away, or refreshed mid-response drops the socket, so the
         handler's wfile.write() raises BrokenPipeError / ConnectionResetError
         deep in http.server. Those are harmless -- the client simply left --
